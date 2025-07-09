@@ -34,6 +34,25 @@ if (document.body.classList.contains("home")) {
       ease: "power2.out"
     }, "-=0.6"); // overlaps with portal-glow animation
 
+    // 🔥 Portal-profile rise & fade in
+    // 1. Y movement (starts immediately)
+    tl.fromTo(".portal-profile", {
+      y: 80
+    }, {
+      y: 0,
+      duration: 1.2,
+      ease: "power2.out"
+    }, "-=1.1"); // or whatever offset you want
+
+    // 2. Opacity fade-in (delayed, starts near the end of y movement)
+    tl.fromTo(".portal-profile", {
+      opacity: 0
+    }, {
+      opacity: 1,
+      duration: 0.8,
+      ease: "power1.out"
+    }, "-=0.9"); // adjust to start just before it finishes rising
+
     // 🔥 Glow beam emission
     tl.to(".portal-glow", {
       opacity: 1,
@@ -41,7 +60,7 @@ if (document.body.classList.contains("home")) {
       filter: "blur(10px)",
       duration: 1,
       ease: "power1.out"
-    }, "-=0.8");
+    }, "-=0.9");
 
     tl.fromTo(".hero-content", {
       y: -100,
