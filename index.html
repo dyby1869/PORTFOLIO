@@ -1,0 +1,315 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A short description of your site for SEO">
+    <meta name="author" content="Your Name">
+
+    <title>Your Website Title</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+
+<body class="home">
+
+
+
+    <!-- HEADER -->
+    <header class="nav-bar">
+        <h1 class="logo">DYLAN BYARS</h1>
+
+        <!-- Hamburger Button -->
+        <button class="menu-toggle" aria-label="Toggle menu">
+            ☰
+        </button>
+
+        <nav class="nav-link-container">
+            <a class="nav-link" href="#recent-work">Work</a>
+            <a class="nav-link" href="about.html">About</a>
+            <a class="button" href="assets/Dylan-Byars-Resume.pdf" target="_blank" download>Download CV</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-container">
+
+        <div class="profile-image-container">
+
+            <div class="portal-container">
+
+                <svg class="portal" width="568" height="400" viewBox="0 0 568 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Beam fade upward -->
+                        <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="rgba(255,231,124,0)" />
+                            <stop offset="100%" stop-color="rgba(255,231,124,0.6)" />
+                        </linearGradient>
+
+                        <!-- Inner glow for portal disc -->
+                        <radialGradient id="portalGradient" cx="50%" cy="50%" r="70%">
+                            <stop offset="0%" stop-color="#FFF599" />
+                            <stop offset="100%" stop-color="#FFE77C" />
+                        </radialGradient>
+                    </defs>
+
+                    <!-- 🔘 Subtle shadow "base" to fake depth -->
+                    <ellipse cx="284" cy="366" rx="280" ry="30" fill="black" opacity="0.25" />
+
+                    <!-- 🟡 Outer rim ring (thick, metallic edge) -->
+                    <ellipse cx="284" cy="350" rx="284" ry="35.5" fill="#D1BA60" />
+
+                    <!-- 💡 Inner glowing disc (lifted slightly for depth) -->
+                    <ellipse cx="284" cy="345" rx="260" ry="28" fill="url(#portalGradient)" stroke="rgba(0,0,0,0.08)"
+                        stroke-width="2" />
+
+                    <!-- 🔼 Beams rising from the top of the portal -->
+                    <g id="beams">
+                        <rect class="beam" x="40" y="230" width="2" height="90" fill="url(#beam)" opacity="0.2" />
+                        <rect class="beam" x="70" y="220" width="2" height="110" fill="url(#beam)" opacity="0.3" />
+                        <rect class="beam" x="100" y="210" width="2" height="130" fill="url(#beam)" opacity="0.4" />
+                        <rect class="beam" x="130" y="200" width="2" height="150" fill="url(#beam)" opacity="0.5" />
+                        <rect class="beam" x="160" y="190" width="2" height="170" fill="url(#beam)" opacity="0.6" />
+                        <rect class="beam" x="190" y="185" width="2" height="175" fill="url(#beam)" opacity="0.7" />
+                        <rect class="beam" x="220" y="180" width="2" height="180" fill="url(#beam)" opacity="0.8" />
+                        <rect class="beam" x="250" y="175" width="2" height="185" fill="url(#beam)" opacity="1.0" />
+                        <rect class="beam" x="280" y="175" width="2" height="185" fill="url(#beam)" opacity="1.0" />
+                        <rect class="beam" x="310" y="180" width="2" height="180" fill="url(#beam)" opacity="0.8" />
+                        <rect class="beam" x="340" y="185" width="2" height="175" fill="url(#beam)" opacity="0.7" />
+                        <rect class="beam" x="370" y="190" width="2" height="170" fill="url(#beam)" opacity="0.6" />
+                        <rect class="beam" x="400" y="200" width="2" height="150" fill="url(#beam)" opacity="0.5" />
+                        <rect class="beam" x="430" y="210" width="2" height="130" fill="url(#beam)" opacity="0.4" />
+                        <rect class="beam" x="460" y="220" width="2" height="110" fill="url(#beam)" opacity="0.3" />
+                        <rect class="beam" x="490" y="230" width="2" height="90" fill="url(#beam)" opacity="0.2" />
+                    </g>
+
+                </svg>
+
+
+
+
+                <img class="portal-profile" src="assets/profile-pics/portal-profile 4.png">
+
+
+
+
+                <div class="portal-glow"></div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+        <div class="hero-content">
+            <h2 class="hero-text">
+                What’s up <span class="shaka">🤙🏻</span> my name is Dylan.
+                I’m a designer guided by research.
+                My analytical mind finds clarity in uncertainty to drive confident design decisions.
+            </h2>
+
+            <h2 id="hero-text-2" class="hero-text-2">
+                And I bring those decisions to life through code
+            </h2>
+
+            <a id="fancyButton" class="button btn-cta">Click me!</a>
+        </div>
+
+
+
+
+
+
+
+
+    </section>
+
+    <!-- SERVICES -->
+    <section class="body-container">
+        <h3>MY SERVICES</h3>
+
+        <div class="grid">
+
+            <div class="card servic-card">
+                <div class="icon">💻</div>
+
+                <h4 class="white-text">Custom Front-End Development</h4>
+                <p>Responsive, performant websites built from scratch with HTML, CSS, and JavaScript (GSAP, API
+                    integrations, animations).</p>
+            </div>
+
+            <div class="card servic-card">
+
+                <div class="icon">🧠</div>
+
+                <h4 class="white-text">UX Research & Strategy</h4>
+                <p>Surveys, interviews, experience maps, and thematic synthesis to guide user-centered design
+                    decisions.</p>
+            </div>
+
+            <div class="card servic-card">
+
+                <div class="icon">📊</div>
+
+                <h4 class="white-text">Data-Driven Design Insights</h4>
+                <p>Qualitative and quantitative research turned into actionable content and design improvements.</p>
+            </div>
+
+            <div class="card servic-card">
+
+                <div class="icon">🎯</div>
+
+                <h4 class="white-text">Interactive Prototyping</h4>
+                <p>Functional prototypes using code to test real interactions and inform design decisions.</p>
+            </div>
+
+            <div class="card servic-card">
+                <div class="icon">🧩</div>
+
+                <h4 class="white-text">Custom Animations (GSAP)</h4>
+                <p>Scroll-based effects, transitions, and interactions to elevate UX without overcomplicating the UI.
+                </p>
+            </div>
+
+            <div class="card servic-card">
+                <div class="icon">🎥</div>
+
+                <h4 class="white-text">Video Embeds & Interactive Media</h4>
+                <p>YouTube API, modals, scroll-triggered video reveals, and lightweight custom players.</p>
+            </div>
+
+            <div class="card servic-card">
+                <div class="icon">🛠️</div>
+
+                <h4 class="white-text">Design System Implementation</h4>
+                <p>Modular, scalable component systems using utility-first CSS (e.g., Tailwind-style thinking).</p>
+            </div>
+
+            <div class="card servic-card">
+                <div class="icon">📱</div>
+
+                <h4 class="white-text">Mobile-First Responsiveness</h4>
+                <p>Performance-optimized layouts for all screen sizes — tested and tailored.</p>
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <!-- RECENT WORK -->
+    <section id="recent-work" class="body-container">
+
+        <div class="sub-container">
+            <h3>RECENT WORK</h3>
+
+            <a href="stormbowling.html">
+                <div class="card card--action">
+                    <h4>
+                        Storm Bowling Products
+                    </h4>
+
+                    <h5>
+                        Using the UX process and methods as a guide to identify areas of development to
+                        create a more engaging website. Make storm bowling’s website the hub for all things bowling.
+                    </h5>
+
+
+
+                </div>
+            </a>
+        </div>
+
+        <div class="sub-container">
+
+            <h3>PROJECTS
+                & AMBITIONS
+            </h3>
+
+            <a href="pockets.html">
+                <div class="card card--action">
+                    <h4>
+                        Pockets
+                    </h4>
+
+                    <h5>
+                        A financial app that allows you to move, organize, and transact all in one place for better
+                        money
+                        management
+                    </h5>
+
+                </div>
+            </a>
+
+        </div>
+
+
+
+
+
+
+    </section>
+
+
+
+
+    <!-- GET IN TOUCH -->
+    <section class="body-container">
+        <h3>GET IN TOUCH</h3>
+
+        <a style="margin:auto;" class="button" href="assets/Dylan-Byars-Resume.pdf"
+            download>dybyux.designs@gmail.com</a>
+    </section>
+
+    <!-- SHRED CURSOR -->
+    <div id="shred-cursor">
+        <img src="assets/shred-cursor.png" alt="Snowboarder Cursor">
+    </div>
+
+    <div id="trail-container"></div>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/EaselPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/GSDevTools.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathHelper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Observer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Physics2DPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/PhysicsPropsPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/PixiPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <!-- ScrollSmoother requires ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
+
+    <!-- RoughEase, ExpoScaleEase and SlowMo are all included in the EasePack file -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/EasePack.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+    <!-- CustomBounce requires CustomEase -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomBounce.min.js"></script>
+    <!-- CustomWiggle requires CustomEase -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomWiggle.min.js"></script>
+    <script src="home.js"></script>
+    <script src="script.js"></script>
+
+
+
+
+
+</body>
