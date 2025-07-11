@@ -294,7 +294,7 @@ iframe {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 32px 64px;
+        padding: 32px 32px;
         border-bottom: 2px solid #FFE77C;
         transition: none;
     }
@@ -328,7 +328,7 @@ iframe {
     }
 }
 
-@media all and (min-width:769px) and (max-width:1024px) {
+@media all and (min-width:769px) and (max-width:1440px) {
     .logo {
         color: #FFE77C;
         font-family: Inter;
@@ -495,6 +495,20 @@ a {
     }
 }
 
+@media all and (min-width:1025px) and (max-width:1440px) {
+    .hero-container {
+        position: relative;
+        z-index: 1;
+        height: 700px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 64px;
+        gap: 48px;
+    }
+}
+
 
 
 
@@ -552,7 +566,7 @@ a {
 .portal-glow {
     position: absolute;
     bottom: 70px;
-    width: 100%;
+    width: 600px;
     height: 80%;
     background: radial-gradient(ellipse at center, rgba(255, 231, 124, 0.5), transparent 80%), linear-gradient(to top, rgba(255, 231, 124, 0.4), transparent 30%);
     opacity: 0;
@@ -672,7 +686,21 @@ a {
 
 @media all and (min-width:1025px) and (max-width:1440px) {
     .profile-image-container svg {
-        width: 90%;
+        width: 400px;
+    }
+
+    .portal-profile {
+        position: absolute;
+        bottom: 50px;
+        z-index: 2;
+        width: 400px;
+    }
+
+    .portal-glow {
+        position: absolute;
+        bottom: 131px;
+        width: 450px;
+        height: 70%;
     }
 }
 
@@ -1141,7 +1169,7 @@ body {
 
 @media all and (min-width:426px) and (max-width:768px) {
 
- 
+
 
 
     .about-hero-container-gadient-overlay {
