@@ -19,7 +19,7 @@ body {
 
 html {
     font-size: 16px;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
 }
 
 *,
@@ -40,7 +40,7 @@ textarea {
 
 
 p {
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -303,7 +303,7 @@ iframe {
 
 .logo {
     color: #FFE77C;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 64px;
     font-style: normal;
     font-weight: 100;
@@ -319,7 +319,7 @@ iframe {
 @media all and (min-width:320px) and (max-width:768px) {
     .logo {
         color: #FFE77C;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 32px;
         font-style: normal;
         font-weight: 100;
@@ -331,7 +331,7 @@ iframe {
 @media all and (min-width:769px) and (max-width:1440px) {
     .logo {
         color: #FFE77C;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 48px;
         font-style: normal;
         font-weight: 100;
@@ -353,7 +353,7 @@ iframe {
 
 a {
     text-decoration: none;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -363,7 +363,7 @@ a {
 @media all and (min-width:320px) and (max-width:768px) {
     a {
         text-decoration: none;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
@@ -449,7 +449,7 @@ a {
     background-color: #1a1a1a;
     border: 2px solid #ffe77c;
     color: #ffe77c;
-    font-family: Inter, sans-serif;
+  font-family: "Space Grotesk", sans-serif;
     font-weight: 600;
     cursor: pointer;
     border-radius: 4px;
@@ -565,7 +565,7 @@ a {
 
 .portal-glow {
     position: absolute;
-    bottom: 70px;
+    bottom: 79px;
     width: 600px;
     height: 80%;
     background: radial-gradient(ellipse at center, rgba(255, 231, 124, 0.5), transparent 80%), linear-gradient(to top, rgba(255, 231, 124, 0.4), transparent 30%);
@@ -820,7 +820,7 @@ a {
 /* text styles */
 .hero-text {
     color: #FFFAFA;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -831,7 +831,7 @@ a {
 
 .hero-text-2 {
     color: #FFE77C;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -845,7 +845,7 @@ a {
 h1 {
     color: #FAFAFA;
     text-align: center;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 96px;
     font-style: normal;
     font-weight: 900;
@@ -857,7 +857,7 @@ h1 {
 h2 {
     color: #FAFAFA;
     text-align: center;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 64px;
     font-style: normal;
     font-weight: 900;
@@ -868,7 +868,7 @@ h2 {
 h3 {
     color: #FAFAFA;
     text-align: center;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
@@ -883,7 +883,7 @@ h5 {
 
 h4 {
     color: #000;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -893,7 +893,7 @@ h4 {
 
 h5 {
     color: #000;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -905,7 +905,7 @@ h5 {
     h1 {
         color: #FAFAFA;
         text-align: center;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 40px;
         font-style: normal;
         font-weight: 900;
@@ -916,7 +916,7 @@ h5 {
     h2 {
         color: #FAFAFA;
         text-align: center;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 24px;
         font-style: normal;
         font-weight: 900;
@@ -927,7 +927,7 @@ h5 {
     h3 {
         color: #FAFAFA;
         text-align: center;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 20px;
         font-style: normal;
         font-weight: 700;
@@ -937,7 +937,7 @@ h5 {
 
     h4 {
         color: #000;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 12px;
         font-style: normal;
         font-weight: 700;
@@ -947,7 +947,7 @@ h5 {
 
     h5 {
         color: #000;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 10px;
         font-style: normal;
         font-weight: 400;
@@ -960,7 +960,7 @@ h5 {
     h1 {
         color: #FAFAFA;
         text-align: center;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 48px;
         font-style: normal;
         font-weight: 900;
@@ -971,7 +971,7 @@ h5 {
     h2 {
         color: #FAFAFA;
         text-align: center;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 32px;
         font-style: normal;
         font-weight: 900;
@@ -982,7 +982,7 @@ h5 {
     h3 {
         color: #FAFAFA;
         text-align: center;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 24px;
         font-style: normal;
         font-weight: 700;
@@ -992,7 +992,7 @@ h5 {
 
     h4 {
         color: #000;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
@@ -1022,7 +1022,7 @@ h5 {
 
 .body-text {
     width: 75%;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -1033,7 +1033,7 @@ h5 {
 @media all and (min-width:320px) and (max-width:768px) {
     .body-text {
         width: 100%;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 20px;
         font-style: normal;
         font-weight: 400;
@@ -1239,7 +1239,7 @@ body {
     color: transparent;
     -webkit-text-stroke: 2px black;
     /* Outlines the text */
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     transition: transform 0.4s ease, opacity 0.4s ease;
     opacity: 1;
     transform: translateY(0);
@@ -1298,7 +1298,7 @@ body {
 
 
 .about-hero-copy h2 {
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 64px;
     font-style: normal;
     font-weight: 700;
@@ -1347,7 +1347,7 @@ body {
 
 .value p {
     margin: 0px;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -1367,7 +1367,7 @@ body {
 
 .work-hero-text h1 {
     color: #FFE77C;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 160px;
     font-style: normal;
     font-weight: 900;
@@ -1380,7 +1380,7 @@ body {
 
 .work-hero-text h3 {
     color: #FFE77C;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 64px;
     font-style: normal;
     font-weight: 900;
@@ -1400,7 +1400,7 @@ body {
 
     .work-hero-text h1 {
         color: #FFE77C;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 48px;
         font-style: normal;
         font-weight: 900;
@@ -1413,7 +1413,7 @@ body {
 
     .work-hero-text h3 {
         color: #FFE77C;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 24px;
         font-style: normal;
         font-weight: 900;
@@ -1433,7 +1433,7 @@ body {
 
     .work-hero-text h1 {
         color: #FFE77C;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 64px;
         font-style: normal;
         font-weight: 900;
@@ -1446,7 +1446,7 @@ body {
 
     .work-hero-text h3 {
         color: #FFE77C;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 32px;
         font-style: normal;
         font-weight: 900;
@@ -1465,7 +1465,7 @@ body {
 
     .work-hero-text h1 {
         color: #FFE77C;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 96px;
         font-style: normal;
         font-weight: 900;
@@ -1478,7 +1478,7 @@ body {
 
     .work-hero-text h3 {
         color: #FFE77C;
-        font-family: Inter;
+        font-family: "Space Grotesk", sans-serif;;
         font-size: 48px;
         font-style: normal;
         font-weight: 900;
@@ -1492,7 +1492,7 @@ body {
 
 
 .section-title {
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 32px;
     font-style: normal;
     font-weight: 700;
@@ -1505,7 +1505,7 @@ body {
 .section-subtitle {
     font-size: 24px;
     color: #ffd962;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     margin: 2rem;
     text-align: center;
 }
@@ -1547,7 +1547,7 @@ body {
     text-align: left;
     transition: all 0.3s ease;
     color: #fff;
-    font-family: Inter, sans-serif;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 @media all and (min-width:320px) and (max-width:425px) {
@@ -1558,13 +1558,13 @@ body {
 }
 
 .card h3 {
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 16px;
     margin-bottom: 0.5rem;
 }
 
 .card p {
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     font-size: 0.95rem;
     line-height: 1.5;
     color: #ccc;
@@ -2009,7 +2009,7 @@ body {
     border-radius: 6px;
     white-space: nowrap;
     font-size: 0.85rem;
-    font-family: Inter;
+    font-family: "Space Grotesk", sans-serif;;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
