@@ -22,7 +22,7 @@
         <a href="https://www.dybyux.design">
             <h1 class="logo">DYLAN BYARS</h1>
         </a>
-       
+
 
         <!-- Hamburger Button -->
         <button class="menu-toggle" aria-label="Toggle menu">
@@ -91,36 +91,28 @@
 
                 </svg>
 
-
-
-
                 <img class="portal-profile" src="assets/profile-pics/portal-profile 4.png">
-
-
-
 
                 <div class="portal-glow"></div>
 
             </div>
 
-
-
-
         </div>
 
 
         <div class="hero-content">
-            <h2 class="hero-text">
-                What’s up <span class="shaka">🤙🏻</span> my name is Dylan.
-                I’m a designer guided by research.
-                My analytical mind finds clarity in uncertainty to drive confident design decisions.
+            <h2 class="hero-text" id="heroText1">
+                What’s up <span class="shaka">🤙🏻</span> I’m Dylan — a UX designer and front-end developer.
+                I design, prototype, and build with code to make websites easy to use and hard to forget.
             </h2>
 
-            <h2 id="hero-text-2" class="hero-text-2">
-                And I bring those decisions to life through code.
+            <h2 id="heroText2" class="hero-text-2">
+                <span id="typedText"></span>
             </h2>
 
             <a id="fancyButton" class="button btn-cta">Click me!</a>
+
+
         </div>
 
 
@@ -136,73 +128,84 @@
     <section class="body-container" id="services">
         <h3>MY SERVICES</h3>
 
-        <div class="grid">
+        <!-- 🧠 RESEARCH -->
+        <div class="services-group">
+            <h4 class="group-title">Research</h4>
+            <div class="grid">
+                <div class="card servic-card">
+                    <div class="icon">🧠</div>
+                    <h4 class="white-text">UX Research & Strategy</h4>
+                    <p>Surveys, interviews, and experience mapping that turn user insights into clear, confident design
+                        direction.</p>
+                </div>
 
-            <div class="card servic-card">
-                <div class="icon">💻</div>
+                <div class="card servic-card">
+                    <div class="icon">📊</div>
+                    <h4 class="white-text">Data-Driven Design Insights</h4>
+                    <p>Qualitative and quantitative data translated into actionable content and UX improvements.</p>
+                </div>
 
-                <h4 class="white-text">Custom Front-End Development</h4>
-                <p>Responsive, performant websites built from scratch with HTML, CSS, and JavaScript (GSAP, API
-                    integrations, animations).</p>
+
+                <div class="card servic-card">
+                    <div class="icon">🔍</div>
+                    <h4 class="white-text">User Testing</h4>
+                    <p>Prototype testing, usability sessions, and feedback analysis that reveal pain points and validate
+                        design decisions before launch.</p>
+                </div>
             </div>
-
-            <div class="card servic-card">
-
-                <div class="icon">🧠</div>
-
-                <h4 class="white-text">UX Research & Strategy</h4>
-                <p>Surveys, interviews, experience maps, and thematic synthesis to guide user-centered design
-                    decisions.</p>
-            </div>
-
-            <div class="card servic-card">
-
-                <div class="icon">📊</div>
-
-                <h4 class="white-text">Data-Driven Design Insights</h4>
-                <p>Qualitative and quantitative research turned into actionable content and design improvements.</p>
-            </div>
-
-            <div class="card servic-card">
-
-                <div class="icon">🎯</div>
-
-                <h4 class="white-text">Interactive Prototyping</h4>
-                <p>Functional prototypes using code to test real interactions and inform design decisions.</p>
-            </div>
-
-            <div class="card servic-card">
-                <div class="icon">🧩</div>
-
-                <h4 class="white-text">Custom Animations (GSAP)</h4>
-                <p>Scroll-based effects, transitions, and interactions to elevate UX without overcomplicating the UI.
-                </p>
-            </div>
-
-            <div class="card servic-card">
-                <div class="icon">🎥</div>
-
-                <h4 class="white-text">Video Embeds & Interactive Media</h4>
-                <p>YouTube API, modals, scroll-triggered video reveals, and lightweight custom players.</p>
-            </div>
-
-            <div class="card servic-card">
-                <div class="icon">🛠️</div>
-
-                <h4 class="white-text">Design System Implementation</h4>
-                <p>Modular, scalable component systems using utility-first CSS (e.g., Tailwind-style thinking).</p>
-            </div>
-
-            <div class="card servic-card">
-                <div class="icon">📱</div>
-
-                <h4 class="white-text">Mobile-First Responsiveness</h4>
-                <p>Performance-optimized layouts for all screen sizes — tested and tailored.</p>
-            </div>
-
-
         </div>
 
+        <!-- 🎯 DESIGN & PROTOTYPING -->
+        <div class="services-group">
+            <h4 class="group-title">Design & Prototyping</h4>
+            <div class="grid">
+                <div class="card servic-card">
+                    <div class="icon">🎯</div>
+                    <h4 class="white-text">Interactive Prototyping</h4>
+                    <p>Code-based prototypes that test real interactions and validate design decisions early.</p>
+                </div>
+
+                <div class="card servic-card">
+                    <div class="icon">🛠️</div>
+                    <h4 class="white-text">Design System Implementation</h4>
+                    <p>Modular, scalable component systems built with utility-first CSS for consistent, maintainable
+                        design.</p>
+                </div>
+
+                <div class="card servic-card">
+                    <div class="icon">📱</div>
+                    <h4 class="white-text">Mobile-First Responsiveness</h4>
+                    <p>Layouts optimized for every screen size — tested, tuned, and built for performance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 💻 DEVELOPMENT & MOTION -->
+        <div class="services-group">
+            <h4 class="group-title">Development & Motion</h4>
+            <div class="grid">
+                <div class="card servic-card">
+                    <div class="icon">💻</div>
+                    <h4 class="white-text">Custom Front-End Development</h4>
+                    <p>Responsive, performant websites built from scratch with HTML, CSS, and JavaScript — including
+                        GSAP animations and API integrations.</p>
+                </div>
+
+                <div class="card servic-card">
+                    <div class="icon">🧩</div>
+                    <h4 class="white-text">Custom Animations (GSAP)</h4>
+                    <p>Scroll effects, transitions, and micro-interactions that enhance UX without overcomplicating the
+                        UI.</p>
+                </div>
+
+                <div class="card servic-card">
+                    <div class="icon">🎥</div>
+                    <h4 class="white-text">Video Embeds & Interactive Media</h4>
+                    <p>Custom YouTube integrations, modals, and scroll-triggered video reveals for immersive content.
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- RECENT WORK -->
@@ -313,6 +316,9 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomWiggle.min.js"></script>
     <script src="home.js"></script>
     <script src="script.js"></script>
+
+
+
 
 
 

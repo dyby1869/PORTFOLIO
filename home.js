@@ -129,25 +129,101 @@ if (document.body.classList.contains("home")) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const fancyButton = document.getElementById("fancyButton");
-  const heroText1 = document.querySelector(".hero-text");
-  const heroText2 = document.getElementById("hero-text-2");
+  const heroText1 = document.getElementById("heroText1");
+  const heroText2 = document.getElementById("heroText2");
+  const typedText = document.getElementById("typedText");
+  const portalProfile = document.querySelector(".portal-profile");
+  const portalGlow = document.querySelector(".portal-glow");
+  const bgShift = document.querySelector(".bg-shift");
 
   fancyButton.addEventListener("click", () => {
-    fancyButton.style.display = "none";
+    // hide first section
+    gsap.to(heroText1, { opacity: 0, duration: 0.6, onComplete: () => heroText1.style.display = "none" });
+    gsap.to(fancyButton, { opacity: 0, duration: 0.6, onComplete: () => fancyButton.style.display = "none" });
 
-    heroText1.style.display = "none";
-    heroText2.style.display = "block";
-    heroText2.style.opacity = 1;
+    // pulse glow + float up
+    const tl = gsap.timeline();
 
-    setTimeout(() => {
-      heroText2.style.display = "none";
-      heroText2.style.opacity = 0;
+    tl.to(portalGlow, {
+      scaleY: 1.4,
+      opacity: 1,
+      filter: "blur(15px)",
+      duration: 0.8,
+      ease: "power2.inOut"
+    });
 
-      heroText1.style.display = "block";
-      fancyButton.style.display = "inline-block";
-    }, 5000);
+    tl.to(portalProfile, {
+      y: -20,
+      duration: 0.8,
+      ease: "power2.inOut"
+    }, "<");
+
+    // background tint fade in
+    tl.to(bgShift, { opacity: 1, duration: 1.2, ease: "power1.inOut" }, "<");
+
+    // show second text container
+    tl.set(heroText2, { display: "block" });
+    tl.to(heroText2, { opacity: 1, duration: 0.6 }, "-=0.4");
+
+    // wait until fade-in complete, THEN start typing
+    tl.call(() => {
+      const message = "I bring ideas to life through motion, detail, and interaction.";
+      typedText.textContent = "";
+      let i = 0;
+
+      const typeInterval = setInterval(() => {
+        typedText.textContent += message[i];
+        i++;
+
+        // When typing finishes
+        if (i === message.length) {
+          clearInterval(typeInterval);
+
+          // 🟡 Glow beam pulse and profile lift
+          gsap.to(portalGlow, {
+            scaleY: 1.6,
+            opacity: 1,
+            duration: 0.6,
+            yoyo: true,
+            repeat: 1,
+            ease: "power2.inOut"
+          });
+
+          gsap.to(portalProfile, {
+            y: -25,
+            duration: 0.6,
+            yoyo: true,
+            repeat: 1,
+            ease: "power1.inOut"
+          });
+
+          // 🟢 After pulse, fade in "See My Work" smoothly
+          const seeWork = document.createElement("a");
+          seeWork.textContent = "See My Work →";
+          seeWork.href = "#recent-work"; // adjust your anchor ID
+          seeWork.classList.add("button", "btn-cta", "see-work");
+
+          // 🧠 Start fully invisible before adding to DOM
+          gsap.set(seeWork, { opacity: 0, y: 20, scale: 0.92 });
+
+          // then insert into DOM
+          heroText2.insertAdjacentElement("afterend", seeWork);
+
+          // now animate it in smoothly
+          gsap.to(seeWork, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.2,
+            delay: 0.4, // small breath after pulse
+            ease: "power3.out"
+          });
+        }
+      }, 35); // typing speed
+    });
   });
 });
+
 
 
 //service cards

@@ -9,7 +9,7 @@ window.addEventListener("load", () => {
       start: "top 65%",
       end: "top 20%",
       toggleActions: "play none none reverse",
-      markers: true,
+      // markers: true,
     },
     opacity: 1,
     y: 0,

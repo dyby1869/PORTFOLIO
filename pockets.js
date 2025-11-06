@@ -291,7 +291,7 @@ window.addEventListener("load", () => {
             trigger: ".ideation-section",
             start: "top 75%",
             toggleActions: "play none none reverse",
-            markers: true
+            // markers: true
         }
     });
 
@@ -468,7 +468,7 @@ window.addEventListener("load", () => {
             trigger: ".wireflows-section",
             start: "top 75%",
             toggleActions: "play none none reverse",
-            markers: true
+            // markers: true
         }
     });
 
