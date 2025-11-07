@@ -338,7 +338,7 @@ p {
 
 .logo:hover {
     color: #FFD400;
-  
+
     transition: text-shadow 0.3s ease;
 }
 
@@ -1228,9 +1228,9 @@ body {
 
     .about-hero-image img {
         position: absolute;
-        left: 50%;
-        bottom: 0;
-        width: 500px;
+        left: 96px;
+        bottom: -32px;
+        width: 250px;
         transform: translateX(-50%);
     }
 }
@@ -1254,9 +1254,9 @@ body {
 
     .about-hero-image img {
         position: absolute;
-        left: 50%;
+        left: 128px;
         bottom: 0;
-        width: 650px;
+        width: 320px;
         transform: translateX(-50%);
     }
 }
@@ -1296,7 +1296,7 @@ body {
 
 .about-hero-copy {
     position: absolute;
-    width: 750px;
+    width: 60%;
     top: 32px;
     right: 32px;
     display: flex;
@@ -1312,6 +1312,52 @@ body {
     transition: transform 0.4s ease, opacity 0.4s ease;
     opacity: 1;
     transform: translateY(0);
+}
+
+@media all and (min-width:769px) and (max-width:1024px) {
+    .about-hero-copy h1 {
+        font-size: 64px;
+
+    }
+
+    .about-hero-image img {
+        position: absolute;
+        bottom: 0px;
+        left: -123px;
+        width: 550px;
+    }
+
+    .about-hero-copy {
+        position: absolute;
+        width: 50%;
+        top: 64px;
+        right: 32px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media all and (min-width:1025px) and (max-width:1440px) {
+    .about-hero-copy h1 {
+        font-size: 64px;
+
+    }
+
+    .about-hero-image img {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 550px;
+    }
+
+    .about-hero-copy {
+        position: absolute;
+        width: 50%;
+        top: 64px;
+        right: 32px;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .about-hero-copy h1.animate-out {
@@ -1330,12 +1376,13 @@ body {
 @media all and (min-width:320px) and (max-width:425px) {
     .about-hero-copy {
         position: absolute;
-        top: 64px;
+        top: 16px;
         left: 50%;
         right: unset !important;
         transform: translateX(-50%);
         display: flex;
         flex-direction: column;
+        width: 300px;
     }
 
     .about-hero-copy svg {
@@ -1349,12 +1396,13 @@ body {
 @media all and (min-width:426px) and (max-width:768px) {
     .about-hero-copy {
         position: absolute;
-        top: 64px;
+        top: 32px;
         left: 50%;
         right: unset !important;
         transform: translateX(-50%);
         display: flex;
         flex-direction: column;
+        width: 90%;
     }
 
 
