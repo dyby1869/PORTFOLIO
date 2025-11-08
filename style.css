@@ -1191,7 +1191,7 @@ body {
 .about-hero-image img {
     position: absolute;
     bottom: 0px;
-    left: 0px;
+    left: -50px;
     width: 550px;
 }
 
@@ -1296,9 +1296,9 @@ body {
 
 .about-hero-copy {
     position: absolute;
-    width: 60%;
-    top: 32px;
-    right: 32px;
+    width: 50%;
+    top: 160px;
+    right: 160px;
     display: flex;
     flex-direction: column;
 }
@@ -1309,9 +1309,31 @@ body {
     -webkit-text-stroke: 2px black;
     /* Outlines the text */
     font-family: "Space Grotesk", sans-serif;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    opacity: 1;
-    transform: translateY(0);
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 64px;
+
+}
+
+.about-hero-copy h1 span:nth-of-type(1) {
+    color: #007BFF;
+    /* coast */
+    -webkit-text-stroke: 0;
+    font-weight: 900;
+}
+
+.about-hero-copy h1 span:nth-of-type(2) {
+    color: #00B74A;
+    /* mountains */
+    -webkit-text-stroke: 0;
+    font-weight: 900;
+}
+
+.about-hero-copy h1 span:nth-of-type(3) {
+    color: #FF4F8B;
+    /* flow */
+    -webkit-text-stroke: 0;
+    font-weight: 900;
 }
 
 @media all and (min-width:769px) and (max-width:1024px) {
