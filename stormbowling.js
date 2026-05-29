@@ -81,89 +81,13 @@ window.addEventListener("load", () => {
         stagger: 0.15
     });
 
-    // Animate the headline
-    gsap.set(".work-phases", { opacity: 0, scale: 0.95 });
+   
 
-    gsap.to(".work-phases", {
-        scrollTrigger: {
-            trigger: ".work-phases",
-            start: "top 60%",
-            toggleActions: "play none none reverse",
-            ////////markers: true
-        },
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        ease: "power2.out"
-    });
+   
 
-    // Animate the phase cards
-    gsap.set(".card--action", { opacity: 0, y: 60 });
-
-    gsap.to(".card--action", {
-        scrollTrigger: {
-            trigger: ".work-phases", // or use the grid below it
-            start: "top 50%",
-            toggleActions: "play none none reverse",
-            ////////markers: true
-        },
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        stagger: 0.15
-    });
-
-
-    // Set initial states
-    gsap.set(".section-title", { opacity: 0, y: 40 });
-    gsap.set(".section-subtitle", { opacity: 0, y: 40 });
-    gsap.set("#WhatIBuilt .card", { opacity: 0, scale: 0.95, y: 30 });
-
-    // Animate the headline & subtitle
-    gsap.to(".section-title", {
-        scrollTrigger: {
-            trigger: "#WhatIBuilt",
-            start: "top 65%",
-            toggleActions: "play none none reverse",
-            //////markers: true
-        },
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out"
-    });
-
-    gsap.to(".section-subtitle", {
-        scrollTrigger: {
-            trigger: "#WhatIBuilt",
-            start: "top 60%",
-            toggleActions: "play none none reverse",
-            //////////markers: true
-        },
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        delay: 0.1
-    });
-
-    // Animate the grid cards with zoom-in stagger
-    gsap.to("#WhatIBuilt .card", {
-        scrollTrigger: {
-            trigger: "#WhatIBuilt .grid",
-            start: "top 60%",
-            end: "top 30%",
-            scrub: true,
-            ////////markers: true
-        },
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        ease: "power2.out",
-        stagger: 0.1
-    });
-
+   
+   
+  
 
 
 
