@@ -1,34 +1,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A short description of your site for SEO">
-    <meta name="author" content="Your Name">
-
+    <meta name="description" content="Dylan Byars — UX Designer & Front-End Developer">
+    <meta name="author" content="Dylan Byars">
     <title>Dylan Byars 🤘🏻</title>
     <link rel="stylesheet" href="style.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
-
 <body class="home">
-
-
 
     <!-- HEADER -->
     <header class="nav-bar">
         <a href="https://www.dybyux.design">
             <h1 class="logo">DYLAN BYARS</h1>
         </a>
-
-
-        <!-- Hamburger Button -->
-        <button class="menu-toggle" aria-label="Toggle menu">
-            ☰
-        </button>
-
+        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
         <nav class="nav-link-container">
             <a class="nav-link" href="#recent-work">Work</a>
             <a class="nav-link" href="#services">My Services</a>
@@ -39,37 +28,22 @@
 
     <!-- HERO -->
     <section class="hero-container">
-
         <div class="profile-image-container">
-
             <div class="portal-container">
-
                 <svg class="portal" width="568" height="400" viewBox="0 0 568 400" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <!-- Beam fade upward -->
                         <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="0%" stop-color="rgba(255,231,124,0)" />
                             <stop offset="100%" stop-color="rgba(255,231,124,0.6)" />
                         </linearGradient>
-
-                        <!-- Inner glow for portal disc -->
                         <radialGradient id="portalGradient" cx="50%" cy="50%" r="70%">
                             <stop offset="0%" stop-color="#FFF599" />
                             <stop offset="100%" stop-color="#FFE77C" />
                         </radialGradient>
                     </defs>
-
-                    <!-- 🔘 Subtle shadow "base" to fake depth -->
                     <ellipse cx="284" cy="366" rx="280" ry="30" fill="black" opacity="0.25" />
-
-                    <!-- 🟡 Outer rim ring (thick, metallic edge) -->
                     <ellipse cx="284" cy="350" rx="284" ry="35.5" fill="#D1BA60" />
-
-                    <!-- 💡 Inner glowing disc (lifted slightly for depth) -->
-                    <ellipse cx="284" cy="345" rx="260" ry="28" fill="url(#portalGradient)" stroke="rgba(0,0,0,0.08)"
-                        stroke-width="2" />
-
-                    <!-- 🔼 Beams rising from the top of the portal -->
+                    <ellipse cx="284" cy="345" rx="260" ry="28" fill="url(#portalGradient)" stroke="rgba(0,0,0,0.08)" stroke-width="2" />
                     <g id="beams">
                         <rect class="beam" x="40" y="230" width="2" height="90" fill="url(#beam)" opacity="0.2" />
                         <rect class="beam" x="70" y="220" width="2" height="110" fill="url(#beam)" opacity="0.3" />
@@ -88,128 +62,88 @@
                         <rect class="beam" x="460" y="220" width="2" height="110" fill="url(#beam)" opacity="0.3" />
                         <rect class="beam" x="490" y="230" width="2" height="90" fill="url(#beam)" opacity="0.2" />
                     </g>
-
                 </svg>
-
                 <img class="portal-profile" src="assets/profile-pics/portal-profile 4.png">
-
                 <div class="portal-glow"></div>
-
             </div>
-
         </div>
-
 
         <div class="hero-content">
             <h2 class="hero-text" id="heroText1">
-                What’s up <span class="shaka">🤙🏻</span> I’m Dylan — a UX designer and front-end developer.
+                What's up <span class="shaka">🤙🏻</span> I'm Dylan — a UX designer and front-end developer.
                 I design, prototype, and build with code to make websites easy to use and hard to forget.
             </h2>
-
             <h2 id="heroText2" class="hero-text-2">
                 <span id="typedText"></span>
             </h2>
-
             <a id="fancyButton" class="button btn-cta">Click me!</a>
-
-
         </div>
-
-
-
-
-
-
-
-
     </section>
-
-
 
     <!-- WHAT I BUILD -->
     <section class="body-container" id="services">
-        <h3>WHAT I BUILD</h3>
+        <h3 class="mb-32">WHAT I BUILD</h3>
+        <h4 class="mb-64">Translating complex systems, research, and content into interactive digital experiences people can actually navigate and understand.</h4>
 
-        <h4>Translating complex systems, research, and content into interactive digital experiences people can actually
-            navigate and understand.</h4>
-
-        <!-- RESEARCH & UX THINKING -->
         <div class="services-group">
             <h4 class="group-title">Research & UX Thinking</h4>
             <div class="grid">
-                <div class="card  card--center">
+                <div class="card">
                     <div class="icon">🧠</div>
-                    <h4 class="white-text">UX Research & Strategy</h4>
-                    <p>Surveys, interviews, and synthesis methods that uncover user needs, decision-making patterns, and
-                        experience gaps.</p>
+                    <h4>UX Research & Strategy</h4>
+                    <p>Surveys, interviews, and synthesis methods that uncover user needs, decision-making patterns, and experience gaps.</p>
                 </div>
-
-                <div class="card  card--center">
+                <div class="card">
                     <div class="icon">🗺️</div>
-                    <h4 class="white-text">Experience Mapping</h4>
-                    <p>Journey maps, personas, and behavioral frameworks that turn messy research into clear product and
-                        content direction.</p>
+                    <h4>Experience Mapping</h4>
+                    <p>Journey maps, personas, and behavioral frameworks that turn messy research into clear product and content direction.</p>
                 </div>
-
-                <div class="card  card--center">
+                <div class="card">
                     <div class="icon">🔍</div>
-                    <h4 class="white-text">User Testing & Validation</h4>
-                    <p>Prototype testing and usability sessions that reveal friction, validate decisions, and improve
-                        experiences before launch.</p>
+                    <h4>User Testing & Validation</h4>
+                    <p>Prototype testing and usability sessions that reveal friction, validate decisions, and improve experiences before launch.</p>
                 </div>
             </div>
         </div>
 
-        <!-- SYSTEMS & INFORMATION ARCHITECTURE -->
         <div class="services-group">
             <h4 class="group-title">Systems & Information Architecture</h4>
             <div class="grid">
-                <div class="card ">
+                <div class="card">
                     <div class="icon">🧭</div>
-                    <h4 class="white-text">Content Architecture</h4>
-                    <p>Navigation structures, content ecosystems, and page frameworks that help users understand complex
-                        products and information.</p>
+                    <h4>Content Architecture</h4>
+                    <p>Navigation structures, content ecosystems, and page frameworks that help users understand complex products and information.</p>
                 </div>
-
-                <div class="card ">
+                <div class="card">
                     <div class="icon">🧩</div>
-                    <h4 class="white-text">Product Comparison Systems</h4>
-                    <p>Taxonomies, comparison logic, and decision-support frameworks that help users evaluate options
-                        with more confidence.</p>
+                    <h4>Product Comparison Systems</h4>
+                    <p>Taxonomies, comparison logic, and decision-support frameworks that help users evaluate options with more confidence.</p>
                 </div>
-
-                <div class="card ">
+                <div class="card">
                     <div class="icon">🛠️</div>
-                    <h4 class="white-text">Design Systems</h4>
-                    <p>Reusable visual patterns and front-end components built for consistency, scalability, and
-                        long-term maintainability.</p>
+                    <h4>Design Systems</h4>
+                    <p>Reusable visual patterns and front-end components built for consistency, scalability, and long-term maintainability.</p>
                 </div>
             </div>
         </div>
 
-        <!-- INTERACTIVE FRONT-END EXECUTION -->
         <div class="services-group">
             <h4 class="group-title">Interactive Front-End Execution</h4>
             <div class="grid">
-                <div class="card ">
+                <div class="card">
                     <div class="icon">💻</div>
-                    <h4 class="white-text">Custom Front-End Development</h4>
-                    <p>Responsive, production-ready interfaces built with HTML, CSS, and JavaScript for real websites
-                        and real users.</p>
+                    <h4>Custom Front-End Development</h4>
+                    <p>Responsive, production-ready interfaces built with HTML, CSS, and JavaScript for real websites and real users.</p>
                 </div>
-
-                <div class="card ">
+                <div class="card">
                     <div class="icon">⚡</div>
-                    <h4 class="white-text">Motion & Interaction Systems</h4>
-                    <p>GSAP animations, scroll effects, transitions, and micro-interactions that make digital
-                        experiences feel clear, responsive, and engaging.</p>
+                    <h4>Motion & Interaction Systems</h4>
+                    <p>GSAP animations, scroll effects, transitions, and micro-interactions that make digital experiences feel clear, responsive, and engaging.</p>
                 </div>
-
-                <div class="card ">
+                <div class="card">
                     <div class="icon">🔌</div>
-                    <h4 class="white-text">Dynamic Content & API Integrations</h4>
-                    <p>JavaScript-driven content systems, API integrations, video embeds, modals, and interactive tools
-                        that make static pages more useful.</p>
+                    <h4>Dynamic Content & API Integrations</h4>
+                    <p>JavaScript-driven content systems, API integrations, video embeds, modals, and interactive tools that make static pages more useful.</p>
                 </div>
             </div>
         </div>
@@ -217,83 +151,37 @@
 
     <!-- RECENT WORK -->
     <section id="recent-work" class="body-container">
+        <h3 class="mb-32">RECENT WORK</h3>
 
-        <div class="sub-container">
-            <h3>RECENT WORK</h3>
-
+        <div class="grid grid--2col mb-64">
             <a href="stormbowling.html">
-                <div class="card card--action">
-                    <h4>
-                        Storm Bowling Products
-                    </h4>
-
-                    <h5>
-                        Using the UX process and methods as a guide to identify areas of development to
-                        create a more engaging website. Make storm bowling’s website the hub for all things bowling.
-                    </h5>
-
-
-
+                <div class="card card--action ">
+                    <h4>Storm Bowling Products</h4>
+                    <h5>Using the UX process and methods as a guide to identify areas of development to create a more engaging website. Make storm bowling's website the hub for all things bowling.</h5>
                 </div>
             </a>
-        </div>
-
-        <div class="sub-container">
-
-            <h3>PROJECTS
-                & AMBITIONS
-            </h3>
-
             <a href="pockets.html">
-                <div class="card card--action">
-                    <h4>
-                        Pockets
-                    </h4>
-
-                    <h5>
-                        A financial app that allows you to move, organize, and transact all in one place for better
-                        money
-                        management
-                    </h5>
-
+                <div class="card card--action ">
+                    <h4>Pockets</h4>
+                    <h5>A financial app that allows you to move, organize, and transact all in one place for better money management.</h5>
                 </div>
             </a>
-
         </div>
-
-
-
-
-
-
     </section>
-
-
-
 
     <!-- GET IN TOUCH -->
     <section class="body-container">
-        <h3>GET IN TOUCH</h3>
-
-        <a style="margin:auto;" class="button" href="mailto:dybyux.designs@gmail.com">
-            dybyux.designs@gmail.com
-        </a>
+        <h3 class="center-text mb-32">GET IN TOUCH</h3>
+        <a style="margin:auto;" class="button" href="mailto:dybyux.designs@gmail.com">dybyux.designs@gmail.com</a>
     </section>
 
     <!-- SHRED CURSOR -->
     <div id="shred-cursor">
         <img src="assets/shred-cursor.png" alt="Snowboarder Cursor">
     </div>
-
     <div id="trail-container"></div>
 
-
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/EaselPlugin.min.js"></script>
@@ -309,27 +197,15 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/PixiPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-    <!-- ScrollSmoother requires ScrollTrigger -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
-
-    <!-- RoughEase, ExpoScaleEase and SlowMo are all included in the EasePack file -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/EasePack.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
-    <!-- CustomBounce requires CustomEase -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomBounce.min.js"></script>
-    <!-- CustomWiggle requires CustomEase -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomWiggle.min.js"></script>
     <script src="home.js"></script>
     <script src="script.js"></script>
-
-
-
-
-
-
-
 
 </body>

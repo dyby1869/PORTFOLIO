@@ -1757,6 +1757,583 @@
     </section>
 
 
+    <section class="body-container">
+        <h4 class="section-label">Section 4: Opportunity Areas</h4>
+
+        <blockquote class="mb-32">The personas and experience maps revealed recurring friction across the buying journey
+            — from uncertainty around ball motion and lane conditions to comparison overload and lack of confidence in
+            decision-making.</blockquote>
+
+        <p class="mb-48">The following opportunity areas and "How Might We" questions were created to guide future
+            ideation and product direction.</p>
+
+        <div class="grid mb-32">
+            <div class="card">
+                <h4>Opportunity Area 1 — Translating Ball Motion & Fit</h4>
+                <h6>Brief explanation:</h6>
+                <p>Bowlers struggled to connect specs, motion descriptions, and real-world lane behavior. Many relied on
+                    vague or borrowed terminology that didn't always align with actual fit.</p>
+                <h6>Key HMW Questions</h6>
+                <ul>
+                    <li>HMW help bowlers understand what a ball does, when it works, and who it works for?</li>
+                    <li>HMW clarify how coverstock strength translates to actual lane behavior?</li>
+                    <li>HMW help bowlers connect what they see on the lane with what kind of ball they should use?</li>
+                </ul>
+                <h6>Potential Directions</h6>
+                <ul>
+                    <li>motion visualizers</li>
+                    <li>style-first education</li>
+                    <li>real-world reaction examples</li>
+                    <li>lane matchup explainers</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Opportunity Area 2 — Arsenal Building & Comparison</h4>
+                <h6>Brief explanation:</h6>
+                <p>More advanced bowlers struggled less with "what is this ball?" and more with "how is this
+                    meaningfully different from what I already own?"</p>
+                <h6>Key HMW Questions</h6>
+                <ul>
+                    <li>HMW help bowlers identify gaps in their arsenal?</li>
+                    <li>HMW help bowlers compare similar options more confidently?</li>
+                    <li>HMW show how balls complement or overlap with existing equipment?</li>
+                </ul>
+                <h6>Potential Directions</h6>
+                <ul>
+                    <li>arsenal visualizers</li>
+                    <li>overlap detection</li>
+                    <li>role-based filtering</li>
+                    <li>side-by-side comparison tools</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Opportunity Area 3 — Building Decision Confidence</h4>
+                <h6>Brief explanation:</h6>
+                <p>Confidence was rarely built through one source. Bowlers layered reviews, demos, PSO advice,
+                    comparisons, and gut feel to reduce uncertainty.</p>
+                <h6>Key HMW Questions</h6>
+                <ul>
+                    <li>HMW reduce uncertainty before purchase?</li>
+                    <li>HMW create confidence without requiring "try before buy"?</li>
+                    <li>HMW make comparison content feel more relatable?</li>
+                </ul>
+                <h6>Potential Directions</h6>
+                <ul>
+                    <li>same-style comparison videos</li>
+                    <li>personalized recommendations</li>
+                    <li>confidence-building summaries</li>
+                    <li>contextualized review systems</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid grid--2col">
+            <div class="card">
+                <h4>Opportunity Area 4 — Lane Condition Understanding</h4>
+                <h6>Brief explanation:</h6>
+                <p>Many bowlers struggled to identify or describe the environments they regularly bowl on, making ball
+                    selection difficult from the start.</p>
+                <h6>Key HMW Questions</h6>
+                <ul>
+                    <li>HMW help bowlers identify their lane environment?</li>
+                    <li>HMW teach lane breakdown without technical jargon?</li>
+                    <li>HMW give bowlers useful reference points for oil and transition?</li>
+                </ul>
+                <h6>Potential Directions</h6>
+                <ul>
+                    <li>lane condition quizzes</li>
+                    <li>house-shot estimators</li>
+                    <li>behavior-based lane profiling</li>
+                    <li>transition education tools</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Opportunity Area 5 — Supporting PSO Collaboration</h4>
+                <h6>Brief explanation:</h6>
+                <p>Interviews consistently revealed that PSOs still act as translators between product information and
+                    personal fit.</p>
+                <h6>Key HMW Questions</h6>
+                <ul>
+                    <li>HMW prepare bowlers to have better PSO conversations?</li>
+                    <li>HMW create shared language between bowlers and PSOs?</li>
+                    <li>HMW help bowlers communicate what they're seeing on the lane?</li>
+                </ul>
+                <h6>Potential Directions</h6>
+                <ul>
+                    <li>PSO prep tools</li>
+                    <li>printable summaries</li>
+                    <li>shared comparison reports</li>
+                    <li>in-shop QR experiences</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="body-container">
+        <h4 class="section-label">Section 5: Translating Research Into Clearer Ball Motion Systems</h4>
+
+        <div class="flex-container gap32 row mb-48">
+            <div class="container-50">
+                <h5>Problem</h5>
+                <p>The research revealed broader gaps in how bowling ball motion was described, compared, and understood
+                    across the buying experience.</p>
+            </div>
+            <div class="container-50">
+                <h5>Industry Gap</h5>
+                <p>While bowlers regularly searched for reactions like "smooth," "angular," or "clean," there was no
+                    consistent framework for categorizing or comparing bowling balls by reaction type.</p>
+            </div>
+        </div>
+
+        <!-- Ball Reaction Design System -->
+        <h5 class="mb-16">Ball Reaction Design System</h5>
+        <blockquote class="mb-32">This led to the development of a scalable ball reaction design system built around
+            shared motion language, comparison logic, and reaction-based classification.</blockquote>
+
+        <div class="grid grid--4col mb-48">
+            <div class="card">
+                <img src="assets/stormbowling/motion-shape.png" alt="Motion Shape" class="clickable-img"
+                    style="width:100%; border-radius:8px;">
+                <h5>Motion Shape</h5>
+                <p>Defined the overall visual shape of ball motion — from smooth, blended reactions to high-angle
+                    skid-flip motion.</p>
+                <p class="text-brand">This created a shared framework for discussing backend shape without relying on
+                    inconsistent buzzwords or vague comparison language.</p>
+            </div>
+            <div class="card">
+                <img src="assets/stormbowling/hook-phase-timing.png" alt="Hook Phase Timing" class="clickable-img"
+                    style="width:100%; border-radius:8px;">
+                <h5>Hook Phase Timing</h5>
+                <p>Established where the ball begins reading the lane, helping bowlers differentiate between early
+                    traction, benchmark reads, and delayed backend motion.</p>
+                <p class="text-brand">This helped connect lane conditions and oil volume to reaction timing in a more
+                    understandable way.</p>
+            </div>
+            <div class="card">
+                <img src="assets/stormbowling/friction-response.png" alt="Friction Response" class="clickable-img"
+                    style="width:100%; border-radius:8px;">
+                <h5>Friction Response</h5>
+                <p>Translated technical friction response behavior into more intuitive phrases bowlers already use in
+                    conversation — like "Smooth Off The Spot" or "Responsive To Friction."</p>
+                <p class="text-brand">This created a clearer bridge between technical ball motion and real-world player
+                    language.</p>
+            </div>
+            <div class="card">
+                <img src="assets/stormbowling/archetype-system.png" alt="Archetype System" class="clickable-img"
+                    style="width:100%; border-radius:8px;">
+                <h5>Archetype System</h5>
+                <p>Combined motion shape, hook timing, and friction response into higher-level ball archetypes that
+                    could support browsing, comparison, pairing logic, and future recommendation systems.</p>
+                <p class="text-brand">This created one of the first scalable reaction-based classification frameworks
+                    for organizing bowling balls by motion type instead of only technical specs.</p>
+            </div>
+        </div>
+
+        <!-- Building Consistency -->
+        <h5 class="mb-16">Building Consistency Across the Catalog</h5>
+        <div class="flex-container gap32 row mb-48">
+            <div class="container-50">
+                <img src="assets/stormbowling/catalog-consistency.png" alt="Building consistency across the catalog"
+                    class="clickable-img" style="width:100%; border-radius:8px;">
+            </div>
+            <div class="container-50">
+                <p>As the framework was applied across the product catalog, consistent behavior relationships began
+                    emerging between shape, friction response, and timing characteristics.</p>
+            </div>
+        </div>
+
+        <img src="assets/stormbowling/reaction-table.png" alt="Ball reaction comparison table"
+            class="clickable-img mb-48" style="width:100%; border-radius:8px;">
+
+        <!-- Applications Across the Ecosystem -->
+        <h5 class="mb-16">Applications Across the Ecosystem</h5>
+        <p class="mb-32">Once the framework established a consistent language for ball motion and comparison, it became
+            a scalable foundation for multiple tools, educational systems, and product experiences across the ecosystem.
+        </p>
+
+        <div class="grid mb-48">
+            <div>
+                <img src="assets/stormbowling/app-matchmaker.png" alt="Matchmaker application" class="clickable-img"
+                    style="width:100%; border-radius:8px;">
+            </div>
+            <div>
+                <img src="assets/stormbowling/app-product-pages.png" alt="Product pages application"
+                    class="clickable-img" style="width:100%; border-radius:8px;">
+            </div>
+            <div>
+                <img src="assets/stormbowling/app-filtering.png" alt="Filtering and navigation application"
+                    class="clickable-img" style="width:100%; border-radius:8px;">
+            </div>
+            <div>
+                <img src="assets/stormbowling/app-arsenal.png" alt="Arsenal builder application" class="clickable-img"
+                    style="width:100%; border-radius:8px;">
+            </div>
+        </div>
+
+        <!-- Product Page Enhancements -->
+        <h5 class="mb-16">Product Page Enhancements</h5>
+        <div class="flex-container gap32 row mb-48">
+            <div class="container-40">
+                <p>Instead of relying purely on technical specs, product pages began incorporating reaction-based
+                    classification, player-fit guidance, pairing logic, and motion visualization systems built directly
+                    from the framework.</p>
+            </div>
+            <div class="container-60">
+                <img src="assets/stormbowling/product-page-enhancements.png" alt="Product page enhancements"
+                    class="clickable-img" style="width:100%; border-radius:8px;">
+            </div>
+        </div>
+
+        <!-- Matchmaker Redesign -->
+        <h5 class="mb-16">Matchmaker Redesign (WIP)</h5>
+        <p class="mb-32">The original matchmaker relied heavily on technical bowler specs and generalized filtering
+            logic, creating friction for users who didn't fully understand their game, equipment, or reaction needs.</p>
+
+        <div class="numbered-list mb-48">
+            <div class="numbered-list__item">
+                <span class="numbered-list__number">01</span>
+                <div class="flex-container gap32 row" style="width:100%">
+                    <div class="container-50">
+                        <img src="assets/stormbowling/matchmaker-shift-1.png" alt="Matchmaker shift 1"
+                            class="clickable-img" style="width:100%; border-radius:8px;">
+                    </div>
+                    <div class="container-50">
+                        <h5>Shift 1 — From Specs → Reaction Goals</h5>
+                        <p>Instead of requiring bowlers to understand technical specs upfront, the redesigned experience
+                            guided users toward shared reaction goals and motion archetypes using terminology grounded
+                            in real bowling language.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="numbered-list__item">
+                <span class="numbered-list__number">02</span>
+                <div class="flex-container gap32 row" style="width:100%">
+                    <div class="container-50">
+                        <img src="assets/stormbowling/matchmaker-shift-2.png" alt="Matchmaker shift 2"
+                            class="clickable-img" style="width:100%; border-radius:8px;">
+                    </div>
+                    <div class="container-50">
+                        <h5>Shift 2 — Arsenal-Aware Recommendations</h5>
+                        <p>The recommendation logic was rebuilt around the three primary decision mindsets identified in
+                            the research: replacing an existing ball, filling a gap in an existing arsenal, and trying a
+                            different reaction shape. This allowed recommendations to become more contextual instead of
+                            purely spec-driven.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="numbered-list__item">
+                <span class="numbered-list__number">03</span>
+                <div class="flex-container gap32 row" style="width:100%">
+                    <div class="container-50">
+                        <img src="assets/stormbowling/matchmaker-shift-3.png" alt="Matchmaker shift 3"
+                            class="clickable-img" style="width:100%; border-radius:8px;">
+                    </div>
+                    <div class="container-50">
+                        <h5>Shift 3 — Existing Equipment Context</h5>
+                        <p>To improve recommendation accuracy, the matchmaker incorporated existing equipment context
+                            into the decision process. Instead of recommending balls in isolation, the system evaluated
+                            new options relative to a user's existing arsenal — avoiding smoother, earlier, stronger, or
+                            more angular recommendations based on what they already throw.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="numbered-list__item">
+                <span class="numbered-list__number">04</span>
+                <div class="flex-container gap32 row" style="width:100%">
+                    <div class="container-50">
+                        <img src="assets/stormbowling/matchmaker-shift-4.png" alt="Matchmaker shift 4"
+                            class="clickable-img" style="width:100%; border-radius:8px;">
+                    </div>
+                    <div class="container-50">
+                        <h5>Shift 4 — Deeper Educational Touchpoints</h5>
+                        <p>The redesign also introduced deeper educational pathways directly within the recommendation
+                            experience, allowing users to explore why specific balls were recommended and how different
+                            reaction characteristics related to their goals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arsenal Builder -->
+        <h5 class="mb-16">Arsenal Builder</h5>
+        <div class="flex-container gap32 row mb-48">
+            <div class="container-60">
+                <img src="assets/stormbowling/arsenal-builder-1.png" alt="Arsenal builder select strong ball"
+                    class="clickable-img mb-16" style="width:100%; border-radius:8px;">
+                <img src="assets/stormbowling/arsenal-builder-2.png" alt="Arsenal builder select weak ball"
+                    class="clickable-img" style="width:100%; border-radius:8px;">
+            </div>
+            <div class="container-40">
+                <p class="mb-32">The Arsenal Builder translated Storm's existing arsenal matrix philosophy into a more
+                    guided and understandable selection experience using the shared reaction language established
+                    through the ball reaction framework.</p>
+                <div class="card mb-16">
+                    <h5>Guided Selection Logic</h5>
+                    <p>The experience used the reaction framework to control which bowling balls appeared at different
+                        stages of the matrix process.</p>
+                </div>
+                <div class="card mb-16">
+                    <h5>Consistent Reaction Classification</h5>
+                    <p>The shared motion framework created a more consistent way to organize and categorize bowling
+                        balls across the matrix experience.</p>
+                </div>
+                <div class="card">
+                    <h5>Making an Internal System More Accessible</h5>
+                    <p>The project helped translate an expert-driven internal framework into a more approachable and
+                        functional experience for bowlers navigating arsenal decisions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtering & Navigation -->
+        <h5 class="mb-16">Filtering & Navigation</h5>
+        <p class="mb-32">The shared reaction framework also created new opportunities for browsing and comparison by
+            allowing bowlers to navigate equipment by reaction type instead of relying only on coverstock names, release
+            dates, or brand familiarity.</p>
+
+        <div class="grid grid--2col mb-32">
+            <div>
+                <h6>Before</h6>
+                <img src="assets/stormbowling/filtering-before.png" alt="Filtering before" class="clickable-img"
+                    style="width:100%; border-radius:8px;">
+            </div>
+            <div>
+                <h6>After</h6>
+                <img src="assets/stormbowling/filtering-after.png" alt="Filtering after" class="clickable-img"
+                    style="width:100%; border-radius:8px;">
+            </div>
+        </div>
+
+        <div class="grid mb-32">
+            <div class="card">
+                <h5>Reaction-Based Navigation</h5>
+                <p>The framework introduced navigational pathways built around reaction archetypes such as:</p>
+                <ul>
+                    <li>Skid Flip Pearl</li>
+                    <li>Early Traction Ball</li>
+                    <li>Responsive Asym Pearl</li>
+                    <li>Stability Benchmark</li>
+                </ul>
+                <p class="text-brand">This allowed bowlers to browse equipment using the same motion language commonly
+                    used in real bowling conversations.</p>
+            </div>
+            <div class="card">
+                <h5>More Explainable Product Discovery</h5>
+                <p>Instead of forcing users to interpret technical specs in isolation, the system surfaced reaction
+                    shape, hook timing, and friction response directly within browsing experiences and product cards.
+                </p>
+                <p class="text-brand">This created a more understandable comparison process across similar-looking
+                    products.</p>
+            </div>
+            <div class="card">
+                <h5>Shared Language Across the Ecosystem</h5>
+                <p>Because the same classification framework propagated across navigation, product pages, filtering
+                    systems, and recommendations, users could build more consistent mental models as they moved through
+                    the ecosystem.</p>
+                <p class="text-brand">This helped reinforce reaction terminology through repeated contextual exposure
+                    instead of isolated technical education.</p>
+            </div>
+        </div>
+
+        <div class="grid grid--2col mb-32">
+            <img src="assets/stormbowling/filtering-nav.png" alt="Filtering navigation" class="clickable-img"
+                style="width:100%; border-radius:8px;">
+            <img src="assets/stormbowling/filtering-cards.png" alt="Filtering product cards" class="clickable-img"
+                style="width:100%; border-radius:8px;">
+        </div>
+
+        <img src="assets/stormbowling/filtering-archetypes.png" alt="Filtering archetypes bar"
+            class="clickable-img mb-32" style="width:100%; border-radius:8px;">
+
+        <blockquote>This introduced a browsing model that is largely absent across the bowling industry, where equipment
+            is typically organized by release date, coverstock, or manufacturer naming conventions rather than reaction
+            behavior.</blockquote>
+    </section>
+
+
+
+    <section class="body-container">
+        <h4 class="section-label">Outcome & Next Steps</h4>
+
+        <blockquote class="mb-48">The research and resulting design systems established a scalable foundation for how
+            bowling ball motion could be described, compared, and operationalized across the ecosystem. Several systems,
+            including the redesigned Matchmaker experience, moved into implementation and testing environments, while
+            broader validation and organizational rollout remained ongoing.</blockquote>
+
+        <div class="grid grid--2col">
+            <div class="card">
+                <p>This work influenced:</p>
+                <ul>
+                    <li>recommendation logic</li>
+                    <li>product education</li>
+                    <li>arsenal-building systems</li>
+                    <li>reaction-based navigation</li>
+                    <li>motion classification frameworks</li>
+                </ul>
+            </div>
+            <div class="card">
+                <p>Rather than functioning as isolated deliverables, the work established a shared interaction language
+                    capable of supporting future educational, recommendation, and comparison experiences across the
+                    platform.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="body-container">
+        <h2 class="mb-32">Additional Front-End Contributions</h2>
+    
+        <blockquote class="mb-64">Beyond the research and systems work, I also designed and developed a wide range of front-end experiences across the Storm ecosystem — including product launches, educational pages, navigation redesigns, and interactive landing pages.</blockquote>
+    
+        <!-- Product Launch & Landing Pages -->
+        <h3 class="mb-16">Product Launch & Landing Pages</h3>
+        <p class="label-callout mb-32">GSAP / Motion Systems / Product Storytelling / Responsive Front-End</p>
+    
+        <div class="slider-container mb-48">
+            <div class="slider-track" id="productSlider">
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/product-launch-1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/product-launch-2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/product-launch-3.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="slider-dots" id="productDots">
+                <button class="dot active" onclick="goToSlide('productSlider', 'productDots', 0)"></button>
+                <button class="dot" onclick="goToSlide('productSlider', 'productDots', 1)"></button>
+                <button class="dot" onclick="goToSlide('productSlider', 'productDots', 2)"></button>
+            </div>
+        </div>
+    
+        <!-- Educational Pages -->
+        <h3 class="mb-16">Educational Pages</h3>
+        <p class="label-callout mb-32">These educational experiences were explored earlier in the case study, but are shown again here as part of the broader front-end systems and interaction work developed across the Storm ecosystem.</p>
+    
+        <div class="slider-container mb-48">
+            <div class="slider-track" id="eduSlider">
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/edu-1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/edu-2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/edu-3.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="slider-dots" id="eduDots">
+                <button class="dot active" onclick="goToSlide('eduSlider', 'eduDots', 0)"></button>
+                <button class="dot" onclick="goToSlide('eduSlider', 'eduDots', 1)"></button>
+                <button class="dot" onclick="goToSlide('eduSlider', 'eduDots', 2)"></button>
+            </div>
+        </div>
+    
+        <!-- Core Platform & Brand Pages -->
+        <h3 class="mb-16">Core Platform & Brand Pages</h3>
+        <p class="label-callout mb-32">Homepage redesigns, brand pages, media experiences, navigation systems, and core platform updates.</p>
+    
+        <div class="slider-container mb-48">
+            <div class="slider-track" id="platformSlider">
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/platform-1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/platform-2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/platform-3.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="slider-dots" id="platformDots">
+                <button class="dot active" onclick="goToSlide('platformSlider', 'platformDots', 0)"></button>
+                <button class="dot" onclick="goToSlide('platformSlider', 'platformDots', 1)"></button>
+                <button class="dot" onclick="goToSlide('platformSlider', 'platformDots', 2)"></button>
+            </div>
+        </div>
+    
+        <!-- CMS Transfer & Integration -->
+        <h3 class="mb-16">CMS Transfer & Integration</h3>
+        <p class="label-callout mb-16">Supported the transition to a new CMS architecture by restructuring front-end assets, updating file systems, integrating CDN-based media delivery through DigitalOcean Spaces, and helping maintain consistency across migrated experiences.</p>
+    
+        <ul class="mb-32">
+            <li>Asset Migration</li>
+            <li>CDN Integration</li>
+            <li>Front-End Refactoring</li>
+            <li>CMS Template Updates</li>
+            <li>Media Optimization</li>
+            <li>Cross-Page Consistency</li>
+        </ul>
+    
+        <div class="slider-container">
+            <div class="slider-track" id="cmsSlider">
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/cms-1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/cms-2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <video class="paper-video" controls>
+                        <source src="assets/stormbowling/cms-3.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="slider-dots" id="cmsDots">
+                <button class="dot active" onclick="goToSlide('cmsSlider', 'cmsDots', 0)"></button>
+                <button class="dot" onclick="goToSlide('cmsSlider', 'cmsDots', 1)"></button>
+                <button class="dot" onclick="goToSlide('cmsSlider', 'cmsDots', 2)"></button>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="body-container">
+        <h2 class="mb-48">Final Reflection</h2>
+    
+        <p class="mb-32">Alongside my day-to-day responsibilities of maintaining and developing the Storm website — including product launches, landing pages, educational experiences, and broader front-end platform work — I led a large-scale UX research initiative focused on understanding what bowlers were actually looking for from the digital experience.</p>
+    
+        <p class="mb-32">What began as research into website expectations and bowling ball buying behavior ultimately expanded into broader systems for education, comparison, motion language, and decision support across the Storm ecosystem.</p>
+    
+        <p class="mb-32">The work helped establish more scalable ways to describe ball motion, support arsenal-building decisions, and connect technical bowling concepts to more understandable user experiences.</p>
+    
+        <p>And while many of these systems continue to evolve, the project reinforced the value of combining UX research, systems thinking, front-end development, and domain expertise into scalable product experiences and shared motion language across the ecosystem.</p>
+    </section>
+
 
 
     <!-- The Modal -->
