@@ -16,25 +16,7 @@
 
 <body class="storm">
 
-    <!-- HEADER -->
-    <header class="nav-bar">
-        <a href="https://www.dybyux.design">
-            <h1 class="logo">DYLAN BYARS</h1>
-        </a>
-
-        <!-- Hamburger Button -->
-        <button class="menu-toggle" aria-label="Toggle menu">
-            ☰
-        </button>
-
-
-        <nav class="nav-link-container">
-            <a class="nav-link" href="index.html#recent-work">Work</a>
-            <a class="nav-link" href="index.html#services">My Services</a>
-            <a class="nav-link" href="about.html">About</a>
-            <a class="button" href="assets/Dylan-Byars-Resume.pdf" target="_blank" download>Download CV</a>
-        </nav>
-    </header>
+    <header class="nav-bar"></header>
 
     <!-- HERO -->
     <section class="work-hero">
@@ -43,11 +25,6 @@
             <h1>
                 Storm Bowlings Website
             </h1>
-        </div>
-        <div class="">
-            <a href="https://www.stormbowling.com" target="_blank" rel="noopener" class="button">
-                Visit Site →
-            </a>
         </div>
     </section>
 
@@ -120,7 +97,7 @@
 
 
     <!-- Case Study Roadmap -->
-    <section class="body-container">
+    <section class="body-container" id="case-study-roadmap">
         <h2>Case Study Roadmap</h2>
         <div class="grid grid--4col">
 
@@ -135,7 +112,7 @@
                     <li>Opportunity Areas</li>
                     <li>Strategic Outcomes</li>
                 </ul>
-                <a class="button-secondary">Explore Research →</a>
+                <a href="#phase-research" class="button-secondary">Explore Research →</a>
 
             </div>
 
@@ -149,7 +126,7 @@
                     <li>Ecosystem Thinking</li>
                     <li>Educational Implementations</li>
                 </ul>
-                <a class="button-secondary">Explore Education →</a>
+                <a href="#phase-education" class="button-secondary">Explore Education →</a>
             </div>
 
             <div class="card card--flex">
@@ -164,7 +141,7 @@
                     <li>Refined Information Architecture</li>
                     <li>Navigation Testing</li>
                 </ul>
-                <a class="button-secondary">Explore Navigation →</a>
+                <a href="#phase-navigation" class="button-secondary">Explore Navigation →</a>
             </div>
 
             <div class="card card--flex">
@@ -181,7 +158,7 @@
                     <li>Arsenal Builder</li>
                     <li>Reaction-Based Filtering & Navigation</li>
                 </ul>
-                <a class="button-secondary">Explore Ball Buying →</a>
+                <a href="#phase-ball-buying" class="button-secondary">Explore Ball Buying →</a>
             </div>
 
         </div>
@@ -189,7 +166,7 @@
 
 
     <!-- PHASE 1: Research & User Understanding -->
-    <section class="body-container">
+    <section class="body-container" id="phase-research">
         <h2 class="mb-64">Research & User Understanding</h2>
 
         <h4 class="section-label">Section 1: The Question</h4>
@@ -369,22 +346,136 @@
     <section class="body-container">
         <h4 class="section-label">Section 5: Strategic Outcomes</h4>
 
-        <blockquote class="mb-32">Phase 1 established the strategic foundation for the broader website transformation by
-            identifying key gaps in education, product understanding, and community engagement across the platform.
-        </blockquote>
+        <div class="flex-container gap32 row">
+            <div class="container-50">
+                <blockquote class="mb-32">Phase 1 established the strategic foundation for the broader website
+                    transformation by
+                    identifying key gaps in education, product understanding, and community engagement across the
+                    platform.
+                </blockquote>
+                <p>These findings directly informed the creation of:</p>
+                <ul>
+                    <li>The development of a scalable educational ecosystem</li>
+                    <li>Expanded learning pathways and technical content</li>
+                    <li>Evolving approaches to product discovery and comparison</li>
+                    <li>More connected community and brand-focused experiences</li>
+                </ul>
+            </div>
+            <div class="container-50">
+                <img src="assets/storm-assets/strategic-outcomes.png" alt="Strategic Outcomes" class="clickable-img"
+                    style="height:auto;">
+            </div>
+        </div>
+    </section>
 
-        <p>These findings directly informed the creation of:</p>
-        <ul>
-            <li>The development of a scalable educational ecosystem</li>
-            <li>Expanded learning pathways and technical content</li>
-            <li>Evolving approaches to product discovery and comparison</li>
-            <li>More connected community and brand-focused experiences</li>
-        </ul>
+
+    <!-- SECTION 6: EARLY IMPLEMENTATIONS -->
+    <section class="body-container">
+        <h4 class="section-label">Section 6: Early Implementations</h4>
+
+        <blockquote class="mb-64">Rather than waiting for larger initiatives to be completed, several improvements were
+            implemented immediately based on the opportunities identified during Phase 1. These efforts focused on
+            content visibility, product discovery, educational access, and platform engagement.</blockquote>
+
+        <!-- Content Visibility -->
+        <div class="mb-64">
+            <h4 class="mb-16">Content Visibility & What's New</h4>
+            <p class="label-callout mb-16">Content Strategy · Platform Engagement</p>
+            <div class="flex-container gap32 row">
+                <div class="container-50">
+                    <p class="mb-16">Reinforce recurring engagement and make fresh content easier to discover.</p>
+                    <ul>
+                        <li>Homepage "What's New" section</li>
+                        <li>New articles</li>
+                        <li>New videos</li>
+                        <li>Community content</li>
+                    </ul>
+                </div>
+                <div class="container-50">
+                    <img src="assets/stormbowling/content-whats-new.jpg" alt="Content Visibility" class="clickable-img"
+                        style="height:auto;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Educational Content -->
+        <div class="mb-64">
+            <h4 class="mb-16">Educational Content Expansion</h4>
+            <p class="label-callout mb-16">Content Architecture · Learning Pathways</p>
+            <div class="flex-container gap32 row">
+                <div class="container-50">
+                    <p class="mb-16">Create clearer learning pathways for bowlers looking to improve their understanding
+                        of equipment and the sport.</p>
+                    <ul>
+                        <li>Bowling 101</li>
+                        <li>Tutorials</li>
+                        <li>Articles</li>
+                        <li>Educational videos</li>
+                    </ul>
+                </div>
+                <div class="container-50">
+                    <img src="assets/stormbowling/edu-expansion.jpg" alt="Educational Content Expansion"
+                        class="clickable-img" style="height:auto;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Discovery -->
+        <div class="mb-64">
+            <h4 class="mb-16">Product Discovery Improvements</h4>
+            <p class="label-callout mb-16">Product Comparison · Information Architecture</p>
+            <div class="flex-container gap32 row">
+                <div class="container-50">
+                    <p class="mb-16">Make bowling balls easier to browse, compare, and understand.</p>
+                    <ul>
+                        <li>Ball Rack</li>
+                        <li>Reaction Graphs</li>
+                        <li>Product visibility enhancements</li>
+                    </ul>
+                </div>
+                <div class="container-50">
+                    <div class="grid grid--2col">
+                        <img src="assets/stormbowling/product-disc-1.jpg" alt="Ball Rack" class="clickable-img"
+                            style="height:auto;">
+                        <img src="assets/stormbowling/product-disc-2.jpg" alt="Reaction Graphs" class="clickable-img"
+                            style="height:auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform Redesigns -->
+        <div>
+            <h4 class="mb-16">Platform Experience Redesigns</h4>
+            <p class="label-callout mb-16">UX Improvements · Platform Strategy</p>
+            <div class="flex-container gap32 row">
+                <div class="container-50">
+                    <p class="mb-16">Better align the platform experience with evolving user needs and content strategy.
+                    </p>
+                    <ul>
+                        <li>Homepage redesign</li>
+                        <li>About page redesign</li>
+                        <li>Newsroom development</li>
+                    </ul>
+                </div>
+                <div class="container-50">
+                    <div class="grid">
+                        <img src="assets/stormbowling/platform-redesign-1.jpg" alt="Homepage Redesign"
+                            class="clickable-img" style="height:auto;">
+                        <img src="assets/stormbowling/platform-redesign-2.jpg" alt="About Page Redesign"
+                            class="clickable-img" style="height:auto;">
+                        <img src="assets/stormbowling/platform-redesign-3.jpg" alt="Newsroom" class="clickable-img"
+                            style="height:auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
 
     <!-- PHASE 2: Educational Ecosystem Design -->
-    <section class="body-container">
+    <section class="body-container" id="phase-education">
         <h2 class="mb-64">Educational Ecosystem Design</h2>
 
         <h4 class="section-label">Section 1: The Challenge</h4>
@@ -521,7 +612,7 @@
 
 
     <!-- PHASE 3: Navigation & Information Architecture-->
-    <section class="body-container">
+    <section class="body-container" id="phase-navigation">
         <h2 class="mb-64">Navigation & Information Architecture</h2>
 
         <h4 class="section-label">Section 1: The Scaling Problem</h4>
@@ -868,8 +959,8 @@
     </section>
 
 
-
-    <section class="body-container">
+    <!-- PHASE 4: Ball Buying Research & Decision Systems -->
+    <section class="body-container" id="phase-ball-buying">
         <h2 class="mb-64">Ball Buying Research & Decision Systems</h2>
 
         <blockquote class="mb-64">Understanding how bowlers research equipment, compare products, build arsenals, and
@@ -2315,7 +2406,8 @@
 
     <section class="body-container contributions-section">
         <h2 class="mb-16">Additional Front-End Contributions</h2>
-        <p class="mb-64 center-text">Beyond the research and systems work — here's the other high-impact work I contributed across the Storm platform.</p>
+        <p class="mb-64 center-text">Beyond the research and systems work — here's the other high-impact work I
+            contributed across the Storm platform.</p>
 
         <!-- PRODUCT LAUNCH -->
         <h3 class="section-label mb-32">Product Launch & Marketing Experiences</h3>
@@ -2345,45 +2437,22 @@
             </div>
         </div>
 
-        <!-- PLATFORM REDESIGNS -->
-        <h3 class="section-label mb-32">Platform Redesigns & UX Improvements</h3>
-        <div class="scroll-content mb-64">
-            <div class="flex-container gap16">
-                <div class="card card--video">
-                    <video controls style="width:100%; border-radius:4px; margin-bottom:12px;">
-                        <source src="assets/stormbowling/platform-1.mp4" type="video/mp4">
-                    </video>
-                    <h5>Platform Redesign 1</h5>
-                    <p>Homepage redesign with improved layout and content structure.</p>
-                </div>
-                <div class="card card--video">
-                    <video controls style="width:100%; border-radius:4px; margin-bottom:12px;">
-                        <source src="assets/stormbowling/platform-2.mp4" type="video/mp4">
-                    </video>
-                    <h5>Platform Redesign 2</h5>
-                    <p>Brand page modernization with updated navigation systems.</p>
-                </div>
-                <div class="card card--video">
-                    <video controls style="width:100%; border-radius:4px; margin-bottom:12px;">
-                        <source src="assets/stormbowling/platform-3.mp4" type="video/mp4">
-                    </video>
-                    <h5>Platform Redesign 3</h5>
-                    <p>Core platform update with media experience improvements.</p>
-                </div>
-            </div>
-        </div>
 
         <!-- PERFORMANCE AUDITING -->
         <h3 class="section-label mb-32">Performance Auditing & Optimization</h3>
         <p class="label-callout mb-32">Core Web Vitals · Asset Optimization · Load Performance</p>
         <div class="flex-container gap32 row mb-64">
             <div class="container-50">
-                <p class="mb-16" style="color:#ccc; font-size:14px; text-transform:uppercase; letter-spacing:0.05em;">Before</p>
-                <img src="assets/stormbowling/performance-before.png" alt="Performance audit before" class="clickable-img" style="height:auto;">
+                <p class="mb-16" style="color:#ccc; font-size:14px; text-transform:uppercase; letter-spacing:0.05em;">
+                    Before</p>
+                <img src="assets/stormbowling/performance-before.png" alt="Performance audit before"
+                    class="clickable-img" style="height:auto;">
             </div>
             <div class="container-50">
-                <p class="mb-16" style="color:#ccc; font-size:14px; text-transform:uppercase; letter-spacing:0.05em;">After</p>
-                <img src="assets/stormbowling/performance-after.png" alt="Performance audit after" class="clickable-img" style="height:auto;">
+                <p class="mb-16" style="color:#ccc; font-size:14px; text-transform:uppercase; letter-spacing:0.05em;">
+                    After</p>
+                <img src="assets/stormbowling/performance-after.png" alt="Performance audit after" class="clickable-img"
+                    style="height:auto;">
             </div>
         </div>
 
@@ -2392,10 +2461,12 @@
         <p class="label-callout mb-32">REST APIs · Dynamic Content · Custom JavaScript</p>
         <div class="flex-container gap32 row mb-64">
             <div class="container-50">
-                <p class="mb-16">Building connected experiences through external APIs, dynamic content feeds, interactive tools, and custom JavaScript implementations across the Storm ecosystem.</p>
+                <p class="mb-16">Building connected experiences through external APIs, dynamic content feeds,
+                    interactive tools, and custom JavaScript implementations across the Storm ecosystem.</p>
             </div>
             <div class="container-50">
-                <img src="assets/stormbowling/api-integration.png" alt="API integration screenshot" class="clickable-img" style="height:auto;">
+                <img src="assets/stormbowling/api-integration.png" alt="API integration screenshot"
+                    class="clickable-img" style="height:auto;">
             </div>
         </div>
 
@@ -2404,17 +2475,21 @@
         <p class="label-callout mb-32">Design Tokens · UI Patterns · Component Systems</p>
         <div class="flex-container gap32 row mb-64">
             <div class="container-50">
-                <p class="mb-16">Reusable design standards, UI patterns, and front-end systems that improved consistency across products, pages, and future implementations throughout the Storm platform.</p>
+                <p class="mb-16">Reusable design standards, UI patterns, and front-end systems that improved consistency
+                    across products, pages, and future implementations throughout the Storm platform.</p>
             </div>
             <div class="container-50">
-                <img src="assets/stormbowling/design-system.png" alt="Design system screenshot" class="clickable-img" style="height:auto;">
+                <img src="assets/stormbowling/design-system.png" alt="Design system screenshot" class="clickable-img"
+                    style="height:auto;">
             </div>
         </div>
 
         <!-- CMS MIGRATION -->
         <h3 class="section-label mb-32">CMS Migration & Platform Support</h3>
         <p class="label-callout mb-32">CMS Migration · CDN Integration · Front-End Refactoring</p>
-        <p class="mb-32">Supported the transition to a new CMS architecture — restructuring front-end assets, integrating CDN-based media delivery through DigitalOcean Spaces, and maintaining consistency across migrated experiences.</p>
+        <p class="mb-32">Supported the transition to a new CMS architecture — restructuring front-end assets,
+            integrating CDN-based media delivery through DigitalOcean Spaces, and maintaining consistency across
+            migrated experiences.</p>
         <div class="numbered-list">
             <div class="numbered-list__item">
                 <span class="numbered-list__number">01</span>
@@ -2434,7 +2509,8 @@
                 <span class="numbered-list__number">03</span>
                 <div>
                     <h5>Front-End Refactoring</h5>
-                    <p>Updated templates, components, and page structures to align with the new platform architecture.</p>
+                    <p>Updated templates, components, and page structures to align with the new platform architecture.
+                    </p>
                 </div>
             </div>
             <div class="numbered-list__item">
@@ -2481,6 +2557,7 @@
     <div id="trail-container"></div>
 
 
+    <a href="#case-study-roadmap" id="back-to-top" title="Back to roadmap">↑</a>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>

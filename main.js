@@ -5,7 +5,7 @@
 //  SECTIONS:
 //  1.  GLOBAL — GSAP Plugin Registration
 //  2.  GLOBAL — Custom Shred Cursor
-//  3.  GLOBAL — Mobile Navigation Menu
+//  3.  GLOBAL — Navigation Inject (nav.html — single source of truth)
 //  4.  GLOBAL — Shaka Animation
 //  5.  GLOBAL — goToSlide (Storm slider onclick attributes)
 //  6.  GLOBAL — Scroll Reveals (runs on all pages)
@@ -17,8 +17,9 @@
 //  12. POCKETS  — Scroll Section Animations
 //  13. POCKETS  — Flow Toggle (Old / New)
 //  14. STORM  — Scroll Section Animations
-//  15. STORM  — Image Modal
-//  16. STORM  — Sliders
+//  15. STORM  — Back to Top Button
+//  16. STORM  — Image Modal
+//  17. STORM  — Sliders
 // =============================================================================
 
 
@@ -111,18 +112,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // =============================================================================
-//  3. GLOBAL — Mobile Navigation Menu
+//  3. GLOBAL — Navigation Inject
+//  Nav lives in nav.html — injected into every page so changes happen once.
+//  Note: requires a server (works on GitHub Pages, not file://)
 // =============================================================================
 
-const menuToggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-link-container");
+fetch("nav.html")
+  .then(res => res.text())
+  .then(html => {
+    const navBar = document.querySelector(".nav-bar");
+    if (!navBar) return;
+    navBar.outerHTML = html;
 
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-    menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
+    // Re-init menu toggle after inject since the element was replaced
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-link-container");
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
+      });
+    }
+  })
+  .catch(() => {
+    // Fallback — if fetch fails, init menu toggle on existing nav
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-link-container");
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
+      });
+    }
   });
-}
 
 
 // =============================================================================
@@ -752,7 +774,23 @@ if (document.body.classList.contains("storm")) {
 
 
   // ===========================================================================
-  //  15. STORM — Image Modal (click to enlarge .clickable-img)
+  //  15. STORM — Back to Top Button
+  //  Fixed floating button in bottom-right corner. Appears after scrolling
+  //  600px and links back to #case-study-roadmap at the top of the page.
+  // ===========================================================================
+
+  const backToTop = document.getElementById("back-to-top");
+  if (backToTop) {
+    ScrollTrigger.create({
+      trigger: "#phase-research",
+      start: "top 80%",
+      onEnter: () => backToTop.classList.add("visible"),
+      onLeaveBack: () => backToTop.classList.remove("visible")
+    });
+  }
+
+  // ===========================================================================
+  //  16. STORM — Image Modal (click to enlarge .clickable-img)
   // ===========================================================================
 
   const stormModal = document.createElement("div");
@@ -781,7 +819,7 @@ if (document.body.classList.contains("storm")) {
 
 
   // ===========================================================================
-  //  16. STORM — Sliders
+  //  17. STORM — Sliders
   //  Dot buttons use inline onclick="goToSlide(...)" — handled by section 5.
   // ===========================================================================
 
