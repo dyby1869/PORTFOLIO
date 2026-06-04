@@ -265,7 +265,14 @@ window.addEventListener("load", () => {
   });
 
   // --- Section labels (work pages) ---
-  reveal(".section-label", { y: 20, duration: 0.6 });
+  // Contributions section labels are stacked tight — handled separately in storm block
+  gsap.utils.toArray(".section-label").forEach(el => {
+    if (el.closest(".contributions-section")) return;
+    gsap.from(el, {
+      opacity: 0, y: 20, duration: 0.6, ease: "power2.out",
+      scrollTrigger: { trigger: el, start: "top 80%", toggleActions: "play none none reverse" }
+    });
+  });
 
   // --- Blockquotes ---
   reveal("blockquote", { y: 25, duration: 0.7 });
@@ -729,6 +736,16 @@ if (document.body.classList.contains("storm")) {
         toggleActions: "play none none reverse"
       },
       opacity: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.15
+    });
+
+    // Contributions section labels — staggered off a single trigger since they're stacked tight
+    gsap.from(".contributions-section .section-label", {
+      opacity: 0, y: 20, duration: 0.6, ease: "power2.out", stagger: 0.3,
+      scrollTrigger: {
+        trigger: ".contributions-section",
+        start: "top 60%",
+        toggleActions: "play none none reverse"
+      }
     });
 
   }); // end window load
