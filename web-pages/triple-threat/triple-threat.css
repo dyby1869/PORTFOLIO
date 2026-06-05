@@ -1,0 +1,1383 @@
+<style>
+/* DUAL THREAT */
+
+.dual-threat-background {
+    width: 100%;
+    height: 1700px;
+
+    position: relative;
+    background: url("https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/RG_Dual_Threat_Landing_Page/dual-threat-background.jpg") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.dual-threat-background-rg-brand-page {
+    width: 100%;
+    height: 1800px;
+    position: relative;
+    background: url("https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/RG_Dual_Threat_Landing_Page/dual-threat-background.jpg") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.dual-threat-background-2 {
+    width: 100%;
+    height: 1100px;
+    position: relative;
+    background: url("https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/RG_Dual_Threat_Landing_Page/dual-threat-background.jpg") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.dark-background {
+    background-color: #000 !important;
+}
+
+.dual-threat-copy {
+    display: flex;
+    flex-direction: row;
+    gap: 96px;
+    align-items: center;
+    justify-content: center;
+    padding: 128px 0px 96px 0px;
+}
+
+.dual-threat-destruction {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.dominate-section {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+}
+
+.dominate-stripe {
+    position: absolute;
+    width: 150%;
+    font-size: 32px !important;
+    font-weight: 900 !important;
+    text-transform: uppercase;
+    color: black;
+    background: white;
+    padding: 16px 0;
+    white-space: nowrap;
+    transform-origin: center;
+
+}
+
+.dominate-stripe span {
+    display: inline-block;
+    margin-right: 50px;
+    font-size: 32px !important;
+    font-weight: 900 !important;
+}
+
+/* Position the two stripes exactly like your screenshot */
+.stripe1 {
+    top: 30%;
+    left: -10%;
+    transform: rotate(6.521deg);
+    z-index: 2;
+    box-shadow: 0px 4px 16.4px 1px rgba(0, 0, 0, 0.40);
+}
+
+.stripe2 {
+    top: 30%;
+    left: -10%;
+    transform: rotate(-3.622deg);
+    color: rgba(0, 0, 0, 0.40);
+    background: #C8C8C8;
+    z-index: 1;
+}
+
+
+.dual-threat-body-background {
+
+    position: absolute;
+    left: 0px;
+    top: -227px;
+    z-index: 1;
+    width: 100%;
+    height: 252px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.dual-threat-body-background-2 {
+    position: absolute;
+    left: 0px;
+    z-index: 1;
+    width: 100%;
+    height: 252px;
+    object-fit: cover;
+    overflow: hidden;
+    transform: rotate(180deg);
+    top: 166px;
+}
+
+.threat-compare {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+}
+
+
+
+.threat-tech-spec-scroll {}
+
+.quote-container {
+    position: absolute;
+    /* Makes it position relative to its nearest positioned ancestor */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Moves it back by half its width & height */
+    display: flex;
+    flex-direction: row;
+    gap: 96px;
+    width: 80%;
+    margin: auto;
+    justify-content: center;
+}
+
+
+.rg-threat-compare-chart {
+    width: 70%;
+    margin: auto;
+}
+
+
+.threat-video-compare {
+    display: none;
+}
+
+.threat-video-compare.active {
+    display: block;
+    width: 50%;
+    margin: auto;
+}
+
+
+
+
+@font-face {
+    font-family: 'DINOT-CondBlack';
+    src: url('https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/RG_Dual_Threat_Landing_Page/Fonts/DINOT-CondBlack.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DINOT-CondMedium';
+    src: url('https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/RG_Dual_Threat_Landing_Page/Fonts/DINOT-CondMedium.woff2') format('woff2');
+    font-weight: 400 !important;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DINOT-Black';
+    src: url('https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/RG_Dual_Threat_Landing_Page/Fonts/DINOT-Black.otf') format('woff2');
+    font-weight: 400 !important;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DINOT-Medium';
+    src: url('https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/RG_Dual_Threat_Landing_Page/Fonts/DINOT-Medium.woff2') format('woff2');
+    font-weight: 400 !important;
+    font-style: normal;
+}
+
+.title-with-button-container h2 {
+    font-family: 'DINOT-Medium', sans-serif !important;
+    font-size: 96px;
+    font-weight: 400 !important;
+    margin-bottom: 48px;
+    font-style: normal !important;
+}
+
+.compare-meter-section h1 {
+    font-family: 'DINOT-Medium', sans-serif !important;
+    font-size: 96px;
+    font-weight: 400 !important;
+    margin-bottom: 48px;
+    font-style: normal !important;
+}
+
+.threat-ball-intro h3 {
+    font-family: 'DINOT-Black', sans-serif !important;
+    font-size: 64px;
+    font-style: normal !important;
+}
+
+.dual-threat-video-compare h1 {
+    font-family: 'DINOT-CondBlack', sans-serif !important;
+    color: #CE0E2D !important;
+    font-style: normal !important;
+    font-size: 288px !important;
+}
+
+.dual-threat-video-compare h3 {
+    font-family: 'DINOT-CondMedium', sans-serif !important;
+    font-size: 96px;
+    font-weight: 400 !important;
+    margin-bottom: 0px;
+}
+
+.rg-smile {
+    position: absolute;
+    top: 0px;
+    right: 48px;
+}
+
+
+
+
+
+.oil-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.dt-ball-compare-meter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.compare-meter-balls {}
+
+
+.meter-oil-level {
+    display: flex;
+    justify-content: end;
+}
+
+.title-with-button-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.dual-threat-style {
+    position: relative;
+
+}
+
+.look-svg {
+    position: absolute;
+    top: 0px;
+    right: 300px;
+}
+
+
+.dual-threat-tech-specs {
+    height: 300px;
+    overflow: scroll;
+
+}
+
+.rg-dual-threat-apparel img {
+    width: 350px;
+}
+
+.dt-ball-compare-meter-mobile {
+    display: none;
+}
+
+
+.roto-scroll-to-continue svg {
+    width: 48px;
+    height: fit-content;
+    display:block;
+    margin:auto;
+}
+
+
+
+@media all and (min-width:320px) and (max-width:425px) {
+
+    .dual-threat-background-rg-brand-page {
+        width: 100%;
+        height: 1550px;
+    }
+
+    .rg-page-compare {
+        width: 300px !important;
+        margin: auto;
+    }
+
+
+    .dual-threat-text-header svg {
+        width: 250px;
+        height: fit-content;
+    }
+
+
+    .dual-threat-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        align-items: center;
+        justify-content: center;
+        padding: 96px 0px 32px 0px;
+    }
+
+    .dual-threat-destruction svg {
+        width: 250px;
+        height: fit-content;
+    }
+
+    .dt-roto-grip-logo svg {
+        width: 50px;
+        height: fit-content;
+    }
+
+    .roto-scroll-to-continue svg {
+        width: 48px;
+        height: fit-content;
+    }
+
+    .dominate-section {
+        position: relative;
+        overflow: hidden;
+        height: 300px;
+    }
+
+    .stripe1 {
+        top: 10%;
+        left: -10%;
+        transform: rotate(6.521deg);
+        z-index: 2;
+        box-shadow: 0px 4px 16.4px 1px rgba(0, 0, 0, 0.40);
+    }
+
+    .stripe2 {
+        top: 30%;
+        left: -10%;
+        transform: rotate(-3.622deg);
+        color: rgba(0, 0, 0, 0.40);
+        background: #C8C8C8;
+        z-index: 1;
+    }
+
+    .dominate-stripe span {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .dual-threat-background {
+        width: 100%;
+        height: 1000px;
+        background-attachment: unset;
+    }
+
+    .dual-threat-background-2 {
+        width: 100%;
+        background-attachment: unset;
+    }
+
+
+    .dual-threat-body-background {
+        position: absolute;
+        left: 0px;
+        top: -74px;
+        z-index: 1;
+        width: 100%;
+        height: 97px;
+        object-fit: cover;
+        overflow: hidden;
+    }
+
+    .threat-ball-intro h3 {
+        font-family: 'DINOT-Black', sans-serif !important;
+        font-size: 32px;
+        font-style: normal !important;
+    }
+
+    .threat-compare {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+    }
+
+    .reaction-graph-container.active {
+        width: 100%;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .dual-threat-tech-specs {
+        overflow: scroll;
+        height: fit-content;
+    }
+
+    .dual-threat-body-background-2 {
+        position: absolute;
+        left: 0px;
+        z-index: 1;
+        width: 100%;
+        height: 84px;
+        object-fit: cover;
+        overflow: hidden;
+        transform: rotate(180deg);
+        top: 32px;
+    }
+
+    .quote-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        width: fit-content;
+        margin: auto;
+        justify-content: center;
+    }
+
+    .dual-threat-video-compare h3 {
+        font-family: 'DINOT-CondMedium', sans-serif !important;
+        font-size: 32px;
+        font-weight: 400 !important;
+        margin-bottom: 0px;
+    }
+
+    .dual-threat-video-compare h1 {
+        font-family: 'DINOT-CondBlack', sans-serif !important;
+        color: #CE0E2D !important;
+        font-style: normal !important;
+        font-size: 64px !important;
+    }
+
+    .rg-smile {
+        position: absolute;
+        top: -43px;
+        right: 0px;
+    }
+
+    .rg-smile svg {
+        width: 100px;
+        height: fit-content;
+    }
+
+    .compare-meter-section h1 {
+        font-family: 'DINOT-Medium', sans-serif !important;
+        font-size: 48px !important;
+        font-weight: 400 !important;
+        margin-bottom: 48px;
+        font-style: normal !important;
+    }
+
+    .title-with-button-container h2 {
+        font-family: 'DINOT-Medium', sans-serif !important;
+        font-size: 48px;
+        font-weight: 400 !important;
+        margin-bottom: 48px;
+        font-style: normal !important;
+    }
+
+    .rg-dual-threat-apparel img {
+        width: 150px;
+    }
+
+    .title-with-button-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .dt-ball-compare-meter {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        display: none;
+    }
+
+    .dt-ball-compare-meter-mobile {
+        display: block;
+    }
+
+    .look-svg {
+        position: absolute;
+        top: 96px;
+        right: 0px;
+    }
+
+    .look-svg svg {
+        width: 100px;
+        height: fit-content;
+    }
+
+    .dual-threat-background-2 {
+        width: 100%;
+        height: 1600px;
+    }
+
+    .threat-video-compare.active {
+        display: block;
+        width: 100%;
+        margin: auto;
+    }
+
+}
+
+
+@media all and (min-width:426px) and (max-width:768px) {
+
+    .dual-threat-background-rg-brand-page {
+        width: 100%;
+        height: 1550px;
+    }
+
+    .rg-page-compare {
+        width: 300px !important;
+        margin: auto;
+    }
+
+    .dual-threat-text-header svg {
+        width: 250px;
+        height: fit-content;
+    }
+
+
+    .dual-threat-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        align-items: center;
+        justify-content: center;
+        padding: 96px 0px 32px 0px;
+    }
+
+    .dual-threat-destruction svg {
+        width: 250px;
+        height: fit-content;
+    }
+
+    .dt-roto-grip-logo svg {
+        width: 50px;
+        height: fit-content;
+    }
+
+    .roto-scroll-to-continue svg {
+        width: 48px;
+        height: fit-content;
+    }
+
+    .dominate-section {
+        position: relative;
+        overflow: hidden;
+        height: 300px;
+    }
+
+    .stripe1 {
+        top: 20%;
+        left: -10%;
+        transform: rotate(6.521deg);
+        z-index: 2;
+        box-shadow: 0px 4px 16.4px 1px rgba(0, 0, 0, 0.40);
+    }
+
+    .stripe2 {
+        top: 30%;
+        left: -10%;
+        transform: rotate(-3.622deg);
+        color: rgba(0, 0, 0, 0.40);
+        background: #C8C8C8;
+        z-index: 1;
+    }
+
+    .dominate-stripe span {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .dual-threat-background {
+        width: 100%;
+        height: 1000px;
+        background-attachment: unset;
+    }
+
+
+    .dual-threat-background-2 {
+        width: 100%;
+        background-attachment: unset;
+    }
+
+    .dual-threat-body-background {
+        position: absolute;
+        left: 0px;
+        top: -92px;
+        z-index: 1;
+        width: 100%;
+        height: 114px;
+        object-fit: cover;
+        overflow: hidden;
+    }
+
+    .threat-ball-intro h3 {
+        font-family: 'DINOT-Black', sans-serif !important;
+        font-size: 48px;
+        font-style: normal !important;
+    }
+
+    .threat-compare {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+    }
+
+    .reaction-graph-container.active {
+        width: 100%;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .dual-threat-tech-specs {
+        overflow: scroll;
+        height: fit-content;
+    }
+
+    .dual-threat-body-background-2 {
+        position: absolute;
+        left: 0px;
+        z-index: 1;
+        width: 100%;
+        height: 199px;
+        object-fit: cover;
+        overflow: hidden;
+        transform: rotate(180deg);
+        top: 32px;
+    }
+
+    .quote-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        width: fit-content;
+        margin: auto;
+        justify-content: center;
+    }
+
+    .dual-threat-video-compare h3 {
+        font-family: 'DINOT-CondMedium', sans-serif !important;
+        font-size: 32px;
+        font-weight: 400 !important;
+        margin-bottom: 0px;
+    }
+
+    .dual-threat-video-compare h1 {
+        font-family: 'DINOT-CondBlack', sans-serif !important;
+        color: #CE0E2D !important;
+        font-style: normal !important;
+        font-size: 64px !important;
+    }
+
+    .rg-smile {
+        position: absolute;
+        top: -43px;
+        right: 0px;
+    }
+
+    .rg-smile svg {
+        width: 100px;
+        height: fit-content;
+    }
+
+    .compare-meter-section h1 {
+        font-family: 'DINOT-Medium', sans-serif !important;
+        font-size: 48px !important;
+        font-weight: 400 !important;
+        margin-bottom: 48px;
+        font-style: normal !important;
+    }
+
+    .title-with-button-container h2 {
+        font-family: 'DINOT-Medium', sans-serif !important;
+        font-size: 48px;
+        font-weight: 400 !important;
+        margin-bottom: 48px;
+        font-style: normal !important;
+    }
+
+    .rg-dual-threat-apparel img {
+        width: 150px;
+    }
+
+    .title-with-button-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .dt-ball-compare-meter {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        display: none;
+    }
+
+    .dt-ball-compare-meter-mobile {
+        display: block;
+    }
+
+    .look-svg {
+        display: none;
+    }
+
+    .look-svg svg {
+        width: 100px;
+        height: fit-content;
+    }
+
+    .dual-threat-background-2 {
+        width: 100%;
+        height: 1600px;
+    }
+
+    .threat-video-compare.active {
+        display: block;
+        width: 100%;
+        margin: auto;
+    }
+
+}
+
+
+@media all and (min-width:769px) and (max-width:1024px) {
+
+    .rg-page-compare {
+        margin: auto;
+        margin-top: 64px;
+        width: 80%;
+    }
+
+    .dual-threat-background-rg-brand-page {
+        width: 100%;
+        height: 1230px;
+    }
+
+
+    .dual-threat-text-header svg {
+        width: 350px;
+        height: fit-content;
+    }
+
+
+    .dual-threat-copy {
+        display: flex;
+        flex-direction: row;
+        gap: 48px;
+        align-items: center;
+        justify-content: center;
+        padding: 96px 0px 32px 0px;
+    }
+
+    .dual-threat-destruction svg {
+        width: 250px;
+        height: fit-content;
+    }
+
+    .dt-roto-grip-logo svg {
+        width: 50px;
+        height: fit-content;
+    }
+
+    .roto-scroll-to-continue svg {
+        width: 48px;
+        height: fit-content;
+    }
+
+    .dominate-section {
+        position: relative;
+        overflow: hidden;
+        height: 300px;
+    }
+
+    .stripe1 {
+        top: 50%;
+        left: -10%;
+        transform: rotate(6.521deg);
+        z-index: 2;
+        box-shadow: 0px 4px 16.4px 1px rgba(0, 0, 0, 0.40);
+    }
+
+    .stripe2 {
+        top: 60%;
+        left: -10%;
+        transform: rotate(-3.622deg);
+        color: rgba(0, 0, 0, 0.40);
+        background: #C8C8C8;
+        z-index: 1;
+    }
+
+    .dominate-stripe span {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .dual-threat-background {
+        width: 100%;
+        height: 1000px;
+        background-attachment: unset;
+    }
+
+    .dual-threat-background-2 {
+        width: 100%;
+        background-attachment: unset;
+    }
+
+
+    .dual-threat-body-background {
+        position: absolute;
+        left: 0px;
+        top: -143px;
+        z-index: 1;
+        width: 100%;
+        height: 164px;
+        object-fit: cover;
+        overflow: hidden;
+    }
+
+
+    .threat-ball-intro h3 {
+        font-family: 'DINOT-Black', sans-serif !important;
+        font-size: 48px;
+        font-style: normal !important;
+    }
+
+    .threat-compare {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+    }
+
+    .ui-card-container.contain {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 16px;
+        justify-content: center;
+        padding: 32px;
+        margin: auto;
+        width: fit-content;
+    }
+
+    .reaction-graph-container.active {
+        width: 100%;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+
+
+    .dual-threat-body-background-2 {
+        position: absolute;
+        left: 0px;
+        z-index: 1;
+        width: 100%;
+        height: 177px;
+        object-fit: cover;
+        overflow: hidden;
+        transform: rotate(180deg);
+        top: 134px;
+    }
+
+    .dual-threat-background-2 {
+        width: 100%;
+        height: 1100px;
+    }
+
+    .quote-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+        width: 80%;
+        margin: auto;
+        justify-content: center;
+    }
+
+    .dual-threat-video-compare h3 {
+        font-family: 'DINOT-CondMedium', sans-serif !important;
+        font-size: 48px;
+        font-weight: 400 !important;
+        margin-bottom: 0px;
+    }
+
+    .dual-threat-video-compare h1 {
+        font-family: 'DINOT-CondBlack', sans-serif !important;
+        color: #CE0E2D !important;
+        font-style: normal !important;
+        font-size: 128px !important;
+    }
+
+    .rg-smile {
+        position: absolute;
+        top: -43px;
+        right: 0px;
+    }
+
+    .rg-smile svg {
+        width: 250px;
+        height: fit-content;
+    }
+
+    .compare-meter-section h1 {
+        font-family: 'DINOT-Medium', sans-serif !important;
+        font-size: 48px !important;
+        font-weight: 400 !important;
+        margin-bottom: 48px;
+        font-style: normal !important;
+    }
+
+    .title-with-button-container h2 {
+        font-family: 'DINOT-Medium', sans-serif !important;
+        font-size: 48px;
+        font-weight: 400 !important;
+        margin-bottom: 48px;
+        font-style: normal !important;
+    }
+
+    .rg-dual-threat-apparel img {
+        width: 150px;
+    }
+
+    .title-with-button-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .dt-ball-compare-meter {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        display: none;
+    }
+
+    .dt-ball-compare-meter-mobile {
+        display: block;
+    }
+
+    .look-svg {
+        display: none;
+    }
+
+    .look-svg svg {
+        width: 100px;
+        height: fit-content;
+    }
+
+    .threat-video-compare.active {
+        display: block;
+        width: 100%;
+        margin: auto;
+    }
+
+}
+
+
+
+@media all and (min-width:1025px) and (max-width:1440px) {
+
+
+    .rg-page-compare {
+        margin: auto;
+        margin-top: 64px;
+        width: 80%;
+    }
+
+    .dual-threat-background-rg-brand-page {
+        width: 100%;
+        height: 1450px;
+    }
+
+
+    .dual-threat-text-header svg {
+        width: 450px;
+        height: fit-content;
+    }
+
+
+    .dual-threat-copy {
+        display: flex;
+        flex-direction: row;
+        gap: 48px;
+        align-items: center;
+        justify-content: center;
+        padding: 96px 0px 32px 0px;
+    }
+
+    .dual-threat-destruction svg {
+        width: 350px;
+        height: fit-content;
+    }
+
+    .dt-roto-grip-logo svg {
+        width: 50px;
+        height: fit-content;
+    }
+
+    .roto-scroll-to-continue svg {
+        width: 48px;
+        height: fit-content;
+    }
+
+    .dominate-section {
+        position: relative;
+        overflow: hidden;
+        height: 300px;
+    }
+
+    .stripe1 {
+        top: 53%;
+        left: -10%;
+        transform: rotate(6.521deg);
+        z-index: 2;
+        box-shadow: 0px 4px 16.4px 1px rgba(0, 0, 0, 0.40);
+    }
+
+    .stripe2 {
+        top: 30%;
+        left: -10%;
+        transform: rotate(-3.622deg);
+        color: rgba(0, 0, 0, 0.40);
+        background: #C8C8C8;
+        z-index: 1;
+    }
+
+    .dominate-stripe span {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .dual-threat-background {
+        width: 100%;
+        height: 1250px;
+    }
+
+
+    .dual-threat-body-background {
+        position: absolute;
+        left: 0px;
+        top: -164px;
+        z-index: 1;
+        width: 100%;
+        height: 225;
+        object-fit: cover;
+        overflow: hidden;
+    }
+
+
+    .threat-ball-intro h3 {
+        font-family: 'DINOT-Black', sans-serif !important;
+        font-size: 48px;
+        font-style: normal !important;
+    }
+
+    .threat-compare {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+    }
+
+    .ui-card-container.contain {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 16px;
+        justify-content: center;
+        padding: 32px;
+        margin: auto;
+        width: fit-content;
+    }
+
+    .reaction-graph-container.active {
+        width: 100%;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+
+
+    .dual-threat-body-background-2 {
+        position: absolute;
+        left: 0px;
+        z-index: 1;
+        width: 100%;
+        height: 177px;
+        object-fit: cover;
+        overflow: hidden;
+        transform: rotate(180deg);
+        top: 134px;
+    }
+
+    .dual-threat-background-2 {
+        width: 100%;
+        height: 1100px;
+    }
+
+    .quote-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+        width: 80%;
+        margin: auto;
+        justify-content: center;
+    }
+
+    .dual-threat-video-compare h3 {
+        font-family: 'DINOT-CondMedium', sans-serif !important;
+        font-size: 64px;
+        font-weight: 400 !important;
+        margin-bottom: 0px;
+    }
+
+    .dual-threat-video-compare h1 {
+        font-family: 'DINOT-CondBlack', sans-serif !important;
+        color: #CE0E2D !important;
+        font-style: normal !important;
+        font-size: 160px !important;
+    }
+
+    .rg-smile {
+        position: absolute;
+        top: -43px;
+        right: 32px;
+    }
+
+    .rg-smile svg {
+        width: 200px;
+        height: fit-content;
+    }
+
+    .compare-meter-section h1 {
+        font-family: 'DINOT-Medium', sans-serif !important;
+        font-size: 48px !important;
+        font-weight: 400 !important;
+        margin-bottom: 48px;
+        font-style: normal !important;
+    }
+
+    .title-with-button-container h2 {
+        font-family: 'DINOT-Medium', sans-serif !important;
+        font-size: 48px;
+        font-weight: 400 !important;
+        margin-bottom: 48px;
+        font-style: normal !important;
+    }
+
+    .rg-dual-threat-apparel img {
+        width: 200px;
+    }
+
+    .title-with-button-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .dt-ball-compare-meter {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        display: none;
+    }
+
+    .dt-ball-compare-meter-mobile {
+        display: block;
+    }
+
+    .look-svg {
+        display: none;
+    }
+
+    .look-svg svg {
+        width: 100px;
+        height: fit-content;
+    }
+
+
+    .threat-video-compare.active {
+        display: block;
+        width: 100%;
+        margin: auto;
+    }
+
+
+}
+
+@media all and (min-width:1441px) and (max-width:1880px) {
+
+    .threat-compare {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+        justify-content: center;
+        width: 70%;
+        margin: auto;
+    }
+
+    .dual-threat-text-header svg {
+        width: 600px;
+        height: fit-content;
+    }
+
+
+    .dual-threat-destruction svg {
+        width: 500px;
+        height: fit-content;
+    }
+
+    .dt-roto-grip-logo svg {
+        width: 50px;
+        height: fit-content;
+    }
+
+
+    .rg-smile {
+        position: absolute;
+        top: -84px;
+        right: -60px;
+    }
+
+    .dual-threat-video-compare h1 {
+        font-family: 'DINOT-CondBlack', sans-serif !important;
+        color: #CE0E2D !important;
+        font-style: normal !important;
+        font-size: 224px !important;
+    }
+}
+
+
+
+@media all and (min-width:1921px) {
+
+    .dual-threat-background-rg-brand-page {
+        width: 100%;
+        height: 2000px;
+    }
+
+    .dual-threat-body-background img {
+        width: 100%;
+    }
+
+    .dual-threat-body-background {
+        position: absolute;
+        left: 0px;
+        top: -298px;
+        z-index: 1;
+        width: 100%;
+        height: 381px;
+        object-fit: cover;
+        overflow: hidden;
+    }
+
+    .dual-threat-body-background-2 img {
+        width: 100%;
+    }
+
+    .dual-threat-body-background-2 {
+        position: absolute;
+        left: 0px;
+        z-index: 1;
+        width: 100%;
+        height: 308px;
+        object-fit: cover;
+        overflow: hidden;
+        transform: rotate(180deg);
+        top: 166px;
+    }
+
+    .dual-threat-background-2 {
+        width: 100%;
+        height: 1300px;
+    }
+
+    .rg-dual-threat-apparel img {
+        width: 450px;
+    }
+}
+
+
+@media all and (min-width:2560px) {
+    .dominate-section {
+        position: relative;
+        overflow: hidden;
+        height: 650px;
+    }
+
+    .dual-threat-background-rg-brand-page {
+        width: 100%;
+        height: 2200px;
+    }
+}
+
+
+/* DUAL THREAT END */
+
+/* --------------------------------------------------------------------------- */
+
+
+</style>

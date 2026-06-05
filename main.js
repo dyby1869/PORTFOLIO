@@ -133,12 +133,6 @@ fetch("nav.html")
         menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
       });
     }
-
-    // Non-home pages show nav immediately — home portal sequence handles its own nav animation
-    if (!document.body.classList.contains("home")) {
-      const nav = document.querySelector(".nav-bar");
-      if (nav) nav.style.opacity = "1";
-    }
   })
   .catch(() => {
     // Fallback — if fetch fails, init menu toggle on existing nav
@@ -423,14 +417,12 @@ if (document.body.classList.contains("home")) {
       ease: "power1.out"
     });
 
-    tl.call(() => {
-      const nav = document.querySelector(".nav-bar");
-      if (nav) {
-        gsap.fromTo(nav, { opacity: 0, y: -20 }, {
-          opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
-        });
-      }
-    }, [], "-=0.6");
+    tl.fromTo(".nav-bar", { opacity: 0, y: -20 }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    }, "-=0.6");
 
     tl.fromTo(".btn-cta", { opacity: 0, y: 20 }, {
       opacity: 1,
@@ -741,6 +733,7 @@ if (document.body.classList.contains("pockets")) {
 
     document.querySelectorAll(".clickable-img").forEach(img => {
       img.addEventListener("click", () => {
+        if (img.classList.contains("clickable-img--link")) return;
         const enlarged = document.createElement("img");
         enlarged.src = img.src;
         enlarged.alt = img.alt;
@@ -869,9 +862,11 @@ if (document.body.classList.contains("storm")) {
   document.body.appendChild(stormModal);
 
   // Delegated listener so dynamically loaded images are also covered
+  // Skips images with clickable-img--link class — those open a page via their anchor tag
   document.addEventListener("click", (e) => {
     const img = e.target.closest(".clickable-img");
     if (!img) return;
+    if (img.classList.contains("clickable-img--link")) return;
 
     const enlarged = document.createElement("img");
     enlarged.src = img.src;
