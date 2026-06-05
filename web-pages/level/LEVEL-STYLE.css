@@ -1,0 +1,935 @@
+<style>
+
+/* LEVEL WEB PAGE */
+
+.level-intro-container {
+    position: relative;
+    height: 150vh;
+    /* Ensure enough scroll space */
+
+    background-color: black;
+    /* Ensure visibility */
+}
+
+.level-hero-wp {}
+
+.level-text-container {
+    position: relative;
+
+}
+
+.lab-series {
+    padding: 96px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lab-series-svg {
+    position: relative;
+    z-index: 3;
+}
+
+
+.lab-series-1 {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.spi-lab-copy {
+    font-size: 64px;
+    position: relative;
+    z-index: 3;
+}
+
+
+
+.level-bowling-ball-1 {
+    width: 1300px;
+    position: absolute;
+    right: -35%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: fit-content;
+    opacity: 0;
+    /* Initially hidden */
+}
+
+.level-bowling-ball-2 {
+    width: 700px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.level-bowling-ball-3 {
+    width: 1600px;
+    position: relative;
+    top: -714px;
+    left: -556px;
+}
+
+.level-bowling-ball-4 {
+    width: 1300px;
+    position: relative;
+    top: -420px;
+    right: 8px;
+}
+
+.level-ball-hightlight {
+    height: 800px;
+}
+
+.level-detail {
+    height: 800px;
+}
+
+
+
+.level-weightblock {
+    width: 800px;
+    position: relative;
+    top: -178px;
+    right: -231px;
+}
+
+.level-flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.level-flex-container-2 {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+
+
+.level-parralax {
+    z-index: 2;
+    position: relative;
+    height: 100vh;
+    background: url("https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/LEVEL/LEVEL-BACKGROUND.png") no-repeat center;
+    background-size: cover;
+    overflow: hidden;
+    /* Ensure no scrollbars show */
+
+
+}
+
+.level-highlight {
+    position: relative;
+    z-index: 0;
+    padding: 96px;
+}
+
+.level-highlight h1 {
+    font-size: 96px;
+    font-style: normal;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 900;
+    margin-bottom: 48px;
+}
+
+.level-highlight h2 {
+    font-size: 96px;
+    text-decoration: underline;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 900;
+    margin-bottom: 48px;
+}
+
+/* .level-highlight h1,
+.level-highlight h2,
+.level-highlight .storm-button-container-3 {
+    opacity: 0; 
+    transform: translateY(20px); 
+} */
+
+
+.level-intro {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.level-intro h1 {
+    font-size: 128px;
+    position: absolute;
+    z-index: 3;
+}
+
+.level-copy-1 {
+    top: -193px;
+    left: 196px;
+}
+
+.level-copy-2 {
+    top: -61px;
+    right: 401px;
+}
+
+.level-details-container {
+    margin-left: 64px;
+    z-index: 3;
+    position: relative;
+}
+
+.level-downloads {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: 32px;
+}
+
+.level-tech-container {
+    width: 90%;
+    margin: auto;
+}
+
+.how-it-rolls-container {
+    width: 90%;
+    margin: auto;
+
+
+}
+
+.level-cover {
+    z-index: 3;
+    position: relative;
+}
+
+.level-weightblock-animation {
+    z-index: 1;
+    position: relative;
+}
+
+.powered-by-ai {
+    z-index: 2;
+    position: relative;
+}
+
+
+.level-weight-card {
+    background-color: white;
+    width: fit-content;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+
+}
+
+.ui-card-container.level {
+    display: flex;
+    flex-flow: wrap;
+    gap: 16px;
+    justify-content: center;
+    padding: 32px;
+    margin: auto;
+
+}
+
+.level-tech-specs {
+    height: fit-content;
+}
+
+.button-pop {
+    opacity: 0;
+}
+
+
+/* SMALL PHONE */
+@media all and (min-width:320px) and (max-width:425px) {
+
+    .lab-series {
+        padding: 32px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .level-text-container {
+        position: relative;
+        height: 800px;
+    }
+
+    .lab-series-svg {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .spi-lab-copy {
+        font-size: 32px;
+        z-index: 3;
+        height: fit-content;
+        width: min-content;
+        margin-bottom: 0px;
+    }
+
+    .level-highlight {
+        position: relative;
+        z-index: 0;
+        padding: 32px;
+    }
+
+    .level-bowling-ball-1 {
+        width: 500px;
+        position: absolute;
+        right: -204px;
+        bottom: 0%;
+        transform: translate(0%, 0%);
+    }
+
+    .level-bowling-ball-2 {
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .level-bowling-ball-2 img {
+        width: 90%;
+    }
+
+
+    .level-highlight h2 {
+        font-size: 32px;
+        text-decoration: underline;
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 900;
+        margin-bottom: 48px;
+    }
+
+    .level-highlight h1 {
+        font-size: 32px;
+        font-style: normal;
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 900;
+        margin-bottom: 48px;
+    }
+
+
+    .level-intro {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .level-bowling-ball-3 {
+        width: 500px;
+        position: relative;
+        top: -119px;
+        left: -193px;
+    }
+
+    .level-ball-hightlight {
+        height: 220px;
+    }
+
+    .level-intro h1 {
+        font-size: 48px;
+        position: absolute;
+        z-index: 3;
+    }
+
+    .level-copy-2 {
+        top: -30px;
+        right: 11px;
+    }
+
+    .level-copy-1 {
+        top: -85px;
+        left: 6px;
+    }
+
+
+    .level-details-container {
+        margin-left: 0px;
+    }
+
+    .level-bowling-ball-4 {
+        width: 150%;
+        position: relative;
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -0%);
+    }
+
+    .level-bowling-ball-4 img {
+        width: 100%;
+    }
+
+    .level-flex-container {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .level-flex-container-2 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .level-detail {
+        height: fit-content;
+    }
+
+    .level-weightblock {
+        width: 100%;
+        position: relative;
+        top: 0px;
+        right: 0px;
+    }
+
+    .level-downloads {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+    }
+
+    .level-tech-container {
+        width: 100%;
+        margin: auto;
+    }
+
+    .ui-card-container.level {
+        display: flex;
+        flex-flow: row;
+        gap: 16px;
+        justify-content: unset;
+        padding: 32px 0px;
+        margin: auto;
+        width: fit-content;
+    }
+
+    .level-weight-card {
+        background-color: white;
+        width: 150px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+    }
+
+}
+
+@media all and (min-width:426px) and (max-width:510px) {
+    .level-bowling-ball-3 {
+        width: 500px;
+        position: relative;
+        top: -176px;
+        left: -219px;
+    }
+
+    .level-text-container {
+        position: relative;
+        height: 800px;
+    }
+
+    .level-ball-hightlight {
+        height: 100px;
+    }
+
+    .level-copy-1 {
+        top: -72px;
+        left: 37px;
+    }
+
+    .level-copy-2 {
+        top: -16px;
+        right: 31px;
+    }
+
+    .level-intro h1 {
+        font-size: 48px;
+        position: absolute;
+        z-index: 3;
+    }
+
+}
+
+@media all and (min-width:511px) and (max-width:680px) {
+    .level-bowling-ball-3 {
+        width: 600px;
+        position: relative;
+        top: -176px;
+        left: -256px;
+    }
+
+    .level-ball-hightlight {
+        height: 250px;
+    }
+
+    .level-copy-1 {
+        top: 7px;
+        left: 113px;
+    }
+
+    .level-copy-2 {
+        top: 71px;
+        right: 105px;
+    }
+
+    .level-intro h1 {
+        font-size: 48px;
+        position: absolute;
+        z-index: 3;
+    }
+
+}
+
+@media all and (min-width:681px) and (max-width:768px) {
+    .level-bowling-ball-3 {
+        width: 700px;
+        position: relative;
+        top: -198px;
+        left: -213px;
+    }
+
+    .level-ball-hightlight {
+        height: 300px;
+    }
+
+    .level-copy-1 {
+        top: -5px;
+        left: 88px;
+    }
+
+    .level-copy-2 {
+        top: 74px;
+        right: 132px;
+    }
+
+    .level-intro h1 {
+        font-size: 64px;
+        position: absolute;
+        z-index: 3;
+    }
+
+
+}
+
+/* LARGE PHONE - SMALL TABLET */
+@media all and (min-width:426px) and (max-width:768px) {
+
+    .lab-series {
+        padding: 32px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .lab-series-svg {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .spi-lab-copy {
+        font-size: 32px;
+        z-index: 3;
+        height: fit-content;
+        width: min-content;
+        margin-bottom: 0px;
+    }
+
+    .level-bowling-ball-1 {
+        width: 750px;
+        position: absolute;
+        right: -339px;
+        bottom: 8px;
+        transform: translate(0%, -21%);
+    }
+
+    .level-bowling-ball-2 {
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+
+    .level-bowling-ball-2 img {
+        width: 90%;
+    }
+
+
+    .level-highlight {
+        position: relative;
+        z-index: 0;
+        padding: 32px;
+    }
+
+    .level-highlight h2 {
+        font-size: 48px;
+        text-decoration: underline;
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 900;
+        margin-bottom: 48px;
+    }
+
+    .level-highlight h1 {
+        font-size: 32px;
+        font-style: normal;
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 900;
+        margin-bottom: 48px;
+    }
+
+
+    .level-intro {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ui-card-container.level {
+        display: flex;
+        flex-flow: row;
+        gap: 16px;
+        justify-content: unset;
+        padding: 32px 0px;
+        margin: auto;
+        width: fit-content;
+    }
+
+    .level-weight-card {
+        background-color: white;
+        width: 150px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+    }
+
+
+
+
+
+
+
+
+
+    .level-details-container {
+        margin-left: 0px;
+    }
+
+    .level-bowling-ball-4 {
+        width: 150%;
+        position: relative;
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -0%);
+    }
+
+    .level-bowling-ball-4 img {
+        width: 100%;
+    }
+
+    .level-flex-container {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .level-flex-container-2 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .level-detail {
+        height: fit-content;
+    }
+
+    .level-weightblock {
+        width: 100%;
+        position: relative;
+        top: 0px;
+        right: 0px;
+    }
+
+    .level-downloads {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+    }
+
+    .level-tech-container {
+        width: 100%;
+        margin: auto;
+    }
+}
+
+/* LARGE TABLET*/
+@media all and (min-width:769px) and (max-width:1024px) {
+
+    .lab-series {
+        padding: 32px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .lab-series-svg {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .spi-lab-copy {
+        font-size: 32px;
+        z-index: 3;
+        height: fit-content;
+        width: min-content;
+        margin-bottom: 0px;
+    }
+
+    .level-bowling-ball-1 {
+        width: 1000px;
+        position: absolute;
+        right: -466px;
+        bottom: 0px;
+        transform: translate(0%, -35%);
+    }
+
+    .level-bowling-ball-2 {
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .level-bowling-ball-2 img {
+        width: 90%;
+    }
+
+
+    .level-highlight h2 {
+        font-size: 48px;
+        text-decoration: underline;
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 900;
+        margin-bottom: 48px;
+    }
+
+    .level-highlight h1 {
+        font-size: 48px;
+        font-style: normal;
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 900;
+        margin-bottom: 48px;
+    }
+
+
+    .level-ball-hightlight {
+        height: 600px;
+    }
+
+    .level-intro h1 {
+        font-size: 96px;
+        position: absolute;
+        z-index: 3;
+    }
+
+    .level-bowling-ball-3 {
+        width: 1100px;
+        position: relative;
+        top: -178px;
+        left: -441px;
+    }
+
+    .level-intro {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .level-copy-1 {
+        top: 159px;
+        left: 23px;
+    }
+
+    .level-copy-2 {
+        top: 255px;
+        right: 48px;
+    }
+
+
+
+
+
+
+
+
+    .level-details-container {
+        margin-left: 0px;
+    }
+
+    .level-bowling-ball-4 {
+        width: 150%;
+        position: relative;
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -0%);
+    }
+
+    .level-bowling-ball-4 img {
+        width: 100%;
+    }
+
+    .level-flex-container {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .level-flex-container-2 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .level-detail {
+        height: fit-content;
+    }
+
+    .level-weightblock {
+        width: 100%;
+        position: relative;
+        top: 0px;
+        right: 0px;
+    }
+
+    .level-downloads {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+    }
+
+    .level-tech-container {
+        width: 100%;
+        margin: auto;
+    }
+
+}
+
+/* SMALL LAPTOP */
+@media all and (min-width:1025px) and (max-width:1440px) {
+
+    .level-bowling-ball-1 {
+        width: 800px;
+        position: absolute;
+        right: -300px;
+        top: 50%;
+        transform: translate(0%, -51%);
+        height: fit-content;
+    }
+
+    .lab-series-svg {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .spi-lab-copy {
+        font-size: 40px;
+        height: fit-content;
+        margin-bottom: 0px;
+    }
+
+    .level-bowling-ball-3 {
+        width: 1400px;
+        position: relative;
+        top: -570px;
+        left: -556px;
+    }
+
+    .level-copy-1 {
+        top: -187px;
+        left: 95px;
+    }
+
+    .level-copy-2 {
+        top: -61px;
+        right: 77px;
+    }
+
+    .level-details-container {
+        margin-left: 16px;
+    }
+
+    .level-weightblock {
+        width: 800px;
+        position: relative;
+        top: -178px;
+        right: -47px;
+    }
+
+    .level-bowling-ball-4 {
+        width: 1400px;
+        position: relative;
+        top: -444px;
+        right: 220px;
+    }
+
+}
+
+/* LARGE LAPTOP */
+@media all and (min-width:1441px) and (max-width:1880px) {
+
+    .lab-series-svg {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .level-bowling-ball-3 {
+        width: 1500px;
+        position: relative;
+        top: -714px;
+        left: -556px;
+    }
+
+    .level-bowling-ball-4 {
+        width: 1100px;
+        position: relative;
+        top: -322px;
+        right: 77px;
+    }
+
+    .level-weightblock {
+        width: 700px;
+        position: relative;
+        top: -178px;
+        right: -102px;
+    }
+
+    .level-copy-2 {
+        top: -61px;
+        right: 106px;
+    }
+}
+
+/* LARGE LAPTOP */
+@media all and (min-width:1881px) and (max-width:1920px) {}
+
+/* 4K SCREEN */
+@media all and (min-width:1921px) and (max-width:2560px) {}
+
+@media all and (min-width:2560px) {}
+
+/* LEVEL END */
+
+/* --------------------------------------------------------------------------- */
+</style>

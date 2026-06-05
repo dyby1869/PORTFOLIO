@@ -1,0 +1,5759 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Storm CSS — Full Component Test Page</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- Your Storm stylesheet — make sure this path matches your setup -->
+  <link rel="stylesheet" href="storm-styles.css" />
+
+  <STYLE>
+    :root {
+      /* Backgrounds */
+      --bg-deep: #0b0f14;
+      --bg-mid: #0f141b;
+      --bg-soft: #121821;
+      --bg-card: #1a2630;
+
+      /* Brand */
+      --brand: rgb(0, 147, 144);
+      --brand-dark: rgb(0, 95, 93);
+      --brand-deeper: rgb(0, 60, 59);
+      --brand-glow: rgba(0, 147, 144, 0.22);
+      --brand-tint: rgba(0, 147, 144, 0.08);
+      --brand-border: rgba(0, 147, 144, 0.25);
+
+      /* Text */
+      --text: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.60);
+      --text-dim: rgba(255, 255, 255, 0.45);
+
+      /* Borders */
+      --border: rgba(0, 147, 144, 0.10);
+      --border-soft: rgba(255, 255, 255, 0.07);
+
+      /* Radii */
+      --r-sm: 8px;
+      --r-md: 16px;
+      --r-lg: 20px;
+      --r-xl: 24px;
+      --r-pill: 999px;
+
+      /* Transitions */
+      --ease: all 0.32s ease;
+
+      /* Typography scale */
+      --text-xs: 11px;
+      --text-sm: 13px;
+      --text-base: 15px;
+      --text-md: 18px;
+      --text-lg: 22px;
+      --text-xl: 28px;
+      --text-2xl: 36px;
+      --text-3xl: 48px;
+
+      /* Global background atmosphere */
+      --atmosphere:
+        radial-gradient(circle at 15% 0%, rgba(0, 147, 144, 0.09), transparent 60%),
+        radial-gradient(circle at 85% 40%, rgba(0, 95, 93, 0.07), transparent 60%),
+        #0b0f14;
+    }
+
+
+    /* ============================================================
+   RESET & BASE
+   ============================================================ */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+
+    /* ============================================================
+   GLOBAL ATMOSPHERE
+   ============================================================ */
+
+    .spi-atmosphere {
+      background: var(--atmosphere);
+      color: var(--text);
+    }
+
+
+    /* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+
+    .h-xl {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: var(--text-3xl);
+    }
+
+    .h-lg {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: var(--text-2xl);
+    }
+
+    .h-md {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: var(--text-lg);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto 80px;
+    }
+
+    .section-header h2 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: var(--text-2xl);
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      font-size: var(--text-md);
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .body-text {
+      font-size: var(--text-base);
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .h-xl {
+        font-size: 28px;
+      }
+
+      .h-lg {
+        font-size: 22px;
+      }
+
+      .h-md {
+        font-size: 17px;
+      }
+
+      .body-text {
+        font-size: 13px;
+      }
+    }
+
+
+    /* ============================================================
+   GRID UTILITIES
+   ============================================================ */
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid-5 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .grid-4,
+      .grid-5 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* ============================================================
+   CARD — BASE MIXIN (shared across all card types)
+   ============================================================ */
+
+    /* Common card shell — apply to any card variant */
+    .ui-card,
+    .cover-card,
+    .tech-card,
+    .core-card,
+    .fundamental-card,
+    .lane-card,
+    .psa-lane-card,
+    .use-case-card,
+    .synergy-card,
+    .insight-card,
+    .diff-benefit-card,
+    .maintenance-item,
+    .care-card,
+    .spinner-step,
+    .attention-card-v2,
+    .layout-stage,
+    .why-card,
+    .surface-breakdown-card,
+    .tech-notes,
+    .grit-card,
+    .arsenal-scale-card,
+    .product-card {
+      background: linear-gradient(145deg, var(--bg-card), var(--bg-soft));
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      backdrop-filter: blur(6px);
+      transition: var(--ease);
+    }
+
+    /* Hover lift — shared */
+    .ui-card:hover,
+    .cover-card:hover,
+    .tech-card:hover,
+    .core-card:hover,
+    .fundamental-card:hover,
+    .lane-card:hover,
+    .psa-lane-card:hover,
+    .use-case-card:hover,
+    .synergy-card:hover,
+    .insight-card:hover,
+    .diff-benefit-card:hover,
+    .maintenance-item:hover,
+    .care-card:hover,
+    .spinner-step:hover,
+    .attention-card-v2:hover,
+    .layout-stage:hover,
+    .why-card:hover,
+    .product-card:hover,
+    .arsenal-scale-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--brand-border);
+      box-shadow: 0 12px 32px var(--brand-glow);
+    }
+
+
+    /* ============================================================
+   UI CARD
+   ============================================================ */
+
+    .ui-card {
+      padding: 36px 28px;
+    }
+
+    .ui-card h4 {
+      font-size: var(--text-md);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+
+    .ui-card p {
+      font-size: var(--text-base);
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+
+    /* ============================================================
+   UI LIST
+   ============================================================ */
+
+    .ui-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .ui-list li {
+      position: relative;
+      padding: 13px 0 13px 18px;
+      font-size: var(--text-base);
+      line-height: 1.6;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ui-list li:last-child {
+      border-bottom: none;
+    }
+
+    .ui-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 14px;
+      border-radius: 2px;
+      background: var(--brand);
+    }
+
+
+    /* ============================================================
+   ICON CIRCLE
+   ============================================================ */
+
+    .icon-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1.5px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+
+    /* ============================================================
+   SCROLL OFFSET ANCHORS
+   ============================================================ */
+
+    #why-layouts-matter,
+    #how-to-choose-layout,
+    #compare-layouts,
+    #why,
+    #products,
+    #breakdown,
+    #use-cases {
+      scroll-margin-top: 280px;
+    }
+
+
+    /* ============================================================
+   SLIDER
+   ============================================================ */
+
+    .rst-slider {
+      position: relative;
+    }
+
+    .rst-slide {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .rst-slide.active {
+      display: block;
+      opacity: 1;
+    }
+
+    @media (max-width: 425px) {
+      .rst-slider {
+        margin-top: 28px;
+      }
+    }
+
+
+    /* ============================================================
+   FREE SHIPPING STRIPE
+   ============================================================ */
+
+    .free-shipping-stripe {
+      display: none;
+      padding: 14px;
+      background: var(--brand-dark);
+      text-align: center;
+    }
+
+
+    /* ============================================================
+   MOTION GRADIENT BLOCK
+   ============================================================ */
+
+    .motion-gradient {
+      padding: 16px;
+      background: linear-gradient(145deg, var(--bg-card), var(--bg-soft));
+      border-radius: var(--r-sm);
+      width: 120px;
+    }
+
+    .surface-motion-card {
+      box-shadow: 0 0 28px rgba(0, 0, 0, 0.18);
+      border-radius: var(--r-lg);
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    /* ============================================================
+   VIDEO CARDS
+   ============================================================ */
+
+    .video-ui-card {
+      flex: 0 0 320px;
+      width: 320px;
+      cursor: pointer;
+      transition: transform 0.32s ease;
+    }
+
+    .video-ui-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .video-thumb {
+      position: relative;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      background: linear-gradient(145deg, var(--bg-card), var(--bg-soft));
+      transition: var(--ease);
+    }
+
+    .video-ui-card:hover .video-thumb {
+      border-color: rgba(0, 147, 144, 0.35);
+      box-shadow: 0 14px 32px var(--brand-glow);
+    }
+
+    .video-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, .5), transparent);
+      pointer-events: none;
+    }
+
+    .video-thumb img {
+      width: 100%;
+      display: block;
+      transition: transform 0.4s ease, opacity 0.25s ease;
+    }
+
+    .video-ui-card:hover img {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    /* Play button */
+    .video-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .video-play::before {
+      content: "";
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, .65);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, .2);
+      box-shadow: 0 0 24px rgba(0, 0, 0, .4);
+      position: absolute;
+    }
+
+    .video-play::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 11px 0 11px 17px;
+      border-color: transparent transparent transparent var(--brand);
+      margin-left: 5px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .video-ui-card:hover .video-play::before {
+      background: rgba(0, 0, 0, .78);
+      box-shadow: 0 0 28px var(--brand-glow);
+    }
+
+    .time-stamp {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, .75);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: var(--r-sm);
+      font-size: var(--text-xs);
+      letter-spacing: 0.08em;
+      padding: 4px 8px;
+      color: var(--text);
+    }
+
+    .video-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .video-ui-card {
+        flex: 0 0 260px;
+        width: 260px;
+      }
+    }
+
+
+    /* ============================================================
+   ARTICLE CARDS
+   ============================================================ */
+
+    .article-card {
+      flex: 0 0 340px;
+      width: 340px;
+    }
+
+    .article-link {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: linear-gradient(145deg, var(--bg-card), var(--bg-soft));
+      border: 1px solid var(--border);
+      position: relative;
+      transition: var(--ease);
+    }
+
+    .article-link:hover {
+      transform: translateY(-6px);
+      border-color: var(--brand-border);
+      box-shadow: 0 14px 36px var(--brand-glow);
+    }
+
+    .article-thumb {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-thumb img {
+      width: 100%;
+      display: block;
+      transition: transform 0.4s ease, opacity 0.3s ease;
+    }
+
+    .article-link:hover .article-thumb img {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    .read-time {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, .75);
+      backdrop-filter: blur(6px);
+      border-radius: var(--r-sm);
+      border: 1px solid rgba(255, 255, 255, .18);
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+      padding: 5px 9px;
+      color: var(--text);
+    }
+
+    .article-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .article-tag {
+      font-size: var(--text-xs);
+      letter-spacing: 0.12em;
+      padding: 5px 12px;
+      border-radius: var(--r-pill);
+      background: var(--brand-tint);
+      border: 1px solid var(--brand-border);
+      color: var(--brand);
+      width: fit-content;
+    }
+
+    .article-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    .article-meta {
+      font-size: var(--text-sm);
+      color: var(--text-dim);
+      letter-spacing: 0.02em;
+    }
+
+    .article-link::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 3px;
+      background: var(--brand);
+      opacity: 0.18;
+    }
+
+
+    /* ============================================================
+   BREAKDOWN TABLE (COVERSTOCK COMPARE)
+   ============================================================ */
+
+    .simple-breakdown {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: 15px;
+      color: #f0f0f0;
+      background: #151a1f;
+      border-radius: var(--r-md);
+      overflow: hidden;
+    }
+
+    .simple-breakdown th {
+      background: #1e252c;
+      text-align: left;
+      padding: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+    }
+
+    .simple-breakdown td {
+      padding: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .simple-breakdown tr:nth-child(even) {
+      background: #182028;
+    }
+
+    .simple-breakdown tr:hover {
+      background: rgba(0, 147, 144, 0.08);
+    }
+
+    .simple-breakdown .section-header td {
+      background: #0f1419;
+      color: var(--brand);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      border-top: 2px solid var(--brand-dark);
+    }
+
+    .meter {
+      background: rgba(255, 255, 255, .08);
+      border-radius: 20px;
+      height: 8px;
+      width: 120px;
+      margin-top: 6px;
+      overflow: hidden;
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      border-radius: 20px;
+      background: var(--brand);
+    }
+
+    .coverstock-table-wrapper {
+      max-height: 600px;
+      overflow: hidden;
+      transition: max-height 0.6s ease;
+      position: relative;
+    }
+
+    .coverstock-table-wrapper::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: linear-gradient(to top, #151a1f 20%, transparent);
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .coverstock-table-wrapper.expanded {
+      max-height: 5000px;
+    }
+
+    .coverstock-table-wrapper.expanded::after {
+      opacity: 0;
+    }
+
+    @media (max-width: 768px) {
+      .simple-breakdown thead {
+        display: none;
+      }
+
+      .simple-breakdown,
+      .simple-breakdown tbody,
+      .simple-breakdown tr,
+      .simple-breakdown td {
+        display: block;
+      }
+
+      .simple-breakdown tr {
+        background: #1a2028;
+        margin-bottom: 16px;
+        padding: 16px;
+        border-radius: var(--r-md);
+        border: 1px solid rgba(255, 255, 255, .06);
+      }
+
+      .simple-breakdown tr.section-header {
+        background: #0f1419;
+        border-radius: 0;
+        padding: 12px 16px;
+        border: none;
+      }
+
+      .simple-breakdown td {
+        padding: 7px 0;
+        border: none;
+      }
+
+      .simple-breakdown td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        opacity: 0.55;
+        margin-bottom: 4px;
+      }
+
+      .simple-breakdown tr:hover {
+        background: #1a2028;
+      }
+
+      .meter {
+        width: 100%;
+      }
+    }
+
+
+    /* ============================================================
+   COVER TYPE SECTION
+   ============================================================ */
+
+    .cover-type-section,
+    .cover-tech-section,
+    .cover-strategy-alt,
+    .motion-phase-section,
+    .cover-aging-section {
+      padding: 120px 24px;
+    }
+
+    .cover-type-section h2 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: var(--text-2xl);
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+
+    .cover-type-section .body-text {
+      max-width: 740px;
+      margin: 0 auto 72px;
+    }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      max-width: 1560px;
+      margin: 0 auto;
+    }
+
+    .cover-card {
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--r-md);
+    }
+
+    .cover-card h3 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    .motion-visual {
+      background: radial-gradient(circle at 50% 50%, rgba(0, 147, 144, .08), transparent 70%);
+      margin-bottom: 28px;
+      border-radius: var(--r-md);
+      overflow: hidden;
+    }
+
+    .cover-data {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .cover-data div {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0, 147, 144, .12);
+      padding-bottom: 8px;
+    }
+
+    .cover-data span {
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+    }
+
+    .cover-data strong {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .cover-note {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* Cover type accent stripes */
+    .cover-card.solid::before,
+    .cover-card.pearl::before,
+    .cover-card.hybrid::before,
+    .cover-card.urethane::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-dark));
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tech-card {
+      padding: 36px;
+      border-radius: var(--r-md);
+    }
+
+    .tech-card h3 {
+      font-size: 19px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .tech-card ul {
+      margin-bottom: 18px;
+      padding-left: 18px;
+    }
+
+    .tech-card ul li {
+      font-size: 14px;
+      margin-bottom: 7px;
+      color: var(--text-muted);
+    }
+
+    .tech-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 1024px) {
+
+      .cover-grid,
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cover-type-section,
+      .cover-tech-section,
+      .cover-strategy-alt,
+      .motion-phase-section,
+      .cover-aging-section {
+        padding: 72px 20px;
+      }
+
+      .cover-type-section h2 {
+        font-size: 26px;
+      }
+    }
+
+
+    /* ============================================================
+   PLAYER ROWS (ALT STRATEGY)
+   ============================================================ */
+
+    .player-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 52px 28px;
+      border-top: 1px solid var(--border);
+      max-width: 1200px;
+      margin: 0 auto;
+      transition: background 0.28s ease;
+      gap: 32px;
+    }
+
+    .player-row:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .player-row:hover {
+      background: rgba(0, 147, 144, .03);
+    }
+
+    .player-label {
+      width: 28%;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .player-label h3 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: 0.04em;
+    }
+
+    .player-content {
+      width: 68%;
+    }
+
+    .player-content ul {
+      margin-bottom: 14px;
+      padding-left: 18px;
+    }
+
+    .player-content ul li {
+      font-size: var(--text-base);
+      margin-bottom: 5px;
+      color: var(--text-muted);
+    }
+
+    .player-content p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .player-row {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .player-label,
+      .player-content {
+        width: 100%;
+      }
+    }
+
+
+    /* ============================================================
+   MOTION PHASE SECTION
+   ============================================================ */
+
+    .phase-divider {
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-dark));
+      box-shadow: 0 0 14px var(--brand-glow);
+      margin-top: 52px;
+    }
+
+    .phase-track {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto 56px;
+      gap: 36px;
+      position: relative;
+    }
+
+    .phase-block {
+      max-width: 280px;
+    }
+
+    .phase-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    .phase-block h3 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+
+    .phase-core {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .phase-cover {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .phase-description {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .lane-phase ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .lane-phase li {
+      margin-bottom: 16px;
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .lane-phase li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 4px;
+      height: 14px;
+      background: rgba(255, 255, 255, .22);
+      border-radius: 2px;
+    }
+
+    .lane-phase li strong {
+      font-weight: 700;
+    }
+
+    .motion-clarity {
+      margin-top: 120px;
+      display: flex;
+      justify-content: center;
+      gap: 52px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .phase-track {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .phase-divider {
+        width: 2px;
+        height: 52px;
+        margin: 0;
+      }
+
+      .motion-clarity {
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+      }
+    }
+
+
+    /* ============================================================
+   INSIGHT CARDS
+   ============================================================ */
+
+    .cover-insight-section {
+      padding: 140px 0;
+      overflow: hidden;
+    }
+
+    .insight-scroll {
+      display: flex;
+      gap: 36px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+
+    .insight-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .insight-card {
+      max-width: 780px;
+      padding: 44px;
+      border-radius: var(--r-lg);
+      scroll-snap-align: start;
+      margin: auto;
+    }
+
+    .insight-split {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px;
+      margin-bottom: 24px;
+    }
+
+    .insight-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .insight-note {
+      margin-top: 24px;
+      color: var(--text-dim);
+      font-size: var(--text-base);
+    }
+
+    @media (max-width: 900px) {
+      .insight-columns {
+        grid-template-columns: 1fr;
+      }
+
+      .insight-split {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .cover-insight-section {
+        padding: 64px 16px;
+      }
+    }
+
+
+    /* ============================================================
+   AGING SECTION
+   ============================================================ */
+
+    .cover-aging-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .aging-flow {
+      display: flex;
+      justify-content: space-between;
+      gap: 36px;
+      position: relative;
+      margin: 44px 0 90px;
+    }
+
+    .aging-flow::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(0, 147, 144, .15);
+    }
+
+    .aging-stage {
+      position: relative;
+      max-width: 220px;
+    }
+
+    .aging-stage::before {
+      content: "";
+      position: absolute;
+      top: 23px;
+      left: -2px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--brand);
+    }
+
+    .restore::before {
+      background: var(--brand-dark);
+    }
+
+    .aging-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      display: block;
+      margin-bottom: 22px;
+    }
+
+    .aging-stage h3 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .aging-stage p {
+      color: var(--text-muted);
+      font-size: var(--text-base);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .aging-flow {
+        flex-direction: column;
+        margin-bottom: 28px;
+      }
+
+      .aging-flow::before {
+        top: 28px;
+        left: 4px;
+        right: auto;
+        height: 90%;
+        width: 2px;
+      }
+
+      .aging-stage h3,
+      .aging-label,
+      .aging-stage p {
+        margin-left: 30px;
+      }
+
+      .aging-stage h3 {
+        font-size: 16px;
+      }
+
+      .motion-gradient {
+        margin-bottom: 14px;
+      }
+
+      .ball-cover-compare-image {
+        width: 50%;
+        display: block;
+        margin: auto;
+      }
+
+      .flex-container-column {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+
+    /* ============================================================
+   TAB SYSTEM
+   ============================================================ */
+
+    .tab-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 52px 0 44px;
+    }
+
+    .tab-container button {
+      appearance: none;
+      background: var(--bg-soft);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 9px 20px;
+      border-radius: var(--r-pill);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: var(--ease);
+      outline: none;
+    }
+
+    .tab-container button:hover {
+      background: var(--brand-tint);
+      border-color: var(--brand-border);
+    }
+
+    .tab-container button.active {
+      background: var(--brand);
+      color: #001210;
+      border-color: var(--brand);
+    }
+
+    .tab-container button:focus,
+    .tab-container button:focus-visible,
+    .tab-container button:active {
+      outline: none;
+      box-shadow: none;
+    }
+
+
+    /* ============================================================
+   LEGEND
+   ============================================================ */
+
+    .motion-legend {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      margin: 18px auto 0;
+      align-items: center;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .legend-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+    }
+
+    .legend-dot.skid {
+      background: var(--brand-deeper);
+    }
+
+    .legend-dot.hook {
+      background: var(--brand-dark);
+    }
+
+    .legend-dot.roll {
+      background: var(--brand);
+    }
+
+    .legend-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+
+    /* ============================================================
+   WEIGHTBLOCK TOGGLE
+   ============================================================ */
+
+    .weightblock-container {
+      width: 30%;
+      margin: auto;
+    }
+
+    .toggle-label-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+
+    .toggle-text {
+      font-size: 19px;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--ease);
+    }
+
+    .toggle-text.active {
+      color: var(--text);
+    }
+
+    .toggle-input {
+      display: none;
+    }
+
+    .toggle-track {
+      width: 112px;
+      height: 46px;
+      background: linear-gradient(145deg, var(--bg-card), var(--bg-soft));
+      border-radius: var(--r-pill);
+      position: relative;
+      border: none;
+      transition: var(--ease);
+    }
+
+    .toggle-thumb {
+      width: 42px;
+      height: 42px;
+      background: var(--bg-mid);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--ease);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .4);
+    }
+
+    .toggle-input:checked+.toggle-track .toggle-thumb {
+      transform: translateX(5px);
+    }
+
+    .toggle-input:checked+.toggle-track {
+      box-shadow: 0 0 20px var(--brand-glow);
+    }
+
+    .toggle-icon svg {
+      color: var(--brand);
+    }
+
+
+    /* ============================================================
+   CORE DEEP DIVE (WEIGHTBLOCK SECTION)
+   ============================================================ */
+
+    .core-group {
+      display: none;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: var(--ease);
+    }
+
+    .core-group.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tier-label {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+      color: var(--brand);
+    }
+
+    .tier-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .core-grid-wrapper {
+      display: block;
+      overflow: scroll;
+    }
+
+    .core-grid {
+      flex-direction: row;
+      display: flex;
+      gap: 14px;
+      align-items: stretch;
+      padding: 28px;
+      width: fit-content;
+    }
+
+    .core-card {
+      border-radius: var(--r-md);
+      padding: 22px 18px;
+      flex: 0 0 256px;
+      min-height: 340px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .core-card img {
+      width: 140px;
+      height: auto;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 12px rgba(0, 147, 144, .15));
+    }
+
+    .core-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 100%;
+    }
+
+    [data-brand="storm"].core-card::before {
+      background: var(--brand);
+    }
+
+    [data-brand="roto"].core-card::before {
+      background: #E5006E;
+    }
+
+    [data-brand="global"].core-card::before {
+      background: #FFD100;
+    }
+
+    .core-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 0.7rem;
+    }
+
+    .core-card h4 {
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .core-card p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .use-case {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .core-tag {
+      display: inline-block;
+      padding: 3px 9px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 4px;
+    }
+
+    [data-type="asym"] .core-tag {
+      background: var(--brand);
+      color: #001210;
+    }
+
+    [data-type="sym"] .core-tag {
+      background: var(--brand-dark);
+      color: #fff;
+    }
+
+    .motion-summary {
+      max-width: 880px;
+      padding: 0 28px;
+    }
+
+    .motion-macro {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .motion-macro-desc {
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 700px;
+      color: var(--text-muted);
+    }
+
+    .motion-sub {
+      margin-top: 36px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+      padding-top: 26px;
+    }
+
+    .motion-sub::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 52px;
+      height: 2px;
+      background: rgba(255, 255, 255, .2);
+    }
+
+    .motion-sub-desc {
+      margin-top: 10px;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 700px;
+      color: var(--text-muted);
+    }
+
+    .motion-subgroup {
+      display: none;
+    }
+
+    .motion-subgroup.highlight {
+      display: block;
+    }
+
+    .core-balls {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .balls-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .core-balls a {
+      font-size: 14px;
+      text-decoration: none;
+      color: #fff;
+      color: var(--text-muted);
+      transition: var(--ease);
+      position: relative;
+    }
+
+    .core-balls a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 1px;
+      background: var(--brand);
+      transition: width .25s ease;
+    }
+
+    .core-balls a:hover {
+      color: var(--text);
+    }
+
+    .core-balls a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .core-grid {
+        flex-direction: column;
+      }
+    }
+
+
+    /* ============================================================
+   FILTER ROW
+   ============================================================ */
+
+    .filter-row {
+      display: flex;
+      justify-content: center;
+      gap: 52px;
+      margin: 36px 0 52px;
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .filter-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+    }
+
+    .filter-group button {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 7px 15px;
+      border-radius: var(--r-pill);
+      font-size: 13px;
+      cursor: pointer;
+      transition: var(--ease);
+    }
+
+    .filter-group button:hover {
+      border-color: var(--brand);
+    }
+
+    .filter-group button.active {
+      background: var(--brand);
+      color: #001210;
+      border-color: var(--brand);
+      box-shadow: 0 0 18px var(--brand-glow);
+    }
+
+
+    /* ============================================================
+   FUNDAMENTAL CARDS
+   ============================================================ */
+
+    .fundamental-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .fundamental-card {
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .fundamental-title {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.04em;
+      margin-bottom: 7px;
+    }
+
+    .fundamental-subtitle {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .fundamental-points {
+      padding-left: 18px;
+      margin-bottom: 28px;
+    }
+
+    .fundamental-points li {
+      margin-bottom: 7px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .fundamental-button {
+      margin-top: auto;
+    }
+
+    .fundamental-button .btn.explore {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--r-pill);
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.04em;
+      transition: var(--ease);
+    }
+
+    .fundamental-button .btn.explore:hover,
+    .fundamental-button .btn.explore.active {
+      background: var(--brand-tint);
+      border-color: var(--brand);
+      box-shadow: 0 0 14px var(--brand-glow);
+    }
+
+    .fundamental-button .btn.explore.disabled {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+
+    /* ============================================================
+   INFO POPUP / MODAL
+   ============================================================ */
+
+    .info-popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .78);
+      display: none;
+      justify-content: center;
+      align-items: flex-start;
+      z-index: 999;
+      backdrop-filter: blur(8px);
+      overflow-y: auto;
+      padding: 72px 0;
+    }
+
+    .info-popup-content {
+      background: var(--atmosphere);
+      color: var(--text);
+      border-radius: var(--r-xl);
+      max-width: 1360px;
+      width: 90%;
+      padding: 44px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+      position: relative;
+      animation: popupFadeIn 0.3s ease;
+    }
+
+    .info-popup-close {
+      position: absolute;
+      top: 22px;
+      right: 28px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .info-popup-close:hover {
+      color: var(--brand);
+    }
+
+    @keyframes popupFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+
+    /* ============================================================
+   DIFF CARDS
+   ============================================================ */
+
+    .diff-specs {
+      display: flex;
+      gap: 28px;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(0, 147, 144, .12);
+      margin-bottom: 14px;
+    }
+
+    .diff-specs p {
+      margin: 0;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+    }
+
+    .diff-video {
+      width: 100%;
+      border-radius: var(--r-sm);
+      margin-bottom: 1rem;
+    }
+
+    .diff-caption {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .diff-summary {
+      margin: 28px auto 0;
+      max-width: 680px;
+      font-size: var(--text-base);
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .diff-benefit-card {
+      padding: 28px;
+      width: 320px;
+      border-radius: var(--r-md);
+    }
+
+    .diff-benefit-card ul {
+      padding-left: 18px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .diff-benefit-card.low {
+      border-top: 2px solid var(--brand);
+    }
+
+    .diff-benefit-card.high {
+      border-top: 2px solid var(--brand-dark);
+    }
+
+
+    /* ============================================================
+   LANE CARDS
+   ============================================================ */
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .lane-card {
+      padding: 28px;
+      width: 320px;
+    }
+
+    .lane-card h4 {
+      margin-bottom: 20px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.04em;
+    }
+
+    .lane-ball-img {
+      width: 190px;
+      margin: auto auto 28px;
+      display: block;
+    }
+
+    .psa-lane-card {
+      border-radius: var(--r-xl);
+      width: 320px;
+      height: 625px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intermediate-diff-path {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+    }
+
+    .friction-zone {
+      width: 40%;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background: var(--brand-dark);
+      z-index: 2;
+    }
+
+    .friction-copy {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      color: var(--brand);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 12px;
+      opacity: .7;
+    }
+
+    .transition-copy {
+      position: absolute;
+      top: 50%;
+      left: 32%;
+      transform: translate(-50%, -50%);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .low-intermediate-transition {
+      position: absolute;
+      top: 121px;
+      height: 189px;
+      width: 100%;
+      background: #1ca592;
+      z-index: 1;
+    }
+
+    .high-intermediate-transition {
+      position: absolute;
+      top: 202px;
+      height: 110px;
+      width: 100%;
+      background: #1ca592;
+      z-index: 1;
+    }
+
+
+    /* ============================================================
+   USE CASE CARDS
+   ============================================================ */
+
+    .use-case-card {
+      padding: 28px;
+      width: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .use-case-card h4 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.04em;
+    }
+
+    .use-case-card ul {
+      padding-left: 18px;
+      line-height: 1.6;
+    }
+
+    .use-case-card li {
+      margin-bottom: 7px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .use-case-quote {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .use-case-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .core-type {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.07em;
+    }
+
+    .core-context {
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+      color: var(--text-dim);
+    }
+
+
+    /* ============================================================
+   SYNERGY CARD
+   ============================================================ */
+
+    .synergy-card {
+      padding: 44px;
+      border-radius: var(--r-lg);
+    }
+
+    .synergy-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 44px;
+    }
+
+    .synergy-block h4 {
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: var(--brand);
+    }
+
+    .synergy-block p {
+      font-size: var(--text-base);
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .synergy-divider {
+      height: 1px;
+      margin: 36px 0;
+      background: var(--border);
+    }
+
+    .synergy-conclusion {
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    .synergy-heading {
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: 0.07em;
+      margin-bottom: 36px;
+    }
+
+    .synergy-heading span {
+      display: block;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      margin-top: 7px;
+      font-weight: 400;
+      font-family: inherit;
+    }
+
+
+    /* ============================================================
+   REACTION BARS
+   ============================================================ */
+
+    .reaction-bars {
+      max-width: 880px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .reaction-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .bar-label {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .bar-track {
+      display: flex;
+      height: 26px;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      background: rgba(0, 147, 144, .06);
+    }
+
+    .segment {
+      height: 100%;
+      flex: unset;
+    }
+
+    .segment.skid {
+      background: var(--brand-deeper);
+    }
+
+    .segment.hook {
+      background: var(--brand-dark);
+    }
+
+    .segment.roll {
+      background: var(--brand);
+    }
+
+
+    /* ============================================================
+   ATTENTION CARDS (MAINTENANCE SIGNS)
+   ============================================================ */
+
+    .attention-card-v2 {
+      padding: 32px 24px;
+      border-radius: var(--r-lg);
+      text-align: center;
+    }
+
+    .attention-card-v2::before {
+      content: "";
+      display: block;
+      height: 3px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    .minor::before {
+      background: #3aa86d;
+    }
+
+    .moderate::before {
+      background: #c9a341;
+    }
+
+    .severe::before {
+      background: #bf4343;
+    }
+
+    .critical::before {
+      background: #666;
+    }
+
+    .attention-icon-v2 {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      background: rgba(255, 255, 255, .04);
+      border: 2px solid rgba(255, 255, 255, .15);
+      transition: var(--ease);
+    }
+
+    .attention-icon-v2 svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .minor .attention-icon-v2 {
+      border-color: #3aa86d;
+    }
+
+    .moderate .attention-icon-v2 {
+      border-color: #c9a341;
+    }
+
+    .severe .attention-icon-v2 {
+      border-color: #bf4343;
+    }
+
+    .critical .attention-icon-v2 {
+      border-color: #666;
+    }
+
+    .attention-card-v2 .severity {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+      color: var(--text-dim);
+    }
+
+    .attention-card-v2 h4 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.04em;
+      margin-bottom: 7px;
+      color: var(--text);
+    }
+
+    .attention-card-v2 .desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+
+    /* ============================================================
+   DEEP CLEAN / MAINTENANCE
+   ============================================================ */
+
+    .deep-clean-compact {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    .deep-main,
+    .deep-methods {
+      padding: 28px;
+    }
+
+    .deep-row {
+      display: flex;
+      gap: 18px;
+      align-items: baseline;
+    }
+
+    .deep-tag {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      min-width: 110px;
+    }
+
+    .deep-content {
+      font-size: var(--text-base);
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .deep-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, .07);
+      margin: 18px 0;
+    }
+
+    .deep-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 44px;
+    }
+
+    .deep-item h4 {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: rgba(255, 255, 255, .82);
+    }
+
+    .deep-item p {
+      font-size: var(--text-base);
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .deep-note {
+      margin-top: 52px;
+      text-align: center;
+      font-style: italic;
+      color: var(--brand);
+      opacity: .9;
+    }
+
+    @media (max-width: 900px) {
+      .deep-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .deep-card {
+        padding: 44px 26px;
+      }
+    }
+
+
+    /* ============================================================
+   SPINNER STEPS
+   ============================================================ */
+
+    .spinner-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 44px auto;
+    }
+
+    .spinner-step {
+      padding: 24px;
+      text-align: left;
+    }
+
+    .spinner-step img {
+      width: 100%;
+      border-radius: var(--r-md);
+      margin-bottom: 14px;
+    }
+
+    .spinner-step h4 {
+      margin-bottom: 7px;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    .spinner-step p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+
+    /* ============================================================
+   GRIT TIMELINE
+   ============================================================ */
+
+    .grit-timeline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: 44px auto 64px;
+      position: relative;
+    }
+
+    .grit-timeline::before {
+      content: "";
+      position: absolute;
+      top: 9px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(255, 255, 255, .09);
+    }
+
+    .grit-node {
+      position: relative;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .grit-dot {
+      width: 17px;
+      height: 17px;
+      background: #111;
+      border: 2px solid rgba(255, 255, 255, .38);
+      border-radius: 50%;
+      margin: 0 auto 9px;
+      transition: var(--ease);
+    }
+
+    .grit-node:hover .grit-dot {
+      border-color: var(--brand);
+    }
+
+    .grit-label {
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+
+
+    /* ============================================================
+   TECH NOTES
+   ============================================================ */
+
+    .tech-notes {
+      max-width: 780px;
+      margin: 52px auto 0;
+      padding: 36px;
+    }
+
+    .tech-notes h4 {
+      margin-bottom: 18px;
+      font-size: 17px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .tech-notes ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tech-notes li {
+      margin-bottom: 11px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+
+    /* ============================================================
+   RESURFACE OR REPLACE
+   ============================================================ */
+
+    .rr-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .rr-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .rr-header svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .rr-green svg path {
+      stroke: #3aa86d;
+    }
+
+    .rr-red svg path {
+      stroke: #bf4343;
+    }
+
+    @media (max-width: 850px) {
+      .rr-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* ============================================================
+   CARE GRID
+   ============================================================ */
+
+    .care-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 44px;
+    }
+
+    .care-card {
+      padding: 32px 28px;
+      border-radius: var(--r-lg);
+    }
+
+    .care-label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+
+    .care-card li {
+      margin-bottom: 9px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .care-warning {
+      border-color: rgba(191, 67, 67, .25);
+    }
+
+    @media (max-width: 768px) {
+      .care-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* ============================================================
+   MAINTENANCE SECTION
+   ============================================================ */
+
+    #why-maintenance {
+      margin-top: 88px;
+    }
+
+    .maintenance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+      margin-top: 52px;
+    }
+
+    .maintenance-item {
+      padding: 36px 30px;
+      border-radius: var(--r-xl);
+    }
+
+    .maintenance-item h3 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.07em;
+      margin-bottom: 14px;
+    }
+
+    .maintenance-item p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .maintenance-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* ============================================================
+   TIMELINE
+   ============================================================ */
+
+    .timeline {
+      margin: 52px auto 0;
+      max-width: 880px;
+    }
+
+    .timeline-stage {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      padding: 36px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .timeline-stage:last-child {
+      border-bottom: none;
+    }
+
+    .stage-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .timeline-content h3 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 19px;
+      letter-spacing: 0.07em;
+      margin-bottom: 7px;
+    }
+
+    .timeline-content p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+
+    /* ============================================================
+   PRODUCT GRID
+   ============================================================ */
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 24px;
+      margin-top: 44px;
+    }
+
+    .product-card {
+      border-radius: var(--r-lg);
+    }
+
+    .product-card a {
+      display: block;
+      padding: 24px;
+      text-decoration: none;
+    }
+
+    .product-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .product-image img {
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .product-info h4 {
+      font-size: 13px;
+      margin-bottom: 5px;
+      color: var(--text);
+      letter-spacing: 0.04em;
+    }
+
+    .product-info p {
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+
+    /* ============================================================
+   SURFACE ADJUSTMENTS
+   ============================================================ */
+
+    .surface-flex {
+      display: flex;
+      align-items: center;
+      gap: 52px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .surface-image {
+      flex: 1;
+    }
+
+    .surface-image img {
+      width: 100%;
+      max-width: 480px;
+      border-radius: var(--r-lg);
+    }
+
+    .surface-content {
+      flex: 1;
+    }
+
+    .surface-analogy {
+      font-size: 17px;
+      margin-bottom: 18px;
+      color: var(--brand);
+      font-weight: 600;
+    }
+
+    .surface-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .surface-list li {
+      margin-bottom: 12px;
+      font-size: var(--text-base);
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .surface-flex {
+        flex-direction: column;
+        gap: 36px;
+        text-align: center;
+      }
+    }
+
+    .surface-breakdown-card {
+      padding: 64px 52px;
+      border-radius: var(--r-xl);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .breakdown-title {
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: 0.07em;
+      margin-bottom: 16px;
+    }
+
+    .breakdown-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 52px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .breakdown-rail {
+      display: flex;
+      gap: 36px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .breakdown-rail::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    .breakdown-rail::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, .14);
+      border-radius: 10px;
+    }
+
+    .breakdown-item {
+      min-width: 250px;
+      padding: 22px 0;
+    }
+
+    .breakdown-item h4 {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+      color: var(--text);
+    }
+
+    .problem {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .solution {
+      font-weight: 600;
+      color: var(--brand);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .surface-breakdown-card {
+        padding: 44px 24px;
+      }
+    }
+
+
+    /* ============================================================
+   GRIT CARDS
+   ============================================================ */
+
+    .grit-card {
+      min-width: 248px;
+      padding: 24px;
+      border-radius: var(--r-md);
+    }
+
+    .grit-card h4 {
+      color: var(--text);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    .grit-card .sub {
+      color: var(--text-muted);
+      margin: 5px 0 14px;
+    }
+
+    .grit-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .grit-list li {
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .10);
+      font-size: var(--text-base);
+      color: var(--text-muted);
+    }
+
+    .grit-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* Grit level color accents */
+    .grit-180 {
+      border-left: 4px solid #A3A3A3;
+    }
+
+    .grit-360 {
+      border-left: 4px solid #FF8C42;
+    }
+
+    .grit-500 {
+      border-left: 4px solid #41c27a;
+    }
+
+    .grit-1000 {
+      border-left: 4px solid #4db7ff;
+    }
+
+    .grit-2000 {
+      border-left: 4px solid #ffd26e;
+    }
+
+    .grit-3000 {
+      border-left: 4px solid #e57cff;
+    }
+
+    .grit-4000 {
+      border-left: 4px solid #ff7a7a;
+    }
+
+    .grit-polish {
+      border-left: 4px solid #ffffff;
+    }
+
+    .grit-slider-wrapper {
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+
+    .surface-steps {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      margin: 28px auto;
+      max-width: 1200px;
+    }
+
+    .step-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      width: 290px;
+    }
+
+    .step-content h4 {
+      margin-bottom: 5px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    .surface-motion-demo {
+      margin: auto;
+      max-width: 880px;
+    }
+
+    .lane-visual {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      max-width: 780px;
+      margin: 0 auto;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      background: linear-gradient(145deg, var(--bg-card), var(--bg-soft));
+      padding: 14px;
+    }
+
+    .lane-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+
+    /* ============================================================
+   EDITORIAL LIST
+   ============================================================ */
+
+    .editorial-list {
+      max-width: 880px;
+      margin: 72px auto 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .editorial-item {
+      padding: 36px;
+      border-top: 1px solid var(--border);
+      transition: 0.28s ease;
+    }
+
+    .editorial-item:hover {
+      background: rgba(0, 147, 144, .03);
+      padding-left: 14px;
+    }
+
+    .editorial-item h4 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 21px;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+
+    .editorial-item p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 740px;
+    }
+
+    .editorial-item strong {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 5px;
+    }
+
+    .editorial-item em {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+
+    /* ============================================================
+   LAYOUT STEP SYSTEM
+   ============================================================ */
+
+    .layout-step-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .layout-step {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      transition: var(--ease);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .015);
+      opacity: .65;
+    }
+
+    .layout-step:hover {
+      opacity: 1;
+      border-color: var(--brand-border);
+      background: var(--brand-tint);
+    }
+
+    .layout-step.active {
+      opacity: 1;
+      border-color: var(--brand);
+      background: rgba(0, 147, 144, .08);
+      box-shadow: 0 0 18px var(--brand-glow);
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, .07);
+      color: var(--text);
+      transition: var(--ease);
+      flex-shrink: 0;
+    }
+
+    .layout-step.active .step-num {
+      background: var(--brand);
+      color: #001210;
+      box-shadow: 0 0 12px var(--brand-glow);
+    }
+
+    .layout-stage {
+      padding: 36px;
+      border-radius: var(--r-lg);
+    }
+
+    .layout-image img {
+      width: 100%;
+      max-width: 400px;
+      display: block;
+      margin: 0 auto 28px;
+      filter: drop-shadow(0 0 18px rgba(0, 147, 144, .1));
+    }
+
+    #compare-layouts .ui-card-container {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      padding: 36px 28px;
+      justify-content: unset;
+    }
+
+    #compare-layouts .ui-card {
+      display: flex;
+      flex-direction: column;
+      transition: var(--ease);
+      flex: 0 0 310px;
+      width: 310px;
+      padding: 0;
+    }
+
+    .layout-visual {
+      padding: 32px 18px 24px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .layout-visual img {
+      width: 78%;
+      max-width: 230px;
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, .4));
+    }
+
+    .layout-spec {
+      padding: 24px 22px 28px;
+    }
+
+    .layout-spec h4 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 21px;
+      letter-spacing: 0.07em;
+      margin-bottom: 12px;
+    }
+
+    .layout-meta {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 14px;
+      flex-direction: column;
+    }
+
+    .layout-meta span {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      padding: 5px 10px;
+      border-radius: var(--r-pill);
+      background: var(--brand-tint);
+      border: 1px solid rgba(0, 147, 144, .2);
+    }
+
+    .layout-spec p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    #why-bad-layouts {
+      margin-top: 88px;
+    }
+
+    .why-card {
+      border-radius: var(--r-xl);
+      padding: 64px 52px;
+    }
+
+    .why-title {
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+
+    .why-intro {
+      text-align: center;
+      max-width: 740px;
+      margin: 0 auto 52px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px 72px;
+    }
+
+    .why-item h4 {
+      font-size: 15px;
+      letter-spacing: 0.07em;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .why-item p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .why-quote {
+      margin: 64px auto 0;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255, 255, 255, .09);
+      text-align: center;
+      font-size: 19px;
+      font-style: italic;
+      color: var(--brand);
+      max-width: 680px;
+    }
+
+
+    /* ============================================================
+   ARSENAL MATRIX SYSTEM
+   ============================================================ */
+
+    .matrix-intro {
+      margin: 0 auto 72px;
+    }
+
+    .matrix-stage {
+      position: relative;
+      max-width: 680px;
+      margin: auto;
+    }
+
+    .matrix-visual {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .matrix-visual img {
+      width: 100%;
+      display: block;
+    }
+
+    .matrix-axis {
+      position: absolute;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: .62;
+    }
+
+    .matrix-axis-vertical {
+      left: -130px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+    }
+
+    .matrix-axis-horizontal {
+      bottom: -38px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .arsenal-matrix {
+      width: 100%;
+      height: auto;
+      color: var(--brand);
+    }
+
+    .matrix-slot {
+      fill: rgba(255, 255, 255, .03);
+      stroke: rgba(0, 147, 144, .22);
+      stroke-width: 2;
+      transition: .25s ease;
+    }
+
+    .matrix-slot:hover {
+      fill: rgba(0, 147, 144, .10);
+      stroke: var(--brand);
+    }
+
+    .matrix-slot.benchmark {
+      fill: rgba(0, 147, 144, .18);
+      stroke: var(--brand);
+    }
+
+    .matrix-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      opacity: .6;
+      fill: white;
+    }
+
+    .matrix-axis-label {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      opacity: .8;
+      fill: white;
+    }
+
+    /* Axis lines */
+    .arsenal-step-matrix {
+      margin: 44px auto;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      max-width: 480px;
+    }
+
+    .matrix-axis-y {
+      position: absolute;
+      left: -56px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: white;
+    }
+
+    .matrix-axis-y::before,
+    .matrix-axis-y::after {
+      content: "";
+      position: absolute;
+      left: -5px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+    }
+
+    .matrix-axis-y::before {
+      top: -11px;
+      border-bottom: 11px solid white;
+    }
+
+    .matrix-axis-y::after {
+      bottom: -11px;
+      border-top: 11px solid white;
+    }
+
+    .matrix-y-labels {
+      position: absolute;
+      left: -105px;
+      top: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .matrix-axis-x {
+      position: absolute;
+      bottom: -46px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: white;
+    }
+
+    .matrix-axis-x::before,
+    .matrix-axis-x::after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+
+    .matrix-axis-x::before {
+      left: -11px;
+      border-right: 11px solid white;
+    }
+
+    .matrix-axis-x::after {
+      right: -11px;
+      border-left: 11px solid white;
+    }
+
+    .matrix-x-labels {
+      position: absolute;
+      bottom: -76px;
+      left: 0;
+      right: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .matrix-axis-title-y {
+      position: absolute;
+      left: -96px;
+      top: 50%;
+      transform: rotate(-90deg) translateY(-50%);
+      transform-origin: center;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+    }
+
+    .matrix-axis-title-x {
+      position: absolute;
+      bottom: -38px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 600;
+      letter-spacing: 0.07em;
+    }
+
+    .arsenal-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      width: 100%;
+      border: 2px solid rgba(255, 255, 255, .38);
+    }
+
+    .matrix-cell {
+      position: relative;
+      aspect-ratio: 1/1;
+      border: 1px solid rgba(255, 255, 255, .18);
+      min-height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, .02);
+      overflow: hidden;
+    }
+
+    .matrix-cell:empty::after {
+      content: "";
+      width: 28%;
+      height: 28%;
+      background: rgba(255, 255, 255, .05);
+      border-radius: 4px;
+    }
+
+    .matrix-cell:hover {
+      background: rgba(255, 255, 255, .05);
+    }
+
+    .matrix-cell img {
+      width: 74%;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+
+    .matrix-cell img:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+
+      .matrix-axis-vertical,
+      .matrix-axis-horizontal {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin: 14px 0;
+      }
+    }
+
+    /* Arsenal options */
+    .arsenal-options-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      max-width: 880px;
+      margin: auto;
+    }
+
+    .arsenal-option-group {
+      text-align: center;
+    }
+
+    .arsenal-option-group h4 {
+      margin-bottom: 18px;
+      letter-spacing: 0.05em;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    .arsenal-ball-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .arsenal-ball-row img {
+      width: 88px;
+      height: auto;
+      transition: 0.25s ease;
+    }
+
+    .arsenal-ball-row img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Arsenal scale */
+    .arsenal-scale-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 36px;
+      max-width: 1480px;
+      margin: 52px auto 0;
+    }
+
+    .arsenal-scale-card {
+      padding: 28px;
+      text-align: center;
+      border-radius: var(--r-sm);
+    }
+
+    .arsenal-scale-card.featured {
+      border-color: var(--brand);
+    }
+
+    .arsenal-scale-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .arsenal-scale-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0;
+    }
+
+    .arsenal-scale-list li {
+      margin: 5px 0;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .arsenal-scale-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* Strength/benchmark grids */
+    .strength-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+      gap: 36px;
+      max-width: 1100px;
+      margin: 72px auto 0;
+    }
+
+    .strength-links {
+      margin-top: 18px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .strength-links a {
+      font-size: 14px;
+      text-decoration: none;
+      color: var(--brand);
+      border-bottom: 1px solid rgba(0, 147, 144, .4);
+      padding-bottom: 2px;
+    }
+
+    .benchmark-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+      gap: 36px;
+      max-width: 1100px;
+      margin: 28px auto 0;
+    }
+
+    .benchmark-example {
+      font-size: var(--text-base);
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .benchmark-ball-image {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .benchmark-ball-image img {
+      width: 190px;
+      height: auto;
+      transition: transform 0.35s ease;
+    }
+
+    .benchmark-card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Example arsenals */
+    .example-arsenals-section {
+      margin-top: 140px;
+    }
+
+    .arsenal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 52px;
+      max-width: 1200px;
+      margin: 72px auto 0;
+    }
+
+    .arsenal-example {
+      text-align: center;
+    }
+
+    .arsenal-example h3 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: 0.04em;
+    }
+
+    .arsenal-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .arsenal-options-row {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .arsenal-ball-row {
+        gap: 16px;
+      }
+
+      .arsenal-ball-row img {
+        width: 68px;
+      }
+    }
+
+
+    /* ============================================================
+   STEP SECTION STRUCTURE (BUILDER)
+   ============================================================ */
+
+    .matrix-step {
+      margin-top: 200px;
+      text-align: center;
+    }
+
+    .step-header {
+      max-width: 700px;
+      margin: 0 auto 36px;
+    }
+
+    .step-header h3 {
+      margin-bottom: 10px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    .step-header p {
+      color: var(--text-muted);
+    }
+
+    .step-visual {
+      margin: 36px auto;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .step-caption {
+      max-width: 500px;
+      margin: 18px auto 0;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .step-breakdown {
+      max-width: 740px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .step-lead {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .step-logic {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 36px;
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+
+    .logic-item {
+      text-align: center;
+      max-width: 250px;
+      margin: auto;
+    }
+
+    .logic-item h4 {
+      margin-bottom: 9px;
+      letter-spacing: 0.04em;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    .logic-item p {
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .logic-divider {
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+
+    .step-outcome {
+      margin-top: 26px;
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .step-logic {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .logic-divider {
+        display: none;
+      }
+    }
+
+
+    /* ============================================================
+   BUILDER
+   ============================================================ */
+
+    #builder-step-container {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    #builder-step-container.active {
+      max-height: 2000px;
+      margin-top: 56px;
+      opacity: 1;
+    }
+
+    .builder-step {
+      margin-top: 112px;
+    }
+
+    #builder-matrix {
+      display: none;
+    }
+
+    .builder-nav {
+      margin-top: 112px;
+    }
+
+    #benchmark-options,
+    #strong-options,
+    #weak-options,
+    #strongWeak-options,
+    #weakStrong-options,
+    #strongMedium-options,
+    #weakMedium-options,
+    #mediumStrong-options,
+    #mediumWeak-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(144px, 1fr));
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .ball-option {
+      cursor: pointer;
+      padding: 24px;
+      border-radius: var(--r-md);
+      transition: var(--ease);
+    }
+
+    .ball-option.active {
+      transform: translateY(-6px);
+      border-color: rgba(0, 147, 144, .3);
+      box-shadow: 0 10px 30px var(--brand-glow), inset 0 0 0 1px rgba(0, 147, 144, .2);
+    }
+
+    .builder-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 44px;
+      align-items: start;
+      margin-top: 28px;
+    }
+
+    .builder-side {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      position: sticky;
+      top: 110px;
+      border-left: 1px solid var(--border);
+      padding-left: 28px;
+    }
+
+    .matrix-anchor {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .builder-nav {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .builder-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .builder-side {
+        position: static;
+        border-left: none;
+        padding-left: 0;
+      }
+
+      .builder-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .matrix-anchor {
+        order: 2;
+      }
+
+      .builder-nav {
+        order: 3;
+        position: sticky;
+        bottom: 0;
+        background: var(--bg-deep);
+        padding: 14px;
+        border-top: 1px solid var(--border);
+        z-index: 10;
+      }
+    }
+
+
+    /* ============================================================
+   LANE PLAY
+   ============================================================ */
+
+    .pattern-block {
+      max-width: 980px;
+      margin: 64px auto;
+    }
+
+    .pattern-block h3 {
+      text-align: center;
+      margin-bottom: 22px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    .pattern-visual {
+      margin-bottom: 22px;
+    }
+
+    .pattern-visual img {
+      width: 480px;
+      display: block;
+    }
+
+    .pattern-content {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--text-muted);
+    }
+
+    .oil-card h4 {
+      margin-top: 16px;
+      margin-bottom: 5px;
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    .oil-volume {
+      margin-bottom: 10px;
+      color: var(--text-muted);
+    }
+
+    .oil-row {
+      margin: 52px 0;
+    }
+
+    .oil-row h3 {
+      margin-bottom: 22px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    .oil-row span {
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    .oil-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+    }
+
+    @media (max-width: 900px) {
+      .oil-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pattern-shape-grid {
+      margin-top: 44px;
+    }
+
+    .pattern-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 44px;
+      align-items: center;
+      margin: 64px 0;
+    }
+
+    .pattern-diagram img {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .pattern-info h3 {
+      margin-bottom: 13px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .pattern-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .transition-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 52px;
+      margin-top: 52px;
+    }
+
+    .transition-stage h3 {
+      margin-bottom: 18px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    .transition-block {
+      margin-bottom: 18px;
+    }
+
+    .transition-block h4 {
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .transition-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+
+    /* ============================================================
+   LANE STYLE SECTION
+   ============================================================ */
+
+    .lane-style-flow {
+      margin-top: 52px;
+      display: flex;
+      flex-direction: column;
+      gap: 52px;
+    }
+
+    .lane-stage-title {
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-dim);
+      margin-bottom: 18px;
+    }
+
+    .lane-style-types {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+    }
+
+    .lane-style-type h5 {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+      color: var(--text-muted);
+    }
+
+    .lane-style-type p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+
+    @media (max-width: 900px) {
+      .lane-style-types {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+
+    /* ============================================================
+   TOPOGRAPHY
+   ============================================================ */
+
+    .topography-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 52px;
+      max-width: 980px;
+      margin: auto;
+    }
+
+    .topography-example h3 {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      color: var(--text-muted);
+    }
+
+    .topography-example img {
+      width: 280px;
+      border-radius: var(--r-sm);
+      margin-bottom: 18px;
+    }
+
+    .topography-example p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 500px;
+    }
+
+    @media (max-width: 900px) {
+      .topography-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+
+    /* ============================================================
+   RG / BALL ANIMATION DEMO
+   ============================================================ */
+
+    .lane {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      height: 100px;
+      margin: auto;
+      background: linear-gradient(to bottom, #444, #222);
+      border-radius: var(--r-sm);
+      overflow: hidden;
+    }
+
+    .ball-spin {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      border-radius: 8px;
+      background: radial-gradient(circle at 30% 30%, #ff4444, #aa0000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pap {
+      width: 9px;
+      height: 9px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    #lowRG,
+    #highRG {
+      top: 20px;
+    }
+
+    .label {
+      position: absolute;
+      left: 10px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .pin-deck {
+      position: absolute;
+      right: 10px;
+      top: 20px;
+      width: 70px;
+      height: 100px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: flex-start;
+      opacity: 0.4;
+    }
+
+    .pin {
+      width: 9px;
+      height: 9px;
+      margin: 2px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .rg-diff-cards {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      margin-top: 2rem;
+    }
+
+    .rg-diff-card {
+      background: white;
+      border-radius: var(--r-md);
+      padding: 1rem;
+      width: 290px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+      text-align: left;
+    }
+
+    .rg-video {
+      width: 100%;
+      border-radius: var(--r-sm);
+      margin-bottom: 1rem;
+    }
+
+    .rg-benefits {
+      list-style-type: disc;
+      padding-left: 1.1rem;
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 600px) {
+      .lane {
+        width: 120px;
+        height: 350px;
+      }
+
+      .label {
+        top: auto;
+        bottom: 5px;
+        left: 5px;
+        font-size: 11px;
+      }
+
+      #lowRG,
+      #highRG {
+        left: 30px;
+        top: 0;
+      }
+
+      .lanes {
+        flex-direction: row;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .ball-spin {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  </style>
+
+  <style>
+    /* Base page styles not covered by component CSS */
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #ffffff;
+      background: #0b0f14;
+    }
+
+    /* Test page section wrappers */
+    .test-section {
+      padding: 80px 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .test-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgb(0, 147, 144);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .test-section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 0 40px 0;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .flex-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    /* Sticky nav */
+    .test-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 15, 20, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 0 48px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+
+    .test-nav a {
+      color: rgba(255, 255, 255, 0.55);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 16px 18px;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+      border-bottom: 2px solid transparent;
+    }
+
+    .test-nav a:hover {
+      color: #fff;
+      border-bottom-color: rgb(0, 147, 144);
+    }
+
+    /* Hero bar */
+    .test-hero {
+      background: radial-gradient(circle at 15% 0%, rgba(0, 147, 144, 0.12), transparent 60%),
+        radial-gradient(circle at 85% 40%, rgba(0, 95, 93, 0.08), transparent 60%),
+        #0b0f14;
+      padding: 80px 48px 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .test-hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 52px;
+      font-weight: 700;
+      margin: 0 0 12px;
+      color: #fff;
+    }
+
+    .test-hero p {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 17px;
+      max-width: 600px;
+      margin: 0;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: rgb(0, 147, 144);
+      color: #001210;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.28s ease;
+    }
+
+    .btn-primary:hover {
+      background: rgb(0, 120, 118);
+      box-shadow: 0 0 22px rgba(0, 147, 144, 0.35);
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 11px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.28s ease;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgb(0, 147, 144);
+      color: rgb(0, 147, 144);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+     STICKY NAV
+============================================================ -->
+  <nav class="test-nav">
+    <a href="#typography">Typography</a>
+    <a href="#atmosphere">Atmosphere</a>
+    <a href="#cards">UI Cards</a>
+    <a href="#lists">Lists</a>
+    <a href="#video-cards">Video Cards</a>
+    <a href="#article-cards">Article Cards</a>
+    <a href="#cover">Cover Cards</a>
+    <a href="#tabs">Tabs</a>
+    <a href="#layout-steps">Layout Steps</a>
+    <a href="#editorial">Editorial</a>
+    <a href="#insight">Insight Cards</a>
+    <a href="#maintenance">Maintenance</a>
+    <a href="#surface">Surface</a>
+    <a href="#arsenal">Arsenal / Matrix</a>
+    <a href="#builder">Builder</a>
+    <a href="#table">Table</a>
+    <a href="#phase">Phase / Timeline</a>
+    <a href="#synergy">Synergy</a>
+    <a href="#grit">Grit Cards</a>
+    <a href="#lane">Lane Cards</a>
+  </nav>
+
+  <!-- ============================================================
+     HERO
+============================================================ -->
+  <div class="test-hero spi-atmosphere">
+    <div class="test-label">Storm CSS — Component Test Page</div>
+    <h1>Full Style System QA</h1>
+    <p>Every component class rendered with lorem ipsum. Use this page to verify your stylesheet loaded correctly and
+      spot any visual regressions.</p>
+    <div style="margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap;">
+      <a href="#cards" class="btn-primary">Browse Components</a>
+      <a href="#table" class="btn-ghost">See Tables</a>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+     TYPOGRAPHY
+============================================================ -->
+  <section id="typography" class="test-section">
+    <div class="test-label">Section 01</div>
+    <div class="test-section-title">Typography Scale</div>
+
+    <div class="h-xl" style="margin-bottom: 16px;">Oswald Bold XL — 48px Headline</div>
+    <div class="h-lg" style="margin-bottom: 16px;">Oswald Bold LG — 36px Section Head</div>
+    <div class="h-md" style="margin-bottom: 24px;">Oswald Bold MD — 22px Card Title</div>
+
+    <div class="section-header" style="text-align:left; margin: 0 0 40px;">
+      <h2>Section Header H2 — Centered Style</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam quis nostrud.</p>
+    </div>
+
+    <p class="body-text">Body text — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod magna
+      non ex volutpat, vitae luctus leo pharetra. Curabitur aliquet quam id dui posuere blandit.</p>
+  </section>
+
+
+  <!-- ============================================================
+     ATMOSPHERE
+============================================================ -->
+  <section id="atmosphere" class="test-section">
+    <div class="test-label">Section 02</div>
+    <div class="test-section-title">Global Atmosphere</div>
+
+    <div class="spi-atmosphere" style="padding: 48px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.06);">
+      <div class="h-lg" style="margin-bottom: 12px;">Atmosphere Background Active</div>
+      <p class="body-text">This container uses <code>.spi-atmosphere</code>. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. The radial gradient glows should appear behind this content block.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     UI CARDS
+============================================================ -->
+  <section id="cards" class="test-section">
+    <div class="test-label">Section 03</div>
+    <div class="test-section-title">UI Cards + Grid</div>
+
+    <div class="grid-3" style="margin-bottom: 48px;">
+      <div class="ui-card">
+        <h4>Card Title Alpha</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod magna non ex volutpat vitae
+          luctus leo pharetra.</p>
+      </div>
+      <div class="ui-card">
+        <h4>Card Title Beta</h4>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation.</p>
+      </div>
+      <div class="ui-card">
+        <h4>Card Title Gamma</h4>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+          excepteur sint.</p>
+      </div>
+    </div>
+
+    <!-- grid-4 -->
+    <div class="test-label" style="margin-bottom: 16px;">grid-4</div>
+    <div class="grid-4">
+      <div class="ui-card">
+        <h4>Delta</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit volutpat vitae.</p>
+      </div>
+      <div class="ui-card">
+        <h4>Epsilon</h4>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut.</p>
+      </div>
+      <div class="ui-card">
+        <h4>Zeta</h4>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+      </div>
+      <div class="ui-card">
+        <h4>Eta</h4>
+        <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     LISTS
+============================================================ -->
+  <section id="lists" class="test-section">
+    <div class="test-label">Section 04</div>
+    <div class="test-section-title">UI List</div>
+
+    <div style="max-width: 600px;">
+      <ul class="ui-list">
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam purus.</li>
+        <li>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim.</li>
+        <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</li>
+        <li>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia.</li>
+        <li>Pellentesque euismod magna non ex volutpat, vitae luctus leo pharetra blandit.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top: 40px; display: flex; gap: 24px; flex-wrap: wrap;">
+      <div class="icon-circle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(0,147,144)" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" />
+          <path d="M2 17l10 5 10-5" />
+          <path d="M2 12l10 5 10-5" />
+        </svg>
+      </div>
+      <div class="icon-circle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(0,147,144)" stroke-width="2">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
+      </div>
+      <div class="icon-circle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(0,147,144)" stroke-width="2">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     VIDEO CARDS
+============================================================ -->
+  <section id="video-cards" class="test-section">
+    <div class="test-label">Section 05</div>
+    <div class="test-section-title">Video Cards</div>
+
+    <div class="flex-row">
+      <div class="video-ui-card">
+        <div class="video-thumb" style="height: 180px;">
+          <div style="width:100%;height:100%;background:linear-gradient(145deg,#1a2630,#121821);"></div>
+          <div class="video-play"></div>
+          <span class="time-stamp">4:32</span>
+        </div>
+        <div class="video-title">How Ball Motion Works on Dry Lanes</div>
+      </div>
+      <div class="video-ui-card">
+        <div class="video-thumb" style="height: 180px;">
+          <div style="width:100%;height:100%;background:linear-gradient(145deg,#1a2630,#0f141b);"></div>
+          <div class="video-play"></div>
+          <span class="time-stamp">7:18</span>
+        </div>
+        <div class="video-title">Understanding Coverstock Types</div>
+      </div>
+      <div class="video-ui-card">
+        <div class="video-thumb" style="height: 180px;">
+          <div style="width:100%;height:100%;background:linear-gradient(145deg,#1a2630,#121821);"></div>
+          <div class="video-play"></div>
+          <span class="time-stamp">12:05</span>
+        </div>
+        <div class="video-title">Surface Adjustments for Heavy Oil</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     ARTICLE CARDS
+============================================================ -->
+  <section id="article-cards" class="test-section">
+    <div class="test-label">Section 06</div>
+    <div class="test-section-title">Article Cards</div>
+
+    <div class="flex-row">
+      <div class="article-card">
+        <a class="article-link" href="#">
+          <div class="article-thumb" style="height:180px; background:linear-gradient(145deg,#1a2630,#0f141b);">
+            <span class="read-time">5 min read</span>
+          </div>
+          <div class="article-body">
+            <span class="article-tag">Coverstock</span>
+            <div class="article-title">Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque.</div>
+            <div class="article-meta">By John Doe · March 14, 2025</div>
+          </div>
+        </a>
+      </div>
+      <div class="article-card">
+        <a class="article-link" href="#">
+          <div class="article-thumb" style="height:180px; background:linear-gradient(145deg,#1a2630,#121821);">
+            <span class="read-time">8 min read</span>
+          </div>
+          <div class="article-body">
+            <span class="article-tag">Lane Play</span>
+            <div class="article-title">Sed do eiusmod tempor incididunt ut labore et dolore magna.</div>
+            <div class="article-meta">By Jane Smith · April 2, 2025</div>
+          </div>
+        </a>
+      </div>
+      <div class="article-card">
+        <a class="article-link" href="#">
+          <div class="article-thumb" style="height:180px; background:linear-gradient(145deg,#1a2630,#0f141b);">
+            <span class="read-time">3 min read</span>
+          </div>
+          <div class="article-body">
+            <span class="article-tag">Arsenal</span>
+            <div class="article-title">Duis aute irure dolor in reprehenderit in voluptate velit esse.</div>
+            <div class="article-meta">By Staff · May 8, 2025</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     COVER CARDS
+============================================================ -->
+  <section id="cover" class="test-section">
+    <div class="test-label">Section 07</div>
+    <div class="test-section-title">Cover Cards + Cover Grid</div>
+
+    <div class="cover-type-section" style="padding: 0 0 64px 0;">
+      <h2 style="font-family:'Oswald',sans-serif; font-weight:700; font-size:32px; margin-bottom:10px;">Coverstock Types
+      </h2>
+      <p class="body-text" style="max-width:680px; margin:0 0 48px;">Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+
+      <div class="cover-grid">
+        <div class="cover-card solid">
+          <h3>Solid Reactive</h3>
+          <div class="motion-visual" style="height:80px;"></div>
+          <div class="cover-data">
+            <div><span>Hook Potential</span><strong>High</strong></div>
+            <div><span>Length</span><strong>Short</strong></div>
+            <div><span>Backend</span><strong>Strong</strong></div>
+          </div>
+          <p class="cover-note">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Best for heavy oil lane
+            conditions.</p>
+        </div>
+        <div class="cover-card pearl">
+          <h3>Pearl Reactive</h3>
+          <div class="motion-visual" style="height:80px;"></div>
+          <div class="cover-data">
+            <div><span>Hook Potential</span><strong>Medium</strong></div>
+            <div><span>Length</span><strong>Long</strong></div>
+            <div><span>Backend</span><strong>Snappy</strong></div>
+          </div>
+          <p class="cover-note">Sed do eiusmod tempor incididunt ut labore. Ideal for dry to medium conditions.</p>
+        </div>
+        <div class="cover-card hybrid">
+          <h3>Hybrid Reactive</h3>
+          <div class="motion-visual" style="height:80px;"></div>
+          <div class="cover-data">
+            <div><span>Hook Potential</span><strong>Med-High</strong></div>
+            <div><span>Length</span><strong>Medium</strong></div>
+            <div><span>Backend</span><strong>Balanced</strong></div>
+          </div>
+          <p class="cover-note">Duis aute irure dolor in reprehenderit. Versatile for a wide range of patterns.</p>
+        </div>
+        <div class="cover-card urethane">
+          <h3>Urethane</h3>
+          <div class="motion-visual" style="height:80px;"></div>
+          <div class="cover-data">
+            <div><span>Hook Potential</span><strong>Low</strong></div>
+            <div><span>Length</span><strong>Very Long</strong></div>
+            <div><span>Backend</span><strong>Smooth</strong></div>
+          </div>
+          <p class="cover-note">Excepteur sint occaecat cupidatat non proident. Great for sport patterns and precision.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech cards -->
+    <div class="test-label" style="margin-bottom:16px;">Tech Cards (.tech-grid)</div>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <h3>Nano360 Technology</h3>
+        <ul>
+          <li>Lorem ipsum dolor sit amet consectetur</li>
+          <li>Adipiscing elit pellentesque euismod</li>
+          <li>Magna non ex volutpat vitae luctus</li>
+        </ul>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim.</p>
+      </div>
+      <div class="tech-card">
+        <h3>eTrack+ Coverstock</h3>
+        <ul>
+          <li>Duis aute irure dolor in reprehenderit</li>
+          <li>Voluptate velit esse cillum dolore eu</li>
+          <li>Fugiat nulla pariatur excepteur sint</li>
+        </ul>
+        <p>Occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim laborum.</p>
+      </div>
+      <div class="tech-card">
+        <h3>RAD-X Core System</h3>
+        <ul>
+          <li>Pellentesque euismod magna non ex</li>
+          <li>Volutpat vitae luctus leo pharetra</li>
+          <li>Curabitur aliquet quam id dui posuere</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing. Blandit nullam tempus sollicitudin.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     TABS + LEGEND
+============================================================ -->
+  <section id="tabs" class="test-section">
+    <div class="test-label">Section 08</div>
+    <div class="test-section-title">Tab System + Legend</div>
+
+    <div class="tab-container">
+      <button class="active">All Cores</button>
+      <button>Asymmetric</button>
+      <button>Symmetric</button>
+      <button>High RG</button>
+      <button>Low RG</button>
+    </div>
+
+    <div class="motion-legend">
+      <div class="legend-item">
+        <div class="legend-dot skid"></div>
+        <span class="legend-label">Skid Phase</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot hook"></div>
+        <span class="legend-label">Hook Phase</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot roll"></div>
+        <span class="legend-label">Roll Phase</span>
+      </div>
+    </div>
+
+    <!-- Reaction Bars -->
+    <div style="margin-top: 48px;">
+      <div class="test-label" style="margin-bottom: 16px;">Reaction Bars</div>
+      <div class="reaction-bars">
+        <div class="reaction-bar">
+          <div class="bar-label">Solid Reactive — Heavy Oil</div>
+          <div class="bar-track">
+            <div class="segment skid" style="width:20%;"></div>
+            <div class="segment hook" style="width:40%;"></div>
+            <div class="segment roll" style="width:40%;"></div>
+          </div>
+        </div>
+        <div class="reaction-bar">
+          <div class="bar-label">Pearl Reactive — Medium Oil</div>
+          <div class="bar-track">
+            <div class="segment skid" style="width:45%;"></div>
+            <div class="segment hook" style="width:30%;"></div>
+            <div class="segment roll" style="width:25%;"></div>
+          </div>
+        </div>
+        <div class="reaction-bar">
+          <div class="bar-label">Urethane — Sport Pattern</div>
+          <div class="bar-track">
+            <div class="segment skid" style="width:60%;"></div>
+            <div class="segment hook" style="width:20%;"></div>
+            <div class="segment roll" style="width:20%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     LAYOUT STEP SYSTEM
+============================================================ -->
+  <section id="layout-steps" class="test-section">
+    <div class="test-label">Section 09</div>
+    <div class="test-section-title">Layout Step System</div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+      <ul class="layout-step-list">
+        <li class="layout-step active">
+          <div class="step-num">1</div>
+          <span>Choose Your Benchmark Ball</span>
+        </li>
+        <li class="layout-step">
+          <div class="step-num">2</div>
+          <span>Identify Your Lane Condition</span>
+        </li>
+        <li class="layout-step">
+          <div class="step-num">3</div>
+          <span>Select Core Geometry</span>
+        </li>
+        <li class="layout-step">
+          <div class="step-num">4</div>
+          <span>Adjust Surface Grit</span>
+        </li>
+      </ul>
+      <div class="layout-stage">
+        <h3 class="h-md" style="margin-bottom: 14px;">Step 1 — Benchmark Ball</h3>
+        <div class="layout-meta">
+          <span>Medium Oil</span>
+          <span>Symmetric Core</span>
+        </div>
+        <p class="layout-spec p" style="font-size:14px; color:rgba(255,255,255,.7); line-height:1.6;">Lorem ipsum dolor
+          sit amet, consectetur adipiscing elit. Pellentesque euismod magna non ex volutpat, vitae luctus leo pharetra
+          curabitur aliquet quam.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     EDITORIAL LIST
+============================================================ -->
+  <section id="editorial" class="test-section">
+    <div class="test-label">Section 10</div>
+    <div class="test-section-title">Editorial List</div>
+
+    <div class="editorial-list">
+      <div class="editorial-item">
+        <strong>Why It Matters</strong>
+        <h4>Understanding Ball Motion Physics</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam quis nostrud exercitation <em>ullamco laboris nisi</em> ut aliquip ex ea
+          commodo.</p>
+      </div>
+      <div class="editorial-item">
+        <strong>Core Geometry</strong>
+        <h4>How Asymmetric Cores Change Everything</h4>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, <em>sunt in culpa qui officia</em> deserunt mollit anim
+          laborum.</p>
+      </div>
+      <div class="editorial-item">
+        <strong>Surface Science</strong>
+        <h4>Grit, Polish, and Friction Explained</h4>
+        <p>Pellentesque euismod magna non ex volutpat, vitae luctus leo pharetra. Curabitur aliquet quam id dui posuere
+          blandit nullam <em>tempus sollicitudin</em>. Aliquet nec ullamcorper sit amet risus.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     INSIGHT CARDS
+============================================================ -->
+  <section id="insight" class="test-section">
+    <div class="test-label">Section 11</div>
+    <div class="test-section-title">Insight Cards</div>
+
+    <div class="insight-card" style="margin: 0 0 32px;">
+      <div class="insight-split">
+        <div>
+          <div
+            style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgb(0,147,144); margin-bottom:8px;">
+            Skid Phase</div>
+          <p style="font-size:15px; line-height:1.7; color:rgba(255,255,255,.75);">Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Pellentesque euismod magna non ex volutpat vitae luctus leo pharetra curabitur
+            aliquet.</p>
+        </div>
+        <div>
+          <div
+            style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgb(0,147,144); margin-bottom:8px;">
+            Hook Phase</div>
+          <p style="font-size:15px; line-height:1.7; color:rgba(255,255,255,.75);">Sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco.</p>
+        </div>
+      </div>
+      <div class="insight-columns">
+        <div>
+          <div
+            style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:6px;">
+            RG Value</div>
+          <div style="font-size:22px; font-weight:700; font-family:'Oswald',sans-serif;">2.48</div>
+        </div>
+        <div>
+          <div
+            style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:6px;">
+            Differential</div>
+          <div style="font-size:22px; font-weight:700; font-family:'Oswald',sans-serif;">0.052</div>
+        </div>
+        <div>
+          <div
+            style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:6px;">
+            MB Diff</div>
+          <div style="font-size:22px; font-weight:700; font-family:'Oswald',sans-serif;">0.018</div>
+        </div>
+      </div>
+      <p class="insight-note">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Data values shown are for
+        illustration purposes only.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     MAINTENANCE / SIGNS
+============================================================ -->
+  <section id="maintenance" class="test-section">
+    <div class="test-label">Section 12</div>
+    <div class="test-section-title">Maintenance — Attention Cards + Grid</div>
+
+    <div class="grid-4" style="margin-bottom: 48px;">
+      <div class="attention-card-v2 minor">
+        <div class="attention-icon-v2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3aa86d" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+        </div>
+        <div class="severity">Minor</div>
+        <h4>Surface Wear</h4>
+        <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod pharetra
+          blandit.</div>
+      </div>
+      <div class="attention-card-v2 moderate">
+        <div class="attention-icon-v2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a341" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+        </div>
+        <div class="severity">Moderate</div>
+        <h4>Track Buildup</h4>
+        <div class="desc">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim exercitation.</div>
+      </div>
+      <div class="attention-card-v2 severe">
+        <div class="attention-icon-v2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#bf4343" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+        </div>
+        <div class="severity">Severe</div>
+        <h4>Oil Absorption</h4>
+        <div class="desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore nulla pariatur.
+        </div>
+      </div>
+      <div class="attention-card-v2 critical">
+        <div class="attention-icon-v2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+          </svg>
+        </div>
+        <div class="severity">Critical</div>
+        <h4>Cracked Shell</h4>
+        <div class="desc">Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt.</div>
+      </div>
+    </div>
+
+    <!-- Maintenance Grid -->
+    <div class="test-label" style="margin-bottom:16px;">Maintenance Grid</div>
+    <div class="maintenance-grid">
+      <div class="maintenance-item">
+        <h3>Post-Session Wipe</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod magna non ex volutpat vitae
+          luctus pharetra.</p>
+      </div>
+      <div class="maintenance-item">
+        <h3>Deep Clean Monthly</h3>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud
+          ullamco.</p>
+      </div>
+      <div class="maintenance-item">
+        <h3>Resurface Schedule</h3>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+          occaecat.</p>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div style="margin-top: 52px;">
+      <div class="test-label" style="margin-bottom:16px;">Timeline</div>
+      <div class="timeline">
+        <div class="timeline-stage">
+          <div>
+            <div class="stage-label">Week 1–4</div>
+          </div>
+          <div class="timeline-content">
+            <h3>Break-In Period</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Surface is settling and hook potential
+              increasing through normal game play.</p>
+          </div>
+        </div>
+        <div class="timeline-stage">
+          <div>
+            <div class="stage-label">Month 2–3</div>
+          </div>
+          <div class="timeline-content">
+            <h3>Peak Performance Window</h3>
+            <p>Sed do eiusmod tempor incididunt ut labore. Ball motion is dialed in and consistent across a variety of
+              conditions.</p>
+          </div>
+        </div>
+        <div class="timeline-stage">
+          <div>
+            <div class="stage-label">Month 4+</div>
+          </div>
+          <div class="timeline-content">
+            <h3>Resurface or Replace</h3>
+            <p>Duis aute irure dolor in reprehenderit. Evaluate whether a fresh surface restoration will return
+              performance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spinner Steps -->
+    <div style="margin-top: 52px;">
+      <div class="test-label" style="margin-bottom:16px;">Spinner Steps</div>
+      <div class="spinner-steps-grid">
+        <div class="spinner-step">
+          <div
+            style="width:100%;height:100px;background:linear-gradient(145deg,#1a2630,#121821);border-radius:12px;margin-bottom:14px;">
+          </div>
+          <h4>Load the Ball</h4>
+          <p>Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque pharetra blandit.</p>
+        </div>
+        <div class="spinner-step">
+          <div
+            style="width:100%;height:100px;background:linear-gradient(145deg,#1a2630,#0f141b);border-radius:12px;margin-bottom:14px;">
+          </div>
+          <h4>Apply Compound</h4>
+          <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim minim.</p>
+        </div>
+        <div class="spinner-step">
+          <div
+            style="width:100%;height:100px;background:linear-gradient(145deg,#1a2630,#121821);border-radius:12px;margin-bottom:14px;">
+          </div>
+          <h4>Sand to Grit</h4>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore fugiat.</p>
+        </div>
+        <div class="spinner-step">
+          <div
+            style="width:100%;height:100px;background:linear-gradient(145deg,#1a2630,#0f141b);border-radius:12px;margin-bottom:14px;">
+          </div>
+          <h4>Polish & Finish</h4>
+          <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Care Grid -->
+    <div style="margin-top: 52px;">
+      <div class="test-label" style="margin-bottom:16px;">Care Grid</div>
+      <div class="care-grid">
+        <div class="care-card">
+          <div class="care-label">Daily</div>
+          <ul>
+            <li>Wipe ball with microfiber cloth after every session</li>
+            <li>Remove oil from track area with ball cleaner</li>
+            <li>Inspect surface for visible cracks or chips</li>
+          </ul>
+        </div>
+        <div class="care-card">
+          <div class="care-label">Monthly</div>
+          <ul>
+            <li>Deep clean with hot water extraction method</li>
+            <li>Re-evaluate surface texture with grit paper</li>
+            <li>Check finger inserts for wear and fit</li>
+          </ul>
+        </div>
+        <div class="care-card care-warning">
+          <div class="care-label">Avoid</div>
+          <ul>
+            <li>Never use household cleaners on reactive cover</li>
+            <li>Do not leave ball in hot car or direct sunlight</li>
+            <li>Avoid dropping on hard surfaces during transport</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     SURFACE
+============================================================ -->
+  <section id="surface" class="test-section">
+    <div class="test-label">Section 13</div>
+    <div class="test-section-title">Surface Adjustments</div>
+
+    <div class="surface-flex" style="margin-bottom: 52px;">
+      <div class="surface-image">
+        <div
+          style="width:100%;max-width:380px;height:240px;background:linear-gradient(145deg,#1a2630,#0f141b);border-radius:18px;">
+        </div>
+      </div>
+      <div class="surface-content">
+        <div class="surface-analogy">Surface is your #1 tuning tool.</div>
+        <ul class="surface-list">
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque euismod magna.</li>
+          <li>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim veniam.</li>
+          <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum nulla pariatur.</li>
+          <li>Excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Surface Breakdown Card -->
+    <div class="surface-breakdown-card">
+      <div class="breakdown-title">Grit-to-Condition Guide</div>
+      <p class="breakdown-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod magna non
+        ex volutpat, vitae luctus leo pharetra curabitur aliquet quam posuere blandit.</p>
+      <div class="breakdown-rail">
+        <div class="breakdown-item">
+          <h4>Heavy Oil</h4>
+          <p class="problem">Lorem ipsum dolor sit amet consectetur adipiscing elit pharetra.</p>
+          <div class="solution">180–500 Grit</div>
+        </div>
+        <div class="breakdown-item">
+          <h4>Medium Oil</h4>
+          <p class="problem">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <div class="solution">1000–2000 Grit</div>
+        </div>
+        <div class="breakdown-item">
+          <h4>Light Oil</h4>
+          <p class="problem">Duis aute irure dolor in reprehenderit in voluptate velit cillum.</p>
+          <div class="solution">3000+ or Polish</div>
+        </div>
+        <div class="breakdown-item">
+          <h4>Sport Pattern</h4>
+          <p class="problem">Excepteur sint occaecat cupidatat non proident culpa officia deserunt.</p>
+          <div class="solution">Urethane + Polish</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     GRIT CARDS
+============================================================ -->
+  <section id="grit" class="test-section">
+    <div class="test-label">Section 14</div>
+    <div class="test-section-title">Grit Cards + Timeline</div>
+
+    <div class="flex-row" style="margin-bottom: 48px;">
+      <div class="grit-card grit-180">
+        <h4>180 Grit</h4>
+        <div class="sub">Aggressive traction</div>
+        <ul class="grit-list">
+          <li>Heavy oil conditions</li>
+          <li>Early roll needed</li>
+          <li>Max friction</li>
+        </ul>
+      </div>
+      <div class="grit-card grit-1000">
+        <h4>1000 Grit</h4>
+        <div class="sub">Medium traction</div>
+        <ul class="grit-list">
+          <li>Medium oil conditions</li>
+          <li>Balanced motion</li>
+          <li>Versatile choice</li>
+        </ul>
+      </div>
+      <div class="grit-card grit-polish">
+        <h4>Polish</h4>
+        <div class="sub">Maximum skid</div>
+        <ul class="grit-list">
+          <li>Dry lane conditions</li>
+          <li>Long skid phase</li>
+          <li>Sharp backend</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Grit Timeline -->
+    <div class="grit-timeline">
+      <div class="grit-node">
+        <div class="grit-dot"></div>
+        <div class="grit-label">180</div>
+      </div>
+      <div class="grit-node">
+        <div class="grit-dot"></div>
+        <div class="grit-label">360</div>
+      </div>
+      <div class="grit-node">
+        <div class="grit-dot"></div>
+        <div class="grit-label">500</div>
+      </div>
+      <div class="grit-node">
+        <div class="grit-dot"></div>
+        <div class="grit-label">1000</div>
+      </div>
+      <div class="grit-node">
+        <div class="grit-dot"></div>
+        <div class="grit-label">2000</div>
+      </div>
+      <div class="grit-node">
+        <div class="grit-dot"></div>
+        <div class="grit-label">3000</div>
+      </div>
+      <div class="grit-node">
+        <div class="grit-dot"></div>
+        <div class="grit-label">4000</div>
+      </div>
+      <div class="grit-node">
+        <div class="grit-dot"></div>
+        <div class="grit-label">Polish</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     ARSENAL / MATRIX
+============================================================ -->
+  <section id="arsenal" class="test-section">
+    <div class="test-label">Section 15</div>
+    <div class="test-section-title">Arsenal Matrix + Scale Grid</div>
+
+    <!-- Matrix grid (3x3) -->
+    <div class="arsenal-step-matrix" style="margin: 0 0 80px 60px;">
+      <div class="matrix-y-labels">
+        <span>High</span>
+        <span>Med</span>
+        <span>Low</span>
+      </div>
+      <div class="matrix-axis-y"></div>
+      <div>
+        <div class="arsenal-matrix-grid">
+          <div class="matrix-cell">
+            <div style="width:60px;height:60px;background:rgba(0,147,144,.15);border-radius:50%;"></div>
+          </div>
+          <div class="matrix-cell"></div>
+          <div class="matrix-cell">
+            <div style="width:60px;height:60px;background:rgba(0,147,144,.25);border-radius:50%;"></div>
+          </div>
+          <div class="matrix-cell"></div>
+          <div class="matrix-cell">
+            <div style="width:60px;height:60px;background:rgba(0,147,144,.35);border-radius:50%;"></div>
+          </div>
+          <div class="matrix-cell"></div>
+          <div class="matrix-cell"></div>
+          <div class="matrix-cell">
+            <div style="width:60px;height:60px;background:rgba(0,147,144,.2);border-radius:50%;"></div>
+          </div>
+          <div class="matrix-cell"></div>
+        </div>
+        <div class="matrix-axis-x"></div>
+        <div class="matrix-x-labels">
+          <span>Weak</span>
+          <span>Medium</span>
+          <span>Strong</span>
+        </div>
+      </div>
+      <div class="matrix-axis-title-y" style="left:-80px;">Hook Potential</div>
+      <div class="matrix-axis-title-x" style="bottom:-64px;">Flare Potential</div>
+    </div>
+
+    <!-- Arsenal Scale Grid -->
+    <div class="test-label" style="margin-bottom:16px;">Arsenal Scale Grid</div>
+    <div class="arsenal-scale-grid">
+      <div class="arsenal-scale-card">
+        <div class="h-md" style="margin-bottom:8px;">1 Ball</div>
+        <div class="arsenal-scale-subtitle">Beginner</div>
+        <ul class="arsenal-scale-list">
+          <li>One versatile ball</li>
+          <li>Medium grit surface</li>
+          <li>Symmetric core</li>
+        </ul>
+        <p class="arsenal-scale-desc">Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+      </div>
+      <div class="arsenal-scale-card featured">
+        <div class="h-md" style="margin-bottom:8px;">3 Ball</div>
+        <div class="arsenal-scale-subtitle">Competitive</div>
+        <ul class="arsenal-scale-list">
+          <li>Benchmark + control</li>
+          <li>Stroker + big hook</li>
+          <li>Sport pattern option</li>
+        </ul>
+        <p class="arsenal-scale-desc">Sed do eiusmod tempor incididunt ut labore dolore magna.</p>
+      </div>
+      <div class="arsenal-scale-card">
+        <div class="h-md" style="margin-bottom:8px;">5 Ball</div>
+        <div class="arsenal-scale-subtitle">Advanced</div>
+        <ul class="arsenal-scale-list">
+          <li>Full condition coverage</li>
+          <li>Urethane + two reactives</li>
+          <li>Spare ball</li>
+        </ul>
+        <p class="arsenal-scale-desc">Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+      </div>
+      <div class="arsenal-scale-card">
+        <div class="h-md" style="margin-bottom:8px;">7+ Ball</div>
+        <div class="arsenal-scale-subtitle">Tour Level</div>
+        <ul class="arsenal-scale-list">
+          <li>Pattern-specific selection</li>
+          <li>Multiple surface options</li>
+          <li>Full layout variety</li>
+        </ul>
+        <p class="arsenal-scale-desc">Excepteur sint occaecat cupidatat non proident culpa deserunt.</p>
+      </div>
+    </div>
+
+    <!-- Arsenal Options Row -->
+    <div style="margin-top: 64px;">
+      <div class="test-label" style="margin-bottom:16px;">Arsenal Options Row</div>
+      <div class="arsenal-options-row">
+        <div class="arsenal-option-group">
+          <h4>Asymmetric Core</h4>
+          <div class="arsenal-ball-row">
+            <div
+              style="width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2a3a45,#0f141b);">
+            </div>
+            <div
+              style="width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#1a2a35,#0b0f14);">
+            </div>
+          </div>
+        </div>
+        <div class="arsenal-option-group">
+          <h4>Symmetric Core</h4>
+          <div class="arsenal-ball-row">
+            <div
+              style="width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2a3a45,#0f141b);">
+            </div>
+            <div
+              style="width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#1a2a35,#0b0f14);">
+            </div>
+            <div
+              style="width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2a3a45,#121821);">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     BUILDER
+============================================================ -->
+  <section id="builder" class="test-section">
+    <div class="test-label">Section 16</div>
+    <div class="test-section-title">Builder System</div>
+
+    <div id="builder-step-container" class="active">
+      <div class="builder-layout">
+        <div>
+          <div class="step-header">
+            <h3 class="h-md">Select Your Benchmark</h3>
+            <p style="color:rgba(255,255,255,.7);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pick the
+              ball that best represents your baseline motion on a house shot.</p>
+          </div>
+          <div id="benchmark-options">
+            <div class="ball-option ui-card active" style="text-align:center;">
+              <div
+                style="width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2a3a45,#0b0f14);margin:0 auto 12px;">
+              </div>
+              <div style="font-size:13px; font-weight:600;">Phaze II</div>
+            </div>
+            <div class="ball-option ui-card" style="text-align:center;">
+              <div
+                style="width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#1a2a35,#0f141b);margin:0 auto 12px;">
+              </div>
+              <div style="font-size:13px; font-weight:600;">Hy-Road</div>
+            </div>
+            <div class="ball-option ui-card" style="text-align:center;">
+              <div
+                style="width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2a3a45,#121821);margin:0 auto 12px;">
+              </div>
+              <div style="font-size:13px; font-weight:600;">Nova</div>
+            </div>
+          </div>
+        </div>
+        <div class="builder-side">
+          <div class="matrix-anchor">
+            <div
+              style="width:220px;height:220px;border:2px solid rgba(255,255,255,.2);display:grid;grid-template-columns:repeat(3,1fr);">
+              <div class="matrix-cell">
+                <div style="width:50px;height:50px;border-radius:50%;background:rgba(0,147,144,.3);"></div>
+              </div>
+              <div class="matrix-cell"></div>
+              <div class="matrix-cell"></div>
+              <div class="matrix-cell"></div>
+              <div class="matrix-cell">
+                <div style="width:50px;height:50px;border-radius:50%;background:rgba(0,147,144,.5);"></div>
+              </div>
+              <div class="matrix-cell"></div>
+              <div class="matrix-cell"></div>
+              <div class="matrix-cell"></div>
+              <div class="matrix-cell">
+                <div style="width:50px;height:50px;border-radius:50%;background:rgba(0,147,144,.2);"></div>
+              </div>
+            </div>
+          </div>
+          <div class="builder-nav">
+            <a href="#" class="btn-ghost">← Back</a>
+            <a href="#" class="btn-primary">Next Step →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     TABLE
+============================================================ -->
+  <section id="table" class="test-section">
+    <div class="test-label">Section 17</div>
+    <div class="test-section-title">Coverstock Comparison Table</div>
+
+    <div class="coverstock-table-wrapper expanded">
+      <table class="simple-breakdown">
+        <thead>
+          <tr>
+            <th>Ball Name</th>
+            <th>Coverstock</th>
+            <th>Core</th>
+            <th>RG</th>
+            <th>Differential</th>
+            <th>Hook Potential</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-header">
+            <td colspan="6">Asymmetric Cores</td>
+          </tr>
+          <tr>
+            <td data-label="Ball Name">Phaze III</td>
+            <td data-label="Coverstock">TX-16 Solid</td>
+            <td data-label="Core">Velocity (Asym)</td>
+            <td data-label="RG">2.48</td>
+            <td data-label="Differential">
+              <div>0.058</div>
+              <div class="meter"><span style="width:88%;"></span></div>
+            </td>
+            <td data-label="Hook Potential">High</td>
+          </tr>
+          <tr>
+            <td data-label="Ball Name">Physix</td>
+            <td data-label="Coverstock">NeX Solid</td>
+            <td data-label="Core">Nucleus (Asym)</td>
+            <td data-label="RG">2.47</td>
+            <td data-label="Differential">
+              <div>0.053</div>
+              <div class="meter"><span style="width:80%;"></span></div>
+            </td>
+            <td data-label="Hook Potential">High</td>
+          </tr>
+          <tr class="section-header">
+            <td colspan="6">Symmetric Cores</td>
+          </tr>
+          <tr>
+            <td data-label="Ball Name">Hy-Road Pearl</td>
+            <td data-label="Coverstock">R2S Pearl</td>
+            <td data-label="Core">GyroMotion (Sym)</td>
+            <td data-label="RG">2.52</td>
+            <td data-label="Differential">
+              <div>0.044</div>
+              <div class="meter"><span style="width:62%;"></span></div>
+            </td>
+            <td data-label="Hook Potential">Medium</td>
+          </tr>
+          <tr>
+            <td data-label="Ball Name">Nova</td>
+            <td data-label="Coverstock">HK22 Pearl</td>
+            <td data-label="Core">Catalyst (Sym)</td>
+            <td data-label="RG">2.54</td>
+            <td data-label="Differential">
+              <div>0.038</div>
+              <div class="meter"><span style="width:50%;"></span></div>
+            </td>
+            <td data-label="Hook Potential">Medium</td>
+          </tr>
+          <tr class="section-header">
+            <td colspan="6">Urethane</td>
+          </tr>
+          <tr>
+            <td data-label="Ball Name">Original Hammer</td>
+            <td data-label="Coverstock">Urethane</td>
+            <td data-label="Core">Classic (Sym)</td>
+            <td data-label="RG">2.56</td>
+            <td data-label="Differential">
+              <div>0.020</div>
+              <div class="meter"><span style="width:25%;"></span></div>
+            </td>
+            <td data-label="Hook Potential">Low</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     PHASE / TIMELINE / AGING
+============================================================ -->
+  <section id="phase" class="test-section">
+    <div class="test-label">Section 18</div>
+    <div class="test-section-title">Phase Track + Aging Flow</div>
+
+    <div class="phase-track">
+      <div class="phase-block">
+        <div class="phase-label">Phase 01</div>
+        <h3>Skid</h3>
+        <div class="phase-core">Minimal friction, maximum distance</div>
+        <p class="phase-cover">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod magna non
+          ex volutpat.</p>
+      </div>
+      <div class="phase-divider"></div>
+      <div class="phase-block">
+        <div class="phase-label">Phase 02</div>
+        <h3>Hook</h3>
+        <div class="phase-core">Friction increases, angular motion begins</div>
+        <p class="phase-cover">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam.
+        </p>
+      </div>
+      <div class="phase-divider"></div>
+      <div class="phase-block">
+        <div class="phase-label">Phase 03</div>
+        <h3>Roll</h3>
+        <div class="phase-core">Full rotation, driving through the pins</div>
+        <p class="phase-cover">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+          nulla.</p>
+      </div>
+    </div>
+
+    <!-- Aging Flow -->
+    <div style="margin-top: 64px;">
+      <div class="test-label" style="margin-bottom:16px;">Aging Flow</div>
+      <div class="aging-flow">
+        <div class="aging-stage">
+          <span class="aging-label">Game 1–50</span>
+          <h3>Fresh Out of Box</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipiscing elit pharetra blandit aliquet.</p>
+        </div>
+        <div class="aging-stage">
+          <span class="aging-label">Game 51–150</span>
+          <h3>Break-In Complete</h3>
+          <p>Sed do eiusmod tempor incididunt ut labore et dolore magna enim veniam quis.</p>
+        </div>
+        <div class="aging-stage">
+          <span class="aging-label">Game 150–300</span>
+          <h3>Peak Motion</h3>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum pariatur.</p>
+        </div>
+        <div class="aging-stage restore">
+          <span class="aging-label">Game 300+</span>
+          <h3>Resurface</h3>
+          <p>Excepteur sint occaecat cupidatat non proident culpa qui officia deserunt mollit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     SYNERGY CARD
+============================================================ -->
+  <section id="synergy" class="test-section">
+    <div class="test-label">Section 19</div>
+    <div class="test-section-title">Synergy Card</div>
+
+    <div class="synergy-card">
+      <div class="synergy-heading">
+        Core + Cover Synergy
+        <span>How the two components work in tandem</span>
+      </div>
+      <div class="synergy-columns">
+        <div class="synergy-block">
+          <h4>Core Geometry</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod magna non ex volutpat, vitae
+            luctus leo pharetra. Curabitur aliquet quam id dui posuere blandit.</p>
+        </div>
+        <div class="synergy-block">
+          <h4>Coverstock Friction</h4>
+          <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi aliquip.</p>
+        </div>
+      </div>
+      <div class="synergy-divider"></div>
+      <div class="synergy-conclusion">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit — neither element alone creates optimal ball motion.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     LANE CARDS
+============================================================ -->
+  <section id="lane" class="test-section">
+    <div class="test-label">Section 20</div>
+    <div class="test-section-title">Lane Cards + Use Case Cards + Fundamental Cards</div>
+
+    <!-- Lane Cards -->
+    <div class="cards" style="margin-bottom: 52px;">
+      <div class="lane-card">
+        <h4>Heavy Oil Setup</h4>
+        <div class="lane-ball-img"
+          style="width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2a3a45,#0b0f14);margin:auto auto 28px;">
+        </div>
+        <ul class="ui-list">
+          <li>Solid reactive coverstock</li>
+          <li>Low RG core — 2.47</li>
+          <li>500 grit surface finish</li>
+        </ul>
+      </div>
+      <div class="lane-card">
+        <h4>Medium Condition</h4>
+        <div class="lane-ball-img"
+          style="width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#1a2a35,#0f141b);margin:auto auto 28px;">
+        </div>
+        <ul class="ui-list">
+          <li>Hybrid reactive coverstock</li>
+          <li>Medium RG — 2.51</li>
+          <li>1500 grit surface finish</li>
+        </ul>
+      </div>
+      <div class="lane-card">
+        <h4>Dry Lane Setup</h4>
+        <div class="lane-ball-img"
+          style="width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2a3a45,#121821);margin:auto auto 28px;">
+        </div>
+        <ul class="ui-list">
+          <li>Pearl reactive coverstock</li>
+          <li>High RG — 2.55</li>
+          <li>Polished surface finish</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Use Case Cards -->
+    <div class="test-label" style="margin-bottom:16px;">Use Case Cards</div>
+    <div class="flex-row" style="margin-bottom: 52px;">
+      <div class="use-case-card">
+        <div class="use-case-heading">
+          <div class="core-type">Asymmetric Core</div>
+          <div class="core-context">For higher rev rate bowlers</div>
+        </div>
+        <ul class="ui-list">
+          <li>Heavy to medium oil conditions</li>
+          <li>Straighter initial path, hard backend</li>
+          <li>Asym mass bias adds angularity</li>
+        </ul>
+        <p class="use-case-quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit veniam."</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-heading">
+          <div class="core-type">Symmetric Core</div>
+          <div class="core-context">For straighter ball path players</div>
+        </div>
+        <ul class="ui-list">
+          <li>Predictable, controllable motion</li>
+          <li>Smooth arc through the lane</li>
+          <li>More consistent over multiple shots</li>
+        </ul>
+        <p class="use-case-quote">"Sed do eiusmod tempor incididunt ut labore et dolore magna."</p>
+      </div>
+    </div>
+
+    <!-- Fundamental Cards -->
+    <div class="test-label" style="margin-bottom:16px;">Fundamental Cards</div>
+    <div class="fundamental-cards">
+      <div class="fundamental-card">
+        <div>
+          <div class="fundamental-title">The Cover</div>
+          <div class="fundamental-subtitle">Foundation of friction and motion</div>
+          <ul class="fundamental-points">
+            <li>Lorem ipsum dolor sit amet consectetur adipiscing elit pharetra.</li>
+            <li>Sed do eiusmod tempor incididunt ut labore et dolore magna.</li>
+            <li>Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+          </ul>
+        </div>
+        <div class="fundamental-button">
+          <button class="btn explore">Explore →</button>
+        </div>
+      </div>
+      <div class="fundamental-card">
+        <div>
+          <div class="fundamental-title">The Core</div>
+          <div class="fundamental-subtitle">Engine of ball motion shape</div>
+          <ul class="fundamental-points">
+            <li>Excepteur sint occaecat cupidatat non proident culpa officia.</li>
+            <li>Pellentesque euismod magna non ex volutpat vitae luctus.</li>
+            <li>Curabitur aliquet quam id dui posuere blandit nullam tempus.</li>
+          </ul>
+        </div>
+        <div class="fundamental-button">
+          <button class="btn explore">Explore →</button>
+        </div>
+      </div>
+      <div class="fundamental-card">
+        <div>
+          <div class="fundamental-title">The Layout</div>
+          <div class="fundamental-subtitle">Pin placement and drilling angles</div>
+          <ul class="fundamental-points">
+            <li>Lorem ipsum dolor sit amet consectetur adipiscing elit volutpat.</li>
+            <li>Sed do eiusmod tempor incididunt ut labore magna aliqua enim.</li>
+            <li>Duis aute irure dolor reprehenderit voluptate velit esse cillum.</li>
+          </ul>
+        </div>
+        <div class="fundamental-button">
+          <button class="btn explore active">Explore →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     WHY BAD LAYOUTS
+============================================================ -->
+  <section class="test-section">
+    <div class="test-label">Section 21</div>
+    <div class="test-section-title">Why Card</div>
+
+    <div class="why-card">
+      <div class="why-title">Why Layout Matters</div>
+      <p class="why-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod magna non ex
+        volutpat, vitae luctus leo pharetra curabitur aliquet.</p>
+      <div class="why-grid">
+        <div class="why-item">
+          <h4>Miss Left, Stay Left</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore magna
+            aliqua enim ad minim veniam nostrud.</p>
+        </div>
+        <div class="why-item">
+          <h4>Inconsistent Entry Angle</h4>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+            excepteur sint occaecat cupidatat.</p>
+        </div>
+        <div class="why-item">
+          <h4>Weak Pin Action</h4>
+          <p>Pellentesque euismod magna non ex volutpat, vitae luctus leo pharetra. Curabitur aliquet quam id dui
+            posuere blandit nullam tempus.</p>
+        </div>
+        <div class="why-item">
+          <h4>No Lane Coverage</h4>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborum
+            consectetur adipiscing elit.</p>
+        </div>
+      </div>
+      <p class="why-quote">"Lorem ipsum dolor sit amet — consectetur adipiscing elit, sed do eiusmod tempor."</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+     FOOTER
+============================================================ -->
+  <div style="padding: 60px 48px; text-align:center; border-top: 1px solid rgba(255,255,255,0.06);">
+    <div class="test-label" style="margin-bottom:12px;">Storm CSS Test Page</div>
+    <!--<p style="color:rgba(255,255,255,.35); font-size:13px; margin:0;">All components rendered. Replace <code>storm-styles.css</code> with your filename if different. Open browser DevTools to inspect any component.</p>-->
+  </div>
+
+</body>
+
+</html>

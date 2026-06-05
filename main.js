@@ -12,7 +12,7 @@
 //  7.  HOME   — Hero Load Sequence
 //  8.  HOME   — Hero Button Interaction (Fancy Button / Typed Text)
 //  9.  HOME   — Scroll Animations (Cards, Recent Work, Projects & Ambitions)
-//  10. ABOUT  — Card Scroll Animations + Read More Toggle
+//  10. ABOUT  — Hero Entrance Animation + Parallax + Read More Toggle
 //  11. WORK PAGES — Hero Text Animation (shared: pockets + storm)
 //  12. POCKETS  — Scroll Section Animations
 //  13. POCKETS  — Flow Toggle (Old / New)
@@ -587,12 +587,75 @@ window.addEventListener("load", () => {
 
 
 // =============================================================================
-//  10. ABOUT — Card Scroll Animations + Read More Toggle
+//  10. ABOUT — Hero Entrance Animation + Parallax + Read More Toggle
 // =============================================================================
 
 if (document.body.classList.contains("about")) {
 
   window.addEventListener("load", () => {
+
+    // -------------------------------------------------------------------------
+    // Entrance animation — photo rises up, text fades in, spans stagger in
+    // -------------------------------------------------------------------------
+    const heroImg = document.querySelector(".about-hero-image img");
+    const heroCopy = document.querySelector(".about-hero-copy");
+    const spans = document.querySelectorAll(".about-hero-copy h1 span");
+
+    // Set initial states
+    gsap.set(heroImg, { y: 120, opacity: 0 });
+    gsap.set(heroCopy, { x: 60, opacity: 0 });
+    gsap.set(spans, { opacity: 0, y: 20 });
+
+    const tl = gsap.timeline({ delay: 0.3 });
+
+    // Photo rises up
+    tl.to(heroImg, {
+      y: 0,
+      opacity: 1,
+      duration: 1.2,
+      ease: "power3.out"
+    });
+
+    // Text block slides in from right
+    tl.to(heroCopy, {
+      x: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power2.out"
+    }, "-=0.7");
+
+    // Colored spans pop in one by one
+    tl.to(spans, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: "back.out(1.4)",
+      stagger: 0.15
+    }, "-=0.5");
+
+
+    // -------------------------------------------------------------------------
+    // Parallax — photo moves slower than scroll, creating depth.
+    // Uses fromTo with explicit y:0 start so it doesn't fight the entrance animation.
+    // -------------------------------------------------------------------------
+    gsap.fromTo(heroImg,
+      { y: 0 },
+      {
+        y: -100,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".about-hero-container",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1
+        }
+      }
+    );
+
+
+    // -------------------------------------------------------------------------
+    // Read More Toggle
+    // -------------------------------------------------------------------------
     const toggleBtn = document.getElementById("about-toggle");
     const extraContent = document.getElementById("about-extra");
 
