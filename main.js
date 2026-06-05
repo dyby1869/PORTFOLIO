@@ -133,6 +133,12 @@ fetch("nav.html")
         menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
       });
     }
+
+    // Non-home pages show nav immediately — home portal sequence handles its own nav animation
+    if (!document.body.classList.contains("home")) {
+      const nav = document.querySelector(".nav-bar");
+      if (nav) nav.style.opacity = "1";
+    }
   })
   .catch(() => {
     // Fallback — if fetch fails, init menu toggle on existing nav
@@ -417,12 +423,14 @@ if (document.body.classList.contains("home")) {
       ease: "power1.out"
     });
 
-    tl.fromTo(".nav-bar", { opacity: 0, y: -20 }, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.6");
+    tl.call(() => {
+      const nav = document.querySelector(".nav-bar");
+      if (nav) {
+        gsap.fromTo(nav, { opacity: 0, y: -20 }, {
+          opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
+        });
+      }
+    }, [], "-=0.6");
 
     tl.fromTo(".btn-cta", { opacity: 0, y: 20 }, {
       opacity: 1,
