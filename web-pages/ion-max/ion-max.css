@@ -1,4 +1,26 @@
-<style>
+body{
+    background-color:#000;
+}
+
+
+
+.ball-weight-card h4,
+.ball-weight-card h5 {
+    color: #000000 !important;
+}
+
+
+
+img{
+    max-width:100%;
+}
+
+.graph-labels {
+    position: relative;
+    height: 16px;
+    margin-bottom:8px;
+}
+
 .progress-bar.ion-max {
     display: flex;
     align-items: center;
@@ -7,7 +29,7 @@
     /* Light greenish-blue */
     overflow: hidden;
     border-radius: 50px;
-    height: 15px;
+    height: 25px;
     padding: 5px;
 }
 
@@ -218,6 +240,7 @@ spline-viewer {
     font-style: normal;
     font-weight: 900;
     margin: auto;
+    color:#4C3560;
 
 }
 
@@ -227,6 +250,7 @@ spline-viewer {
     font-style: normal;
     font-weight: 900;
     margin: auto;
+     color:#4C3560;
 }
 
 
@@ -985,4 +1009,3 @@ spline-viewer {
 
 /* ----------------------------------------------------------------------------- */
 
-</style>
