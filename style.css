@@ -1193,6 +1193,10 @@ a {
     height: 100%;
 }
 
+.grid > a .card {
+    height: 100%;
+}
+
 
 .grid--2col {
     grid-template-columns: repeat(2, 1fr);
