@@ -52,6 +52,8 @@
     opacity: 0;
 }
 
+
+
 .vengeance-bw-ball img {
     display: block;
     margin: auto;
@@ -64,6 +66,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+
+
 
 .vengeance-svg svg {}
 
