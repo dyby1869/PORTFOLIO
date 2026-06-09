@@ -679,6 +679,12 @@ a {
     margin: 0px;
 }
 
+.logo {
+    font-family: "Space Grotesk", sans-serif !important;
+    font-style: normal !important;
+    text-transform: none !important;
+}
+
 .logo:hover {
     color: var(--brand-strong);
     transition: text-shadow 0.3s ease;
@@ -1290,17 +1296,6 @@ a {
     border-radius: 8px;
 }
 
-/* TABS */
-display: none;
-position: fixed;
-z-index: 10;
-left: 0;
-top: 0;
-width: 100%;
-height: 100%;
-overflow: auto;
-background-color: rgba(0, 0, 0, 0.9);
-}
 
 .modal-content {
     margin: 10% auto;
