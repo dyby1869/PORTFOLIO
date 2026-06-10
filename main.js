@@ -257,6 +257,9 @@ window.addEventListener("load", () => {
   gsap.utils.toArray("h2").forEach(el => {
     // Skip home hero text — that's handled by the portal sequence
     if (isHome && el.closest(".hero-container")) return;
+    if (el.classList.contains("equinox-copy-2")) return;
+    if (el.closest(".level-highlight")) return;
+    if (el.classList.contains("vengeance-title")) return;
     gsap.from(el, {
       opacity: 0,
       y: 40,
@@ -273,6 +276,9 @@ window.addEventListener("load", () => {
   // --- H3 headings (skip home hero) ---
   gsap.utils.toArray("h3").forEach(el => {
     if (isHome && el.closest(".hero-container")) return;
+    if (el.classList.contains("spi-lab-copy")) return;
+    if (el.closest(".level-highlight")) return;
+    if (el.classList.contains("vengeance-title")) return;
     gsap.from(el, {
       opacity: 0,
       y: 30,
@@ -338,6 +344,43 @@ window.addEventListener("load", () => {
     gsap.to(cards, {
       scrollTrigger: { trigger: grid, start: "top 80%", toggleActions: "play none none reverse" },
       opacity: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.12
+    });
+  });
+
+  // --- Reaction graph progress bars (shared across all product pages) ---
+  document.querySelectorAll(".reaction-graph .progress-bar").forEach((bar) => {
+    gsap.fromTo(
+      bar.querySelectorAll(".active"),
+      { opacity: 0, scaleX: 0, transformOrigin: "left center" },
+      {
+        opacity: 1, scaleX: 1, duration: 0.5, stagger: 0.1,
+        scrollTrigger: { trigger: bar, start: "top 90%", end: "top 80%", scrub: true }
+      }
+    );
+  });
+
+  // --- Ball weight cards (shared across product pages) ---
+  // Some .ui-card-containers are inside .scroll-content1 (horizontal scroller),
+  // others sit directly in the flow. We handle both cases:
+  // — If inside .scroll-content1, trigger on the scroller parent (has vertical position)
+  // — If not, trigger on the container itself
+  document.querySelectorAll(".ui-card-container").forEach((container) => {
+    const cards = container.querySelectorAll(".ball-weight-card");
+    if (!cards.length) return;
+    const scroller = container.closest(".scroll-content1");
+    const trigger = scroller || container;
+    gsap.set(cards, { opacity: 0, y: 40 });
+    gsap.to(cards, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      stagger: 0.12,
+      scrollTrigger: {
+        trigger: trigger,
+        start: "top 85%",
+        toggleActions: "play none none reverse"
+      }
     });
   });
 
@@ -890,3 +933,534 @@ if (document.body.classList.contains("storm")) {
   // ===========================================================================
 
 } // end storm block
+
+// =============================================================================
+//  18. LEVEL — Scroll Animations
+//  Consolidated from inline scripts in level-web-page.html
+// =============================================================================
+
+if (document.body.classList.contains("level")) {
+
+  // DrawSVG: Lab Series SVG paths
+  document.addEventListener("DOMContentLoaded", () => {
+    if (typeof DrawSVGPlugin !== "undefined") {
+      gsap.registerPlugin(DrawSVGPlugin);
+      gsap.fromTo(
+        ".lab-series-svg path",
+        { drawSVG: "0%" },
+        { drawSVG: "100%", duration: 2, ease: "power2.inOut", stagger: 0.2 }
+      );
+    }
+  });
+
+  // Button pop-in after 1s
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      gsap.fromTo(
+        ".button-pop",
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }
+      );
+    }, 1000);
+  });
+
+  // Bowling ball scrub on scroll
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.fromTo(".level-bowling-ball-1",
+      { scale: 0.8, opacity: 0, rotation: -15 },
+      {
+        scale: 1, opacity: 1, rotation: 0, duration: 2, ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".level-text-container",
+          start: "top 40%", end: "bottom 30%", scrub: true
+        }
+      }
+    );
+  });
+
+  // SPI Lab copy — responsive scrub
+  window.addEventListener("load", () => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(max-width: 425px)", () => {
+      gsap.from(".spi-lab-copy", {
+        y: 30, opacity: 0, stagger: 0.1, duration: 1, ease: "power2.out",
+        scrollTrigger: { trigger: ".level-text-container", start: "top 30%", end: "bottom 30%", scrub: true }
+      });
+    });
+    mm.add("(min-width: 426px) and (max-width: 768px)", () => {
+      gsap.from(".spi-lab-copy", {
+        y: 50, opacity: 0, stagger: 0.15, duration: 1, ease: "power2.out",
+        scrollTrigger: { trigger: ".level-text-container", start: "top 30%", end: "bottom 20%", scrub: true }
+      });
+    });
+    mm.add("(min-width: 769px) and (max-width: 1024px)", () => {
+      gsap.from(".spi-lab-copy", {
+        y: 50, opacity: 0, stagger: 0.15, duration: 1, ease: "power2.out",
+        scrollTrigger: { trigger: ".level-text-container", start: "top 40%", end: "bottom 20%", scrub: true }
+      });
+    });
+    mm.add("(min-width: 1025px)", () => {
+      gsap.from(".spi-lab-copy", {
+        y: 80, opacity: 0, stagger: 0.2, duration: 1.5, ease: "power2.out",
+        scrollTrigger: { trigger: ".level-text-container", start: "top 60%", end: "bottom 20%", scrub: true }
+      });
+    });
+
+    // Highlight section — h1 from left, h2 from right
+    gsap.from(".level-highlight h1", {
+      x: -50, opacity: 0, stagger: 0.3, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".level-highlight", start: "top 75%", end: "bottom 30%", toggleActions: "play none none reverse" }
+    });
+    gsap.from(".level-highlight h2", {
+      x: 50, opacity: 0, stagger: 0.3, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".level-highlight", start: "top 75%", end: "bottom 30%", toggleActions: "play none none reverse" }
+    });
+
+    // Intro copy slides in from sides, ball fades up
+    gsap.from(".level-copy-1", {
+      x: -100, opacity: 0, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".level-intro", start: "top 70%", end: "bottom 30%", toggleActions: "play none none reverse" }
+    });
+    gsap.from(".level-copy-2", {
+      x: 100, opacity: 0, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".level-intro", start: "top 70%", end: "bottom 30%", toggleActions: "play none none reverse" }
+    });
+    gsap.from(".level-bowling-ball-3 img", {
+      scale: 0.8, opacity: 0, duration: 1.2, ease: "power2.out",
+      scrollTrigger: { trigger: ".level-intro", start: "top 70%", end: "bottom 30%", toggleActions: "play none none reverse" }
+    });
+
+    // Ball 4 spins in from right
+    gsap.from(".level-bowling-ball-4 img", {
+      x: 300, rotation: 360, opacity: 0, duration: 1.5, ease: "power2.out",
+      scrollTrigger: { trigger: ".level-cover", start: "top 70%", end: "bottom 20%", toggleActions: "play none none reverse" }
+    });
+
+    // Weightblock drops in from above
+    gsap.from(".level-block", {
+      y: -600, opacity: 0, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".level-weightblock-animation", start: "top 70%", end: "top 20%", scrub: true }
+    });
+
+    // Equalizer AI element
+    gsap.from(".equalizer-ai", {
+      y: -600, opacity: 0, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".equalizer-powered-by-ai", start: "top 70%", end: "top 20%", scrub: true }
+    });
+
+    // Tech spec cards
+    gsap.from(".level-tech-specs .card", {
+      y: 50, opacity: 0, duration: 0.5, stagger: 0.2, ease: "power2.out",
+      scrollTrigger: { trigger: ".level-tech-specs", start: "top 75%", end: "bottom 25%", toggleActions: "play none none reverse" }
+    });
+
+  });
+
+} // end level block
+
+
+// =============================================================================
+//  19. EMBER COVE — Scroll Animations
+//  Consolidated from inline scripts in Ember-Cove.html
+// =============================================================================
+
+if (document.body.classList.contains("ember-cove")) {
+
+  window.addEventListener("load", () => {
+    const paths = gsap.utils.toArray("#headlineSVG path");
+
+    paths.forEach((path) => {
+      const length = path.getTotalLength();
+      path.style.stroke = "#fff";
+      path.style.strokeWidth = 1;
+      path.style.fill = "#fff";
+      path.style.fillOpacity = 0;
+      path.style.strokeDasharray = length;
+      path.style.strokeDashoffset = length;
+    });
+
+    gsap.to(paths, {
+      strokeDashoffset: 0,
+      duration: 2,
+      ease: "power2.out",
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: ".cove-ember-headline",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+        onEnter: () => {
+          gsap.to(paths, { fillOpacity: 1, duration: 1, delay: 0.3, ease: "power1.inOut" });
+        },
+        onLeaveBack: () => {
+          gsap.to(paths, { fillOpacity: 0, duration: 0.5, ease: "power1.out" });
+        }
+      }
+    });
+
+    gsap.set("#subheadSVG", { autoAlpha: 0, y: 50 });
+    gsap.to("#subheadSVG", {
+      autoAlpha: 1, y: 0, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".cove-ember-headline", start: "top 80%", toggleActions: "play none none reverse" }
+    });
+  });
+
+} // end ember-cove block
+
+
+// =============================================================================
+//  20. TRIPLE THREAT — Scroll Animations
+//  Consolidated from inline scripts in triple-threat.html
+// =============================================================================
+
+if (document.body.classList.contains("triple-threat")) {
+
+  window.addEventListener("load", () => {
+
+    // Hero SVG paths pop in on load
+    gsap.from(".dual-threat-text-header svg path", {
+      duration: 1, opacity: 0, scale: 0.8, stagger: 0.05, ease: "power2.out"
+    });
+    gsap.from(".dual-threat-destruction svg path", {
+      duration: 1.2, opacity: 0, scale: 0.8, stagger: 0.05, ease: "power2.out", delay: 0.5
+    });
+
+    // Scroll arrow bounce
+    gsap.to(".scroll-arrow", {
+      y: -10, duration: 0.6, repeat: -1, yoyo: true, ease: "power1.inOut"
+    });
+
+    // Scroll-to-continue reveal
+    gsap.set(".roto-scroll-to-continue", { display: "none" });
+    gsap.to(".roto-scroll-to-continue", { display: "block", delay: 1 });
+
+    // Stripes slide in from sides
+    gsap.from(".stripe1", {
+      xPercent: -100, ease: "none",
+      scrollTrigger: { trigger: ".dominate-section", start: "top 80%", end: "top 50%", toggleActions: "play none none reverse" }
+    });
+    gsap.from(".stripe2", {
+      xPercent: 100, ease: "none",
+      scrollTrigger: { trigger: ".dominate-section", start: "top 80%", end: "top 50%", toggleActions: "play none none reverse" }
+    });
+
+    // Ball intro fades
+    gsap.from(".threat-ball-intro h3", {
+      opacity: 0, y: 50, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".threat-ball-intro", start: "top 80%", toggleActions: "play none none reverse" }
+    });
+    gsap.from([".rockstar", ".hyperdrive"], {
+      opacity: 0, y: 50, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".threat-ball-intro", start: "top 80%", toggleActions: "play none none reverse" }
+    });
+
+    // Reaction graphs
+    gsap.from(".reaction-graph-container", {
+      opacity: 0, y: 50, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".storm-button-container-6", start: "top 80%", toggleActions: "play none none reverse" }
+    });
+
+    // Video compare section
+    gsap.from([".dual-threat-video-compare h3", ".dual-threat-video-compare h1", ".rg-smile"], {
+      opacity: 0, y: 50, duration: 1.2, ease: "power2.out", stagger: 0.2,
+      scrollTrigger: { trigger: ".dual-threat-video-compare", start: "top 75%", toggleActions: "play none none reverse" }
+    });
+
+    // Compare meter
+    gsap.from(".compare-meter-section h1", {
+      opacity: 0, y: 50, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".compare-meter-section", start: "top 75%", toggleActions: "play none none reverse" }
+    });
+    gsap.from(".meter-oil-level img", {
+      opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: "power2.out",
+      scrollTrigger: { trigger: ".compare-meter-section", start: "top 75%", toggleActions: "play none none reverse" }
+    });
+    gsap.from(".compare-meter-section svg", {
+      opacity: 0, scale: 0.8, rotate: 5, duration: 1.5, ease: "power2.out",
+      scrollTrigger: { trigger: ".compare-meter-section", start: "top 75%", toggleActions: "play none none reverse" }
+    });
+
+    // Apparel section
+    gsap.from(".look-svg", {
+      opacity: 0, scale: 0.8, duration: 1.5, ease: "power2.out",
+      scrollTrigger: { trigger: ".dual-threat-style", start: "top 75%", toggleActions: "play none none reverse" }
+    });
+    gsap.from(".title-with-button-container", {
+      opacity: 0, y: 50, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".dual-threat-style", start: "top 75%", toggleActions: "play none none reverse" }
+    });
+    gsap.from(".rg-dual-threat-apparel img", {
+      opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: "power2.out",
+      scrollTrigger: { trigger: ".dual-threat-style", start: "top 75%", toggleActions: "play none none reverse" }
+    });
+
+  });
+
+} // end triple-threat block
+
+
+// =============================================================================
+//  21. EQUINOX — Scroll Animations
+//  Consolidated from inline scripts in equinox-web-page.html
+// =============================================================================
+
+if (document.body.classList.contains("equinox")) {
+
+  window.addEventListener("load", () => {
+    // Hero image + SVG entrance
+    gsap.from(".container-30 img", { duration: 1, opacity: 0, y: -50, ease: "power2.out" });
+    gsap.from(".container-70 svg", { duration: 1.5, opacity: 0, scale: 0.5, ease: "elastic.out(1, 0.5)", delay: 0.5 });
+
+    // Horizontal scroll hero text — responsive
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width:769px) and (max-width:1024px) and (max-height:1179px)", () => {
+      gsap.to(".hero-text", {
+        xPercent: -100, ease: "none",
+        scrollTrigger: {
+          trigger: ".equinox-hero-container", start: "top top",
+          end: () => "+=" + (document.querySelector(".hero-text")?.offsetWidth || 0),
+          pin: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true
+        }
+      });
+    });
+    mm.add("(min-width:1025px) and (max-width:1440px)", () => {
+      gsap.to(".hero-text", {
+        xPercent: -100, ease: "none",
+        scrollTrigger: {
+          trigger: ".equinox-hero-container", start: "top top",
+          end: () => "+=" + (document.querySelector(".hero-text")?.offsetWidth || 0),
+          pin: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true
+        }
+      });
+    });
+    mm.add("(min-width:1441px)", () => {
+      gsap.to(".hero-text", {
+        xPercent: -100, ease: "none",
+        scrollTrigger: {
+          trigger: ".equinox-hero-container", start: "top top",
+          end: () => "+=" + (document.querySelector(".hero-text")?.offsetWidth || 0),
+          pin: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true
+        }
+      });
+    });
+    mm.add("(max-width:768px)", () => {
+      gsap.to(".hero-text", {
+        xPercent: -100, ease: "none",
+        scrollTrigger: {
+          trigger: ".equinox-hero-container", start: "top top",
+          end: () => "+=" + (document.querySelector(".hero-text")?.offsetWidth || 0),
+          pin: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true
+        }
+      });
+    });
+
+    // DrawSVG logo reveal (only if plugin available)
+    if (typeof DrawSVGPlugin !== "undefined") {
+      gsap.registerPlugin(DrawSVGPlugin);
+      gsap.timeline({
+        scrollTrigger: { trigger: ".trigger1", start: "top 70%", end: "top 50%", scrub: 3 }
+      })
+        .fromTo(".equinox-logo path", { drawSVG: "0%" }, { drawSVG: "100%", duration: 1, ease: "power2.out" }, 0)
+        .fromTo(".equinox-logo", { scale: 3 }, { scale: 1, duration: 3, ease: "power2.out" }, 0);
+    }
+
+    // Logo fades out as ball fades in, ball drops down
+    gsap.fromTo(".equinox-logo svg",
+      { opacity: 1 },
+      {
+        opacity: 0, duration: 3, ease: "power2.out",
+        scrollTrigger: { trigger: ".trigger1", start: "top 50%", end: "top 15%", scrub: 3 }
+      }
+    );
+    gsap.fromTo(".equinox-ball img",
+      { opacity: 0 },
+      {
+        opacity: 1, duration: 3, ease: "power2.out",
+        scrollTrigger: { trigger: ".trigger1", start: "top 50%", end: "top 15%", scrub: 3 }
+      }
+    );
+    gsap.to(".equinox-ball", {
+      y: 250, duration: 2, ease: "power2.out",
+      scrollTrigger: { trigger: ".trigger1", start: "top 50%", end: "top 15%", scrub: 3 }
+    });
+
+    // Hero statement — each word slams in from below with a stagger
+    const heroWords = document.querySelectorAll(".equinox-hero-statement");
+    if (heroWords.length) {
+      gsap.from(heroWords, {
+        opacity: 0, y: 80, rotationX: -45, duration: 0.7, ease: "power3.out", stagger: 0.08,
+        scrollTrigger: { trigger: heroWords[0], start: "top 65%", toggleActions: "play none none reverse" }
+      });
+    }
+
+    // equinox copy — slide in from sides on scroll
+    gsap.from(".equinox-copy-1", {
+      opacity: 0, x: -100, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".equinox-copy-1", start: "top 80%", toggleActions: "play none none reverse" }
+    });
+    gsap.from(".equinox-copy-2", {
+      opacity: 0, x: 100, duration: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".equinox-copy-2", start: "top 80%", toggleActions: "play none none reverse" }
+    });
+
+    // Delay refresh until after loading screen clears and body overflow is restored
+    setTimeout(() => ScrollTrigger.refresh(), 300);
+  });
+
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+
+} // end equinox block
+
+
+// =============================================================================
+//  22. VENGEANCE — Scroll Animations
+//  Consolidated from inline scripts in vengeance.html
+// =============================================================================
+
+if (document.body.classList.contains("vengeance")) {
+
+  window.addEventListener("load", () => {
+
+    // BW ball fade in on load
+    const bwBall = document.querySelector(".vengeance-bw-ball");
+    if (bwBall) {
+      bwBall.style.opacity = "0";
+      gsap.to(".vengeance-bw-ball", { opacity: 1, duration: 2, ease: "power2.out", delay: 0.3 });
+    }
+
+    // Hero info — paragraph fades in, button pops in (h1 handled by vengeance-title loop)
+    gsap.from(".vengeance-hero-info p", {
+      opacity: 0, y: 30, duration: 0.8, ease: "power2.out", delay: 0.2,
+      scrollTrigger: { trigger: ".vengeance-hero-info", start: "top 80%", toggleActions: "play none none reverse" }
+    });
+    gsap.from(".vengeance-hero-info .storm-button-container-3", {
+      opacity: 0, y: 20, duration: 0.6, ease: "power2.out", delay: 0.4,
+      scrollTrigger: { trigger: ".vengeance-hero-info", start: "top 80%", toggleActions: "play none none reverse" }
+    });
+
+    // Half ball — slides in from the right
+    gsap.from(".vengeance-half-ball img", {
+      opacity: 0, x: -100, duration: 1.2, ease: "power3.out",
+      scrollTrigger: { trigger: ".vengeance-half-ball", start: "top 50%", toggleActions: "play none none reverse" }
+    });
+
+    // Vengeance title headings (h1, h2, h3 all share .vengeance-title)
+    gsap.utils.toArray(".vengeance-title").forEach(el => {
+      gsap.from(el, {
+        opacity: 0, y: 40, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
+      });
+    });
+
+    // Tech compare cards — stagger up
+    gsap.from(".vengeance-tech-card", {
+      opacity: 0, y: 60, duration: 0.7, ease: "power2.out", stagger: 0.1,
+      scrollTrigger: { trigger: ".vengeance-tech-specs-compare", start: "top 85%", toggleActions: "play none none reverse" }
+    });
+
+
+    // Nav cards — stagger up
+    gsap.from(".card-wrapper", {
+      opacity: 0, y: 50, duration: 0.7, ease: "power2.out", stagger: 0.15,
+      scrollTrigger: { trigger: ".card-wrapper", start: "top 85%", toggleActions: "play none none reverse" }
+    });
+
+  });
+
+} // end vengeance block
+
+
+// =============================================================================
+//  23. ION MAX — Loading Screen
+//  Non-GSAP but consolidated here for completeness
+// =============================================================================
+
+if (document.body.classList.contains("ion-max")) {
+
+  document.body.style.overflow = "hidden";
+
+  window.addEventListener("load", () => {
+    const loadingScreen = document.getElementById("loading-screen");
+    if (loadingScreen) loadingScreen.style.display = "none";
+    document.body.style.overflow = "auto";
+
+    // -------------------------------------------------------------------------
+    // Hero headline — lines stagger in from the left after page loads
+    // -------------------------------------------------------------------------
+    gsap.from(".ion-max-headline h1", {
+      x: -80,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.2,
+      delay: 0.4
+    });
+
+    // -------------------------------------------------------------------------
+    // Tech spec cards — stagger up from below on scroll
+    // Global section 6 animates .grid .card, but these cards sit inside
+    // .ui-card-container (not .grid), so we handle them here directly.
+    // -------------------------------------------------------------------------
+    const specCards = gsap.utils.toArray(".ion-max-tech-specs-container .card");
+    gsap.set(specCards, { opacity: 0, y: 40, scale: 0.95 });
+    gsap.to(specCards, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.6,
+      ease: "power2.out",
+      stagger: 0.12,
+      scrollTrigger: {
+        trigger: ".ion-max-tech-specs-container .ui-card-container",
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    // -------------------------------------------------------------------------
+    // 50% stat — count up from 0 to 50 as it enters the viewport.
+    // Using gsap.set to establish initial state prevents the global h2 reveal
+    // in section 6 from double-animating .max-hero-title h2.
+    // -------------------------------------------------------------------------
+    const statEl = document.querySelector(".ionmax-text");
+    const statH2 = document.querySelector(".max-hero-title h2");
+
+    if (statEl && statEl.textContent.trim() === "50%") {
+      const obj = { val: 0 };
+
+      // Lock h2 initial state before section 6 can touch it
+      if (statH2) gsap.set(statH2, { opacity: 0, x: 40 });
+
+      gsap.to(obj, {
+        val: 50,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: statEl,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        },
+        onUpdate: () => {
+          statEl.textContent = Math.round(obj.val) + "%";
+        }
+      });
+
+      if (statH2) {
+        gsap.to(statH2, {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: statEl,
+            start: "top 80%",
+            toggleActions: "play none none none"
+          }
+        });
+      }
+    }
+
+  });
+
+} // end ion-max block

@@ -1,0 +1,3398 @@
+<head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Storm Bowling Ball Matchmaker</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+
+<style>
+    /* ============================================
+       SECTION VISIBILITY
+    ============================================ */
+    section {
+        text-align: center;
+        display: none;
+        padding: 96px;
+    }
+
+    section:not(.hidden) {
+        display: block;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    /* ============================================
+       GLOBAL BUTTONS
+    ============================================ */
+    button {
+        background: #111;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 25px;
+        cursor: pointer;
+        margin: 8px;
+        transition: all 0.2s ease;
+    }
+
+    button:hover {
+        background: #222;
+    }
+
+    button.active,
+    .options button.active {
+        background-color: #007aff !important;
+        color: #fff !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.4);
+        transition: all 0.2s ease;
+    }
+
+    .back-btn {
+        background: none;
+        border: none;
+        color: #111;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .back-btn:hover {
+        color: #fff;
+    }
+
+    .explore-trigger {
+        color: #00b4ff;
+    }
+
+    .explore-trigger:hover {
+        color: #fff;
+    }
+
+    /* ============================================
+       RESULTS
+    ============================================ */
+    .result-card {
+        border: 1px solid #333;
+        padding: 16px;
+        margin: 12px;
+        border-radius: 8px;
+        text-align: center;
+        background: #111;
+        color: #fff;
+        max-width: 500px;
+    }
+
+    #results {
+        display: flex;
+        justify-content: center;
+    }
+
+    .your-arsenal {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 32px;
+    }
+
+    /* ============================================
+       DROPDOWNS (DETAILS + SUMMARY)
+    ============================================ */
+    details {
+        background: #111;
+        border: 1px solid #333;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        text-align: left;
+        transition: background 0.3s ease;
+    }
+
+    details[open] {
+        background: #1b1b1b;
+    }
+
+    summary {
+        font-weight: 600;
+        font-size: 32px;
+        cursor: pointer;
+        color: #fff;
+        outline: none;
+        list-style: none;
+        text-align: left;
+        padding: 8px 0;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    details[open] .dropdown-options {
+        margin-top: 12px;
+    }
+
+    /* ============================================
+       DROPDOWN OPTIONS
+    ============================================ */
+    .dropdown-options {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-start;
+    }
+
+    .dropdown-options button {
+        background: #222 !important;
+        color: #fff !important;
+        border: 1px solid #333;
+        border-radius: 6px !important;
+        padding: 6px 10px !important;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+
+    .dropdown-options button:hover {
+        background: #333 !important;
+    }
+
+    .dropdown-options button.active {
+        background: #00b4ff !important;
+        color: #000 !important;
+        font-weight: 600;
+        box-shadow: 0 0 5px rgba(0, 180, 255, 0.6);
+    }
+
+    /* ============================================
+       SUMMARY BOX (RIGHT SIDEBAR)
+    ============================================ */
+    #summaryBox {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        width: 250px;
+        max-height: 80vh;
+        overflow-y: auto;
+        background: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 16px;
+        font-family: "Roboto", sans-serif;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+    }
+
+    #summaryBox h3 {
+        margin-top: 0;
+        font-size: 1.1rem;
+        text-align: center;
+        color: #111;
+    }
+
+    #summaryList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #summaryList li {
+        font-size: 0.9rem;
+        margin: 6px 0;
+        background: #fff;
+        border-radius: 6px;
+        padding: 6px 10px;
+        border-left: 3px solid #007aff;
+        line-height: 1.4;
+    }
+
+    #summaryList li span {
+        display: block;
+        font-size: 0.75rem;
+        color: #666;
+    }
+
+    /* ============================================
+       STEP ACTION BUTTONS
+    ============================================ */
+    .step-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .continue-btn {
+        background: #00b4ff;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .continue-btn:hover {
+        background: #0099dd;
+    }
+
+
+
+    /* pop up tables */
+    .explore-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+        font-family: sans-serif;
+        font-size: 0.95rem;
+        background: #111;
+        color: #fff;
+    }
+
+    .explore-table th,
+    .explore-table td {
+        padding: 1rem;
+        border: 1px solid #444;
+        vertical-align: top;
+    }
+
+    .explore-table th {
+        background-color: #222;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    @media (max-width: 768px) {
+
+        .explore-table td,
+        .explore-table th {
+            padding: 0.75rem;
+            font-size: 0.85rem;
+        }
+    }
+
+    /* ============================================
+       BALL SELECTIONS
+    ============================================ */
+    #ball-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 32px;
+    }
+
+
+
+    /* === POPUP BASE STYLES === */
+    .info-popup-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: flex-start;
+        z-index: 999;
+        backdrop-filter: blur(4px);
+        overflow-y: auto;
+        padding: 40px 0;
+
+        /* 👇 DEFAULT STATE */
+        display: none;
+    }
+
+    /* === POPUP VISIBILITY CONTROL === */
+    #info-popup-overlay.active {
+        display: flex;
+    }
+
+    /* === POPUP CONTENT === */
+    .info-popup-content {
+        background: #F5F2ED;
+        color: #2B2017;
+        border-radius: 12px;
+        max-width: 1500px;
+        width: 90%;
+        padding: 32px;
+        box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+        position: relative;
+        animation: popupFadeIn 0.3s ease;
+        margin: auto;
+    }
+
+    .info-popup-close {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        background: none;
+        border: none;
+        font-size: 28px;
+        color: #2B2017;
+        cursor: pointer;
+        transition: opacity 0.3s;
+    }
+
+    #info-popup-body {
+        max-height: 80vh;
+        overflow-y: auto;
+        padding-right: 12px;
+    }
+
+    .explore-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+        font-family: sans-serif;
+        font-size: 0.95rem;
+        background: #111;
+        color: #fff;
+    }
+
+    .explore-table th,
+    .explore-table td {
+        padding: 1rem;
+        border: 1px solid #444;
+        vertical-align: top;
+    }
+
+    .explore-table th {
+        background-color: #222;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    @media (max-width: 768px) {
+
+        .explore-table td,
+        .explore-table th {
+            padding: 0.75rem;
+            font-size: 0.85rem;
+        }
+    }
+
+
+    /* ============================================
+   BALL SELECTION GRID (STEP 3)
+============================================ */
+
+    .ball-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    .ball-card {
+        box-sizing: border-box;
+        border: 2px solid transparent;
+        background: #fff;
+        border-radius: 12px;
+        padding: 12px;
+        cursor: pointer;
+        text-align: center;
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            transform 0.15s ease,
+            background 0.2s ease;
+        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Hover = lift removed */
+    .ball-card:hover {
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.0);
+    }
+
+    /* ACTIVE = selected */
+    .ball-card.active {
+        border-color: #1D4AFF;
+        /* Storm blue */
+        background: #f4f6ff;
+        /* subtle blue tint */
+        box-shadow: none;
+        transform: scale(0.98);
+    }
+
+    .ball-card img {
+        width: 100%;
+        max-height: 120px;
+        object-fit: contain;
+        margin-bottom: 8px;
+    }
+
+    .ball-card p {
+        font-size: 0.85rem;
+        color: #111;
+        margin: 0;
+    }
+
+
+    @media all and (min-width:320px) and (max-width:768px) {
+        section {
+            text-align: center;
+            display: none;
+            padding: 32px;
+        }
+
+        .ball-card {
+            width: 120px;
+            box-sizing: border-box;
+            border: 2px solid transparent;
+            background: #fff;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease, background 0.2s ease;
+            box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .ball-card img {
+            width: 100%;
+            max-height: 95px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+
+        .info-popup-content {
+            background: #F5F2ED;
+            color: #2B2017;
+            border-radius: 12px;
+            max-width: 1500px;
+            width: 80%;
+            padding: 16px;
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            animation: popupFadeIn 0.3s ease;
+            margin: auto;
+        }
+
+        #summaryBox {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            width: 250px;
+            max-height: 40vh;
+            overflow-y: auto;
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 16px;
+            font-family: "Roboto", sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        #results {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+    }
+</style>
+
+
+<body>
+
+    <!-- SUMMARY BOX -->
+    <div id="summaryBox">
+        <h3>Your Selections</h3>
+        <ul id="summaryList"></ul>
+    </div>
+
+    <!-- START -->
+    <section id="start-screen">
+        <h1>Ball Finder</h1>
+        <button onclick="nextStep('start-screen','step1')">Start</button>
+    </section>
+
+    <!-- Step 1 -->
+    <section id="step1" class="hidden">
+        <h2>Do you currently own a ball?</h2>
+        <button onclick="user.ownsBall=true; nextStep('step1','step2')">Yes</button>
+        <button onclick="user.ownsBall=false; nextStep('step1','step2')">No</button>
+    </section>
+
+    <!-- Step 2 -->
+    <section id="step2" class="hidden">
+        <h2>What’s your goal?</h2>
+
+        <button onclick="user.goal='Complement'; nextStep('step2','step3')">Complement</button>
+        <!-- <button class="disabled" onclick="user.goal='Replace'; nextStep('step2','step3')">Replace</button> -->
+        <button class="disabled">Replace</button>
+        <!-- <button class="disabled" onclick="user.goal='Try New'; nextStep('step2','step3')">Try New</button> -->
+        <button class="disabled">Try New</button>
+
+
+        <button onclick="goBack()" class="back-btn">← Back</button>
+    </section>
+
+    <!-- Step 3 -->
+    <section id="step3" class="hidden">
+        <h2>What Balls Do You Currently Own?</h2>
+        <h5>Select all that you have</h5>
+        <div id="ball-options" class="options ball-grid"></div>
+
+        <button onclick="showArsenal()">Continue</button>
+        <button onclick="goBack()" class="back-btn">← Back</button>
+    </section>
+
+    <!-- Your Arsenal -->
+    <section id="currentArsenal" class="hidden">
+        <h2>Your Current Arsenal</h2>
+
+        <div id="arsenal-list" class="your-arsenal"></div>
+
+        <button onclick="nextStep('currentArsenal','step4-performance')">Continue</button>
+        <button onclick="goBack()" class="back-btn">← Back</button>
+    </section>
+
+
+    <!-- STEP 4 Performance Feel -->
+    <section id="step4-performance" class="hidden matchmaker-step">
+        <h2>Performance Feel</h2>
+
+        <p>What type of overall reaction are you looking for?</p>
+
+        <details open>
+            <summary>Performance Feel</summary>
+
+            <div class="storm-button-container">
+                <a href="" class="explore-trigger" data-target="explore-conditions-4">EXPLORE BALL TYPES</a>
+            </div>
+
+            <div id="explore-conditions-4" style="display:none;">
+                <table class="explore-table">
+                    <thead>
+                        <tr>
+                            <th>Archetype Name</th>
+                            <th>What It Means</th>
+                            <th>Real Use Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><strong>Stability Benchmark</strong></td>
+                            <td>Not too early, not too strong — balanced read</td>
+                            <td>First ball out to “read the lane” and adjust from there</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Smooth &amp; Blended Control Ball</strong></td>
+                            <td>Blends wet/dry or cliff shots with round, stable shape</td>
+                            <td>Keeps you in play on tricky conditions</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Versatile Hybrid</strong></td>
+                            <td>A balanced blend of solid + pearl traits — smooth, readable, yet responsive</td>
+                            <td>Great “do-it-all” ball when you're unsure what you'll face or need a blend of control +
+                                shape</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Urethane-Type Shape Ball</strong></td>
+                            <td>Very flat and early — friction control over shape</td>
+                            <td>Great for short oil, spare shots, or keeping it in play</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Big Backend Ball</strong></td>
+                            <td>Prioritizes backend shape — sharp, angular, or flippy motion</td>
+                            <td>When you need steep angle creation or a ball that can “turn the corner” hard</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Skid Flip Pearl</strong></td>
+                            <td>Skids easily through the front, flips hard off friction</td>
+                            <td>Late hook timing, open angles, high-friction environments</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Responsive Asym Pearl</strong></td>
+                            <td>Clean front with backend torque — asym strength with flip</td>
+                            <td>Good for blending angle + torque without early roll</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Strong Asym Solid Ball</strong></td>
+                            <td>Heavy cover/core that drives hard in the midlane</td>
+                            <td>Best for volume, flat conditions, or players needing raw power</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Smooth Symmetrical Solid</strong></td>
+                            <td>Skids through the front, arcs with control</td>
+                            <td>Easier to throw solid for lighter oil or higher-speed bowlers</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Clean Symmetrical Pearl</strong></td>
+                            <td>Clean look with gradual arc on the backend</td>
+                            <td>Great for late block control, when stronger pearls are too jumpy</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Continuous Solid</strong></td>
+                            <td>Strong backend continuation — keeps driving through pins</td>
+                            <td>Great carry with stability, often a benchmark asym solid</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Controlled Backend Solid</strong></td>
+                            <td>Midlane control with soft backend fade</td>
+                            <td>Keeps you in play when pearls jump too hard or too soon</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Early Traction Ball</strong></td>
+                            <td>Grabs early — strong front-lane read</td>
+                            <td>Good on fresh oil or for speed-dominant players</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Midlane Read Piece</strong></td>
+                            <td>Benchmark arc in the mids — easy to read motion</td>
+                            <td>Trusted starting point for transitions and shaping adjustments</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Burn Ball / Late Transition Piece</strong></td>
+                            <td>Clean and stable for dry or torched lanes</td>
+                            <td>Keeps angles closed down when the backend is too wild</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="dropdown-options">
+                <button onclick="selectTag('Stability Benchmark', this)">Stability Benchmark</button>
+                <button onclick="selectTag('Smooth & Blended Control Ball', this)">Smooth & Blended Control
+                    Ball</button>
+                <button onclick="selectTag('Versatile Hybrid', this)">Versatile Hybrid</button>
+                <button onclick="selectTag('Urethane-Type Shape Ball', this)">Urethane-Type Shape Ball</button>
+                <button onclick="selectTag('Big Backend Ball', this)">Big Backend Ball</button>
+                <button onclick="selectTag('Skid Flip Pearl', this)">Skid Flip Pearl</button>
+                <button onclick="selectTag('Angular Asym Pearl', this)">Angular Asym Pearl</button>
+                <button onclick="selectTag('Strong Asym Solid Ball', this)">Strong Asym Solid Ball</button>
+                <button onclick="selectTag('Smooth Asym Pearl', this)">Smooth Asym Pearl</button>
+                <button onclick="selectTag('Clean Symmetrical Pearl', this)">Clean Symmetrical Pearl</button>
+                <button onclick="selectTag('Smooth Symmetrical Solid', this)">Smooth Symmetrical Solid</button>
+                <button onclick="selectTag('Continuous Solid', this)">Continuous Solid</button>
+                <button onclick="selectTag('Early Traction Ball', this)">Early Traction Ball</button>
+                <button onclick="selectTag('Midlane Read Piece', this)">Midlane Read Piece</button>
+                <button onclick="selectTag('Burn Ball / Late Transition Piece', this)">Burn Ball / Late Transition
+                    Piece</button>
+            </div>
+        </details>
+
+        <div class="step-actions">
+            <button onclick="nextStep('step4-performance','step5-motion')" class="continue-btn">Continue</button>
+            <button onclick="goBack()" class="back-btn">← Back</button>
+        </div>
+    </section>
+
+    <!-- STEP 5 Motion Shape -->
+    <section id="step5-motion" class="hidden matchmaker-step">
+        <h2>Motion Shape</h2>
+        <p>The overall shape the ball creates from skid → hook → roll.</p>
+
+        <details open>
+            <summary>Motion Shape</summary>
+
+            <div class="storm-button-container">
+                <a href="" class="explore-trigger" data-target="explore-conditions-5">EXPLORE MOTION SHAPES</a>
+            </div>
+
+            <div id="explore-conditions-5" style="display:none;">
+                <table class="explore-table">
+                    <thead>
+                        <tr>
+                            <th>Label</th>
+                            <th>Meaning</th>
+                            <th>Adjacent To</th>
+                            <th>Common Traits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Smooth</td>
+                            <td>Gradual, blended motion through the lane with no sharp breakpoint. Reads friction evenly
+                                from front to midlane for a stable, predictable shape.</td>
+                            <td>Round</td>
+                            <td>Early read, blends wet/dry, excellent control on fresh or tighter patterns.</td>
+                        </tr>
+                        <tr>
+                            <td>Round</td>
+                            <td>Continuous, flowing shape that arcs naturally without a hard corner. Creates a readable,
+                                benchmark-style motion that works on most patterns.</td>
+                            <td>Smooth / Arc</td>
+                            <td>Benchmark feel; balanced shape with consistent continuation.</td>
+                        </tr>
+                        <tr>
+                            <td>Arc</td>
+                            <td>Noticeable but controlled direction change with smooth continuation through the pins.
+                                Balanced blend of strength and control.</td>
+                            <td>Round / Angular</td>
+                            <td>Strong yet readable; versatile across medium to medium-heavy conditions.</td>
+                        </tr>
+                        <tr>
+                            <td>Angular</td>
+                            <td>Sharper move at the breakpoint with increased backend motion. Creates more entry angle
+                                while staying predictable.</td>
+                            <td>Arc / Skid Flip</td>
+                            <td>Responsive to friction; useful when opening the lane or chasing transition.</td>
+                        </tr>
+                        <tr>
+                            <td>Skid Flip</td>
+                            <td>Skids easily through the fronts and snaps hard when it encounters friction. High-energy,
+                                dramatic backend shape.</td>
+                            <td>Angular / Steep</td>
+                            <td>Clean fronts, sharp backend; great for creating angle and carry downlane.</td>
+                        </tr>
+                        <tr>
+                            <td>Steep</td>
+                            <td>Fast, high-contrast motion with maximum entry angle. Violent direction change at the
+                                breakpoint; best for creating sharp angles.</td>
+                            <td>Skid Flip</td>
+                            <td>Extremely fast response to friction; high risk/reward motion on dry or cliffed lanes.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="dropdown-options">
+                <button onclick="selectTag('Smooth', this)">Smooth</button>
+                <button onclick="selectTag('Round', this)">Round</button>
+                <button onclick="selectTag('Arc', this)">Arc</button>
+                <button onclick="selectTag('Angular', this)">Angular</button>
+                <button onclick="selectTag('Skid Flip', this)">Skid Flip</button>
+                <button onclick="selectTag('Steep', this)">Steep</button>
+            </div>
+        </details>
+
+        <div class="step-actions">
+            <button onclick="nextStep('step5-motion','step6-hook')" class="continue-btn">Continue</button>
+            <button onclick="goBack()" class="back-btn">← Back</button>
+        </div>
+    </section>
+
+    <!-- STEP 6 Hook Strength -->
+    <section id="step6-hook" class="hidden matchmaker-step">
+        <h2>Hook Strength</h2>
+        <p>Where the ball begins transitioning from skid to hook.</p>
+
+        <details open>
+            <summary>Hook Strength</summary>
+
+            <div class="storm-button-container">
+                <a href="" class="explore-trigger" data-target="explore-conditions-6">EXPLORE HOOK STRENGTH</a>
+            </div>
+
+            <div id="explore-conditions-6" style="display:none;">
+                <table class="explore-table">
+                    <thead>
+                        <tr>
+                            <th>Label</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Early</td>
+                            <td>Hooks in the oil. Ideal for control and heavy oil conditions.</td>
+                        </tr>
+                        <tr>
+                            <td>Midlane</td>
+                            <td>Hooks in the middle third of the lane. Offers a balanced, benchmark-like motion.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Late</td>
+                            <td>Stores energy and makes its move at the breakpoint. Great for length and backend
+                                shape.</td>
+                        </tr>
+                        <tr>
+                            <td>Delayed</td>
+                            <td>Skids farther downlane before reacting. Responds sharply to friction when it
+                                appears.</td>
+                        </tr>
+
+                        <tr>
+                            <td>No Hook</td>
+                            <td>Skids farther downlane before reacting. Responds sharply to friction when it
+                                appears.</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="dropdown-options">
+                <button onclick="selectTag('Early Hook', this)">Early Hook</button>
+                <button onclick="selectTag('Mid Lane Hook', this)">Mid Lane Hook</button>
+                <button onclick="selectTag('Late Hook', this)">Late Hook</button>
+                <button onclick="selectTag('Delayed Hook', this)">Delayed Hook</button>
+                <button onclick="selectTag('No Hook', this)">No Hook</button>
+            </div>
+        </details>
+
+        <div class="step-actions">
+            <button onclick="nextStep('step6-hook','step7-friction')" class="continue-btn">Continue</button>
+            <button onclick="goBack()" class="back-btn">← Back</button>
+        </div>
+    </section>
+
+    <!-- STEP 7 Friction Response -->
+    <section id="step7-friction" class="hidden matchmaker-step">
+        <h2>Friction Response</h2>
+        <p>How quickly the ball reacts when it encounters dry boards.</p>
+
+        <details open>
+            <summary>Friction Response</summary>
+
+            <div class="storm-button-container">
+                <a href="" class="explore-trigger" data-target="explore-conditions-7">EXPLORE FRICTION RESPONSE</a>
+            </div>
+
+            <div id="explore-conditions-7" style="display:none;">
+                <table class="explore-table">
+                    <thead>
+                        <tr>
+                            <th>Label</th>
+                            <th>Response Speed</th>
+                            <th>Meaning / Behavior</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Blends Wet / Dry</td>
+                            <td>Very Slow</td>
+                            <td>Absorbs friction gradually. Great for blending over/under. Common in urethane or
+                                sanded control balls.</td>
+                        </tr>
+                        <tr>
+                            <td>Smooth Off The Spot</td>
+                            <td>Slow</td>
+                            <td>Gentle, readable motion off friction. Ideal on tough blends or medium oil
+                                conditions.</td>
+                        </tr>
+                        <tr>
+                            <td>Predictable & Controlled</td>
+                            <td>Medium</td>
+                            <td>Balanced response speed. Doesn’t jump or lag — a true “benchmark” reaction.</td>
+                        </tr>
+                        <tr>
+                            <td>Responsive To Friction</td>
+                            <td>Fast</td>
+                            <td>Jumps off friction quickly, creating visible shape and angle. Great for opening up
+                                the lane.</td>
+                        </tr>
+                        <tr>
+                            <td>Jumps Off The Spot</td>
+                            <td>Very Fast</td>
+                            <td>Sharp, instantaneous response to dry boards. Best suited for clean, high-RG pearls
+                                or when extra control is applied.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="dropdown-options">
+                <button onclick="selectTag('Blends Wet / Dry', this)">Blends Wet / Dry</button>
+                <button onclick="selectTag('Smooth Off The Spot', this)">Smooth Off The Spot</button>
+                <button onclick="selectTag('Predictable & Controlled Motion', this)">Predictable & Controlled
+                    Motion</button>
+                <button onclick="selectTag('Responsive To Friction', this)">Responsive To Friction</button>
+                <button onclick="selectTag('Jumps Off The Spot', this)">Jumps Off The Spot</button>
+            </div>
+        </details>
+
+        <div class="step-actions">
+            <button onclick="nextStep('step7-friction','step8-core')" class="continue-btn">Continue</button>
+            <button onclick="goBack()" class="back-btn">← Back</button>
+        </div>
+    </section>
+
+    <!-- STEP 8 Core Type -->
+    <section id="step8-core" class="hidden matchmaker-step">
+        <h2>Core Type</h2>
+        <p>How the internal weight block influences motion.</p>
+
+        <details open>
+            <summary>Core Type</summary>
+
+            <div class="storm-button-container">
+                <a href="" class="explore-trigger" data-target="explore-conditions-8">EXPLORE CORE TYPES</a>
+            </div>
+
+            <div id="explore-conditions-8" style="display:none;">
+                <table class="explore-table">
+                    <thead>
+                        <tr>
+                            <th>Label</th>
+                            <th>Core Dynamics</th>
+                            <th>Meaning / Ball Motion Behavior</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Symmetric Core</td>
+                            <td>Stable Rotation</td>
+                            <td>Delivers a smooth, predictable motion with a gradual transition from skid → hook → roll.
+                                Ideal for control, benchmarks, and blending lane patterns.</td>
+                        </tr>
+                        <tr>
+                            <td>Asymmetric Core</td>
+                            <td>Directional Torque</td>
+                            <td>Creates faster, stronger transitions. Enhances entry angle and backend motion by
+                                generating imbalance that tips the ball into roll more aggressively.</td>
+                        </tr>
+                        <tr>
+                            <td>Low RG (Radius of Gyration)</td>
+                            <td>Quick Spin-Up</td>
+                            <td>Centers mass closer to the core. Reads the lane early, providing faster revs and a
+                                smoother, stronger midlane read — perfect for heavier oil.</td>
+                        </tr>
+                        <tr>
+                            <td>High RG (Radius of Gyration)</td>
+                            <td>Delayed Energy</td>
+                            <td>Keeps energy stored for longer, producing more length and a sharper breakpoint. Ideal
+                                for medium to lighter conditions where control up front matters.</td>
+                        </tr>
+                        <tr>
+                            <td>Low Differential (Diff)</td>
+                            <td>Minimal Track Flare</td>
+                            <td>Offers a stable, consistent motion that changes direction gradually. Best for blending
+                                wet/dry or when predictability outweighs hook potential.</td>
+                        </tr>
+                        <tr>
+                            <td>High Differential (Diff)</td>
+                            <td>High Track Flare</td>
+                            <td>Increases total hook and motion shape separation by creating more flare potential.
+                                Stronger midlane read and backend continuation.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="dropdown-options">
+                <button onclick="selectTag('Symmetric', this)">Symmetric</button>
+                <button onclick="selectTag('Asymmetric', this)">Asymmetric</button>
+                <button onclick="selectTag('Low RG', this)">Low RG</button>
+                <button onclick="selectTag('High RG', this)">High RG</button>
+                <button onclick="selectTag('Low Diff', this)">Low Diff</button>
+                <button onclick="selectTag('High Diff', this)">High Diff</button>
+            </div>
+        </details>
+
+        <div class="step-actions">
+            <button onclick="nextStep('step8-core','step9-cover')" class="continue-btn">Continue</button>
+            <button onclick="goBack()" class="back-btn">← Back</button>
+        </div>
+    </section>
+
+    <!-- STEP 9 Coverstock Type -->
+    <section id="step9-cover" class="hidden matchmaker-step">
+        <h2>Coverstock Type</h2>
+        <p>How the ball interacts with lane oil.</p>
+
+        <details open>
+            <summary>Coverstock Type</summary>
+
+            <div class="storm-button-container">
+                <a href="" class="explore-trigger" data-target="explore-conditions-9">EXPLORE COVER TYPES</a>
+            </div>
+
+            <div id="explore-conditions-9" style="display:none;">
+                <table class="explore-table">
+                    <thead>
+                        <tr>
+                            <th>Label</th>
+                            <th>General Motion Tendencies</th>
+                            <th>Ideal When You Want...</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Solid Reactive</td>
+                            <td>Earlier traction and smoother overall motion</td>
+                            <td>A stronger read in the midlane and a controlled transition through the backend. Great
+                                when the lane has volume or you need to smooth out over/under.</td>
+                        </tr>
+                        <tr>
+                            <td>Pearl Reactive</td>
+                            <td>Cleaner through the front, quicker response to friction</td>
+                            <td>More shape and continuation downlane. Works best when the fronts start to hook or you
+                                need added recovery and angle.</td>
+                        </tr>
+                        <tr>
+                            <td>Hybrid Reactive</td>
+                            <td>Blend of midlane traction and backend pop</td>
+                            <td>A balanced motion that bridges solids and pearls — ideal as a first-out benchmark or
+                                when conditions are in transition.</td>
+                        </tr>
+                        <tr>
+                            <td>Urethane</td>
+                            <td>Very smooth, low-response shape with early roll</td>
+                            <td>Maximum control on short or high-friction patterns. Reduces over/under and keeps the
+                                ball in play when modern reactives are too quick.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="dropdown-options">
+                <button onclick="selectTag('Solid', this)">Solid</button>
+                <button onclick="selectTag('Pearl', this)">Pearl</button>
+                <button onclick="selectTag('Hybrid', this)">Hybrid</button>
+                <button onclick="selectTag('Urethane', this)">Urethane</button>
+            </div>
+        </details>
+
+        <div class="step-actions">
+            <button onclick="nextStep('step9-cover','step11-conditions')" class="continue-btn">Continue</button>
+            <button onclick="goBack()" class="back-btn">← Back</button>
+        </div>
+    </section>
+
+    <!-- STEP 10 I’m Not Sure -->
+    <!-- <section id="step10-unsure" class="hidden matchmaker-step">
+        <h2>I’m Not Sure</h2>
+        <p>Select any struggles you’re experiencing.</p>
+
+        <details open>
+            <summary>Common Struggles</summary>
+
+            <div class="dropdown-options">
+                <button onclick="selectTag('Ball Over Hooks', this)">Ball Over Hooks</button>
+                <button onclick="selectTag('Ball Under Hooks', this)">Ball Under Hooks</button>
+                <button onclick="selectTag('Ball Is Too Snappy', this)">Ball Is Too Snappy</button>
+                <button onclick="selectTag('Ball Is Lazy', this)">Ball Is Lazy</button>
+                <button onclick="selectTag('Too Early Of A Hook', this)">Too Early Of A Hook</button>
+                <button onclick="selectTag('Too Late Of A Hook', this)">Too Late Of A Hook</button>
+                <button onclick="selectTag('Ball Doesnt Recover When I Miss Right', this)">Ball Doesn't Recover When I
+                    Miss Right</button>
+                <button onclick="selectTag('Ball Is Inconsistent', this)">Ball Is Inconsistent</button>
+                <button onclick="selectTag('Ball Hits Weak', this)">Ball Hits Weak</button>
+                <button onclick="selectTag('I Leave Lots Of Corner Pins', this)">I Leave Lots Of Corner Pins</button>
+                <button onclick="selectTag('The Ball Dies At The Pocket', this)">The Ball Dies At The Pocket</button>
+                <button onclick="selectTag('Hooks Too Much On Fresh', this)">Hooks Too Much On Fresh</button>
+                <button onclick="selectTag('Doesn’t Work On The Dry', this)">Doesn’t Work On The Dry</button>
+                <button onclick="selectTag('Under Over Reaction', this)">Under Over Reaction</button>
+                <button onclick="selectTag('No Miss Room', this)">No Miss Room</button>
+                <button onclick="selectTag('Doesn’t Blend Wet Dry', this)">Doesn’t Blend Wet Dry</button>
+                <button onclick="selectTag('Can’t Open Up Angles', this)">Can’t Open Up Angles</button>
+                <button onclick="selectTag('Can’t Play Straighter', this)">Can’t Play Straighter</button>
+                <button onclick="selectTag('Hooks In The Heads Then Quits', this)">Hooks In The Heads Then
+                    Quits</button>
+            </div>
+        </details>
+
+        <div class="step-actions">
+            <button onclick="nextStep('step10-unsure','step11-conditions')" class="continue-btn">Continue</button>
+            <button onclick="goBack()" class="back-btn">← Back</button>
+        </div>
+    </section> -->
+
+    <section id="step11-conditions" class="hidden matchmaker-step">
+        <h2>Lane Conditions</h2>
+        <p> What lane conditions are you looking to match a ball for? Select all that apply — you can combine oil type,
+            transition zone, and pattern length.</p>
+
+        <div class="storm-button-container-3" style="margin-bottom:16px;">
+            <a href="" class="explore-trigger" data-target="explore-conditions-1" style="color:#1D4AFF;">
+                EXPLORE
+                CONDITIONS
+            </a>
+        </div>
+
+        <div class="" id="explore-conditions-1" style="display:none;">
+            <table class="explore-table">
+                <thead>
+                    <tr>
+                        <th>Lane Condition</th>
+                        <th>Core Challenge</th>
+                        <th>Ideal Ball Fit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Light Oil</td>
+                        <td>Ball skids too long, weak backend</td>
+                        <td>
+                            ✅ Early-rolling<br>
+                            ✅ Smooth or blend friction response<br>
+                            ✅ Arc or hook-set shape<br>
+                            ✅ Urethane, low-diff solids
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Medium Oil</td>
+                        <td>Balanced need</td>
+                        <td>
+                            ✅ Midlane hook phase<br>
+                            ✅ Smooth to moderate response<br>
+                            ✅ Round or arc shape<br>
+                            ✅ Control pearls or hybrids
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Heavy Oil</td>
+                        <td>Ball can’t read the lane</td>
+                        <td>
+                            ✅ Early hook phase<br>
+                            ✅ Strong covers with blend/smooth response<br>
+                            ✅ Arc or boomy shape<br>
+                            ✅ Early-rolling solids, asyms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cliffed</td>
+                        <td>Over/under reaction risk</td>
+                        <td>
+                            ✅ Gradual hook phase<br>
+                            ✅ Smooth or blend response<br>
+                            ✅ Arc or controlled round shape<br>
+                            ✅ Urethane or sanded solids
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Flat</td>
+                        <td>Harsh transitions, no forgiveness</td>
+                        <td>
+                            ✅ Midlane or gradual hook phase<br>
+                            ✅ Smooth to moderate response<br>
+                            ✅ Arc shape<br>
+                            ✅ Control hybrids or benchmark solids
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tapered</td>
+                        <td>Blended but tricky zones</td>
+                        <td>
+                            ✅ Midlane or controlled timing<br>
+                            ✅ Moderate friction response<br>
+                            ✅ Round or controlled angular shape<br>
+                            ✅ Hybrids or readable asyms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Short Pattern</td>
+                        <td>Hook starts early, backend tight</td>
+                        <td>
+                            ✅ Early hook phase<br>
+                            ✅ Smooth response<br>
+                            ✅ Hook-set or early-rolling shape<br>
+                            ✅ Urethane or low-flare solids
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Medium Pattern</td>
+                        <td>Balanced read</td>
+                        <td>
+                            ✅ Midlane hook phase<br>
+                            ✅ Moderate friction response<br>
+                            ✅ Round shape<br>
+                            ✅ Hybrids or solid benchmarks
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Long Pattern</td>
+                        <td>Delayed hook, backend angle crucial</td>
+                        <td>
+                            ✅ Delayed or late hook phase<br>
+                            ✅ Quick or immediate response<br>
+                            ✅ Angular or flip shape<br>
+                            ✅ Asym pearls or energy-retaining balls
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>High Friction Lanes</td>
+                        <td>Hooks too early, loses energy fast</td>
+                        <td>
+                            ✅ Delayed hook phase<br>
+                            ✅ Blend response<br>
+                            ✅ Straight or gradual arc shape<br>
+                            ✅ Clean pearls or polished covers
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Low Friction Lanes</td>
+                        <td>Struggles to read, skids too long</td>
+                        <td>
+                            ✅ Early or midlane hook phase<br>
+                            ✅ Quick response<br>
+                            ✅ Boomy or angular shape<br>
+                            ✅ Strong cover solids or aggressive hybrids
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Plays Slick</td>
+                        <td>Needs help getting started</td>
+                        <td>
+                            ✅ Early hook phase<br>
+                            ✅ Smooth or blend response<br>
+                            ✅ Arc or hook-set shape<br>
+                            ✅ Strong early solids
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Plays Dry</td>
+                        <td>Too sharp off friction</td>
+                        <td>
+                            ✅ Delayed or gradual hook phase<br>
+                            ✅ Blend or smooth response<br>
+                            ✅ Arc shape<br>
+                            ✅ Polished control pearls or urethane
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tight Backend</td>
+                        <td>Late hook, hard to create angle</td>
+                        <td>
+                            ✅ Quick or immediate response<br>
+                            ✅ Angular or flip shape<br>
+                            ✅ Energy-retaining roll<br>
+                            ✅ Asymmetrical pearls or boomy covers
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Early Hooking Lanes</td>
+                        <td>Ball reads too fast and burns up</td>
+                        <td>
+                            ✅ Delayed hook phase<br>
+                            ✅ Blend response<br>
+                            ✅ Round or arc shape<br>
+                            ✅ Polished solids or urethane
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Carry Down Issues</td>
+                        <td>Ball labors, loses backend pop</td>
+                        <td>
+                            ✅ Midlane to late hook phase<br>
+                            ✅ Quick friction response<br>
+                            ✅ Flip or angular shape<br>
+                            ✅ Clean pearls or high-RG asymmetrics
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fresh Oil Only</td>
+                        <td>Needs to grip early to shape properly</td>
+                        <td>
+                            ✅ Early hook phase<br>
+                            ✅ Smooth response<br>
+                            ✅ Arc or hook-set shape<br>
+                            ✅ Strong solids or low RG options
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 🛢️ OIL VOLUME -->
+        <details open>
+            <summary>Oil Volume</summary>
+            <div class="dropdown-options">
+                <button onclick="selectCondition('Light', 'oilVolume', this)">Light</button>
+                <button onclick="selectCondition('Medium-Light', 'oilVolume', this)">Medium-Light</button>
+                <button onclick="selectCondition('Medium', 'oilVolume', this)">Medium</button>
+                <button onclick="selectCondition('Medium-Heavy', 'oilVolume', this)">Medium-Heavy</button>
+                <button onclick="selectCondition('Heavy', 'oilVolume', this)">Heavy</button>
+            </div>
+        </details>
+
+        <!-- 🔄 LANE TRANSITION -->
+        <details>
+            <summary>Lane Transition</summary>
+            <div class="dropdown-options">
+                <button onclick="selectCondition('Fresh', 'laneTransition', this)">Fresh</button>
+                <button onclick="selectCondition('Transition', 'laneTransition', this)">Transition</button>
+                <button onclick="selectCondition('Burn', 'laneTransition', this)">Burn</button>
+            </div>
+        </details>
+
+        <!-- 📏 PATTERN LENGTH -->
+        <details>
+            <summary>Pattern Length</summary>
+            <div class="dropdown-options">
+                <button onclick="selectCondition('Short', 'patternLength', this)">Short</button>
+                <button onclick="selectCondition('Medium', 'patternLength', this)">Medium</button>
+                <button onclick="selectCondition('Long', 'patternLength', this)">Long</button>
+            </div>
+        </details>
+
+        <div class="step-actions">
+            <button class="continue" onclick="findAndDisplayMatches()">See My Results</button>
+            <button onclick="goBack()" class="back-btn">← Back</button>
+        </div>
+    </section>
+
+
+
+
+    <!-- Results -->
+    <section id="results-screen" class="hidden">
+        <h2>Your Top Matches</h2>
+
+        <div id="results"></div>
+
+        <button onclick="resetMatchmaker()">Start Over</button>
+    </section>
+
+    <!-- EXPLORE POP UP -->
+    <div id="info-popup-overlay" class="info-popup-overlay">
+        <div class="info-popup-content">
+            <a class="info-popup-close">&times;</a>
+            <div id="info-popup-body"></div>
+        </div>
+    </div>
+
+
+    <script src="./script.js"></script>
+
+    <!-- EXPLORE POP UPS -->
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const popup = document.getElementById("info-popup-overlay");
+            const popupBody = document.getElementById("info-popup-body");
+            const closeBtn = popup.querySelector(".info-popup-close");
+
+        
+            document.querySelectorAll(".explore-trigger").forEach((btn) => {
+                btn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const targetId = btn.getAttribute("data-target");
+                    const content = document.getElementById(targetId);
+                    if (!content) return;
+
+                    popupBody.innerHTML = content.innerHTML;
+                    popup.style.display = "flex";
+                    document.body.style.overflow = "hidden";
+                });
+            });
+
+            closeBtn.addEventListener("click", () => {
+                popup.style.display = "none";
+                popupBody.innerHTML = "";
+                document.body.style.overflow = "";
+            });
+
+            popup.addEventListener("click", (e) => {
+                if (e.target === popup) {
+                    popup.style.display = "none";
+                    popupBody.innerHTML = "";
+                    document.body.style.overflow = "";
+                }
+            });
+        });
+    </script> -->
+
+
+    <!-- MATCHMAKER -->
+    <script>
+        /* ============================================
+            USER SESSION OBJECT
+        ============================================ */
+        let user = {
+            ownsBall: null,
+            goal: null, // Replace / Complement / Try New
+            selectedBalls: [], // actual ball names
+            preferences: {
+                category: null, // which path they picked (performance feel, motion shape, etc.)
+                tags: [],       // the actual tags selected
+                conditions: {   // separated condition categories
+                    oilVolume: [],
+                    laneTransition: [],
+                    patternLength: []
+                }
+            }
+        };
+
+        /* ===========================================================
+            BALL DATA FORMAT REFERENCE — Storm Ball Matchmaker
+            -----------------------------------------------------------
+            1. Ball Motion Behavior → how the ball moves
+            2. Condition Fit / Environment → where it performs best
+            3. Design Specs → technical construction details
+        =========================================================== */
+        const balls = [
+            {
+                id: "ION Max",
+                brand: "Storm",
+                name: "ION Max",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Ion_Max/storm-ion-max-bowling-ball.png",
+                description:
+                    "The Ion Max features Storm’s Element Max A.I. Core paired with the trusted NRG Solid coverstock to deliver explosive midlane read and powerful continuation. Designed for heavy oil, its low RG asymmetrical shape and added weighted disk generate over 50% more flare potential for unmatched torque and control.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Strong Asym Solid Ball", "Early Traction Ball"],
+                    motion_shape: ["Smooth", "Round"],
+                    hook_phase_timing: ["Early Hook"],
+                    friction_response: ["Smooth Off The Spot"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Fresh"],
+                    oil_volume_fit: ["Heavy"],
+                    pattern_length_fit: ["Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Very High",
+                    coverstock: "NRG Solid Reactive",
+                    surface_finish: "2000 Grit Abralon",
+                    core: "Element Max A.I. Core Asymmetric",
+                    rg_character: "Low RG",
+                    differential: "High"
+                }
+            },
+            {
+                id: "Equinox",
+                brand: "Storm",
+                name: "Equinox",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Equinox/storm-equinox-bowling-ball.png",
+                description:
+                    "The Equinox pairs the all-new A1S Pearl Reactive coverstock with Storm’s Solarion A.I. Core to deliver explosive backend motion and consistent power. Tuned with Power Edge Polish, it glides easily through the heads before making a sharp, controlled move at the breakpoint—purpose-built for league and tournament play on medium conditions.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Angular Asym Pearl", "Big Backend Ball"],
+                    motion_shape: ["Angular", "Skid Flip"],
+                    hook_phase_timing: ["Late Hook"],
+                    friction_response: ["Responsive To Friction"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Fresh", "Transition"],
+                    oil_volume_fit: ["Medium"],
+                    pattern_length_fit: ["Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "High",
+                    coverstock: "A1S Pearl Reactive",
+                    surface_finish: "Power Edge Polish",
+                    core: "Solarion A.I. Core Asymmetric",
+                    rg_character: "Low RG",
+                    differential: "High"
+                }
+            },
+            {
+                id: "Equinox Solid",
+                brand: "Storm",
+                name: "Equinox Solid",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Equinox_Solid/storm-equinox-solid-bowling-ball.png",
+                description:
+                    "The Equinox Solid marks the return of the unmatched Solarion A.I. Core, now paired with the next evolution of Storm's Adhesion System Technology – A2S Solid Reactive. Designed for bowlers seeking total hook and dynamic midlane read, the Equinox Solid rivals the Ion Max in total strength but offers a sharper, more aggressive shape with explosive backend motion.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Strong Asym Solid Ball", "Continuous Solid"],
+                    motion_shape: ["Arc", "Angular"],
+                    hook_phase_timing: ["Mid Lane Hook", "Late Hook"],
+                    friction_response: ["Responsive To Friction"],
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Fresh", "Transition"],
+                    oil_volume_fit: ["Medium-Heavy", "Heavy"],
+                    pattern_length_fit: ["Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Very High",
+                    coverstock: "A2S Solid Reactive",
+                    surface_finish: "2000 Grit Abralon",
+                    core: "Solarion A.I. Core Asymmetric",
+                    rg_character: "Low RG",
+                    differential: "High"
+                }
+            },
+            {
+                id: "Ion Pro Solid",
+                brand: "Storm",
+                name: "Ion Pro Solid",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Ion_Pro_Solid/storm-ion-pro-solid-bowling-ball.png",
+                description:
+                    "The Ion Pro Solid builds upon the success of the original Ion Pro by strengthening Storm’s Premier line with a continuous asymmetric benchmark shape. Featuring the trusted Element Tour A.I. Core and TX-16 Solid Reactive cover enhanced with Power Edge Finish, it offers smooth transitions and confidence on challenging patterns while preserving energy for a stronger backend motion.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Smooth & Blended Control Ball", "Continuous Solid"],
+                    motion_shape: ["Arc", "Angular"],
+                    hook_phase_timing: ["Mid Lane Hook", "Late Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Fresh", "Transition"],
+                    oil_volume_fit: ["Medium", "Medium-Heavy"],
+                    pattern_length_fit: ["Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium",
+                    coverstock: "TX-16 Solid Reactive",
+                    surface_finish: "Power Edge Finish",
+                    core: "Element Tour A.I. Core Asymmetric",
+                    rg_character: "Low RG",
+                    differential: "Medium-High"
+                }
+            },
+            {
+                id: "Ion Pro",
+                brand: "Storm",
+                name: "Ion Pro",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Ion_Pro/storm-ion-pro-bowling-ball.png",
+                description:
+                    "The Ion Pro is Storm’s first asymmetric benchmark ball — built to deliver a balanced, reliable reaction across a wide range of conditions. Featuring the Element Tour A.I. Core and TX-16 Hybrid Reactive coverstock finished with 4000 Grit Abralon, it provides length with strength, forgiveness from all angles, and versatility for players of every style.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Stability Benchmark", "Versatile Hybrid"],
+                    motion_shape: ["Round", "Arc"],
+                    hook_phase_timing: ["Mid Lane Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Fresh", "Transition"],
+                    oil_volume_fit: ["Medium-Heavy", "Medium"],
+                    pattern_length_fit: ["Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium",
+                    coverstock: "TX-16 Hybrid Reactive",
+                    surface_finish: "4000 Grit Abralon",
+                    core: "Element Tour A.I. Core Asymmetric",
+                    rg_character: "Low RG",
+                    differential: "Asymmetric Medium-High"
+                }
+            },
+            {
+                id: "IDentity",
+                brand: "Storm",
+                name: "IDentity",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Identity/storm-identity-bowling-ball.png",
+                description:
+                    "The Storm IDentity delivers the perfect balance of traction and backend motion on medium conditions. Featuring the asymmetric ID A.I. Core and ReX Pearl Reactive coverstock finished with Power Edge Polish, it offers length through the fronts with a powerful flip on the backend. Designed to bridge the gap between the Equinox and symmetrical options, IDentity thrives when stronger solids begin to hook too much.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Big Backend Ball"],
+                    motion_shape: ["Arc", "Angular"],
+                    hook_phase_timing: ["Late Hook"],
+                    friction_response: ["Smooth Off The Spot"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Medium"],
+                    pattern_length_fit: ["Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "High",
+                    coverstock: "ReX Pearl Reactive",
+                    surface_finish: "Power Edge Polish",
+                    core: "ID A.I. Core Asymmetric",
+                    rg_character: "Medium RG",
+                    differential: "High"
+                }
+            },
+            {
+                id: "IDentity B-C-P",
+                brand: "Storm",
+                name: "IDentity B-C-P",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Identity%20B-C-P/storm-identity-bcp-bowling-ball.png",
+                description:
+                    "The Storm IDentity is a statement piece of performance and precision. Developed with Jason Belmonte, it pairs the asymmetrical ID A.I. Core with the responsive ReX Pearl Reactive coverstock finished with Power Edge Polish. This combination clears the fronts easily and unleashes a powerful backend motion, providing control and explosive continuation across medium conditions.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Big Backend Ball"],
+                    motion_shape: ["Arc", "Angular"],
+                    hook_phase_timing: ["Late Hook"],
+                    friction_response: ["Smooth Off The Spot"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Medium"],
+                    pattern_length_fit: ["Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "High",
+                    coverstock: "ReX Pearl Reactive",
+                    surface_finish: "Power Edge Polish",
+                    core: "ID A.I. Core Asymmetric",
+                    rg_character: "Medium RG",
+                    differential: "High"
+                }
+            },
+            {
+                id: "LEVEL",
+                brand: "Storm",
+                name: "LEVEL",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Level/storm-level-bowling-ball.png",
+                description:
+                    "The LEVEL from Storm’s Lab Series represents a new era of performance innovation. Designed around the Equalizer A.I. Core, this high-RG symmetrical shape provides smooth transitions with exceptional control. Wrapped in the all-new RPM Solid Reactive coverstock and finished at 1000 Grit Abralon, the LEVEL blends consistency, predictability, and reliability when the lane demands early read and smooth motion.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Smooth & Blended Control Ball", "Urethane-Type Shape Ball"],
+                    motion_shape: ["Smooth", "Round"],
+                    hook_phase_timing: ["Early Hook", "Mid Lane Hook"],
+                    friction_response: ["Blends Wet / Dry"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Fresh", "Transition"],
+                    oil_volume_fit: ["Medium-Light", "Medium"],
+                    pattern_length_fit: ["Short", "Medium"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium",
+                    coverstock: "RPM Solid Reactive",
+                    surface_finish: "1000 Grit Abralon",
+                    core: "Equalizer A.I. Core Symmetric",
+                    rg_character: "High RG",
+                    differential: "Low"
+                }
+            },
+            {
+                id: "PhysiX Blackout",
+                brand: "Storm",
+                name: "PhysiX Blackout",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Physix_Blackout/storm-physix-blackout-bowling-ball.png",
+                description:
+                    "The PhysiX Blackout continues the legacy of Storm’s renowned PhysiX line with a fusion of control, strength, and angular backend motion. Built around the Atomic A.I. Core and wrapped in the advanced NeX Pearl Reactive coverstock, this ball delivers relentless power and continuation through the pins. Finished at 2000 Grit Abralon, the Blackout thrives on medium to heavy oil patterns where traction and recovery are key.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Smooth Asym Pearl"],
+                    motion_shape: ["Smooth", "Arc"],
+                    hook_phase_timing: ["Early Lane Hook", "Mid Lane Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Fresh"],
+                    oil_volume_fit: ["Heavy", "Medium-Heavy"],
+                    pattern_length_fit: ["Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "High",
+                    coverstock: "NeX Pearl Reactive",
+                    surface_finish: "2000 Grit Abralon",
+                    core: "Atomic A.I. Core Asymmetric",
+                    rg_character: "Low RG",
+                    differential: "High"
+                }
+            },
+            {
+                id: "!Q Tour A.I.",
+                brand: "Storm",
+                name: "!Q Tour A.I.",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/!Q_Tour_AI/storm-iq-tour-ai-bowling-ball.png",
+                description:
+                    "The !Q Tour A.I. takes the legendary benchmark performance of the original !Q Tour and enhances it with Storm’s A.I. Core Technology. The upgraded C3 A.I. Core provides even better energy transfer and forgiveness at impact, while the R2S Hybrid Reactive coverstock ensures the same iconic smooth control and versatility. Finished with Power Edge Factory Finish, this ball defines consistency for any player needing a reliable reaction on a wide range of medium conditions.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Versatile Hybrid", "Smooth & Blended Control Ball"],
+                    motion_shape: ["Arc", "Angular"],
+                    hook_phase_timing: ["Mid Lane Hook", "Late Lane Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Fresh"],
+                    oil_volume_fit: ["Medium-Light", "Medium"],
+                    pattern_length_fit: ["Short", "Medium"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium",
+                    coverstock: "R2S Hybrid Reactive",
+                    surface_finish: "Power Edge Factory Finish",
+                    core: "C3 A.I. Centripetal Control Core Symmetric",
+                    rg_character: "Low RG",
+                    differential: "Medium-Low"
+                }
+            },
+            {
+                id: "!Q Tour 78/U",
+                brand: "Storm",
+                name: "!Q Tour 78/U",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/!Q_Tour_78U/storm-iq-78u-bowling-ball.png",
+                description:
+                    "The !Q Tour 78/U delivers the ultimate in smooth and predictable motion. Featuring the proven C3 Centripetal Control Core and the new Controll 78 Solid Urethane coverstock, this ball is designed for short oil and high-friction environments. With a low RG core and medium-low flare potential, it offers a true urethane-like reaction that reads early and maintains control on the backend. Finished at 500 Grit Abralon, the 78/U is PBA® compliant and built for precision where consistency matters most.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Urethane-Type Shape Ball"],
+                    motion_shape: ["Smooth", "Round"],
+                    hook_phase_timing: ["Early Hook", "Mid Lane Hook"],
+                    friction_response: ["Blends Wet / Dry"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Fresh"],
+                    oil_volume_fit: ["Heavy", "Medium-Heavy"],
+                    pattern_length_fit: ["Short", "Medium"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium-Low",
+                    coverstock: "Controll 78 Solid Urethane",
+                    surface_finish: "500 Grit Abralon",
+                    core: "C3 Centripetal Control Core Symmetric",
+                    rg_character: "Low RG",
+                    differential: "Medium-Low"
+                }
+            },
+            {
+                id: "Phaze II",
+                brand: "Storm",
+                name: "Phaze II",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Phaze_II/storm-phaze-ii-bowling-ball.png",
+                description:
+                    "The Phaze II has earned its reputation as one of the most reliable benchmark balls ever created. Featuring the fast-revving Velocity Core and the TX-16 Solid Reactive coverstock, this ball delivers a strong yet controllable motion through the midlane with smooth continuation downlane. Finished at 3000 Grit Abralon, the Phaze II excels on medium to heavy conditions, blending the pattern while maintaining consistent traction and exceptional versatility for bowlers of all styles.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Smooth & Blended Control Ball", "Smooth Symmetrical Solid", "Continuous Solid"],
+                    motion_shape: ["Smooth", "Round"],
+                    hook_phase_timing: ["Early Hook", "Mid Lane Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Fresh"],
+                    oil_volume_fit: ["Medium", "Medium-Heavy"],
+                    pattern_length_fit: ["Medium"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium-High",
+                    coverstock: "TX-16 Solid Reactive",
+                    surface_finish: "3000 Grit Abralon",
+                    core: "Velocity Core Symmetric",
+                    rg_character: "Low RG",
+                    differential: "High"
+                }
+            },
+            {
+                id: "Phaze A.I",
+                brand: "Storm",
+                name: "Phaze A.I",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Phaze_AI/storm-phaze-ai-bowling-ball.png",
+                description:
+                    "The Phaze II has earned its reputation as one of the most reliable benchmark balls ever created. Featuring the fast-revving Velocity Core and the TX-16 Solid Reactive coverstock, this ball delivers a strong yet controllable motion through the midlane with smooth continuation downlane. Finished at 3000 Grit Abralon, the Phaze II excels on medium to heavy conditions, blending the pattern while maintaining consistent traction and exceptional versatility for bowlers of all styles.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Clean Symmetrical Pearl", "Skid Flip Pearl"],
+                    motion_shape: ["Arc", "Angular"],
+                    hook_phase_timing: ["Mid Lane Hook", "Late Hook"],
+                    friction_response: ["Predictable & Controlled Motion", "Responsive To Friction"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition"],
+                    oil_volume_fit: ["Medium", "Medium-Heavy"],
+                    pattern_length_fit: ["Medium"],
+
+                    // --- Design Specs ---
+                    flare_potential: "High",
+                    coverstock: "TX-16 Pearl Reactive",
+                    surface_finish: "Power Edge Polish",
+                    core: "Velocity A.I. Core Symmetric",
+                    rg_character: "Low RG",
+                    differential: "High"
+                }
+            },
+            {
+                id: "!Q Tour Edition",
+                brand: "Storm",
+                name: "!Q Tour Edition",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/!Q_Tour/storm-iq-tour-bowling-ball.png",
+                description:
+                    "The !Q Tour Edition stands as one of the most iconic benchmark balls ever produced. Built around the smooth and forgiving C3 Centripetal Control Core and wrapped in the proven R2S Solid Reactive coverstock, it provides unmatched control and predictability. Finished at 4000 Grit Abralon, the !Q Tour reads the midlane effortlessly, creating a smooth, continuous motion ideal for medium to longer patterns. Its blend of forgiveness, balance, and motion clarity has made it a staple for bowlers of every style.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Stability Benchmark", "Smooth & Blended Control Ball", "Smooth Symmetrical Solid", "Continuous Solid"],
+                    motion_shape: ["Smooth", "Round", "Arc"],
+                    hook_phase_timing: ["Mid Lane Hook", "Late Lane Hook"],
+                    friction_response: ["Smooth Off The Spot"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Fresh", "Transition", "Burn"],
+                    oil_volume_fit: ["Medium", "Medium-Heavy", "Medium-Light"],
+                    pattern_length_fit: ["Medium", "Long", "Short"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium-Low",
+                    coverstock: "R2S Solid Reactive",
+                    surface_finish: "4000 Grit Abralon",
+                    core: "C3 Centripetal Control Core Symmetric",
+                    rg_character: "Medium RG",
+                    differential: "Medium-Low"
+                }
+            },
+            {
+                id: "Pitch Black",
+                brand: "Storm",
+                name: "Pitch Black",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Pitch_Black/storm-pitch-black-bowling-ball.png",
+                description:
+                    "The Pitch Black is the ultimate control piece for short oil and high-friction environments. Featuring the Controll Solid Urethane coverstock and the Capacitor Core, it delivers smooth, predictable motion that thrives on wood lanes and short patterns. With a high RG and low differential, this ball provides a true urethane roll — early, smooth, and continuous. Finished at 1000 Grit Abralon, the Pitch Black gives players the confidence to control friction and keep angles tight when the lanes get dry.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Urethane-Type Shape Ball"],
+                    motion_shape: ["Smooth", "Round"],
+                    hook_phase_timing: ["Early Hook"],
+                    friction_response: ["Blends Wet / Dry"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Fresh", "Transition"],
+                    oil_volume_fit: ["Medium", "Heavy"],
+                    pattern_length_fit: ["Short", "Medium"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium",
+                    coverstock: "Controll Solid Urethane",
+                    surface_finish: "1000 Grit Abralon",
+                    core: "Capacitor Core Symmetric",
+                    rg_character: "High RG",
+                    differential: "Low"
+                }
+            },
+            {
+                id: "Hy-Road",
+                brand: "Storm",
+                name: "Hy-Road",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Hy-Road/storm-hy-road-bowling-ball.png",
+                description:
+                    "The Hy-Road has achieved legendary status for its unmatched blend of power and control. Featuring the R2S Hybrid Reactive coverstock and the Inverted Fe² Technology Core, it creates a clean glide through the heads with a strong, continuous backend motion. Finished with Reacta Gloss, the Hy-Road bridges the gap between control and angle, making it the most versatile ball in Storm’s lineup. Ideal for players who want a ball that performs consistently across changing lane conditions and medium oil patterns.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Versatile Hybrid", "Big Backend Ball", "Burn Ball / Late Transition Piece", "Clean Symmetrical Pearl"],
+                    motion_shape: ["Angular", "Skid Flip"],
+                    hook_phase_timing: ["Late Hook"],
+                    friction_response: ["Responsive To Friction"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Light", "Medium"],
+                    pattern_length_fit: ["Medium"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium-High",
+                    coverstock: "R2S Hybrid Reactive",
+                    surface_finish: "Reacta Gloss",
+                    core: "Inverted Fe² Core Symmetric",
+                    rg_character: "Medium-High RG",
+                    differential: "Medium-High"
+                }
+            },
+            {
+                id: "Hy-Road 40",
+                brand: "Storm",
+                name: "Hy-Road 40",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Hy-Road%2040/storm-hy-road-40-bowling-ball.png",
+                description:
+                    "The Hy-Road 40 combines the proven Inverted Fe² core with the A1S Pearl Reactive coverstock and Power Edge Polish for effortless length and a sharp, controlled backend motion that thrives in medium-light to medium conditions.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Skid Flip Pearl", "Big Backend Ball", "Burn Ball / Late Transition Piece", "Clean Symmetrical Pearl"],
+                    motion_shape: ["Skid Flip", "Steep"],
+                    hook_phase_timing: ["Delayed Hook"],
+                    friction_response: ["Jumps Off The Spot"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Medium-Light"],
+                    pattern_length_fit: ["Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium-High",
+                    coverstock: "A1S Pearl Reactive",
+                    surface_finish: "Power Edge Polish",
+                    core: "Inverted Fe² Technology Symmetric",
+                    rg_character: "High RG",
+                    differential: "Medium"
+                }
+            },
+            {
+                id: "Road Warrior",
+                brand: "Storm",
+                name: "Road Warrior",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Road_Warrior/storm-road-warrior-bowling-ball.png",
+                description:
+                    "The Road Warrior™ delivers unparalleled control on dry conditions while preserving energy for an explosive finish.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Skid Flip Pearl", "Big Backend Ball", "Burn Ball / Late Transition Piece", "Clean Symmetrical Pearl"],
+                    motion_shape: ["Skid Flip", "Steep"],
+                    hook_phase_timing: ["Delayed Hook"],
+                    friction_response: ["Jumps Off The Spot"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Medium-Light"],
+                    pattern_length_fit: ["Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium-High",
+                    coverstock: "A1S Pearl Reactive",
+                    surface_finish: "Power Edge Polish",
+                    core: "Inverted Fe² Technology Symmetric",
+                    rg_character: "High RG",
+                    differential: "Medium"
+                }
+            },
+            {
+                id: "Typhoon",
+                brand: "Storm",
+                name: "Typhoon",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Typhoon/storm-typhoon-bowling-ball.png",
+                description:
+                    "Built for light to medium oil, the Typhoon provides length through the heads with a crisp yet controlled backend motion. Its Reactor Pearl Reactive coverstock clears the front easily, while Power Edge fine-tunes friction response for a consistent and predictable transition. Powered by the Atmos A.I. Core, inspired by the Tropical Heat™, the Typhoon balances energy retention and mid-lane control, delivering precision and forgiveness across a wide range of styles. Finished with a Power Edge Factory Finish, this ball delivers performance beyond expectation for its class.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Burn Ball / Late Transition Piece"],
+                    motion_shape: ["Angular", "Skid Flip", "Steep"],
+                    hook_phase_timing: ["Late Hook", "Delayed Hook"],
+                    friction_response: ["Jumps Off The Spot", "Responsive To Friction"],
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Light", "Medium"],
+                    pattern_length_fit: ["Medium"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium",
+                    coverstock: "Reactor Pearl Reactive",
+                    surface_finish: "Power Edge Factory Finish",
+                    core: "Atmos A.I. Core Symmetric",
+                    rg_character: "High RG",
+                    differential: "Medium"
+                }
+            },
+            {
+                id: "Tropical Surge (Black-Blue-Pink)",
+                brand: "Storm",
+                name: "Tropical Surge (Black-Blue-Pink)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Tropical_Surge/storm-tropical-surge-black-blue-pink-bowling-ball.png",
+                description:
+                    "The Tropical Surge brings a fun, reliable reaction to drier lane conditions. Featuring the Reactor Solid Reactive coverstock and the Surge Core, it provides an easy length through the heads with a smooth, controllable backend motion. The low differential core design helps new and developing bowlers maintain predictability and consistency, while the Reacta Gloss finish ensures excellent glide on light oil. With its blend of control, forgiveness, and style, the Tropical Surge is the perfect first step into Storm performance.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: [],
+                    motion_shape: ["Arc",],
+                    hook_phase_timing: ["Late Hook", "Delayed Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Short", "Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium-Low",
+                    coverstock: "Reactor Solid Reactive",
+                    surface_finish: "Reacta Gloss",
+                    core: "Surge Core Symmetrical",
+                    rg_character: "High RG",
+                    differential: "Low"
+                }
+            },
+            {
+                id: "Tropical Surge (Red-White-Purple)",
+                brand: "Storm",
+                name: "Tropical Surge (Red-White-Purple)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Tropical_Surge/storm-tropical-surge-red-white-purple-bowling-ball.png",
+                description:
+                    "The Tropical Surge Red-White-Purple pairs Storm’s dependable Reactor Pearl Reactive coverstock with the low-differential Surge Core for effortless length and a smooth, controlled backend motion. Ideal for lighter oil conditions, it glides easily through the fronts and provides predictable shape off the friction. Finished with Reacta Gloss, it’s perfect for bowlers seeking control and consistency in drier environments.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: [],
+                    motion_shape: ["Arc",],
+                    hook_phase_timing: ["Late Hook", "Delayed Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Short", "Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium-Low",
+                    coverstock: "Reactor Pearl Reactive",
+                    surface_finish: "Reacta Gloss",
+                    core: "Surge Core Symmetric",
+                    rg_character: "High RG",
+                    differential: "Low"
+                }
+            },
+            {
+                id: "Tropical Surge (Silver-Purple)",
+                brand: "Storm",
+                name: "Tropical Surge (Silver-Purple)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Tropical_Surge/storm-tropical-surge-silver-purple-bowling-ball.png",
+                description:
+                    "The Tropical Surge Silver-Purple pairs Storm’s trusted Reactor Pearl Reactive coverstock with the proven Surge Core for a smooth, predictable motion and extra control through friction. Designed for lighter oil conditions, it clears the fronts easily and offers a consistent, arcing motion off the breakpoint. With its Reacta Gloss finish and medium-low flare potential, it delivers forgiveness and stability for bowlers looking to refine accuracy without sacrificing hitting power.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: [],
+                    motion_shape: ["Arc",],
+                    hook_phase_timing: ["Late Hook", "Delayed Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Short", "Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium-Low",
+                    coverstock: "Reactor Pearl Reactive",
+                    surface_finish: "Reacta Gloss",
+                    core: "Surge Core Symmetric",
+                    rg_character: "High RG",
+                    differential: "Low"
+                }
+            },
+            {
+                id: "Tropical Surge (Emerald-Charcoal)",
+                brand: "Storm",
+                name: "Tropical Surge (Emerald-Charcoal)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Tropical_Surge/storm-tropical-surge-emerald-charcoal-bowling-ball.png",
+                description:
+                    "The Tropical Surge Emerald-Charcoal combines the Reactor Pearl Reactive coverstock with the proven Surge Core to deliver a clean, smooth shape and reliable motion downlane. Its polished 1500-grit finish enhances easy length through the heads while maintaining a consistent and controllable backend. Ideal for drier and transitioning conditions, the Emerald-Charcoal provides predictability with just enough pop to maintain carry without overreacting on friction.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: [],
+                    motion_shape: ["Arc",],
+                    hook_phase_timing: ["Late Hook", "Delayed Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Short", "Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Low",
+                    coverstock: "Reactor Pearl Reactive",
+                    surface_finish: "1500 Grit Polished",
+                    core: "Surge Core Symmetric",
+                    rg_character: "High RG",
+                    differential: "Low"
+                }
+            },
+            {
+                id: "Tropical Surge (Black-Cherry)",
+                brand: "Storm",
+                name: "Tropical Surge (Black-Cherry)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Tropical_Surge/storm-tropical-surge-black-cherry-bowling-ball.png",
+                description:
+                    "The Tropical Surge Black-Cherry blends the Reactor Hybrid Reactive coverstock with the proven Surge Core to deliver a smooth and reliable all-around motion. Its 1500 Grit Polished finish clears the heads with ease and creates a controllable midlane read with a consistent arc downlane. Perfect for bowlers who want forgiveness and easy length on drier conditions, it brings balanced performance and stability in the Tropical line.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: [],
+                    motion_shape: ["Arc",],
+                    hook_phase_timing: ["Late Hook", "Delayed Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Short", "Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium-Low",
+                    coverstock: "Reactor Hybrid Reactive",
+                    surface_finish: "1500 Grit Polished",
+                    core: "Surge Core Symmetric",
+                    rg_character: "High RG",
+                    differential: "Low"
+                }
+            },
+            {
+                id: "Tropical Surge (Pink-Purple)",
+                brand: "Storm",
+                name: "Tropical Surge (Pink-Purple)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Tropical_Surge/storm-tropical-surge-pink-purple-bowling-ball.png",
+                description:
+                    "The Tropical Surge Pink-Purple combines the Reactor Pearl Reactive coverstock with the Surge Core to deliver easy length and a smooth, arcing motion off the spot. Designed for lighter conditions, this ball offers forgiveness and a controllable shape while maintaining strong hit through the pins. As part of Storm’s Paint the Lanes Pink initiative, proceeds from each sale support the Huntsman Cancer Foundation — helping bowlers make a difference while performing their best.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: [],
+                    motion_shape: ["Arc",],
+                    hook_phase_timing: ["Late Hook", "Delayed Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Short", "Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Medium-Low",
+                    coverstock: "Reactor Pearl Reactive",
+                    surface_finish: "1500 Grit Polished",
+                    core: "Surge Core Symmetric",
+                    rg_character: "High RG",
+                    differential: "Low"
+                }
+            },
+            {
+                id: "Tropical Surge (Teal-Blue)",
+                brand: "Storm",
+                name: "Tropical Surge (Teal-Blue)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Tropical_Surge/storm-tropical-surge-teal-blue-bowling-ball.png",
+                description:
+                    "The Tropical Surge Teal-Blue pairs the Reactor Pearl Reactive coverstock with the reliable Surge Core to produce a clean and controllable motion through the lane. Its 1500 Grit Polished surface creates effortless glide through the heads with a smooth and predictable arc off friction. Designed for entry-level bowlers and dry to medium-light conditions, the Teal-Blue delivers consistency and stability in the Tropical series.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: [],
+                    motion_shape: ["Arc",],
+                    hook_phase_timing: ["Late Hook", "Delayed Hook"],
+                    friction_response: ["Predictable & Controlled Motion"],
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Transition", "Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Short", "Medium", "Long"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Low",
+                    coverstock: "Reactor Pearl Reactive",
+                    surface_finish: "1500 Grit Polished",
+                    core: "Surge Core Symmetric",
+                    rg_character: "High RG",
+                    differential: "Low"
+                }
+            },
+            {
+                id: "Lightning Storm Clear",
+                brand: "Storm",
+                name: "Lightning Storm Clear",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Lightning_Storm_Clear/storm-lightning-storm-clear-bowling-ball.png",
+                description:
+                    "The Lightning Storm Clear delivers a true, straight-line reaction designed for spare shooting and maximum predictability. Featuring a traditional 3-piece symmetrical core and a clear polyester coverstock, this ball maintains zero hook potential with unmatched durability. Its 3500 Grit Polished finish allows it to glide effortlessly through the heads and hold a direct path on any lane condition — the perfect spare solution for bowlers of all skill levels.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Spare Ball / Predictable Polyester"],
+                    motion_shape: ["Straight"],
+                    hook_phase_timing: ["None"],
+                    hook_strength: ["None"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Any"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Low",
+                    coverstock: "Clear Poly (Polyester)",
+                    surface_finish: "3500 Grit Polished",
+                    core: "Traditional 3-Piece Symmetric",
+                    rg_character: "Very High RG",
+                    differential: "Very Low"
+                }
+            },
+            {
+                id: "Clear Storm (White)",
+                brand: "Storm",
+                name: "Clear Storm (White)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Clear_Storm_White/storm-clear-white-bowling-ball.png",
+                description:
+                    "The Clear Storm White combines Storm’s stylish clear polyester cover with the dependable Hex Core for a perfectly straight and predictable roll. Designed for spare shooting or extremely dry lane conditions, this ball eliminates hook potential while offering exceptional control and durability. Its 3500 Grit Polished finish ensures maximum length and precision — an ideal choice for bowlers seeking accuracy and simplicity in their spare game.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Spare Ball / Predictable Polyester"],
+                    motion_shape: ["Straight"],
+                    hook_phase_timing: ["None"],
+                    hook_strength: ["None"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Any"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Low",
+                    coverstock: "Clear Poly (Polyester)",
+                    surface_finish: "3500 Grit Polished",
+                    core: "Hex Core Symmetric",
+                    rg_character: "Very High RG",
+                    differential: "Very Low"
+                }
+            },
+            {
+                id: "Ice Storm (Ocean Blue-White)",
+                brand: "Storm",
+                name: "Ice Storm (Ocean Blue-White)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Ice_Storm_Ocean/storm-ice-storm-ocean-blue-white-bowling-ball.png",
+                description:
+                    "The Ice Storm Ocean Blue-White offers effortless predictability and pure control for bowlers needing a straight-line option. Featuring Storm’s durable Polyester Hybrid coverstock and the traditional 3-piece symmetrical core, it’s built to go straight and true — perfect for spare shooting or extremely dry lanes. Finished at 3500 Grit Polished, the Ice Storm glides cleanly through the front with zero hook potential, delivering reliability and style in every roll.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Spare Ball / Predictable Polyester"],
+                    motion_shape: ["Straight"],
+                    hook_phase_timing: ["None"],
+                    hook_strength: ["None"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Any"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Low",
+                    coverstock: "Hybrid Polyester",
+                    surface_finish: "3500 Grit Polished",
+                    core: "Traditional 3-Piece Symmetric",
+                    rg_character: "Very High RG",
+                    differential: "Very Low"
+                }
+            },
+            {
+                id: "Ice Storm (Teal-Silver-Graphite)",
+                brand: "Storm",
+                name: "Ice Storm (Teal-Silver-Graphite)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Ice_Storm/storm-ice-storm-bowling-ball.png",
+                description:
+                    "The Ice Storm Teal-Silver-Graphite delivers reliable straight-line performance built for precision. Combining Storm’s resilient Poly Pearl coverstock with the Traditional 3-piece symmetrical core, this ball is ideal for spare shooting or extremely dry lane play. The 3500 Grit Polished finish ensures maximum length and zero hook potential, giving bowlers complete control and predictable motion. Durable, sleek, and dependable — the Ice Storm keeps it simple and effective for every skill level.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Spare Ball / Predictable Polyester"],
+                    motion_shape: ["Straight"],
+                    hook_phase_timing: ["None"],
+                    hook_strength: ["None"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Any"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Low",
+                    coverstock: "Poly Pearl (Polyester)",
+                    surface_finish: "3500 Grit Polished",
+                    core: "Traditional 3-Piece Symmetric",
+                    rg_character: "Very High RG",
+                    differential: "Very Low"
+                }
+            },
+            {
+                id: "Mix (Black-Silver)",
+                brand: "Storm",
+                name: "Mix (Black-Silver)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Mix/storm-mix-black-silver-bowling-ball.png",
+                description:
+                    "The Mix Black-Silver blends the predictability of Storm’s traditional 3-piece symmetrical core with the durability of the U1S Pearl Urethane coverstock — Storm’s most resilient shell to date. Designed for spare shooting or extreme dry lane conditions, it delivers consistent straight-line motion with minimal hook potential. The 3500 Grit Polished finish adds effortless length, while the U1S formulation ensures this ball can take years of wear and still perform with reliability and control.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Spare Ball / Predictable Polyester"],
+                    motion_shape: ["Straight"],
+                    hook_phase_timing: ["None"],
+                    hook_strength: ["None"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Any"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Low",
+                    coverstock: "U1S Pearl Urethane",
+                    surface_finish: "3500 Grit Polished",
+                    core: "Traditional 3-Piece Symmetric",
+                    rg_character: "Very High RG",
+                    differential: "Very Low"
+                }
+            },
+            {
+                id: "Mix (Black-Purple-Pink)",
+                brand: "Storm",
+                name: "Mix (Black-Purple-Pink)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Mix/storm-mix-black-purple-pink-bowling-ball.png",
+                description:
+                    "The Mix Black-Purple-Pink offers a straightforward reaction and exceptional durability. Combining the proven 3-piece symmetrical core with Storm’s U1S Pearl Urethane coverstock, this ball delivers a true and predictable motion ideal for spare shooting or dry lane play. Its 3500 Grit Polished finish ensures effortless length and consistency. Perfect for bowlers seeking a low-maintenance, long-lasting option that performs reliably straight down the lane.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Spare Ball / Predictable Polyester"],
+                    motion_shape: ["Straight"],
+                    hook_phase_timing: ["None"],
+                    hook_strength: ["None"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Any"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Low",
+                    coverstock: "U1S Pearl Urethane",
+                    surface_finish: "3500 Grit Polished",
+                    core: "Traditional 3-Piece Symmetric",
+                    rg_character: "Very High RG",
+                    differential: "Very Low"
+                }
+            },
+            {
+                id: "Mix (Lime-Royal-Custard)",
+                brand: "Storm",
+                name: "Mix (Lime-Royal-Custard)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Mix/storm-mix-lime-royal-custard-bowling-ball.png",
+                description:
+                    "The Mix Lime-Royal-Custard brings reliable straight-line control and extreme durability. Its U1S Pearl Urethane coverstock — Storm’s most rugged shell — resists chipping and wear while maintaining a clean, smooth glide through the heads. Paired with the predictable Traditional 3-Piece Symmetric Core, this Mix is a go-to choice for spare shooting or dry lane conditions. A 3500 Grit Polished finish provides effortless length and pinpoint control across the lane.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Spare Ball / Predictable Polyester"],
+                    motion_shape: ["Straight"],
+                    hook_phase_timing: ["None"],
+                    hook_strength: ["None"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Any"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Low",
+                    coverstock: "U1S Pearl Urethane",
+                    surface_finish: "3500 Grit Polished",
+                    core: "Traditional 3-Piece Symmetric",
+                    rg_character: "Very High RG",
+                    differential: "Very Low"
+                }
+            },
+            {
+                id: "Mix (purple-Blue-White)",
+                brand: "Storm",
+                name: "Mix (purple-Blue-White)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Mix/storm-mix-purple-blue-white-bowling-ball.png",
+                description:
+                    "The Mix PURPLE-BLUE-WHITE brings reliable straight-line control and extreme durability. Its U1S Pearl Urethane coverstock — Storm’s most rugged shell — resists chipping and wear while maintaining a clean, smooth glide through the heads. Paired with the predictable Traditional 3-Piece Symmetric Core, this Mix is a go-to choice for spare shooting or dry lane conditions. A 3500 Grit Polished finish provides effortless length and pinpoint control across the lane.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Spare Ball / Predictable Polyester"],
+                    motion_shape: ["Straight"],
+                    hook_phase_timing: ["None"],
+                    hook_strength: ["None"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Any"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Low",
+                    coverstock: "U1S Pearl Urethane",
+                    surface_finish: "3500 Grit Polished",
+                    core: "Traditional 3-Piece Symmetric",
+                    rg_character: "Very High RG",
+                    differential: "Very Low"
+                }
+            },
+            {
+                id: "Mix (Purple-Jade-Steel)",
+                brand: "Storm",
+                name: "Mix (Purple-Jade-Steel)",
+                image: "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/product_pages/Balls/Storm/Mix/storm-mix-purple-jade-steel-bowling-ball.png",
+                description:
+                    "The Mix Lime-Royal-Custard brings reliable straight-line control and extreme durability. Its U1S Pearl Urethane coverstock — Storm’s most rugged shell — resists chipping and wear while maintaining a clean, smooth glide through the heads. Paired with the predictable Traditional 3-Piece Symmetric Core, this Mix is a go-to choice for spare shooting or dry lane conditions. A 3500 Grit Polished finish provides effortless length and pinpoint control across the lane.",
+                attributes: {
+                    // --- Ball Motion Behavior ---
+                    perceived_feel: ["Spare Ball / Predictable Polyester"],
+                    motion_shape: ["Straight"],
+                    hook_phase_timing: ["None"],
+                    hook_strength: ["None"],
+
+
+                    // --- Condition Fit / Environment ---
+                    lane_condition_fit: ["Burn"],
+                    oil_volume_fit: ["Light"],
+                    pattern_length_fit: ["Any"],
+
+                    // --- Design Specs ---
+                    flare_potential: "Low",
+                    coverstock: "U1S Pearl Urethane",
+                    surface_finish: "3500 Grit Polished",
+                    core: "Traditional 3-Piece Symmetric",
+                    rg_character: "Very High RG",
+                    differential: "Very Low"
+                }
+            }
+
+        ];
+
+        // ============================================
+        // DYNAMIC BALL BUTTON GENERATION
+        // ============================================
+        function populateBallOptions() {
+            const container = document.getElementById("ball-options");
+            if (!container) return;
+
+            container.innerHTML = "";
+
+            balls.forEach(ball => {
+                const card = document.createElement("div");
+                card.className = "ball-card";
+
+                card.innerHTML = `
+            <img src="${ball.image}" alt="${ball.name}">
+            <p>${ball.name}</p>
+        `;
+
+                card.onclick = () => toggleBall(ball.name, card);
+
+                container.appendChild(card);
+            });
+        }
+
+
+
+        /* ============================================
+            RELATIONSHIP + RULE MAPS
+            (Defines how attributes connect, complement, or conflict)
+        ============================================ */
+
+        /* --- A. TAG SYNONYMS MAP — connects user tags to data keywords --- */
+        const tagSynonyms = {
+            // --- Friction Response Scale ---
+            "Blends Wet / Dry": ["Blend", "Very Slow", "Smooth", "Control", "Urethane"],
+            "Smooth Off The Spot": ["Smooth", "Slow", "Readable", "Blend"],
+            "Predictable & Controlled Motion": ["Moderate", "Benchmark", "Medium", "Arc", "Control"],
+            "Responsive To Friction": ["Quick", "Fast", "Angular", "Backend", "Responsive"],
+            "Jumps Off The Spot": ["Immediate", "Very Fast", "Skid Flip", "Sharp", "Snap", "Pop"],
+
+            // --- Ball Motion Archetypes ---
+
+            "Big Backend Ball": ["Angular", "Backend", "Flip", "Steep", "Strong Move"],
+            // sharpest motion — closest to Angular / Skid Flip territory
+
+            "Skid Flip Pearl": ["Late", "Angular", "Skid Flip", "Responsive", "Fast"],
+            // very late + fast change of direction
+
+            "Responsive Asym Pearl": ["Asym", "Torque", "Angular", "Backend", "Responsive"],
+            // asym torque with backend continuation — between Arc and Angular
+
+            "Strong Asym Torque Ball": ["Strong", "Heavy", "Midlane", "Early", "Asym", "Arc"],
+            // blends early read (Smooth/Arc) with asym strength
+
+            "Smooth Symmetrical Pearl": ["Smooth", "Arc", "Symmetric", "Control", "Blend"],
+            // benchmark-type smooth pearl — Round / Arc zone
+
+            "Versatile Hybrid": ["Hybrid", "Blend", "Smooth", "Responsive", "Balanced", "Boomy"],
+            // between Arc and Angular — fits “Boomy” hybrid type perfectly
+
+            "Early Traction Ball": ["Early", "Strong", "Front-Lane", "Fresh", "Smooth"],
+            // early roll control — Smooth / Round zone
+
+            "Smooth & Blended Control Ball": ["Smooth", "Blend", "Predictable", "Control", "Round"],
+            // flat, urethane-like — lowest angularity
+
+            "Midlane Read Piece": ["Midlane", "Arc", "Benchmark", "Control", "Round"],
+            // readable shape in the midlane — Round / Arc transition
+
+            "Burn Ball / Late Transition Piece": ["Late", "Transition", "Clean", "Quick", "Angular"],
+            // cleaner through fronts — complements early balls
+
+            "Volume Loader": ["Heavy", "Oil", "Strong", "Early", "Smooth", "Arc"],
+            // early traction, strong midlane — Smooth / Arc / Traction
+
+            "Urethane-Type Shape Ball": ["Flat", "Early", "Friction", "Control", "Smooth"],
+            // very early, low angularity motion
+
+            "Continuous Solid": ["Continuous", "Solid", "Backend", "Strong", "Arc"],
+            // strong but continuous — sits between Arc and Angular
+
+            "Controlled Backend Solid": ["Controlled", "Backend", "Solid", "Midlane", "Arc"],
+            // midlane control, gradual backend
+
+            "Clean Symmetrical Solid": ["Clean", "Smooth", "Symmetric", "Control", "Arc"],
+            // polished symmetric solid — Round / Arc hybrid
+
+            "Stability Benchmark": ["Benchmark", "Medium", "Arc", "Balanced", "Round"],
+            // the true baseline benchmark — Arc with Round influence
+        };
+
+
+
+        /* --- C. MOTION HIERARCHY MAP --- */
+        const motionHierarchy = {
+            "Smooth": {
+                "incompatibleWith": ["Angular", "Skid Flip", "Steep"],
+                "neighbors": ["Round"],
+                "notes": "Earliest and most blended motion. Smooth energy transfer, continuous roll."
+            },
+            "Round": {
+                "incompatibleWith": ["Skid Flip", "Steep"],
+                "neighbors": ["Smooth", "Arc"],
+                "notes": "Gradual shape with soft backend. Early roll potential but predictable continuation."
+            },
+            "Arc": {
+                "incompatibleWith": ["Steep"],
+                "neighbors": ["Round", "Angular"],
+                "notes": "Moderate backend shape — readable, continuous, benchmark-type motion."
+            },
+            "Angular": {
+                "incompatibleWith": ["Smooth", "Round"],
+                "neighbors": ["Arc", "Skid Flip"],
+                "notes": "Sharp breakpoint shape, creates direction change downlane."
+            },
+            "Skid Flip": {
+                "incompatibleWith": ["Smooth", "Round", "Hook Set"],
+                "neighbors": ["Angular", "Steep"],
+                "notes": "Long skid with sudden backend motion. Opposite of Hook-Set in lane phase behavior."
+            },
+            "Steep": {
+                "incompatibleWith": ["Smooth", "Round", "Hook Set"],
+                "neighbors": ["Skid Flip"],
+                "notes": "Maximum entry angle. Hyper-responsive to dry boards and friction contrast."
+            },
+            "Boomy": {
+                "hybridOf": ["Arc", "Angular"],
+                "notes": "Late but smooth motion. Think ‘long and sweeping’ — angular yet continuous, not jerky."
+            },
+            "Hook Set": {
+                "mirrorOf": "Skid Flip",
+                "hybridOf": ["Round", "Arc"],
+                "incompatibleWith": ["Steep"],
+                "notes": "Hooks early, stabilizes, and goes forward (like an early-phase skid-flip). Short, heavy roll with low continuation."
+            },
+            "Straight": {
+                "independent": true,
+                "notes": "Minimal hook or shape. End-over-end roll, used on extreme dry or for spares."
+            }
+        };
+
+        /* ============================================
+            ELIMINATION RULE MAP (auto-syncs with motionHierarchy)
+        ============================================ */
+        const eliminationRules = {
+            // --- Core & Cover Conflicts ---
+            Symmetric: ["Asymmetric"],
+            Asymmetric: ["Symmetric"],
+            Pearl: ["Solid", "Hybrid"],
+            Solid: ["Pearl", "Hybrid"],
+            Hybrid: ["Pearl", "Solid"],
+
+            // --- User Pain Points (“I’m Not Sure” dropdown) ---
+            "Ball Over Hooks": ["Angular", "Skid Flip", "Steep", "Strong"],
+            "Ball Under Hooks": ["Smooth", "Round", "Hook Set"],
+            "Ball Is Too Snappy": ["Angular", "Skid Flip", "Steep"],
+            "Ball Is Lazy": ["Smooth", "Round"],
+            "Too Early Of A Hook": ["Early", "Strong", "Front-Lane", "Solid"],
+            "Too Late Of A Hook": ["Late", "Clean", "Pearl"],
+            "Ball Doesnt Recover When I Miss Right": ["Smooth", "Round", "Hook Set"],
+            "Ball Is Inconsistent": ["Skid Flip", "Steep"],
+            "Ball Hits Weak": ["Smooth", "Round", "Control"],
+            "I Leave Lots Of Corner Pins": ["Smooth", "Round", "Hook Set"],
+            "The Ball Dies At The Pocket": ["Smooth", "Round"],
+            "Hooks Too Much On Fresh": ["Angular", "Steep", "Skid Flip", "Strong"],
+            "Doesn’t Work On The Dry": ["Strong", "Early", "Solid"],
+            "Under Over Reaction": ["Steep", "Skid Flip", "Angular"],
+            "No Miss Room": ["Skid Flip", "Steep"],
+            "Doesn’t Blend Wet Dry": ["Skid Flip", "Steep"],
+            "Can’t Open Up Angles": ["Smooth", "Round", "Hook Set"],
+            "Can’t Play Straighter": ["Steep", "Skid Flip", "Angular"],
+            "Hooks In The Heads Then Quits": ["Early", "Strong", "Solid"]
+        };
+
+        // --- Auto-generate motion incompatibilities from hierarchy ---
+        for (const [motion, data] of Object.entries(motionHierarchy)) {
+            if (data.incompatibleWith) {
+                eliminationRules[motion] = data.incompatibleWith;
+            }
+        }
+
+
+        /* ============================================
+            POSITIVE COUNTER-WEIGHT MAP (adds bonus points)
+        ============================================ */
+        const positiveInfluenceMap = {
+            "Ball Over Hooks": ["Smooth", "Round", "Hook Set", "Control"],
+            "Ball Under Hooks": ["Angular", "Skid Flip", "Steep"],
+            "Ball Is Too Snappy": ["Smooth", "Round", "Arc", "Control"],
+            "Ball Is Lazy": ["Angular", "Responsive", "Skid Flip"],
+            "Too Early Of A Hook": ["Late", "Clean", "Pearl"],
+            "Too Late Of A Hook": ["Early", "Strong", "Solid"],
+            "Ball Doesnt Recover When I Miss Right": ["Angular", "Backend", "Responsive"],
+            "Ball Is Inconsistent": ["Smooth", "Arc", "Control"],
+            "Ball Hits Weak": ["Strong", "Backend", "Angular"],
+            "I Leave Lots Of Corner Pins": ["Continuous", "Backend", "Strong Move"],
+            "The Ball Dies At The Pocket": ["Responsive", "Backend"],
+            "Hooks Too Much On Fresh": ["Smooth", "Arc", "Control"],
+            "Doesn’t Work On The Dry": ["Clean", "Responsive", "Pearl"],
+            "Under Over Reaction": ["Arc", "Smooth", "Balanced"],
+            "No Miss Room": ["Blend", "Predictable", "Benchmark"],
+            "Doesn’t Blend Wet Dry": ["Blend", "Smooth", "Arc"],
+            "Can’t Open Up Angles": ["Angular", "Backend"],
+            "Can’t Play Straighter": ["Smooth", "Round", "Hook Set"],
+            "Hooks In The Heads Then Quits": ["Arc", "Backend", "Continuous"]
+        };
+
+        /* ============================================
+            LANE + VOLUME + LENGTH MATCH LOGIC
+        ============================================ */
+        function getConditionScore(ball, userCond, key) {
+            const attr = (ball.attributes[key] || []).map(v => normalize(v));
+            const cond = normalize(userCond);
+
+            if (!attr.length) return 0;
+
+            // --- Oil Volume Fit Rules ---
+            if (key === "oil_volume_fit") {
+                if (cond === "medium") {
+                    if (attr.includes("medium")) return 10;
+                    if (attr.includes("medium-light")) return 5;
+                    if (attr.includes("medium-heavy")) return 2;
+                    return 0;
+                }
+                if (cond === "heavy") {
+                    if (attr.includes("heavy")) return 10;
+                    if (attr.includes("medium-heavy")) return 5;
+                    return 0;
+                }
+                if (cond === "light") {
+                    if (attr.includes("light")) return 10;
+                    if (attr.includes("medium-light")) return 5;
+                    return 0;
+                }
+            }
+
+            // --- Lane Condition Fit Rules ---
+            if (key === "lane_condition_fit") {
+                if (cond === "fresh") {
+                    if (attr.length === 1 && attr.includes("fresh")) return 10;
+                    if (attr.includes("fresh") && attr.includes("transition")) return 5;
+                    return 0;
+                }
+                if (cond === "transition") {
+                    if (attr.length === 1 && attr.includes("transition")) return 10;
+                    if (attr.includes("transition") && attr.includes("fresh")) return 2;
+                    if (attr.includes("transition") && attr.includes("burn")) return 5;
+                    return 0;
+                }
+                if (cond === "burn") {
+                    if (attr.length === 1 && attr.includes("burn")) return 10;
+                    return 0;
+                }
+            }
+
+            // --- Pattern Length Fit Rules ---
+            if (key === "pattern_length_fit") {
+                if (cond === "medium") {
+                    if (attr.length === 1 && attr.includes("medium")) return 10;
+                    if (attr.includes("medium") && (attr.includes("short") || attr.includes("long"))) return 5;
+                    return 0;
+                }
+                if (cond === "short") {
+                    if (attr.includes("long")) return 0;
+                    if (attr.includes("short") && attr.includes("medium")) return 5;
+                    if (attr.length === 1 && attr.includes("short")) return 10;
+                    return 0;
+                }
+                if (cond === "long") {
+                    if (attr.includes("short")) return 0;
+                    if (attr.includes("long") && attr.includes("medium")) return 5;
+                    if (attr.length === 1 && attr.includes("long")) return 10;
+                    return 0;
+                }
+            }
+
+            return 0;
+        }
+
+
+        /* ============================================
+           UNIVERSAL ELIMINATION CHECK (NOW WITH CONDITIONS)
+        ============================================ */
+        function isEliminated(ball, user) {
+            const attrs = ball.attributes;
+
+
+            // 1️⃣ Tag-based elimination
+            for (const tag of user.preferences.tags) {
+                const blocked = eliminationRules[tag];
+                if (!blocked) continue;
+                // Normalize all ball attribute strings into a comparison-safe list
+                const attrList = Object.values(attrs)
+                    .flat()
+                    .filter(Boolean)
+                    .map(a => normalize(a));
+
+                // Exact-match elimination (no substring bullshit)
+                if (blocked.some(b => attrList.includes(normalize(b)))) {
+                    console.log(`❌ Eliminated ${ball.name} due to ${tag} → ${blocked.join(", ")}`);
+                    return true;
+                }
+            }
+
+            const allUserConds = [
+                ...(user.preferences.conditions.oilVolume || []),
+                ...(user.preferences.conditions.laneTransition || []),
+                ...(user.preferences.conditions.patternLength || [])
+            ];
+
+            // 2️⃣ Lane/Oil/Length elimination using getConditionScore()
+            for (const cond of allUserConds) {
+                for (const key of ["lane_condition_fit", "oil_volume_fit", "pattern_length_fit"]) {
+                    const points = getConditionScore(ball, cond, key);
+
+                    // ❌ Do NOT eliminate for 0 — condition scoring has no eliminations
+                    // (this block simply checks scoring possibilities now)
+                    if (points > 0) continue;
+                }
+            }
+            // ✅ Don’t return true here; only eliminate for tag conflicts
+
+            return false; // ✅ Safe to score
+        }
+
+
+        /* ============================================
+           SELECT BALLS FOR ARSENAL
+        ============================================ */
+        function toggleBall(ballName, btn) {
+            const idx = user.selectedBalls.indexOf(ballName);
+            if (idx === -1) {
+                user.selectedBalls.push(ballName);
+                btn.classList.add("active");
+            } else {
+                user.selectedBalls.splice(idx, 1);
+                btn.classList.remove("active");
+            }
+            console.log("Selected Balls:", user.selectedBalls);
+            updateSummary();
+        }
+
+
+
+        /* ===============================
+    POPUP CONTROLLER (SAFE)
+ =============================== */
+
+        function openPopup(html) {
+            const overlay = document.getElementById("info-popup-overlay");
+            const body = document.getElementById("info-popup-body");
+
+            if (!overlay || !body) return;
+
+            body.innerHTML = html;
+            overlay.classList.add("active");
+
+            // 🔒 Lock scroll ONLY while popup is open
+            document.body.style.overflow = "hidden";
+        }
+
+        function closePopup() {
+            const overlay = document.getElementById("info-popup-overlay");
+            const body = document.getElementById("info-popup-body");
+
+            if (!overlay || !body) return;
+
+            overlay.classList.remove("active");
+            body.innerHTML = "";
+
+            // 🔓 ALWAYS restore scroll
+            document.body.style.overflow = "";
+        }
+        /* ============================================
+            SHOW ARSENAL VISUAL (CLICKABLE)
+        ============================================ */
+        function showArsenal() {
+            const container = document.getElementById("arsenal-list");
+
+            container.innerHTML = "";
+
+            user.selectedBalls.forEach(ballName => {
+                const ball = balls.find(b => b.name === ballName);
+                if (!ball) return;
+
+                const card = document.createElement("div");
+                card.className = "ball-card";
+
+                card.innerHTML = `
+            <img src="${ball.image}" alt="${ball.name}">
+            <p>${ball.name}</p>
+        `;
+
+                card.onclick = () => openBallPopup(ball);
+
+                container.appendChild(card);
+            });
+
+            // ✅ Only this
+            nextStep("step3", "currentArsenal");
+        }
+
+
+        function openBallPopup(ball) {
+            openPopup(`
+        <h2>${ball.name}</h2>
+        <img src="${ball.image}" alt="${ball.name}" style="max-width:200px;margin-bottom:16px;">
+
+        <p>${ball.description}</p>
+
+        <table class="explore-table">
+            <tr><th>Coverstock</th><td>${ball.attributes.coverstock}</td></tr>
+            <tr><th>Core</th><td>${ball.attributes.core}</td></tr>
+            <tr><th>Surface</th><td>${ball.attributes.surface_finish}</td></tr>
+            <tr><th>Flare Potential</th><td>${ball.attributes.flare_potential}</td></tr>
+            <tr><th>RG</th><td>${ball.attributes.rg_character}</td></tr>
+            <tr><th>Differential</th><td>${ball.attributes.differential}</td></tr>
+            <tr><th>Motion Shape</th><td>${ball.attributes.motion_shape.join(", ")}</td></tr>
+            <tr><th>Best On</th><td>${ball.attributes.lane_condition_fit.join(", ")}</td></tr>
+        </table>
+    `);
+        }
+
+        /* ============================================
+           SELECT CATEGORY (Performance Feel, etc.)
+        ============================================ */
+        function chooseCategory(cat) {
+            user.preferences.category = cat;
+            console.log("Category chosen:", cat);
+
+
+
+            // Hide all category sections first
+            const allCats = [
+                'performanceFeel',
+                'motionShape',
+                'hookStrength',
+                'coreType',
+                'coverstockType',
+                'imNotSure'
+            ];
+            allCats.forEach(id => document.getElementById(id).classList.add('hidden'));
+
+            // Show the selected category
+            const target = document.getElementById(cat);
+            if (target) {
+                target.classList.remove('hidden');
+            } else {
+                console.error("Missing section:", cat);
+            }
+
+            // Record history (so Back button works)
+
+            updateSummary();
+        }
+
+        /* ============================================
+           SELECT TAGS INSIDE CATEGORY
+        ============================================ */
+        function selectTag(tag, btn) {
+            const tags = user.preferences.tags;
+            const index = tags.indexOf(tag);
+
+            if (index === -1) {
+                tags.push(tag);
+                btn.classList.add("active");
+            } else {
+                tags.splice(index, 1);
+                btn.classList.remove("active");
+            }
+
+            console.log("Selected tags:", user.preferences.tags);
+            updateSummary();
+        }
+
+        /* ============================================
+           SELECT CONDITIONS (with highlight)
+        ============================================ */
+        function selectCondition(value, type, button) {
+            // ✅ Make sure that condition category exists
+            if (!user.preferences.conditions[type]) {
+                user.preferences.conditions[type] = [];
+            }
+
+            const selected = user.preferences.conditions[type];
+            const index = selected.indexOf(value);
+
+            if (index > -1) {
+                // If it's already selected → remove it
+                selected.splice(index, 1);
+                button.classList.remove('active');
+            } else {
+                // Otherwise → add it
+                selected.push(value);
+                button.classList.add('active');
+            }
+
+            console.log("✅ User conditions:", user.preferences.conditions);
+
+            updateSummary();
+        }
+
+
+        function normalize(str) {
+            return typeof str === "string"
+                ? str
+                    .toLowerCase()
+                    .replace(/[\u2010-\u2015]/g, "-") // normalize weird hyphens
+                    .replace(/&/g, "and")            // unify "&"
+                    .replace(/-/g, " ")              // remove hyphens
+                    .replace(/\s+/g, " ")            // collapse spaces
+                    .trim()
+                : "";
+        }
+
+        function tagMatchesBall(tag, ball) {
+            const tagNorm = normalize(tag);
+
+            const attributes = Object.values(ball.attributes)
+                .flat()
+                .filter(Boolean)
+                .map(v => normalize(v));
+
+            return attributes.some(attr => {
+                if (attr === tagNorm) return true;
+
+                if (
+                    (attr.includes("solid") && tagNorm.includes("solid")) ||
+                    (attr.includes("pearl") && tagNorm.includes("pearl")) ||
+                    (attr.includes("hybrid") && tagNorm.includes("hybrid")) ||
+                    (attr.includes("symmetric") && tagNorm.includes("symmetric")) ||
+                    (attr.includes("asymmetric") && tagNorm.includes("asymmetric")) ||
+                    (attr.includes("urethane") && tagNorm.includes("urethane")) ||
+                    (attr.includes("smooth") && tagNorm.includes("smooth")) ||
+                    (attr.includes("arc") && tagNorm.includes("arc")) ||
+                    (attr.includes("angular") && tagNorm.includes("angular"))
+                ) {
+                    return true;
+                }
+
+                return false;
+            });
+        }
+
+        function findMatches(user, balls) {
+            const results = [];
+
+            // ✅ Pull correct data path
+            const userTags = (user.preferences?.tags || []).map(t => t.toLowerCase().trim());
+            const userConditions = [
+                ...(user.preferences?.conditions?.oilVolume || []),
+                ...(user.preferences?.conditions?.laneTransition || []),
+                ...(user.preferences?.conditions?.patternLength || [])
+            ].map(c => c.toLowerCase().trim());
+            const goal = (user.goal || "").toLowerCase().trim();
+
+            // 🔥 GLOBAL NORMALIZATION
+            const userTagsNorm = userTags.map(normalize);
+            const userCondsNorm = userConditions.map(normalize);
+
+            for (const ball of balls) {
+                // ❌ Skip any ball the user already owns
+                if (user.selectedBalls.includes(ball.name)) {
+                    console.log(`⏭️ Skipping ${ball.name} — user already owns it`);
+                    continue;
+                }
+
+                let score = 0;
+                const breakdown = [];
+
+                // --- Normalize ball attributes ---
+                const attrs = ball.attributes || {};
+                const motionShape = (attrs.motion_shape || []).map(normalize);
+                const hookPhaseTiming = (attrs.hook_phase_timing || []).map(normalize);
+                const frictionResponseArray = Array.isArray(attrs.friction_response)
+                    ? attrs.friction_response.map(normalize)
+                    : [normalize(attrs.friction_response || "")];
+                const laneFit = (attrs.lane_condition_fit || []).map(normalize);
+                const oilFit = (attrs.oil_volume_fit || []).map(normalize);
+                const lengthFit = (attrs.pattern_length_fit || []).map(normalize);
+                const perceivedFeelArray = Array.isArray(attrs.perceived_feel)
+                    ? attrs.perceived_feel.map(normalize)
+                    : [normalize(attrs.perceived_feel || "")];
+
+                // ---------------------------------------------------
+                // 🟩 TAG MATCH SCORING
+                // ---------------------------------------------------
+                for (const tag of userTagsNorm) {
+                    if (
+                        motionShape.includes(tag) ||
+                        hookPhaseTiming.includes(tag) ||
+                        frictionResponseArray.includes(tag) ||   // ✅ updated here
+                        perceivedFeelArray.includes(tag) ||
+                        normalize(attrs.coverstock || "").includes(tag)
+                    ) {
+                        score += 10;
+                        breakdown.push(`+10 tag match → ${tag}`);
+                    }
+                }
+
+                // ---------------------------------------------------
+                // 🟩 LANE CONDITION FIT SCORING (Additive per category)
+                // ---------------------------------------------------
+                const laneKeys = ["lane_condition_fit", "oil_volume_fit", "pattern_length_fit"];
+                let condScore = 0;
+
+                for (const cond of userCondsNorm) {
+                    const c = cond ? cond.toLowerCase() : "";
+
+                    for (const key of laneKeys) {
+                        const attrArray = (attrs[key] || []).map(normalize);
+                        let points = 0;
+
+                        if (c && attrArray.includes(c)) {
+                            points = 10;
+                        } else if (
+                            c &&
+                            attrArray.some(
+                                a =>
+                                    typeof a === "string" &&
+                                    (a.includes(c.split("-")[0]) || c.includes(a.split("-")[0]))
+                            )
+                        ) {
+                            points = 5;
+                        }
+
+                        if (points > 0) {
+                            condScore += points;
+                            breakdown.push(`+${points} ${key} match → ${cond}`);
+                        }
+                    }
+                }
+
+                score += condScore * 1.5; // weighted multiplier
+
+                // ---------------------------------------------------
+                // 🟩 COMPLEMENT LOGIC (Refined pairing system + smart fuzzy matching)
+                // ---------------------------------------------------
+                let complementBonus = 0;
+
+                if (goal.includes("complement")) {
+                    const hasSmoothTags = userTags.some(t =>
+                        ["smooth", "arc", "predictable", "controlled", "benchmark"].some(k => t.includes(k))
+                    );
+                    const hasAngularTags = userTags.some(t =>
+                        ["angular", "skid", "flip", "backend", "responsive"].some(k => t.includes(k))
+                    );
+
+                    const shapeOverlap = motionShape.some(m => userTags.includes(m));
+
+                    // --- SMART FUZZY CHECK FOR CONDITION OVERLAP ---
+                    const normalizeCond = c => c.replace(/[-\s]/g, "").toLowerCase();
+
+                    const fuzzyOilMatch = (a, b) => {
+                        const A = normalizeCond(a);
+                        const B = normalizeCond(b);
+                        return (
+                            A === B ||
+                            (A.includes("medium") && B.includes("medium")) || // Medium overlaps Medium-Heavy/Light
+                            (A.includes("heavy") && B.includes("mediumheavy")) ||
+                            (A.includes("light") && B.includes("mediumlight"))
+                        );
+                    };
+
+                    const conditionOverlap =
+                        laneFit.some(l => userConditions.includes(l)) ||
+                        oilFit.some(o => userConditions.some(c => fuzzyOilMatch(o, c))) ||
+                        lengthFit.some(len => userConditions.some(c => normalizeCond(len) === normalizeCond(c)));
+
+                    // 🌊 Condition Complement → same shape, different condition zone
+                    if (shapeOverlap && !conditionOverlap) {
+                        complementBonus += 8;
+                        breakdown.push("+8 complement: same shape, new lane zone (condition complement)");
+                    }
+
+                    // ⚡️ Shape Complement → different shape, same condition
+                    else if (!shapeOverlap && conditionOverlap) {
+                        complementBonus += 8;
+                        breakdown.push("+8 complement: different shape within same lane zone (shape complement)");
+                    }
+
+                    // 🧩 Too Similar → same shape + same condition
+                    else if (shapeOverlap && conditionOverlap) {
+                        complementBonus -= 5;
+                        breakdown.push("−5 complement: too similar in shape and zone");
+                    }
+                }
+
+                score += complementBonus;
+
+                // ---------------------------------------------------
+                // 🟩 MISMATCH PENALTY
+                // ---------------------------------------------------
+                const hasConditionMatch = laneFit.some(l => userConditions.includes(l));
+                if (!hasConditionMatch) {
+                    score -= 10;
+                    breakdown.push("−10 no lane condition match");
+                }
+
+                results.push({
+                    ball,
+                    score: Math.max(score, 0),
+                    breakdown,
+                });
+            }
+
+            // ---------------------------------------------------
+            // 🟩 Sort and return top 3
+            // ---------------------------------------------------
+            results.sort((a, b) => b.score - a.score);
+            return results.slice(0, 3);
+        }
+
+        function generateExplanation(ball, breakdown, user) {
+            let message = [];
+
+            const hasTagMatches = breakdown.some(b => b.includes("tag match"));
+            const hasComplement = breakdown.some(b => b.includes("complement"));
+            const hasTooSimilar = breakdown.some(b => b.includes("too similar"));
+            const hasConditionMatch = breakdown.some(b => b.includes("condition"));
+
+            if (hasTagMatches) {
+                const tags = breakdown
+                    .filter(b => b.includes("tag match"))
+                    .map(b => b.split("→")[1].trim());
+                message.push(`It aligns with the style traits you selected (${tags.join(", ")}).`);
+            }
+
+            if (hasComplement && !hasTagMatches) {
+                message.push(
+                    `Even though its motion differs from what you selected, ` +
+                    `it intentionally complements your current arsenal with a different look.`
+                );
+            }
+
+            if (hasConditionMatch) {
+                message.push(`It matches the lane conditions you selected.`);
+            }
+
+            if (hasTooSimilar) {
+                message.push(`Balls too similar to what you already own were avoided.`);
+            }
+
+            if (message.length === 0) {
+                message.push(`This ball fills a meaningful performance gap in your current lineup.`);
+            }
+
+            return message.join(" ");
+        }
+
+        function findAndDisplayMatches() {
+            const results = findMatches(user, balls);
+            displayResults(results);
+            console.log("✅ Results generated:", results);
+            results.forEach(r => console.log(`${r.ball.name}: ${r.score}`, r.breakdown));
+        }
+
+        /* ============================================
+           DISPLAY RESULTS (with fallback)
+        ============================================ */
+        function displayResults(sortedResults) {
+            const container = document.getElementById("results");
+            container.innerHTML = "";
+
+            if (sortedResults.length === 0) {
+                container.innerHTML = "<p>No suitable matches found. Try different choices!</p>";
+                return;
+            }
+
+            sortedResults.forEach(({ ball, score, breakdown }) => {
+                const explanation = generateExplanation(ball, breakdown, user);
+
+                container.innerHTML += `
+        <div class="result-card">
+            <img src="${ball.image}" alt="${ball.name}">
+            <h3>${ball.name}</h3>
+            <p>${ball.description}</p>
+            <small>Match Score: ${score}</small>
+            <p class="explanation">${explanation}</p>
+        </div>`;
+            });
+
+            nextStep('step11-conditions', 'results-screen');
+            updateSummary();
+        }
+
+        /* ============================================
+    START OVER (SAFE RESET)
+ ============================================ */
+        function resetMatchmaker() {
+
+            /* 1️⃣ RESET USER DATA (KEEP STRUCTURE) */
+            user = {
+                ownsBall: null,
+                goal: null,
+                selectedBalls: [],
+                preferences: {
+                    category: null,
+                    tags: [],
+                    conditions: {
+                        oilVolume: [],
+                        laneTransition: [],
+                        patternLength: []
+                    }
+                }
+            };
+
+            /* 2️⃣ CLEAR ACTIVE STATES (buttons + cards) */
+            document.querySelectorAll(".active").forEach(el => {
+                el.classList.remove("active");
+            });
+
+            /* 3️⃣ CLEAR SUMMARY */
+            const summaryList = document.getElementById("summaryList");
+            if (summaryList) summaryList.innerHTML = "";
+
+            /* 4️⃣ CLEAR RESULTS */
+            const results = document.getElementById("results");
+            if (results) results.innerHTML = "";
+
+            /* 5️⃣ CLEAR ARSENAL DISPLAY */
+            const arsenalList = document.getElementById("arsenal-list");
+            if (arsenalList) arsenalList.innerHTML = "";
+
+            /* 6️⃣ HIDE ALL STEPS */
+            document.querySelectorAll("section").forEach(sec => {
+                sec.classList.add("hidden");
+            });
+
+            /* 7️⃣ SHOW START SCREEN */
+            const start = document.getElementById("start-screen");
+            if (start) start.classList.remove("hidden");
+
+            /* 8️⃣ RESET SUMMARY STATE */
+            updateSummary();
+
+            /* 9️⃣ SCROLL TO TOP */
+            window.scrollTo({ top: 0, behavior: "smooth" });
+
+            console.log("Matchmaker fully reset.");
+        }
+
+
+        /* ============================================
+           BACK BUTTON
+        ============================================ */
+        let stepHistory = [];
+
+        function nextStep(current, next) {
+            stepHistory.push(current);
+
+            document.querySelector(`#${current}`).classList.add("hidden");
+            document.querySelector(`#${next}`).classList.remove("hidden");
+
+            updateSummary();
+
+            // ✅ Reset scroll position for new step
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        function goBack() {
+            if (stepHistory.length > 0) {
+                const lastStep = stepHistory.pop();
+
+                document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+                document.getElementById(lastStep).classList.remove("hidden");
+
+                updateSummary();
+
+                // ✅ Reset scroll position when going back
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        }
+
+        /* ============================================
+            UPDATE SUMMARY BOX
+        ============================================ */
+        function updateSummary() {
+            const list = document.getElementById("summaryList");
+            if (!list) return;
+            list.innerHTML = "";
+
+            // Step 1 – owns a ball
+            if (user.ownsBall !== null) {
+                list.innerHTML += `<li><strong>Owns Ball:</strong> ${user.ownsBall ? "Yes" : "No"}</li>`;
+            }
+
+            // Step 2 – goal
+            if (user.goal) {
+                list.innerHTML += `<li><strong>Goal:</strong> ${user.goal}</li>`;
+            }
+
+            // Step 3 – selected balls
+            if (user.selectedBalls.length > 0) {
+                list.innerHTML += `<li><strong>Current Arsenal:</strong><br>${user.selectedBalls.join(", ")}</li>`;
+            }
+
+            // Step 4 – category & tags
+            if (user.preferences.tags.length > 0) {
+                list.innerHTML += `<li><strong>Selected Tags:</strong><br>${user.preferences.tags.join(", ")}</li>`;
+            }
+
+            // Step 5 – lane conditions
+            const allConditions = [
+                ...(user.preferences.conditions.oilVolume || []),
+                ...(user.preferences.conditions.laneTransition || []),
+                ...(user.preferences.conditions.patternLength || [])
+            ];
+            if (allConditions.length > 0) {
+                list.innerHTML += `<li><strong>Lane Conditions:</strong><br>${allConditions.join(", ")}</li>`;
+            }
+        }
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            /* INIT */
+            populateBallOptions();
+            updateSummary();
+
+            /* CLOSE POPUP VIA X */
+            const closeBtn = document.querySelector(".info-popup-close");
+            if (closeBtn) {
+                closeBtn.addEventListener("click", closePopup);
+            }
+
+            /* CLOSE POPUP VIA BACKDROP */
+            const overlay = document.getElementById("info-popup-overlay");
+            if (overlay) {
+                overlay.addEventListener("click", e => {
+                    if (e.target.id === "info-popup-overlay") {
+                        closePopup();
+                    }
+                });
+            }
+
+            /* 🔍 EXPLORE BUTTON HANDLERS */
+            document.querySelectorAll(".explore-trigger").forEach(btn => {
+                btn.addEventListener("click", e => {
+                    e.preventDefault();
+                    const targetId = btn.dataset.target;
+                    const content = document.getElementById(targetId);
+                    if (!content) return;
+
+                    openPopup(content.innerHTML);
+                });
+            });
+        });
+    </script>
+</body>

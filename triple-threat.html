@@ -13,7 +13,7 @@
 </head>
 
 
-<body>
+<body class="triple-threat">
 
     <header class="nav-bar"></header>
 
@@ -1252,29 +1252,12 @@
         <img src="assets/shred-cursor.png" alt="Snowboarder Cursor">
     </div>
     <div id="trail-container"></div>
-
-
-
-
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="/medias/DrawSVGPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EaselPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/PixiPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/smooth-scrollbar"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/DrawSVGPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script src="main.js"></script>
 
 
@@ -1624,231 +1607,10 @@
     </script>
 
 
-    <!-- GSAP ------------------------------------------------------- -->
-
-    <!-- PAGE LOAD -->
-    <script>
+    
 
 
 
-        gsap.from(".dual-threat-text-header svg path", {
-            duration: 1,
-            opacity: 0,
-            scale: 0.8,
-            stagger: 0.05,
-            ease: "power2.out"
-        });
-
-        gsap.from(".dual-threat-destruction svg path", {
-            duration: 1.2,
-            opacity: 0,
-            scale: 0.8,
-            stagger: 0.05,
-            ease: "power2.out",
-            delay: 0.5
-        });
-
-
-        gsap.to(".scroll-arrow", {
-            y: -10, // Moves the arrow up by 10 pixels
-            duration: 0.6,
-            repeat: -1, // Infinite loop
-            yoyo: true, // Reverse the animation
-            ease: "power1.inOut" // Smooth easing effect
-        });
-
-
-    </script>
-
-    <!-- SCROLL ARROW -->
-    <script>
-        // Hide the element initially (display: none)
-        gsap.set(".roto-scroll-to-continue", { display: "none" });
-
-        // Show it after 1 second
-        gsap.to(".roto-scroll-to-continue", { display: "block", delay: 1 });
-
-        // Arrow bounce animation
-        gsap.to(".scroll-arrow", {
-            y: -10,
-            duration: 0.6,
-            repeat: -1,
-            yoyo: true,
-            ease: "power1.inOut"
-        });
-    </script>
-
-
-
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Animate the first stripe to scroll from right to left
-        gsap.from(".stripe1", {
-            xPercent: -100,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".dominate-section",
-                start: "top 80%",
-                end: "top 50%",
-                toggleActions: "play none none reverse",
-
-            }
-        });
-
-        // Animate the second stripe to scroll from left to right
-        gsap.from(".stripe2", {
-            xPercent: 100,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".dominate-section",
-                start: "top 80%",
-                end: "top 50%",
-                toggleActions: "play none none reverse",
-
-            }
-        });
-
-
-        // Fade in the h3 inside .threat-ball-intro
-        gsap.from(".threat-ball-intro h3", {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".threat-ball-intro",
-                start: "top 80%",
-                toggleActions: "play none none reverse",
-
-            }
-        });
-
-
-        // Fade in the images with class .rockstar and .hyperdrive
-        gsap.from([".rockstar", ".hyperdrive"], {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".threat-ball-intro",
-                start: "top 80%",
-                toggleActions: "play none none reverse"
-            }
-        });
-
-        // Fade in reaction graphs when scrolling
-        gsap.from(".reaction-graph-container", {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".storm-button-container-6",
-                start: "top 80%",
-                toggleActions: "play none none reverse",
-
-            }
-        });
-
-        // Text reveal animation for .dual-threat-video-compare and .rg-smile
-        gsap.from([".dual-threat-video-compare h3", ".dual-threat-video-compare h1", ".rg-smile"], {
-            opacity: 0,
-            y: 50,
-            duration: 1.2,
-            ease: "power2.out",
-            stagger: 0.2,
-            scrollTrigger: {
-                trigger: ".dual-threat-video-compare",
-                start: "top 75%",
-                toggleActions: "play none none reverse"
-            }
-        });
-
-
-        // Compare meter
-        gsap.from(".compare-meter-section h1", {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".compare-meter-section",
-                start: "top 75%",
-                toggleActions: "play none none reverse"
-            }
-        });
-
-        gsap.from(".meter-oil-level img", {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.2, // Delay each image slightly
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".compare-meter-section",
-                start: "top 75%",
-                toggleActions: "play none none reverse"
-            }
-        });
-
-        gsap.from(".compare-meter-section svg", {
-            opacity: 0,
-            scale: 0.8,
-            rotate: 5, // Slight rotation effect
-            duration: 1.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".compare-meter-section",
-                start: "top 75%",
-                toggleActions: "play none none reverse"
-            }
-        });
-
-
-        // Aparrel section
-
-        gsap.from(".look-svg", {
-            opacity: 0,
-            scale: 0.8,
-            duration: 1.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".dual-threat-style",
-                start: "top 75%",
-                toggleActions: "play none none reverse"
-            }
-        });
-
-        gsap.from(".title-with-button-container", {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".dual-threat-style",
-                start: "top 75%",
-                toggleActions: "play none none reverse"
-            }
-        });
-
-        gsap.from(".rg-dual-threat-apparel img", {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.2, // Each image fades in sequentially
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".dual-threat-style",
-                start: "top 75%",
-                toggleActions: "play none none reverse"
-            }
-        });
-
-
-
-
-    </script>
+    
 
 </body>

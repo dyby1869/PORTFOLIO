@@ -21,9 +21,9 @@
     font-size: 288px;
 }
 
-.hero-container {
+.equinox-hero-container {
     height: 100vh !important;
-    overflow: hidden;
+  
     position: relative;
 }
 
@@ -33,9 +33,9 @@
 
 
     /* hero text */
-    .hero-container {
+    .equinox-hero-container {
         height: 80vh !important;
-        overflow: hidden;
+      
         position: relative;
     }
 
@@ -390,6 +390,16 @@ h6 {
     justify-content: left !important;
     margin-top: 32px;
 
+}
+
+.storm-button-container-3 {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-direction: row;
+    margin: auto;
+    margin-top: 24px !important;
 }
 
 @media (min-width: 320px) and (max-width: 768px) {

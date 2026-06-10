@@ -16,7 +16,7 @@
 </head>
 
 
-<body>
+<body class="vengeance">
 
     <header class="nav-bar"></header>
     
@@ -518,9 +518,9 @@
                 </div>
 
                 <div class="leaderboard-parameters dark-green-text">
-                    <p>Player</p>
-                    <p>Score</p>
-                    <p>Played On</p>
+                    <p class="black-text">Player</p>
+                    <p class="black-text">Score</p>
+                    <p class="black-text">Played On</p>
                 </div>
 
                 <div class="leaderboard-container">
@@ -787,12 +787,10 @@
         <img src="assets/shred-cursor.png" alt="Snowboarder Cursor">
     </div>
     <div id="trail-container"></div>
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
+            <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/DrawSVGPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script src="main.js"></script>
 
 
@@ -1020,10 +1018,6 @@
         updatePagination();
     </script>
 
-    <!-- GSAP -->
-    <!-- GSAP -->
-    <script>
-        document.querySelector(".vengeance-bw-ball").style.opacity = "0";
-        gsap.to(".vengeance-bw-ball", { opacity: 1, duration: 2, ease: "power2.out", delay: 0.3 });
-    </script>
+
+    
 </body>
