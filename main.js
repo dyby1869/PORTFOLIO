@@ -774,6 +774,28 @@ if (document.body.classList.contains("about")) {
       document.body.style.overflow = "";
     });
 
+
+    // -------------------------------------------------------------------------
+    // Beyond Work tab switcher
+    // -------------------------------------------------------------------------
+    const tabButtons = document.querySelectorAll("#beyond-work-tabs .toggle-button");
+    const tabPanels = document.querySelectorAll(".beyond-work-tab");
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.tab;
+
+        // Update button states
+        tabButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        // Show matching panel, hide others
+        tabPanels.forEach(panel => {
+          panel.style.display = panel.dataset.tab === target ? "block" : "none";
+        });
+      });
+    });
+
     ScrollTrigger.refresh();
 
   }); // end window load
@@ -1527,3 +1549,4 @@ if (document.body.classList.contains("ion-max")) {
   });
 
 } // end ion-max block
+
