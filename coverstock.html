@@ -8,1504 +8,661 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+
+    <link href="commerce-style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="web-page-style.css">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<style>
-    /* =========================================================
-       STORM COVERSTOCK SYSTEM – 1:1 FULL REPLACEMENT
-    ========================================================= */
 
-    :root {
-        --spi-bg-deep: #0b0f14;
-        --spi-bg-mid: #0f141b;
-        --spi-bg-soft: #121821;
-        --spi-bg-card: #5F716F;
 
-        --spi-electric: #00e6c3;
-        --spi-electric-deep: #008675;
-        --spi-electric-glow: rgba(0, 230, 195, 0.25);
+<body>
 
-        --spi-text-main: #ffffff;
-        --spi-text-muted: rgba(255, 255, 255, 0.65);
-        --spi-border-subtle: rgba(0, 230, 195, 0.08);
-    }
+    <header class="nav-bar"></header>
+    <div class="intro-container">
 
-    /* =========================================================
-       GLOBAL ATMOSPHERE
-    ========================================================= */
+        <h1 class="center-text ">THE COVERSTOCK</h1>
+        <h2 class="center-text h-md" style="font-style: unset !important; font-family:unset !important;">The Biggest
+            Impact
+            On Ball Motion</h3>
 
-    .spi-atmosphere {
-        background:
-            radial-gradient(circle at 15% 0%, rgba(0, 230, 195, 0.08), transparent 60%),
-            radial-gradient(circle at 85% 40%, rgba(0, 134, 117, 0.06), transparent 60%),
-            #0b0f14;
-        color: #ffffff;
-    }
+    </div>
 
-    /* =========================================================
-       COVER TYPE SECTION
-    ========================================================= */
 
-    .cover-type-section {
-        padding: 120px 24px;
-    }
+    <section class="spi-atmosphere">
 
-    .cover-type-section h2 {
-        margin-bottom: 16px;
-        font-size: 42px;
-        letter-spacing: 1px;
-    }
+        <section class="cover-type-section  ">
 
-    .cover-type-section .body-text {
-        max-width: 760px;
-        margin: 0 auto 80px auto;
-        opacity: .75;
-        font-size: 18px;
-        line-height: 1.6;
-    }
+            <h2 class="center-text">UNDERSTANDING COVER TYPES</h2>
 
-    /* GRID */
+            <div class="cover-grid">
 
-    .cover-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 32px;
-        max-width: 1600px;
-        margin: 0 auto;
-        margin-top: 48px;
-    }
 
-    /* CARD */
+                <!-- URETHANE -->
+                <div class="cover-card urethane">
+                    <h3>URETHANE</h3>
 
-    .cover-card {
-        background:
-            linear-gradient(145deg, var(--spi-bg-card), var(--spi-bg-mid));
+                    <div class="motion-visual">
+                        <img
+                            src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/cover-types/urethane.png">
+                    </div>
 
-        padding: 24px;
-        position: relative;
-        overflow: hidden;
-        transition: all .35s ease;
-        backdrop-filter: blur(6px);
-        border-radius: 16px;
-    }
+                    <div class="cover-data">
+                        <div>
+                            <span>Typical Hook Strength</span>
+                            <strong>Early | Midlane</strong>
+                        </div>
+                        <div>
+                            <span>Common Motion Shape</span>
+                            <strong>Smooth | Round</strong>
+                        </div>
+                        <div>
+                            <span>Friction Response</span>
+                            <strong>Very Slow | Slow</strong>
+                        </div>
+                    </div>
 
-    .cover-card:hover {
-        transform: translateY(-6px);
-        border-color: rgba(0, 230, 195, 0.25);
-        box-shadow: 0 10px 30px var(--spi-electric-glow);
-    }
-
-    /* .cover-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(90deg, var(--spi-electric), var(--spi-electric-deep));
-    } */
-
-    /* remove rainbow accents */
-    .cover-card.solid::before,
-    .cover-card.pearl::before,
-    .cover-card.hybrid::before,
-    .cover-card.urethane::before {
-        background: linear-gradient(90deg, var(--spi-electric), var(--spi-electric-deep));
-    }
-
-    /* TYPOGRAPHY */
-
-    .cover-card h3 {
-        font-size: 20px;
-        letter-spacing: 1px;
-        margin-bottom: 32px;
-    }
-
-    .motion-visual {
-        background: radial-gradient(circle at 50% 50%, rgba(0, 230, 195, 0.08), transparent 70%);
-        margin-bottom: 32px;
-        border-radius: 16px;
-        overflow: hidden;
-    }
-
-    .cover-data {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        margin-bottom: 28px;
-    }
-
-    .cover-data div {
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid rgba(0, 230, 195, 0.12);
-        padding-bottom: 8px;
-    }
-
-    .cover-data span {
-        font-size: 13px !important;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        opacity: .6;
-    }
-
-    .cover-data strong {
-        font-size: 14px;
-        font-weight: 600;
-    }
-
-    .cover-note {
-        font-size: 14px;
-        line-height: 1.6;
-        opacity: .75;
-    }
-
-    /* =========================================================
-       COVER TECH SECTION
-    ========================================================= */
-
-    .cover-tech-section {
-        padding: 120px 24px;
-    }
-
-    .tech-header {
-        max-width: 900px;
-        margin: 0 auto 80px auto;
-        text-align: center;
-    }
-
-    .tech-header h2 {
-        font-size: 38px;
-        margin-bottom: 20px;
-    }
-
-    .tech-header p {
-        opacity: .75;
-        line-height: 1.6;
-        font-size: 18px;
-    }
-
-    .tech-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 32px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .tech-card {
-        background:
-            linear-gradient(145deg, var(--spi-bg-card), var(--spi-bg-soft));
-
-        padding: 40px;
-        transition: .35s ease;
-        width: unset !important;
-    }
-
-    .tech-card:hover {
-        transform: translateY(-6px);
-        border-color: rgba(0, 230, 195, 0.25);
-        box-shadow: 0 10px 30px var(--spi-electric-glow);
-    }
-
-    .tech-card h3 {
-        font-size: 20px;
-        margin-bottom: 20px;
-    }
-
-    .tech-card ul {
-        margin-bottom: 20px;
-        padding-left: 18px;
-    }
-
-    .tech-card ul li {
-        font-size: 14px;
-        margin-bottom: 8px;
-        opacity: .85;
-    }
-
-    .tech-card p {
-        font-size: 14px;
-        line-height: 1.6;
-        opacity: .75;
-    }
-
-    /* =========================================================
-       ALT STRATEGY SECTION
-    ========================================================= */
-
-    .cover-strategy-alt {
-        padding: 140px 24px;
-    }
-
-    .strategy-header {
-        text-align: center;
-        max-width: 900px;
-        margin: 0 auto 100px auto;
-    }
-
-    .strategy-header h2 {
-        font-size: 42px;
-        margin-bottom: 20px;
-        letter-spacing: 1px;
-    }
-
-    .strategy-header p {
-        opacity: .75;
-        font-size: 18px;
-    }
-
-    .player-row {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        padding: 60px 32px;
-        border-top: 1px solid var(--spi-border-subtle);
-        max-width: 1200px;
-        margin: 0 auto;
-        transition: .3s ease;
-    }
-
-    .player-row:last-child {
-        border-bottom: 1px solid var(--spi-border-subtle);
-    }
-
-    .player-row:hover {
-        background: rgba(0, 230, 195, 0.03);
-    }
-
-    .player-label {
-        width: 30%;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-    }
-
-    .player-label h3 {
-        font-size: 26px;
-        letter-spacing: 1px;
-    }
-
-    .player-content {
-        width: 65%;
-    }
-
-    .player-content ul {
-        margin-bottom: 16px;
-        padding-left: 18px;
-    }
-
-    .player-content ul li {
-        font-size: 15px;
-        margin-bottom: 6px;
-        opacity: .9;
-    }
-
-    .player-content p {
-        font-size: 14px;
-        opacity: .7;
-        line-height: 1.6;
-    }
-
-    /* =========================================================
-       MOTION PHASE SECTION
-    ========================================================= */
-
-    .motion-phase-section {
-        padding: 160px 24px;
-    }
-
-    .motion-header {
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto 120px auto;
-    }
-
-    .motion-header h2 {
-        font-size: 42px;
-        margin-bottom: 20px;
-    }
-
-    .motion-header p {
-        opacity: .7;
-        font-size: 18px;
-    }
-
-    .phase-divider {
-        width: 120px;
-        height: 2px;
-        background: linear-gradient(90deg, var(--spi-electric), var(--spi-electric-deep));
-        box-shadow: 0 0 16px var(--spi-electric-glow);
-        margin-top: 60px;
-    }
-
-    .phase-track {
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        gap: 40px;
-        position: relative;
-        margin-bottom: 64px;
-    }
-
-
-
-    .phase-block {
-        max-width: 280px;
-    }
-
-    .phase-label {
-        font-size: 12px;
-        letter-spacing: 2px;
-        opacity: 0.5;
-        margin-bottom: 8px;
-    }
-
-    .phase-block h3 {
-        font-size: 28px;
-        margin-bottom: 20px;
-    }
-
-    .phase-core {
-        font-weight: 600;
-        margin-bottom: 12px;
-    }
-
-    .phase-cover {
-        opacity: 0.7;
-        line-height: 1.6;
-    }
-
-    /* Phase Descriptor */
-    .phase-description {
-        font-size: 14px;
-        opacity: 0.6;
-        margin-bottom: 22px;
-        line-height: 1.4;
-    }
-
-    /* List Styling */
-    .lane-phase ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .lane-phase li {
-        margin-bottom: 18px;
-        line-height: 1.6;
-        padding-left: 14px;
-        position: relative;
-        color: #fff !important;
-        font-size: 14px;
-    }
-
-    /* Subtle left marker instead of bullets */
-    .lane-phase li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 8px;
-        width: 4px;
-        height: 14px;
-        background: rgba(255, 255, 255, 0.25);
-        border-radius: 2px;
-    }
-
-    /* Strong label emphasis */
-    .lane-phase li strong {
-        font-weight: 700;
-    }
-
-    .motion-clarity {
-        margin-top: 140px;
-        display: flex;
-        justify-content: center;
-        gap: 60px;
-        font-weight: 600;
-        opacity: 0.85;
-    }
-
-    /* =========================================================
-       INSIGHT CARDS
-    ========================================================= */
-
-    .cover-insight-section {
-        padding: 160px 0;
-        overflow: hidden;
-    }
-
-    .insight-header {
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto 48px auto;
-        padding: 0 24px;
-    }
-
-    .insight-header h2 {
-        font-size: 40px;
-        margin-bottom: 16px;
-    }
-
-    .insight-header p {
-        opacity: .7;
-        font-size: 18px;
-    }
-
-    .insight-scroll {
-        display: flex;
-        gap: 40px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-    }
-
-    .insight-scroll::-webkit-scrollbar {
-        display: none;
-    }
-
-    .insight-card {
-        max-width: 800px;
-        background:
-            linear-gradient(145deg, var(--spi-bg-card), var(--spi-bg-mid));
-
-        border-radius: 20px;
-        padding: 48px;
-
-        scroll-snap-align: start;
-        transition: .35s ease;
-        margin: auto;
-    }
-
-    .insight-card:hover {
-        transform: translateY(-6px);
-        border-color: rgba(0, 230, 195, 0.25);
-    }
-
-    .insight-split {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
-        margin-bottom: 28px;
-    }
-
-    .insight-columns {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-    }
-
-    .insight-note {
-        margin-top: 30px;
-        opacity: .6;
-        font-size: 15px;
-    }
-
-    /* =========================================================
-       AGING SECTION
-    ========================================================= */
-
-    .cover-aging-section {
-        padding: 160px 24px;
-    }
-
-    .cover-aging-inner {
-        max-width: 1100px;
-        margin: 0 auto;
-    }
-
-    .aging-flow {
-        display: flex;
-        justify-content: space-between;
-        gap: 40px;
-        position: relative;
-        margin-bottom: 100px;
-        margin-top: 48px;
-    }
-
-    .aging-flow::before {
-        content: "";
-        position: absolute;
-        top: 30px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: rgba(0, 230, 195, 0.15);
-    }
-
-    .aging-stage {
-        position: relative;
-        max-width: 220px;
-    }
-
-    .aging-stage::before {
-        content: "";
-        position: absolute;
-        top: 25px;
-        left: -2px;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: var(--spi-electric);
-    }
-
-    .aging-label {
-        font-size: 12px;
-        letter-spacing: 1px;
-        opacity: 0.5;
-        display: block;
-        margin-bottom: 25px;
-    }
-
-    .aging-stage h3 {
-        margin-bottom: 8px;
-    }
-
-    .aging-stage p {
-        opacity: 0.7;
-        font-size: 15px;
-        line-height: 1.5;
-    }
-
-    .restore::before {
-        background: #008675;
-    }
-
-    /* =========================================================
-       REACTION BARS
-    ========================================================= */
-
-    .reaction-bars {
-        max-width: 900px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 32px;
-    }
-
-    .reaction-bar {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .bar-label {
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: .05em;
-        text-transform: uppercase;
-        opacity: .8;
-    }
-
-    .bar-track {
-        display: flex;
-        height: 28px;
-        border-radius: 6px;
-        overflow: hidden;
-        background: rgba(0, 230, 195, 0.06);
-    }
-
-    .segment {
-        height: 100%;
-    }
-
-    .segment.skid {
-        background: #8ad9e8;
-    }
-
-    .segment.hook {
-        background: #ffe58a;
-    }
-
-    .segment.roll {
-        background: #82e6b5;
-    }
-
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
-
-    @media(max-width:1024px) {
-
-        .cover-grid,
-        .tech-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .cover-type-section,
-        .cover-tech-section,
-        .cover-strategy-alt,
-        .motion-phase-section,
-        .cover-aging-section {
-            padding: 80px 20px;
-        }
-
-        .cover-type-section h2 {
-            font-size: 32px;
-        }
-
-        .player-row {
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .player-label,
-        .player-content {
-            width: 100%;
-        }
-    }
-
-    /* =========================================================
-   TAB CONTAINER
-========================================================= */
-
-    .tab-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        justify-content: center;
-        margin: 60px 0 50px 0;
-    }
-
-    .tab-container button {
-        appearance: none;
-        -webkit-appearance: none;
-        border: none;
-        outline: none;
-    }
-
-    /* Base Tab */
-    .tab-container button {
-        background: var(--spi-bg-soft);
-        color: var(--spi-text-main);
-        border: 1px solid var(--spi-border-subtle);
-        padding: 10px 22px;
-        border-radius: 999px;
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: .5px;
-        cursor: pointer;
-        transition: all .25s ease;
-    }
-
-    /* Hover */
-    .tab-container button:hover {
-        background: rgba(0, 230, 195, 0.06);
-        border-color: rgba(0, 230, 195, 0.25);
-    }
-
-    /* Active */
-    .tab-container button.active {
-        background: linear-gradient(135deg,
-                var(--spi-electric),
-                var(--spi-electric));
-        color: #000;
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-    }
-
-    /* Focus */
-    .tab-container button:focus,
-    .tab-container button:focus-visible,
-    .tab-container button:active {
-        outline: none !important;
-        box-shadow: none !important;
-    }
-
-
-    /* =========================================================
-   LEGEND
-========================================================= */
-
-    .motion-legend {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        margin-bottom: 40px;
-    }
-
-    .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .legend-dot {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-    }
-
-    /* Keep phase colors subtle */
-    .legend-dot.skid {
-        background: #D1E7E1;
-    }
-
-    .legend-dot.hook {
-        background: #FFDAD7;
-    }
-
-    .legend-dot.roll {
-        background: #FCDEB5;
-    }
-
-    .legend-label {
-        font-size: 12px;
-        letter-spacing: 1px;
-        opacity: .7;
-    }
-
-
-
-
-
-    @media (max-width: 900px) {
-        .phase-track {
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .phase-divider {
-            width: 2px;
-            height: 60px;
-            margin: 0;
-        }
-
-        .motion-clarity {
-            flex-direction: column;
-            gap: 16px;
-            text-align: center;
-        }
-
-        .motion-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 64px auto;
-        }
-
-        .insight-columns {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 30px;
-        }
-
-        .insight-split {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 8px;
-            margin-bottom: 28px;
-        }
-
-        .cover-insight-section {
-            padding: 64px 16px;
-            overflow: hidden;
-        }
-
-        .aging-flow {
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-            position: relative;
-            margin-bottom: 32px;
-            margin-top: 48px;
-            flex-direction: column;
-        }
-
-        .aging-stage h3 {
-            margin-bottom: 8px;
-            margin-left: 32px;
-            font-size: 16px !important;
-        }
-
-        .aging-label {
-            font-size: 12px !important;
-            letter-spacing: 1px;
-            opacity: 0.5;
-            display: block;
-            margin-bottom: 16px;
-            margin-left: 32px;
-        }
-
-        .aging-stage p {
-            opacity: 0.7;
-            font-size: 15px;
-            line-height: 1.5;
-            margin-left: 32px;
-        }
-
-        .aging-flow::before {
-            content: "";
-            position: absolute;
-            top: 30px;
-            left: 4px;
-            right: 0;
-            height: 497px;
-            width: 2px;
-            background: rgba(0, 230, 195, 0.15);
-        }
-
-        .motion-gradient {
-            margin-bottom: 16px;
-        }
-
-        .flex-container-column {
-            display: flex;
-            flex-direction: column;
-        }
-
-
-        .ball-cover-compare-image {
-            width: 50%;
-            display: block;
-            margin: auto;
-        }
-
-
-    }
-</style>
-
-<div class="intro-container">
-
-    <h1 class="center-text ">THE COVERSTOCK</h1>
-    <h2 class="center-text h-md" style="font-style: unset !important; font-family:unset !important;">The Biggest Impact
-        On Ball Motion</h3>
-
-</div>
-
-
-<section class="spi-atmosphere">
-
-    <section class="cover-type-section  ">
-
-        <h2 class="center-text">UNDERSTANDING COVER TYPES</h2>
-
-        <div class="cover-grid">
-
-
-            <!-- URETHANE -->
-            <div class="cover-card urethane">
-                <h3>URETHANE</h3>
-
-                <div class="motion-visual">
-                    <img
-                        src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/cover-types/urethane.png">
+                    <p class="cover-note">
+                        Prioritizes control over angle creation. Used to reduce over/under
+                        and manage breakpoint volatility.
+                    </p>
                 </div>
 
-                <div class="cover-data">
-                    <div>
-                        <span>Typical Hook Strength</span>
-                        <strong>Early | Midlane</strong>
+                <!-- SOLID -->
+                <div class="cover-card solid">
+                    <h3>SOLID REACTIVE</h3>
+
+                    <div class="motion-visual">
+                        <img
+                            src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/cover-types/solid.png">
                     </div>
-                    <div>
-                        <span>Common Motion Shape</span>
-                        <strong>Smooth | Round</strong>
+
+                    <div class="cover-data">
+                        <div>
+                            <span>Typical Hook Strength</span>
+                            <strong>Early | Midlane</strong>
+                        </div>
+                        <div>
+                            <span>Common Motion Shape</span>
+                            <strong>Round | Arc</strong>
+                        </div>
+                        <div>
+                            <span>Friction Response</span>
+                            <strong>Slow | Medium</strong>
+                        </div>
                     </div>
-                    <div>
-                        <span>Friction Response</span>
-                        <strong>Very Slow | Slow</strong>
-                    </div>
+
+                    <p class="cover-note">
+                        Prioritizes traction and blend. Often used when oil volume demands stability
+                        or when smoother transitions are required.
+                    </p>
                 </div>
 
-                <p class="cover-note">
-                    Prioritizes control over angle creation. Used to reduce over/under
-                    and manage breakpoint volatility.
-                </p>
+                <!-- HYBRID -->
+                <div class="cover-card hybrid">
+                    <h3>HYBRID REACTIVE</h3>
+
+                    <div class="motion-visual">
+                        <img
+                            src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/cover-types/hybrid.png">
+                    </div>
+
+                    <div class="cover-data">
+                        <div>
+                            <span>Typical Hook Strength</span>
+                            <strong>Midlane | Late</strong>
+                        </div>
+                        <div>
+                            <span>Common Motion Shape</span>
+                            <strong>Arc | Angular </strong>
+                        </div>
+                        <div>
+                            <span>Friction Response</span>
+                            <strong>Medium | Fast</strong>
+                        </div>
+                    </div>
+
+                    <p class="cover-note">
+                        Balances traction and responsiveness. Frequently used as a
+                        benchmark-style piece when conditions are uncertain.
+                    </p>
+                </div>
+
+                <!-- PEARL -->
+                <div class="cover-card pearl">
+                    <h3>PEARL REACTIVE</h3>
+
+                    <div class="motion-visual">
+                        <img
+                            src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/cover-types/pearl.png">
+                    </div>
+
+                    <div class="cover-data">
+                        <div>
+                            <span>Typical Hook Strength</span>
+                            <strong>Late | Delayed</strong>
+                        </div>
+                        <div>
+                            <span>Common Motion Shape</span>
+                            <strong>Angular | Skid-Flip</strong>
+                        </div>
+                        <div>
+                            <span>Friction Response</span>
+                            <strong>Fast | Very Fast</strong>
+                        </div>
+                    </div>
+
+                    <p class="cover-note">
+                        Designed for energy retention and stronger friction response.
+                        Often chosen when opening the lane or chasing transition.
+                    </p>
+                </div>
+
+
+
+
             </div>
 
-            <!-- SOLID -->
-            <div class="cover-card solid">
-                <h3>SOLID REACTIVE</h3>
-
-                <div class="motion-visual">
-                    <img
-                        src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/cover-types/solid.png">
-                </div>
-
-                <div class="cover-data">
-                    <div>
-                        <span>Typical Hook Strength</span>
-                        <strong>Early | Midlane</strong>
-                    </div>
-                    <div>
-                        <span>Common Motion Shape</span>
-                        <strong>Round | Arc</strong>
-                    </div>
-                    <div>
-                        <span>Friction Response</span>
-                        <strong>Slow | Medium</strong>
-                    </div>
-                </div>
-
-                <p class="cover-note">
-                    Prioritizes traction and blend. Often used when oil volume demands stability
-                    or when smoother transitions are required.
-                </p>
-            </div>
-
-            <!-- HYBRID -->
-            <div class="cover-card hybrid">
-                <h3>HYBRID REACTIVE</h3>
-
-                <div class="motion-visual">
-                    <img
-                        src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/cover-types/hybrid.png">
-                </div>
-
-                <div class="cover-data">
-                    <div>
-                        <span>Typical Hook Strength</span>
-                        <strong>Midlane | Late</strong>
-                    </div>
-                    <div>
-                        <span>Common Motion Shape</span>
-                        <strong>Arc | Angular </strong>
-                    </div>
-                    <div>
-                        <span>Friction Response</span>
-                        <strong>Medium | Fast</strong>
-                    </div>
-                </div>
-
-                <p class="cover-note">
-                    Balances traction and responsiveness. Frequently used as a
-                    benchmark-style piece when conditions are uncertain.
-                </p>
-            </div>
-
-            <!-- PEARL -->
-            <div class="cover-card pearl">
-                <h3>PEARL REACTIVE</h3>
-
-                <div class="motion-visual">
-                    <img
-                        src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/cover-types/pearl.png">
-                </div>
-
-                <div class="cover-data">
-                    <div>
-                        <span>Typical Hook Strength</span>
-                        <strong>Late | Delayed</strong>
-                    </div>
-                    <div>
-                        <span>Common Motion Shape</span>
-                        <strong>Angular | Skid-Flip</strong>
-                    </div>
-                    <div>
-                        <span>Friction Response</span>
-                        <strong>Fast | Very Fast</strong>
-                    </div>
-                </div>
-
-                <p class="cover-note">
-                    Designed for energy retention and stronger friction response.
-                    Often chosen when opening the lane or chasing transition.
-                </p>
-            </div>
+        </section>
 
 
+        <section class="cover-strategy-alt ">
 
-
-        </div>
-
-    </section>
-
-
-    <section class="cover-strategy-alt ">
-
-        <div class="strategy-header">
-            <h2>HOW TO CHOOSE A COVER FOR YOUR GAME</h2>
-            <p>
-                Match friction timing to your speed-to-rev relationship.
-            </p>
-        </div>
-
-        <!-- Speed Dominant -->
-        <div class="player-row">
-            <div class="player-label">
-
-                <h3>Speed Dominant</h3>
-            </div>
-
-            <div class="player-content">
-                <ul>
-                    <li>Earlier traction</li>
-                    <li>Stronger solid reactive covers</li>
-                    <li>Lower grit surface finishes</li>
-                </ul>
+            <div class="strategy-header">
+                <h2>HOW TO CHOOSE A COVER FOR YOUR GAME</h2>
                 <p>
-                    When ball speed exceeds rev rate, earlier friction creates midlane stability
-                    and stronger continuation.
+                    Match friction timing to your speed-to-rev relationship.
                 </p>
             </div>
+
+            <!-- Speed Dominant -->
+            <div class="player-row">
+                <div class="player-label">
+
+                    <h3>Speed Dominant</h3>
+                </div>
+
+                <div class="player-content">
+                    <ul>
+                        <li>Earlier traction</li>
+                        <li>Stronger solid reactive covers</li>
+                        <li>Lower grit surface finishes</li>
+                    </ul>
+                    <p>
+                        When ball speed exceeds rev rate, earlier friction creates midlane stability
+                        and stronger continuation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Rev Dominant -->
+            <div class="player-row">
+                <div class="player-label">
+
+                    <h3>Rev Dominant</h3>
+                </div>
+
+                <div class="player-content">
+                    <ul>
+                        <li>Cleaner covers</li>
+                        <li>Pearls or smoother hybrids</li>
+                        <li>Higher grit surface finishes</li>
+                    </ul>
+                    <p>
+                        Higher rev players benefit from delayed friction to prevent early hook
+                        and preserve backend shape.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Balanced -->
+            <div class="player-row">
+                <div class="player-label">
+
+                    <h3>Balanced</h3>
+                </div>
+
+                <div class="player-content">
+                    <ul>
+                        <li>Benchmark reactive covers</li>
+                        <li>Hybrid reactive</li>
+                        <li>Adjust surface as needed</li>
+                    </ul>
+                    <p>
+                        Balanced players prioritize versatility and fine-tune reaction
+                        through surface adjustments.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+
+
+        <!-- WHAT MAKES A COVER STRONG? -->
+        <section class="cover-tech-section ">
+
+            <div class="tech-header">
+                <h2>WHAT MAKES A COVER STRONG?</h2>
+                <p>
+                    Cover strength isn’t determined by type alone. Chemistry, absorption, and surface
+                    finish work together to control friction timing and total traction.
+                </p>
+            </div>
+
+            <div class="tech-grid">
+
+                <!-- Resin Chemistry -->
+                <div class="tech-card">
+                    <h3>Resin Chemistry</h3>
+                    <ul>
+                        <li>Oil displacement capability</li>
+                        <li>Nano vs non-nano particle ratios</li>
+                        <li>Friction modifiers & additives</li>
+                    </ul>
+                    <p>
+                        Resin formulation determines total traction potential. Nano-enhanced covers
+                        increase surface interaction and oil displacement for stronger overall motion.
+                    </p>
+                </div>
+
+                <!-- Porosity & Absorption -->
+                <div class="tech-card">
+                    <h3>Porosity & Oil Absorption</h3>
+                    <ul>
+                        <li>Reactive absorbs oil</li>
+                        <li>Urethane absorbs minimal oil</li>
+                        <li>Absorption alters long-term performance</li>
+                    </ul>
+                    <p>
+                        Oil absorption increases friction but requires maintenance. As resin saturates,
+                        motion characteristics can change — cleaning and resurfacing restore performance.
+                    </p>
+                </div>
+
+                <!-- Surface Finish -->
+                <div class="tech-card">
+                    <h3>Surface Finish</h3>
+                    <ul>
+                        <li>Factory finish is a starting point</li>
+                        <li>Lower grit = earlier friction</li>
+                        <li>Polish = delayed response & energy retention</li>
+                    </ul>
+                    <p>
+                        Surface determines when friction occurs. It does not change chemistry —
+                        it shifts motion timing.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- COVER AGING -->
+        <section class="cover-aging-section ">
+
+            <div class="cover-aging-inner">
+
+                <h2 class="h-lg text-center">
+                    YOUR COVER TODAY & YOUR COVER 60 GAMES FROM NOW
+                </h2>
+
+                <p class="subtitle1 text-center">
+                    Performance changes gradually — until your ball’s reaction isn’t what it once was.
+                </p>
+
+                <div class="aging-flow">
+
+                    <div class="aging-stage">
+                        <span class="aging-label">Game 1</span>
+                        <h3>Fresh</h3>
+                        <p>Maximum performance. Designed motion window.</p>
+                    </div>
+
+                    <div class="aging-stage">
+                        <span class="aging-label">Game 30</span>
+                        <h3>Unmaintained</h3>
+                        <p>Lane shine & surface wear begins altering friction timing.</p>
+                    </div>
+
+                    <div class="aging-stage">
+                        <span class="aging-label">Game 60</span>
+                        <h3>Neglected</h3>
+                        <p>Dull reaction. Reduced continuation. Less predictability.</p>
+                    </div>
+
+                    <div class="aging-stage restore">
+                        <span class="aging-label">Maintenance</span>
+                        <h3>Restored</h3>
+                        <p>Cleaning and resurfacing bring reaction windows back in line.</p>
+                    </div>
+
+                </div>
+
+                <div class="storm-button-container-3">
+                    <a href="/maintenance" class="btn default">
+                        Learn About Ball Maintenance
+                    </a>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+
+
+        <!-- HOW COVERSTOCK INFLUENCES BALL MOTION -->
+        <section class="motion-phase-section ">
+
+            <div class="motion-header">
+                <h2>HOW COVERSTOCK INFLUENCES BALL MOTION</h2>
+                <p>
+                    Every bowling ball transitions through skid, hook, and roll.
+                    Coverstock determines when friction begins and how aggressively it builds.
+                </p>
+            </div>
+
+            <div class="phase-track">
+
+                <div class="phase-block">
+                    <div class="phase-label">PHASE 1</div>
+                    <h3>SKID</h3>
+                    <p class="phase-core">
+                        Friction is minimal. Direction is stable.
+                    </p>
+                    <p class="phase-cover">
+                        Stronger covers begin reading sooner. Cleaner covers extend push.
+                    </p>
+                </div>
+
+                <div class="phase-divider"></div>
+
+                <div class="phase-block">
+                    <div class="phase-label">PHASE 2</div>
+                    <h3>HOOK</h3>
+                    <p class="phase-core">
+                        Friction increases. Direction changes.
+                    </p>
+                    <p class="phase-cover">
+                        Resin chemistry controls how aggressively the ball transitions.
+                    </p>
+                </div>
+
+                <div class="phase-divider"></div>
+
+                <div class="phase-block">
+                    <div class="phase-label">PHASE 3</div>
+                    <h3>ROLL</h3>
+                    <p class="phase-core">
+                        Rotation stabilizes. Energy transfers.
+                    </p>
+                    <p class="phase-cover">
+                        Proper timing creates optimal continuation and carry.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- <div class="reaction-bars" style="margin-top:32px;">
+    
+               
+                <div class="reaction-bar">
+                    <div class="bar-label">Too Much Skid</div>
+                    <div class="bar-track">
+                        <div class="segment skid" style="width:60%"></div>
+                        <div class="segment hook" style="width:25%"></div>
+                        <div class="segment roll" style="width:15%"></div>
+                    </div>
+                </div>
+    
+              
+                <div class="reaction-bar">
+                    <div class="bar-label">Balanced</div>
+                    <div class="bar-track">
+                        <div class="segment skid" style="width:33%"></div>
+                        <div class="segment hook" style="width:33%"></div>
+                        <div class="segment roll" style="width:34%"></div>
+                    </div>
+                </div>
+    
+                <div class="reaction-bar">
+                    <div class="bar-label">Too Much Roll</div>
+                    <div class="bar-track">
+                        <div class="segment skid" style="width:20%"></div>
+                        <div class="segment hook" style="width:30%"></div>
+                        <div class="segment roll" style="width:50%"></div>
+                    </div>
+                </div>
+    
+            </div> -->
+
+
+            <div class="storm-button-container-3">
+                <a href="/maintenance" class="btn default">
+                    Learn How A Bowling Ball Hooks
+                </a>
+            </div>
+
+        </section>
+
+
+        <div class="space-container">
+
         </div>
 
-        <!-- Rev Dominant -->
-        <div class="player-row">
-            <div class="player-label">
 
-                <h3>Rev Dominant</h3>
-            </div>
+        <!-- SURFACE IS THE #1 TOOL FOR CUSTOMIZING BALL REACTION -->
+        <section class="surface-motion-demo intro-container ">
 
-            <div class="player-content">
-                <ul>
-                    <li>Cleaner covers</li>
-                    <li>Pearls or smoother hybrids</li>
-                    <li>Higher grit surface finishes</li>
-                </ul>
-                <p>
-                    Higher rev players benefit from delayed friction to prevent early hook
-                    and preserve backend shape.
-                </p>
-            </div>
-        </div>
+            <h3 class="center-text">Surface is the #1 tool bowlers use to influence motion.</h3>
 
-        <!-- Balanced -->
-        <div class="player-row">
-            <div class="player-label">
-
-                <h3>Balanced</h3>
-            </div>
-
-            <div class="player-content">
-                <ul>
-                    <li>Benchmark reactive covers</li>
-                    <li>Hybrid reactive</li>
-                    <li>Adjust surface as needed</li>
-                </ul>
-                <p>
-                    Balanced players prioritize versatility and fine-tune reaction
-                    through surface adjustments.
-                </p>
-            </div>
-        </div>
-
-    </section>
-
-
-
-    <!-- WHAT MAKES A COVER STRONG? -->
-    <section class="cover-tech-section ">
-
-        <div class="tech-header">
-            <h2>WHAT MAKES A COVER STRONG?</h2>
-            <p>
-                Cover strength isn’t determined by type alone. Chemistry, absorption, and surface
-                finish work together to control friction timing and total traction.
-            </p>
-        </div>
-
-        <div class="tech-grid">
-
-            <!-- Resin Chemistry -->
-            <div class="tech-card">
-                <h3>Resin Chemistry</h3>
-                <ul>
-                    <li>Oil displacement capability</li>
-                    <li>Nano vs non-nano particle ratios</li>
-                    <li>Friction modifiers & additives</li>
-                </ul>
-                <p>
-                    Resin formulation determines total traction potential. Nano-enhanced covers
-                    increase surface interaction and oil displacement for stronger overall motion.
-                </p>
-            </div>
-
-            <!-- Porosity & Absorption -->
-            <div class="tech-card">
-                <h3>Porosity & Oil Absorption</h3>
-                <ul>
-                    <li>Reactive absorbs oil</li>
-                    <li>Urethane absorbs minimal oil</li>
-                    <li>Absorption alters long-term performance</li>
-                </ul>
-                <p>
-                    Oil absorption increases friction but requires maintenance. As resin saturates,
-                    motion characteristics can change — cleaning and resurfacing restore performance.
-                </p>
-            </div>
-
-            <!-- Surface Finish -->
-            <div class="tech-card">
-                <h3>Surface Finish</h3>
-                <ul>
-                    <li>Factory finish is a starting point</li>
-                    <li>Lower grit = earlier friction</li>
-                    <li>Polish = delayed response & energy retention</li>
-                </ul>
-                <p>
-                    Surface determines when friction occurs. It does not change chemistry —
-                    it shifts motion timing.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- COVER AGING -->
-    <section class="cover-aging-section ">
-
-        <div class="cover-aging-inner">
-
-            <h2 class="h-lg text-center">
-                YOUR COVER TODAY & YOUR COVER 60 GAMES FROM NOW
-            </h2>
-
-            <p class="subtitle1 text-center">
-                Performance changes gradually — until your ball’s reaction isn’t what it once was.
+            <p class="body-text center-text white-text">
+                Toggle between the grits to see how changing surface affects ball motion.
             </p>
 
-            <div class="aging-flow">
 
-                <div class="aging-stage">
-                    <span class="aging-label">Game 1</span>
-                    <h3>Fresh</h3>
-                    <p>Maximum performance. Designed motion window.</p>
+            <!-- TOGGLE BUTTONS -->
+            <div class="tab-container">
+                <button data-grit="180">180</button>
+                <button data-grit="360">360</button>
+                <button data-grit="500">500</button>
+                <button data-grit="1000">1000</button>
+                <button data-grit="2000">2000</button>
+                <button data-grit="3000">3000</button>
+                <button data-grit="4000">4000</button>
+                <button data-grit="polish">Polish</button>
+            </div>
+
+
+            <div class="motion-legend">
+
+                <div class="legend-item">
+                    <span class="legend-dot skid"></span>
+                    <p class="legend-label">SKID</p>
                 </div>
 
-                <div class="aging-stage">
-                    <span class="aging-label">Game 30</span>
-                    <h3>Unmaintained</h3>
-                    <p>Lane shine & surface wear begins altering friction timing.</p>
+                <div class="legend-item">
+                    <span class="legend-dot hook"></span>
+                    <p class="legend-label">HOOK</p>
                 </div>
 
-                <div class="aging-stage">
-                    <span class="aging-label">Game 60</span>
-                    <h3>Neglected</h3>
-                    <p>Dull reaction. Reduced continuation. Less predictability.</p>
+                <div class="legend-item">
+                    <span class="legend-dot roll"></span>
+                    <p class="legend-label">ROLL</p>
                 </div>
 
-                <div class="aging-stage restore">
-                    <span class="aging-label">Maintenance</span>
-                    <h3>Restored</h3>
-                    <p>Cleaning and resurfacing bring reaction windows back in line.</p>
-                </div>
+            </div>
 
+            <!-- LANE VISUAL -->
+            <div class="lane-visual">
+                <img id="motionPathImage"
+                    src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/180-grit.png"
+                    alt="Ball Motion Path">
             </div>
 
             <div class="storm-button-container-3">
                 <a href="/maintenance" class="btn default">
-                    Learn About Ball Maintenance
+                    Learn About Adjusting The Surface
                 </a>
             </div>
 
-        </div>
+        </section>
 
-    </section>
-
-
-
-
-
-
-    <!-- HOW COVERSTOCK INFLUENCES BALL MOTION -->
-    <section class="motion-phase-section ">
-
-        <div class="motion-header">
-            <h2>HOW COVERSTOCK INFLUENCES BALL MOTION</h2>
-            <p>
-                Every bowling ball transitions through skid, hook, and roll.
-                Coverstock determines when friction begins and how aggressively it builds.
-            </p>
-        </div>
-
-        <div class="phase-track">
-
-            <div class="phase-block">
-                <div class="phase-label">PHASE 1</div>
-                <h3>SKID</h3>
-                <p class="phase-core">
-                    Friction is minimal. Direction is stable.
-                </p>
-                <p class="phase-cover">
-                    Stronger covers begin reading sooner. Cleaner covers extend push.
-                </p>
-            </div>
-
-            <div class="phase-divider"></div>
-
-            <div class="phase-block">
-                <div class="phase-label">PHASE 2</div>
-                <h3>HOOK</h3>
-                <p class="phase-core">
-                    Friction increases. Direction changes.
-                </p>
-                <p class="phase-cover">
-                    Resin chemistry controls how aggressively the ball transitions.
-                </p>
-            </div>
-
-            <div class="phase-divider"></div>
-
-            <div class="phase-block">
-                <div class="phase-label">PHASE 3</div>
-                <h3>ROLL</h3>
-                <p class="phase-core">
-                    Rotation stabilizes. Energy transfers.
-                </p>
-                <p class="phase-cover">
-                    Proper timing creates optimal continuation and carry.
-                </p>
-            </div>
+        <div class="space-container">
 
         </div>
 
-        <!-- <div class="reaction-bars" style="margin-top:32px;">
-
-           
-            <div class="reaction-bar">
-                <div class="bar-label">Too Much Skid</div>
-                <div class="bar-track">
-                    <div class="segment skid" style="width:60%"></div>
-                    <div class="segment hook" style="width:25%"></div>
-                    <div class="segment roll" style="width:15%"></div>
-                </div>
-            </div>
-
-          
-            <div class="reaction-bar">
-                <div class="bar-label">Balanced</div>
-                <div class="bar-track">
-                    <div class="segment skid" style="width:33%"></div>
-                    <div class="segment hook" style="width:33%"></div>
-                    <div class="segment roll" style="width:34%"></div>
-                </div>
-            </div>
-
-            <div class="reaction-bar">
-                <div class="bar-label">Too Much Roll</div>
-                <div class="bar-track">
-                    <div class="segment skid" style="width:20%"></div>
-                    <div class="segment hook" style="width:30%"></div>
-                    <div class="segment roll" style="width:50%"></div>
-                </div>
-            </div>
-
-        </div> -->
-
-
-        <div class="storm-button-container-3">
-            <a href="/maintenance" class="btn default">
-                Learn How A Bowling Ball Hooks
-            </a>
-        </div>
-
-    </section>
-
-
-    <div class="space-container">
-
-    </div>
-
-
-    <!-- SURFACE IS THE #1 TOOL FOR CUSTOMIZING BALL REACTION -->
-    <section class="surface-motion-demo intro-container ">
-
-        <h3 class="center-text">Surface is the #1 tool bowlers use to influence motion.</h3>
-
-        <p class="body-text center-text white-text">
-            Toggle between the grits to see how changing surface affects ball motion.
-        </p>
-
-
-        <!-- TOGGLE BUTTONS -->
-        <div class="tab-container">
-            <button data-grit="180">180</button>
-            <button data-grit="360">360</button>
-            <button data-grit="500">500</button>
-            <button data-grit="1000">1000</button>
-            <button data-grit="2000">2000</button>
-            <button data-grit="3000">3000</button>
-            <button data-grit="4000">4000</button>
-            <button data-grit="polish">Polish</button>
-        </div>
-
-
-        <div class="motion-legend">
-
-            <div class="legend-item">
-                <span class="legend-dot skid"></span>
-                <p class="legend-label">SKID</p>
-            </div>
-
-            <div class="legend-item">
-                <span class="legend-dot hook"></span>
-                <p class="legend-label">HOOK</p>
-            </div>
-
-            <div class="legend-item">
-                <span class="legend-dot roll"></span>
-                <p class="legend-label">ROLL</p>
-            </div>
-
-        </div>
-
-        <!-- LANE VISUAL -->
-        <div class="lane-visual">
-            <img id="motionPathImage"
-                src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/180-grit.png"
-                alt="Ball Motion Path">
-        </div>
-
-        <div class="storm-button-container-3">
-            <a href="/maintenance" class="btn default">
-                Learn About Adjusting The Surface
-            </a>
-        </div>
-
-    </section>
-
-    <div class="space-container">
-
-    </div>
 
 
 
 
 
+        <!-- UNDERSTANDING COVER BEHAVIOR -->
+        <section class="cover-insight-section ">
 
-    <!-- UNDERSTANDING COVER BEHAVIOR -->
-    <section class="cover-insight-section ">
-
-        <div class="insight-header">
-            <h2>UNDERSTANDING COVER BEHAVIOR</h2>
-            <p>
-                This is how experienced players think about cover.
-            </p>
-        </div>
-
-        <div class="flex-container-column gap-32">
-
-            <!-- CARD 1 -->
-            <div class="insight-card">
-                <h3>STRENGTH vs SHAPE</h3>
-
+            <div class="insight-header">
+                <h2>UNDERSTANDING COVER BEHAVIOR</h2>
                 <p>
-                    These are not the same variable. Strength defines total traction.
-                    Shape defines how that traction transitions into roll.
+                    This is how experienced players think about cover.
                 </p>
-
-                <div class="insight-split">
-                    <div>
-                        <h4>Strength</h4>
-                        <p>Total traction potential created by cover chemistry and surface.</p>
-                    </div>
-                    <div>
-                        <h4>Shape</h4>
-                        <p>The visual motion window — smooth, defined, or angular.</p>
-                    </div>
-                </div>
-
-                <ul>
-                    <li>A ball can be strong and smooth.</li>
-                    <li>A ball can be strong and angular.</li>
-                    <li>A ball can be weaker but appear sharp.</li>
-                </ul>
-
-                <div class="insight-note">
-                    Strength controls how much traction exists.
-                    Shape controls how it is expressed.
-                </div>
             </div>
 
-            <!-- CARD 2 -->
-            <div class="insight-card">
-                <h3>COVERSTOCK vs TRANSITION</h3>
+            <div class="flex-container-column gap-32">
 
-                <div class="insight-columns ">
-                    <!-- FRESH -->
-                    <div class="lane-phase">
-                        <h4>Fresh Pattern</h4>
-                        <p class="phase-description">
-                            Higher volume. Lower friction. Defined oil shape.
-                        </p>
+                <!-- CARD 1 -->
+                <div class="insight-card">
+                    <h3>STRENGTH vs SHAPE</h3>
 
-                        <ul>
-                            <li><strong>Strong Solids:</strong> Create midlane stability and prevent excessive skid.
-                            </li>
-                            <li><strong>Hybrids:</strong> Blend the pattern without over-reading early.</li>
-                            <li><strong>Pearls:</strong> Viable for higher rev players who need added length.</li>
-                        </ul>
-                    </div>
-                    <!-- TRANSITION -->
-                    <div class="lane-phase">
-                        <h4>Transition</h4>
-                        <p class="phase-description">
-                            Friction builds outside. Oil carries down.
-                        </p>
+                    <p>
+                        These are not the same variable. Strength defines total traction.
+                        Shape defines how that traction transitions into roll.
+                    </p>
 
-                        <ul>
-                            <li><strong>Weaker Solids:</strong> Control early friction without over-jumping.</li>
-                            <li><strong>Hybrids:</strong> Smooth wet/dry differences and maintain shape.</li>
-                            <li><strong>Pearls:</strong> Allow angle creation but demand breakpoint control.</li>
-                        </ul>
+                    <div class="insight-split">
+                        <div>
+                            <h4>Strength</h4>
+                            <p>Total traction potential created by cover chemistry and surface.</p>
+                        </div>
+                        <div>
+                            <h4>Shape</h4>
+                            <p>The visual motion window — smooth, defined, or angular.</p>
+                        </div>
                     </div>
 
-                    <!-- BURN -->
-                    <div class="lane-phase">
-                        <h4>Dry / Burn</h4>
-                        <p class="phase-description">
-                            Reduced oil. Increased friction. Shorter motion window.
-                        </p>
+                    <ul>
+                        <li>A ball can be strong and smooth.</li>
+                        <li>A ball can be strong and angular.</li>
+                        <li>A ball can be weaker but appear sharp.</li>
+                    </ul>
 
-                        <ul>
-                            <li><strong>Pearls:</strong> Delay friction and preserve backend energy.</li>
-                            <li><strong>Urethane:</strong> Manage breakpoint volatility on shorter or flatter
-                                patterns.</li>
-                            <li><strong>Strong Solids:</strong> Often expend energy too early to continue.</li>
-                        </ul>
+                    <div class="insight-note">
+                        Strength controls how much traction exists.
+                        Shape controls how it is expressed.
                     </div>
                 </div>
+
+                <!-- CARD 2 -->
+                <div class="insight-card">
+                    <h3>COVERSTOCK vs TRANSITION</h3>
+
+                    <div class="insight-columns ">
+                        <!-- FRESH -->
+                        <div class="lane-phase">
+                            <h4>Fresh Pattern</h4>
+                            <p class="phase-description">
+                                Higher volume. Lower friction. Defined oil shape.
+                            </p>
+
+                            <ul>
+                                <li><strong>Strong Solids:</strong> Create midlane stability and prevent excessive skid.
+                                </li>
+                                <li><strong>Hybrids:</strong> Blend the pattern without over-reading early.</li>
+                                <li><strong>Pearls:</strong> Viable for higher rev players who need added length.</li>
+                            </ul>
+                        </div>
+                        <!-- TRANSITION -->
+                        <div class="lane-phase">
+                            <h4>Transition</h4>
+                            <p class="phase-description">
+                                Friction builds outside. Oil carries down.
+                            </p>
+
+                            <ul>
+                                <li><strong>Weaker Solids:</strong> Control early friction without over-jumping.</li>
+                                <li><strong>Hybrids:</strong> Smooth wet/dry differences and maintain shape.</li>
+                                <li><strong>Pearls:</strong> Allow angle creation but demand breakpoint control.</li>
+                            </ul>
+                        </div>
+
+                        <!-- BURN -->
+                        <div class="lane-phase">
+                            <h4>Dry / Burn</h4>
+                            <p class="phase-description">
+                                Reduced oil. Increased friction. Shorter motion window.
+                            </p>
+
+                            <ul>
+                                <li><strong>Pearls:</strong> Delay friction and preserve backend energy.</li>
+                                <li><strong>Urethane:</strong> Manage breakpoint volatility on shorter or flatter
+                                    patterns.</li>
+                                <li><strong>Strong Solids:</strong> Often expend energy too early to continue.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="insight-card">
+                    <h3>OIL VOLUME vs LENGTH</h3>
+
+                    <p>
+                        Pattern length determines where the ball exits the pattern.
+                        Oil volume determines how much traction is required to read it.
+                    </p>
+
+                    <div class="insight-columns">
+                        <div>
+                            <h4>Long + Low Volume</h4>
+                            <p>
+                                May not require maximum traction.
+                                Too much strength can cause early burn.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h4>Short + High Volume</h4>
+                            <p>
+                                Can still demand stronger chemistry.
+                                Length alone does not equal friction.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="insight-note">
+                        Players often misjudge patterns by length alone.
+                        Volume dictates traction demand.
+                    </div>
+                </div>
+
+
             </div>
 
-            <!-- CARD 3 -->
-            <div class="insight-card">
-                <h3>OIL VOLUME vs LENGTH</h3>
 
-                <p>
-                    Pattern length determines where the ball exits the pattern.
-                    Oil volume determines how much traction is required to read it.
-                </p>
-
-                <div class="insight-columns">
-                    <div>
-                        <h4>Long + Low Volume</h4>
-                        <p>
-                            May not require maximum traction.
-                            Too much strength can cause early burn.
-                        </p>
-                    </div>
-
-                    <div>
-                        <h4>Short + High Volume</h4>
-                        <p>
-                            Can still demand stronger chemistry.
-                            Length alone does not equal friction.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="insight-note">
-                    Players often misjudge patterns by length alone.
-                    Volume dictates traction demand.
-                </div>
+            <div class="storm-button-container-3">
+                <a href="/maintenance" class="btn default">
+                    Learn More About Lane Play
+                </a>
             </div>
 
 
-        </div>
-
-
-        <div class="storm-button-container-3">
-            <a href="/maintenance" class="btn default">
-                Learn More About Lane Play
-            </a>
-        </div>
-
-
-    </section>
+        </section>
 
 
 
@@ -1524,708 +681,729 @@
 
 
 
-    <!-- COVERSTOCK COMPARISON TABLE -->
-    <section class="intro-container ">
+        <!-- COVERSTOCK COMPARISON TABLE -->
+        <section class="intro-container ">
 
-        <h2 class="center-text">HOW STORM COVERSTOCKS COMPARE</h2>
+            <h2 class="center-text">HOW STORM COVERSTOCKS COMPARE</h2>
 
-        <p class="center-text body-text white-text">Swipe through our coverstock families to see how they compare in
-            relative
-            strength, motion, and best use conditions. Filter by brand to foucs on Storm, Roto Grip, or 900 Global.</p>
+            <p class="center-text body-text white-text">Swipe through our coverstock families to see how they compare in
+                relative
+                strength, motion, and best use conditions. Filter by brand to foucs on Storm, Roto Grip, or 900 Global.
+            </p>
 
-        <div style="display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 32px;">
-            <button class="btn default active" data-target="low-rg-high-diff">Storm</button>
-            <button class="btn default" data-target="mid-rg-mid-diff">Roto Grip</button>
-            <button class="btn default" data-target="high-rg-low-diff">900 Global</button>
-        </div>
+            <div style="display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 32px;">
+                <button class="btn default active" data-target="low-rg-high-diff">Storm</button>
+                <button class="btn default" data-target="mid-rg-mid-diff">Roto Grip</button>
+                <button class="btn default" data-target="high-rg-low-diff">900 Global</button>
+            </div>
 
-        <div class="coverstock-table-wrapper collapsed">
+            <div class="coverstock-table-wrapper collapsed">
 
-            <table class="simple-breakdown">
-                <thead>
-                    <tr>
-                        <th>Coverstock</th>
-                        <th>Type</th>
-                        <th>Traction Potential</th>
-                        <th>Condition Use</th>
-                        <th>Example Balls</th>
-                    </tr>
-                </thead>
-                <tbody>
+                <table class="simple-breakdown">
+                    <thead>
+                        <tr>
+                            <th>Coverstock</th>
+                            <th>Type</th>
+                            <th>Traction Potential</th>
+                            <th>Condition Use</th>
+                            <th>Example Balls</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    <!-- High Traction -->
-                    <tr class="section-header">
-                        <td colspan="5">High Traction</td>
-                    </tr>
+                        <!-- High Traction -->
+                        <tr class="section-header">
+                            <td colspan="5">High Traction</td>
+                        </tr>
 
-                    <tr>
-                        <td data-label="Coverstock">EXO™</td>
-                        <td data-label="Type">Pearl Reactive</td>
-                        <td data-label="Relative Strength">
-                            Extreme
-                            <div class="meter"><span style="width: 95%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Heavy Oil</td>
-                        <td data-label="Example Balls">DNA Coil, </td>
-                    </tr>
+                        <tr>
+                            <td data-label="Coverstock">EXO™</td>
+                            <td data-label="Type">Pearl Reactive</td>
+                            <td data-label="Relative Strength">
+                                Extreme
+                                <div class="meter"><span style="width: 95%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Heavy Oil</td>
+                            <td data-label="Example Balls">DNA Coil, </td>
+                        </tr>
 
-                    <tr>
-                        <td data-label="Coverstock">NeX™</td>
-                        <td data-label="Type">Pearl Reactive</td>
-                        <td data-label="Relative Strength">
-                            Very High
-                            <div class="meter"><span style="width: 85%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Heavy Oil</td>
-                        <td data-label="Example Balls">Physix Blackout, </td>
-                    </tr>
+                        <tr>
+                            <td data-label="Coverstock">NeX™</td>
+                            <td data-label="Type">Pearl Reactive</td>
+                            <td data-label="Relative Strength">
+                                Very High
+                                <div class="meter"><span style="width: 85%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Heavy Oil</td>
+                            <td data-label="Example Balls">Physix Blackout, </td>
+                        </tr>
 
-                    <tr>
-                        <td data-label="Coverstock">ReX™</td>
-                        <td data-label="Type">Pearl Reactive</td>
-                        <td data-label="Relative Strength">
-                            High
-                            <div class="meter"><span style="width: 80%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Heavy Oil</td>
-                        <td data-label="Example Balls">IDentity (B/C/P), IDentity, Lightning Blackout, Virtual Energy
-                            Blackout, </td>
-                    </tr>
-
-
-                    <tr>
-                        <td data-label="Coverstock">NRG™</td>
-                        <td data-label="Type">Solid | Hybrid | Pearl Reactive</td>
-                        <td data-label="Relative Strength">
-                            High
-                            <div class="meter"><span style="width: 55%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Heavy Oil</td>
-                        <td data-label="Example Balls">Ion Max, Ion Max Pearl, Bionic</td>
-                    </tr>
+                        <tr>
+                            <td data-label="Coverstock">ReX™</td>
+                            <td data-label="Type">Pearl Reactive</td>
+                            <td data-label="Relative Strength">
+                                High
+                                <div class="meter"><span style="width: 80%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Heavy Oil</td>
+                            <td data-label="Example Balls">IDentity (B/C/P), IDentity, Lightning Blackout, Virtual
+                                Energy
+                                Blackout, </td>
+                        </tr>
 
 
-
-                    <!-- Moderate Traction -->
-                    <tr class="section-header">
-                        <td colspan="5">Moderate Traction</td>
-                    </tr>
-
-                    <tr>
-                        <td data-label="Coverstock">TX-16™</td>
-                        <td data-label="Type">Solid | Hybrid | Pearl Reactive</td>
-                        <td data-label="Relative Strength">
-                            Moderate
-                            <div class="meter"><span style="width: 50%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Heavy | Medium Oil</td>
-                        <td data-label="Example Balls">Phaze II, Ion Pro, Ion Pro Solid</td>
-                    </tr>
-
-                    <tr>
-                        <td data-label="Coverstock">A2S™</td>
-                        <td data-label="Type">Solid Reactive</td>
-                        <td data-label="Relative Strength">
-                            Moderate
-
-                            <div class="meter"><span style="width: 45%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Heavy | Medium Oil</td>
-                        <td data-label="Example Balls">Equinox Solid</td>
-                    </tr>
-
-                    <tr>
-                        <td data-label="Coverstock">A1S™</td>
-                        <td data-label="Type">Pearl Reactive</td>
-                        <td data-label="Relative Strength">
-                            Medium
-                            <div class="meter"><span style="width: 40%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Heavy | Medium | Light Oil</td>
-                        <td data-label="Example Balls">Equinox, Hy-Road 40</td>
-                    </tr>
-
-
-                    <tr>
-                        <td data-label="Coverstock">R3S™</td>
-                        <td data-label="Type">Pearl Reactive</td>
-                        <td data-label="Relative Strength">
-                            Medium
-                            <div class="meter"><span style="width: 30%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Medium | Light Oil</td>
-                        <td data-label="Example Balls">Next Factor </td>
-                    </tr>
-
-
-                    <!-- Low Traction -->
-                    <tr class="section-header">
-                        <td colspan="5">Low Traction </td>
-                    </tr>
-
-                    <tr>
-                        <td data-label="Coverstock">R2S™</td>
-                        <td data-label="Type">Solid | Pearl | Hybrid Reactive</td>
-                        <td data-label="Relative Strength">
-                            Low
-                            <div class="meter"><span style="width: 20%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Medium | Light Oil</td>
-                        <td data-label="Example Balls">!Q Tour A.I, !Q Tour, Hy-Road </td>
-                    </tr>
-
-                    <tr>
-                        <td data-label="Coverstock">R2S Deep™</td>
-                        <td data-label="Type">Pearl | Solid Reactive</td>
-                        <td data-label="Relative Strength">
-                            Low
-                            <div class="meter"><span style="width: 15%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Medium | Light Oil</td>
-                        <td data-label="Example Balls">Absolute Power, Road Warrior</td>
-                    </tr>
-
-                    <tr>
-                        <td data-label="Coverstock">Reactor</td>
-                        <td data-label="Type">Solid | Pearl | Hybrid Reactive</td>
-                        <td data-label="Relative Strength">
-                            Very Low
-                            <div class="meter"><span style="width: 10%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Medium | Light Oil</td>
-                        <td data-label="Example Balls">Tropical Surge, Typhoon</td>
-                    </tr>
-
-                    <tr>
-                        <td data-label="Coverstock">RPM™</td>
-                        <td data-label="Type">Solid Reactive</td>
-                        <td data-label="Relative Strength">
-                            Very Low
-                            <div class="meter"><span style="width: 5%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Medium | Light Oil</td>
-                        <td data-label="Example Balls">Level</td>
-                    </tr>
-
-                    <!-- URETHANE -->
-                    <tr class="section-header">
-                        <td colspan="5">Urethane</td>
-                    </tr>
-
-                    <tr>
-                        <td data-label="Coverstock">Controll™ Urethane</td>
-                        <td data-label="Type">Solid Urethane</td>
-                        <td data-label="Relative Strength">
-                            Medium
-                            <div class="meter"><span style="width: 30%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Shorter patterns</td>
-                        <td data-label="Example Balls">Pitch Black</td>
-                    </tr>
-
-                    <tr>
-                        <td data-label="Coverstock">Controll 78™ Urethane</td>
-                        <td data-label="Type">Solid Urethane</td>
-                        <td data-label="Relative Strength">
-                            Medium
-                            <div class="meter"><span style="width: 33%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Shorter sport patterns</td>
-                        <td data-label="Example Balls">Pitch Black 78/U</td>
-                    </tr>
-
-                    <tr>
-                        <td data-label="Coverstock">U1S™</td>
-                        <td data-label="Type">Urethane</td>
-                        <td data-label="Relative Strength">
-                            Medium
-                            <div class="meter"><span style="width: 25%"></span></div>
-                        </td>
-                        <td data-label="Best Conditions">Short &amp; low volume</td>
-                        <td data-label="Example Balls">Mix</td>
-                    </tr>
-
-                </tbody>
-            </table>
-
-        </div>
+                        <tr>
+                            <td data-label="Coverstock">NRG™</td>
+                            <td data-label="Type">Solid | Hybrid | Pearl Reactive</td>
+                            <td data-label="Relative Strength">
+                                High
+                                <div class="meter"><span style="width: 55%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Heavy Oil</td>
+                            <td data-label="Example Balls">Ion Max, Ion Max Pearl, Bionic</td>
+                        </tr>
 
 
 
-        <div class="storm-button-container-3">
+                        <!-- Moderate Traction -->
+                        <tr class="section-header">
+                            <td colspan="5">Moderate Traction</td>
+                        </tr>
 
-            <a class="btn default expand-btn">EXPAND MORE
-                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.5 12.9164L17.1 8.31641L18.5 9.71641L12.5 15.7164L6.5 9.71641L7.9 8.31641L12.5 12.9164Z"
-                        fill="#191C1B" />
+                        <tr>
+                            <td data-label="Coverstock">TX-16™</td>
+                            <td data-label="Type">Solid | Hybrid | Pearl Reactive</td>
+                            <td data-label="Relative Strength">
+                                Moderate
+                                <div class="meter"><span style="width: 50%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Heavy | Medium Oil</td>
+                            <td data-label="Example Balls">Phaze II, Ion Pro, Ion Pro Solid</td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Coverstock">A2S™</td>
+                            <td data-label="Type">Solid Reactive</td>
+                            <td data-label="Relative Strength">
+                                Moderate
+
+                                <div class="meter"><span style="width: 45%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Heavy | Medium Oil</td>
+                            <td data-label="Example Balls">Equinox Solid</td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Coverstock">A1S™</td>
+                            <td data-label="Type">Pearl Reactive</td>
+                            <td data-label="Relative Strength">
+                                Medium
+                                <div class="meter"><span style="width: 40%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Heavy | Medium | Light Oil</td>
+                            <td data-label="Example Balls">Equinox, Hy-Road 40</td>
+                        </tr>
+
+
+                        <tr>
+                            <td data-label="Coverstock">R3S™</td>
+                            <td data-label="Type">Pearl Reactive</td>
+                            <td data-label="Relative Strength">
+                                Medium
+                                <div class="meter"><span style="width: 30%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Medium | Light Oil</td>
+                            <td data-label="Example Balls">Next Factor </td>
+                        </tr>
+
+
+                        <!-- Low Traction -->
+                        <tr class="section-header">
+                            <td colspan="5">Low Traction </td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Coverstock">R2S™</td>
+                            <td data-label="Type">Solid | Pearl | Hybrid Reactive</td>
+                            <td data-label="Relative Strength">
+                                Low
+                                <div class="meter"><span style="width: 20%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Medium | Light Oil</td>
+                            <td data-label="Example Balls">!Q Tour A.I, !Q Tour, Hy-Road </td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Coverstock">R2S Deep™</td>
+                            <td data-label="Type">Pearl | Solid Reactive</td>
+                            <td data-label="Relative Strength">
+                                Low
+                                <div class="meter"><span style="width: 15%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Medium | Light Oil</td>
+                            <td data-label="Example Balls">Absolute Power, Road Warrior</td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Coverstock">Reactor</td>
+                            <td data-label="Type">Solid | Pearl | Hybrid Reactive</td>
+                            <td data-label="Relative Strength">
+                                Very Low
+                                <div class="meter"><span style="width: 10%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Medium | Light Oil</td>
+                            <td data-label="Example Balls">Tropical Surge, Typhoon</td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Coverstock">RPM™</td>
+                            <td data-label="Type">Solid Reactive</td>
+                            <td data-label="Relative Strength">
+                                Very Low
+                                <div class="meter"><span style="width: 5%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Medium | Light Oil</td>
+                            <td data-label="Example Balls">Level</td>
+                        </tr>
+
+                        <!-- URETHANE -->
+                        <tr class="section-header">
+                            <td colspan="5">Urethane</td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Coverstock">Controll™ Urethane</td>
+                            <td data-label="Type">Solid Urethane</td>
+                            <td data-label="Relative Strength">
+                                Medium
+                                <div class="meter"><span style="width: 30%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Shorter patterns</td>
+                            <td data-label="Example Balls">Pitch Black</td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Coverstock">Controll 78™ Urethane</td>
+                            <td data-label="Type">Solid Urethane</td>
+                            <td data-label="Relative Strength">
+                                Medium
+                                <div class="meter"><span style="width: 33%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Shorter sport patterns</td>
+                            <td data-label="Example Balls">Pitch Black 78/U</td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Coverstock">U1S™</td>
+                            <td data-label="Type">Urethane</td>
+                            <td data-label="Relative Strength">
+                                Medium
+                                <div class="meter"><span style="width: 25%"></span></div>
+                            </td>
+                            <td data-label="Best Conditions">Short &amp; low volume</td>
+                            <td data-label="Example Balls">Mix</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+            <div class="storm-button-container-3">
+
+                <a class="btn default expand-btn">EXPAND MORE
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.5 12.9164L17.1 8.31641L18.5 9.71641L12.5 15.7164L6.5 9.71641L7.9 8.31641L12.5 12.9164Z"
+                            fill="#191C1B" />
+                    </svg>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- COVER & WEIGHTBLOCK -->
+        <section class="intro-container">
+
+            <h2 class="center-text">HOW COVERSTOCK & WEIGHTBLOCK COMBINATIONS INFLUENCE REACTION PROFILE</h2>
+
+            <p class="center-text body-text white-text">
+                Every Storm, Roto Grip, and 900 Global ball is built by pairing a coverstock with a core. Think of it
+                like
+                tuning an engine with the right tires — the match matters more than either piece alone.
+            </p>
+
+            <div class="rst-slider">
+
+                <div id="RST-HYPERDRIVE-PEARL" class="rst-slide active">
+                    <div class="flex-container-row align-center">
+
+                        <div class="container-50">
+
+                            <h3 class="center-text">EQUINOX</h3>
+
+                        </div>
+
+                        <div class="container-50 ball-cover-compare-image">
+
+                            <img style="display:block; margin:auto;"
+                                src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/half-ball-image/equinox-pearl-half-ball.png">
+
+                        </div>
+
+                        <div class="container-50">
+
+                            <div class="surface-motion-card" style="margin:auto;">
+                                <div class="motion-gradient">
+                                    <img src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/half-ball-image/motion-paths/equinox-motion-path.png"
+                                        alt="">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <h4 class="center-text">A1S COVERSTOCK</h4>
+
+                    <h5 class="center-text">SOLARION + A.I. CORE</h5>
+
+
+                    <p class="center-text container-50" style="margin:auto;">
+                        The Solarion A.I. Core is designed with three distinct cylinders that optimize motion. The
+                        largest
+                        cylinder lowers the RG for fast revving and a tumbling front-lane read. A top cylinder enhances
+                        drilling versatility, while the lightweight base increases torque and continuation. This unique
+                        design creates the classic skid-flip reaction Storm is known for, with added control and power.
+                    </p>
+
+                </div>
+
+
+                <div id="RST-HYPERDRIVE" class="rst-slide">
+                    <div class="flex-container-row align-center">
+
+                        <div class="container-50">
+
+                            <h3 class="center-text">Hy-Road 40</h3>
+
+                        </div>
+
+                        <div class="container-50 ball-cover-compare-image">
+
+                            <img style="display:block; margin:auto;"
+                                src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/half-ball-image/hy-road-40-half-ball.png">
+
+                        </div>
+
+                        <div class="container-50">
+
+                            <div class="surface-motion-card" style="margin:auto;">
+                                <div class="motion-gradient">
+                                    <img src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/half-ball-image/motion-paths/hy-road-40-motion-path.png"
+                                        alt="">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <h4 class="center-text">A1S COVERSTOCK</h4>
+
+                    <h5 class="center-text"> Inverted Fe² Technology</h5>
+
+
+                    <p class="center-text container-50" style="margin:auto;">
+                        Inverted Fe2 technology boasts a higher RG and differential like most other balls in the Thunder
+                        Line, but with one very important benefit: it lacks the core material that most other balls
+                        have.
+                        This enables the ball to have a much thicker shell which raises the coefficient of restitution.
+                        A
+                        higher energy transfer to the pins with less deflection upon impact is what can be expected with
+                        this design.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+            <!-- Navigation Buttons -->
+            <a class="prev" id="prevBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
                 </svg>
             </a>
 
+            <a class="next" id="nextBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+
+            <div class="storm-button-container-3">
+                <a href="/weightblock" class="btn default">Learn About The Weight Block</a>
+            </div>
+
+        </section>
+
+
+        <section>
+
+            <h3 class="center-text" style="margin:0 16px;">Coverstock Confusion: Common Questions Answered</h3>
+
+            <div class="faq-container flex-container-column gap-8" style="margin-top:32px;">
+
+                <!-- Shipping & Delivery -->
+                <div class="faq-item" style="background-color:unset;">
+                    <div class="faq-question">
+                        <h4 style="margin-bottom:0px;">Motion & Type Confusions</h4>
+                        <span class="faq-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </div>
+
+                    <div class="faq-answer flex-container-row ">
+                        <strong> “Can a solid produce more length than a pearl?”</strong>
+                        <p>
+                            Yes. Surface prep and resin chemistry matter more than the label. A polished solid can go
+                            longer
+                            than a sanded pearl.
+
+                        </p>
+                    </div>
+
+                    <div class="faq-answer flex-container-row ">
+                        <strong> “Can a pearl coverstock have a smooth motion?”</strong>
+                        <p>
+                            Absolutely. Pair a pearl with a smoother core or add surface, and it can roll very
+                            controlled.
+
+                        </p>
+                    </div>
+
+                    <div class="faq-answer flex-container-row ">
+                        <strong> “Can a pearl coverstock be used in heavy oil?”</strong>
+                        <p>
+                            With the right chemistry (like NeX Pearl), yes. Modern pearls can be stronger than older
+                            solids.
+
+                        </p>
+                    </div>
+
+                    <div class="faq-answer flex-container-row ">
+                        <strong> “Do hybrids always act like ‘the best of both worlds’?”</strong>
+                        <p>
+                            Not always. Some lean more “solid-like,” others more “pearl-like” depending on the formula.
+
+                        </p>
+                    </div>
+
+
+
+                </div>
+                <!-- end -->
+
+
+                <!-- Payment Methods -->
+                <div class="faq-item" style="background-color:unset;">
+                    <div class="faq-question">
+                        <h4 style="margin-bottom:0px;">Surface & Hook Confusions</h4>
+                        <span class="faq-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </div>
+
+                    <div class="faq-answer flex-container-row ">
+                        <strong>Why does sanding my ball make it hook earlier?</strong>
+                        <p>
+                            Sanding roughens the surface, creating more friction in the front part of the lane.
+                        </p>
+                    </div>
+
+                    <div class="faq-answer flex-container-row ">
+                        <strong>Why does polish sometimes make my ball hook harder?</strong>
+                        <p>
+                            Because it delays the read, saving energy for the backend.
+                        </p>
+                    </div>
+
+                    <div class="faq-answer flex-container-row ">
+                        <strong>Can I make a weaker ball hook like a stronger one with surface?</strong>
+                        <p>
+                            Surface can shift motion earlier/later, but it can’t change the resin chemistry. Weak resin
+                            stays weak.
+                        </p>
+                    </div>
+
+                </div>
+                <!-- end -->
+
+                <!-- Order Info -->
+                <div class="faq-item" style="background-color:unset;">
+                    <div class="faq-question">
+                        <h4 style="margin-bottom:0px;">Longevity & Maintenance Confusions</h4>
+                        <span class="faq-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </div>
+
+                    <div class="faq-answer flex-container-row ">
+                        <strong>Why did my ball stop hooking after a few months?</strong>
+                        <p>
+                            Reactive covers absorb oil. Without cleaning, the cover loses grip.
+                        </p>
+                    </div>
+
+                    <div class="faq-answer flex-container-row ">
+                        <strong>Do I need to resurface my ball even if it looks fine?</strong>
+                        <p>
+                            Yes. Even if you don’t see scratches, micro-scratches and lane oil absorption change
+                            performance
+                            over time.
+                        </p>
+                    </div>
+
+
+                    <div class="faq-answer flex-container-row ">
+                        <strong>Why does urethane last longer than reactive?</strong>
+                        <p>
+                            Urethane absorbs little to no oil, so it doesn’t “die” the same way reactive resin does.
+                        </p>
+                    </div>
+
+
+                </div>
+                <!-- end -->
+
+            </div>
+
+        </section>
+
+        <div class="space-container">
+
+        </div>
+
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal-popup">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div class="video-container">
+                    <iframe id="youtubePlayer" width="560" height="315" src="" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
 
     </section>
 
-
-    <!-- COVER & WEIGHTBLOCK -->
-    <section class="intro-container">
-
-        <h2 class="center-text">HOW COVERSTOCK & WEIGHTBLOCK COMBINATIONS INFLUENCE REACTION PROFILE</h2>
-
-        <p class="center-text body-text white-text">
-            Every Storm, Roto Grip, and 900 Global ball is built by pairing a coverstock with a core. Think of it like
-            tuning an engine with the right tires — the match matters more than either piece alone.
-        </p>
-
-        <div class="rst-slider">
-
-            <div id="RST-HYPERDRIVE-PEARL" class="rst-slide active">
-                <div class="flex-container-row align-center">
- 
-                    <div class="container-50">
-
-                        <h3 class="center-text">EQUINOX</h3>
-
-                    </div>
-
-                    <div class="container-50 ball-cover-compare-image">
-
-                        <img style="display:block; margin:auto;"
-                            src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/half-ball-image/equinox-pearl-half-ball.png">
-
-                    </div>
-
-                    <div class="container-50">
-
-                        <div class="surface-motion-card" style="margin:auto;">
-                            <div class="motion-gradient">
-                                <img src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/half-ball-image/motion-paths/equinox-motion-path.png"
-                                    alt="">
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <h4 class="center-text">A1S COVERSTOCK</h4>
-
-                <h5 class="center-text">SOLARION + A.I. CORE</h5>
-
-
-                <p class="center-text container-50" style="margin:auto;">
-                    The Solarion A.I. Core is designed with three distinct cylinders that optimize motion. The largest
-                    cylinder lowers the RG for fast revving and a tumbling front-lane read. A top cylinder enhances
-                    drilling versatility, while the lightweight base increases torque and continuation. This unique
-                    design creates the classic skid-flip reaction Storm is known for, with added control and power.
-                </p>
-
-            </div>
-
-
-            <div id="RST-HYPERDRIVE" class="rst-slide">
-                <div class="flex-container-row align-center">
-
-                    <div class="container-50">
-
-                        <h3 class="center-text">Hy-Road 40</h3>
-
-                    </div>
-
-                    <div class="container-50 ball-cover-compare-image">
-
-                        <img style="display:block; margin:auto;"
-                            src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/half-ball-image/hy-road-40-half-ball.png">
-
-                    </div>
-
-                    <div class="container-50">
-
-                        <div class="surface-motion-card" style="margin:auto;">
-                            <div class="motion-gradient">
-                                <img src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/coverstock-web-page/half-ball-image/motion-paths/hy-road-40-motion-path.png"
-                                    alt="">
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <h4 class="center-text">A1S COVERSTOCK</h4>
-
-                <h5 class="center-text"> Inverted Fe² Technology</h5>
-
-
-                <p class="center-text container-50" style="margin:auto;">
-                    Inverted Fe2 technology boasts a higher RG and differential like most other balls in the Thunder
-                    Line, but with one very important benefit: it lacks the core material that most other balls have.
-                    This enables the ball to have a much thicker shell which raises the coefficient of restitution. A
-                    higher energy transfer to the pins with less deflection upon impact is what can be expected with
-                    this design.
-                </p>
-
-            </div>
-
-
-        </div>
-
-        <!-- Navigation Buttons -->
-        <a class="prev" id="prevBtn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-        </a>
-
-        <a class="next" id="nextBtn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-        </a>
-
-        <div class="storm-button-container-3">
-            <a href="/weightblock" class="btn default">Learn About The Weight Block</a>
-        </div>
-
-    </section>
-
-
-    <section>
-
-        <h3 class="center-text" style="margin:0 16px;">Coverstock Confusion: Common Questions Answered</h3>
-
-        <div class="faq-container flex-container-column gap-8" style="margin-top:32px;">
-
-            <!-- Shipping & Delivery -->
-            <div class="faq-item" style="background-color:unset;">
-                <div class="faq-question">
-                    <h4 style="margin-bottom:0px;">Motion & Type Confusions</h4>
-                    <span class="faq-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </div>
-
-                <div class="faq-answer flex-container-row ">
-                    <strong> “Can a solid produce more length than a pearl?”</strong>
-                    <p>
-                        Yes. Surface prep and resin chemistry matter more than the label. A polished solid can go longer
-                        than a sanded pearl.
-
-                    </p>
-                </div>
-
-                <div class="faq-answer flex-container-row ">
-                    <strong> “Can a pearl coverstock have a smooth motion?”</strong>
-                    <p>
-                        Absolutely. Pair a pearl with a smoother core or add surface, and it can roll very controlled.
-
-                    </p>
-                </div>
-
-                <div class="faq-answer flex-container-row ">
-                    <strong> “Can a pearl coverstock be used in heavy oil?”</strong>
-                    <p>
-                        With the right chemistry (like NeX Pearl), yes. Modern pearls can be stronger than older solids.
-
-                    </p>
-                </div>
-
-                <div class="faq-answer flex-container-row ">
-                    <strong> “Do hybrids always act like ‘the best of both worlds’?”</strong>
-                    <p>
-                        Not always. Some lean more “solid-like,” others more “pearl-like” depending on the formula.
-
-                    </p>
-                </div>
-
-
-
-            </div>
-            <!-- end -->
-
-
-            <!-- Payment Methods -->
-            <div class="faq-item" style="background-color:unset;">
-                <div class="faq-question">
-                    <h4 style="margin-bottom:0px;">Surface & Hook Confusions</h4>
-                    <span class="faq-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </div>
-
-                <div class="faq-answer flex-container-row ">
-                    <strong>Why does sanding my ball make it hook earlier?</strong>
-                    <p>
-                        Sanding roughens the surface, creating more friction in the front part of the lane.
-                    </p>
-                </div>
-
-                <div class="faq-answer flex-container-row ">
-                    <strong>Why does polish sometimes make my ball hook harder?</strong>
-                    <p>
-                        Because it delays the read, saving energy for the backend.
-                    </p>
-                </div>
-
-                <div class="faq-answer flex-container-row ">
-                    <strong>Can I make a weaker ball hook like a stronger one with surface?</strong>
-                    <p>
-                        Surface can shift motion earlier/later, but it can’t change the resin chemistry. Weak resin
-                        stays weak.
-                    </p>
-                </div>
-
-            </div>
-            <!-- end -->
-
-            <!-- Order Info -->
-            <div class="faq-item" style="background-color:unset;">
-                <div class="faq-question">
-                    <h4 style="margin-bottom:0px;">Longevity & Maintenance Confusions</h4>
-                    <span class="faq-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </div>
-
-                <div class="faq-answer flex-container-row ">
-                    <strong>Why did my ball stop hooking after a few months?</strong>
-                    <p>
-                        Reactive covers absorb oil. Without cleaning, the cover loses grip.
-                    </p>
-                </div>
-
-                <div class="faq-answer flex-container-row ">
-                    <strong>Do I need to resurface my ball even if it looks fine?</strong>
-                    <p>
-                        Yes. Even if you don’t see scratches, micro-scratches and lane oil absorption change performance
-                        over time.
-                    </p>
-                </div>
-
-
-                <div class="faq-answer flex-container-row ">
-                    <strong>Why does urethane last longer than reactive?</strong>
-                    <p>
-                        Urethane absorbs little to no oil, so it doesn’t “die” the same way reactive resin does.
-                    </p>
-                </div>
-
-
-            </div>
-            <!-- end -->
-
-        </div>
-
-    </section>
-
-    <div class="space-container">
-
+    <!-- SHRED CURSOR -->
+    <div id="shred-cursor">
+        <img src="assets/shred-cursor.png" alt="Snowboarder Cursor">
     </div>
+    <div id="trail-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EaselPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/PixiPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/smooth-scrollbar"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="main.js"></script>
 
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal-popup">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div class="video-container">
-                <iframe id="youtubePlayer" width="560" height="315" src="" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
+    <!-- DROP DOWN TOGGLE -->
+    <script>
+        // Get all FAQ items
+        const faqItems = document.querySelectorAll('.faq-item');
 
-</section>
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EaselPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/PixiPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/smooth-scrollbar"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="https://www.youtube.com/iframe_api"></script>
-<script src="./script.js"></script>
-
-
-<!-- DROP DOWN TOGGLE -->
-<script>
-    // Get all FAQ items
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-
-        // Add a click event listener for each FAQ question
-        question.addEventListener('click', () => {
-            // Toggle the 'active' class to show/hide the answer and rotate the arrow
-            item.classList.toggle('active');
+            // Add a click event listener for each FAQ question
+            question.addEventListener('click', () => {
+                // Toggle the 'active' class to show/hide the answer and rotate the arrow
+                item.classList.toggle('active');
+            });
         });
-    });
-</script>
+    </script>
 
-<!-- RST SLIDER -->
-<script>
-    const slides = document.querySelectorAll('.rst-slide');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let currentIndex = 0;
+    <!-- RST SLIDER -->
+    <script>
+        const slides = document.querySelectorAll('.rst-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
 
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
         });
-    }
 
-    prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        });
+
+        // initialize first slide
         showSlide(currentIndex);
-    });
-
-    nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-    });
-
-    // initialize first slide
-    showSlide(currentIndex);
-</script>
+    </script>
 
 
-<!-- YouTube Player -->
-<script>
-    function openYouTubePopup(image) {
-        var videoId = image.dataset.videoId;
-        var modal = document.getElementById("myModal");
-        var iframe = document.getElementById("youtubePlayer");
-        iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
-        modal.style.display = "block";
-    }
-
-    function closeModal() {
-        var modal = document.getElementById("myModal");
-        var iframe = document.getElementById("youtubePlayer");
-        iframe.src = '';
-        modal.style.display = "none";
-    }
-
-    // Close the modal when clicking outside of it
-    window.onclick = function (event) {
-        var modal = document.getElementById("myModal");
-        if (event.target == modal) {
-            closeModal();
+    <!-- YouTube Player -->
+    <script>
+        function openYouTubePopup(image) {
+            var videoId = image.dataset.videoId;
+            var modal = document.getElementById("myModal");
+            var iframe = document.getElementById("youtubePlayer");
+            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+            modal.style.display = "block";
         }
-    }
-</script>
 
-
-<script>
-    const expandBtn = document.querySelector('.expand-btn');
-    const tableWrapper = document.querySelector('.coverstock-table-wrapper');
-
-    expandBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        // toggle expanded/collapsed classes
-        tableWrapper.classList.toggle('expanded');
-        tableWrapper.classList.toggle('collapsed');
-
-        const isExpanded = tableWrapper.classList.contains('expanded');
-        const btnText = isExpanded ? 'SHOW LESS' : 'EXPAND MORE';
-
-        // update only the text node, keep SVG intact
-        const textNode = expandBtn.childNodes[0]; // the text before the SVG
-        textNode.textContent = btnText + ' ';
-
-        // optional: rotate arrow up/down
-        const arrow = expandBtn.querySelector('svg');
-        arrow.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
-        arrow.style.transition = 'transform 0.3s ease';
-
-        // scroll up when collapsing
-        if (!isExpanded) {
-            tableWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            var iframe = document.getElementById("youtubePlayer");
+            iframe.src = '';
+            modal.style.display = "none";
         }
-    });
-</script>
 
-<script>
-    //Reaction Phase GIF
-    let slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+        // Close the modal when clicking outside of it
+        window.onclick = function (event) {
+            var modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                closeModal();
+            }
         }
-        slideIndex++;
-        if (slideIndex > slides.length) { slideIndex = 1 }
-        for (i = 0; i < dots.length; i++) {
-
-        }
-        slides[slideIndex - 1].style.display = "block";
-
-        setTimeout(showSlides, 1000); // Change image every 2 seconds
-    }
-</script>
+    </script>
 
 
-<script>
-    const gritImages = {
-        "180": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/180-grit.png",
-        "360": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/360-grit.png",
-        "500": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/500-grit.png",
-        "1000": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/1000-grit.png",
-        "2000": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/2000-grit.png",
-        "3000": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/3000-grit.png",
-        "4000": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/4000-grit.png",
-        "polish": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/power-edge-grit.png"
-    };
+    <script>
+        const expandBtn = document.querySelector('.expand-btn');
+        const tableWrapper = document.querySelector('.coverstock-table-wrapper');
 
-    const btns = document.querySelectorAll(".tab-container button");
-    const img = document.getElementById("motionPathImage");
+        expandBtn.addEventListener('click', (e) => {
+            e.preventDefault();
 
-    // ⭐ PRELOAD ALL IMAGES — instant swap
-    Object.values(gritImages).forEach(src => {
-        const preload = new Image();
-        preload.src = src;
-    });
+            // toggle expanded/collapsed classes
+            tableWrapper.classList.toggle('expanded');
+            tableWrapper.classList.toggle('collapsed');
 
-    // Default
-    btns[0].classList.add("active");
+            const isExpanded = tableWrapper.classList.contains('expanded');
+            const btnText = isExpanded ? 'SHOW LESS' : 'EXPAND MORE';
 
-    btns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            btns.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
+            // update only the text node, keep SVG intact
+            const textNode = expandBtn.childNodes[0]; // the text before the SVG
+            textNode.textContent = btnText + ' ';
 
-            let grit = btn.dataset.grit;
+            // optional: rotate arrow up/down
+            const arrow = expandBtn.querySelector('svg');
+            arrow.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+            arrow.style.transition = 'transform 0.3s ease';
 
-            // Instant swap (images already cached)
-            img.src = gritImages[grit];
+            // scroll up when collapsing
+            if (!isExpanded) {
+                tableWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
-    });
-</script>
+    </script>
+
+    <script>
+        //Reaction Phase GIF
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            for (i = 0; i < dots.length; i++) {
+
+            }
+            slides[slideIndex - 1].style.display = "block";
+
+            setTimeout(showSlides, 1000); // Change image every 2 seconds
+        }
+    </script>
+
+
+    <script>
+        const gritImages = {
+            "180": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/180-grit.png",
+            "360": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/360-grit.png",
+            "500": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/500-grit.png",
+            "1000": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/1000-grit.png",
+            "2000": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/2000-grit.png",
+            "3000": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/3000-grit.png",
+            "4000": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/4000-grit.png",
+            "polish": "https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/power-edge-grit.png"
+        };
+
+        const btns = document.querySelectorAll(".tab-container button");
+        const img = document.getElementById("motionPathImage");
+
+        // ⭐ PRELOAD ALL IMAGES — instant swap
+        Object.values(gritImages).forEach(src => {
+            const preload = new Image();
+            preload.src = src;
+        });
+
+        // Default
+        btns[0].classList.add("active");
+
+        btns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                btns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                let grit = btn.dataset.grit;
+
+                // Instant swap (images already cached)
+                img.src = gritImages[grit];
+            });
+        });
+    </script>
+</body>

@@ -102,6 +102,27 @@ document.addEventListener("mouseup", () => {
   }
 });
 
+document.addEventListener("contextmenu", () => {
+  clearTimeout(holdTimeout);
+  if (flipTween) {
+    flipTween.kill();
+    gsap.set(cursorImg, { rotation: 0 });
+  }
+  isHolding = false;
+});
+
+// After your existing mouseup listener, add:
+
+// Stop spinning if the window/tab loses focus (e.g. DevTools opens)
+window.addEventListener("blur", () => {
+  clearTimeout(holdTimeout);
+  if (flipTween) {
+    flipTween.kill();
+    gsap.set(cursorImg, { rotation: 0 });
+  }
+  isHolding = false;
+});
+
 // On non-home pages show the cursor + trail immediately (no load sequence delay)
 document.addEventListener("DOMContentLoaded", () => {
   if (!document.body.classList.contains("home")) {
