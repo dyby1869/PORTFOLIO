@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
-         <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="web-page-style.css">
 
@@ -1499,6 +1499,7 @@
             2. Condition Fit / Environment → where it performs best
             3. Design Specs → technical construction details
         =========================================================== */
+
         const balls = [
             {
                 id: "ION Max",
@@ -2628,21 +2629,6 @@
                 "neighbors": ["Angular", "Steep"],
                 "notes": "Long skid with sudden backend motion. Opposite of Hook-Set in lane phase behavior."
             },
-            "Steep": {
-                "incompatibleWith": ["Smooth", "Round", "Hook Set"],
-                "neighbors": ["Skid Flip"],
-                "notes": "Maximum entry angle. Hyper-responsive to dry boards and friction contrast."
-            },
-            "Boomy": {
-                "hybridOf": ["Arc", "Angular"],
-                "notes": "Late but smooth motion. Think ‘long and sweeping’ — angular yet continuous, not jerky."
-            },
-            "Hook Set": {
-                "mirrorOf": "Skid Flip",
-                "hybridOf": ["Round", "Arc"],
-                "incompatibleWith": ["Steep"],
-                "notes": "Hooks early, stabilizes, and goes forward (like an early-phase skid-flip). Short, heavy roll with low continuation."
-            },
             "Straight": {
                 "independent": true,
                 "notes": "Minimal hook or shape. End-over-end roll, used on extreme dry or for spares."
@@ -2853,8 +2839,8 @@
 
 
         /* ===============================
-    POPUP CONTROLLER (SAFE)
- =============================== */
+            POPUP CONTROLLER (SAFE)
+        =============================== */
 
         function openPopup(html) {
             const overlay = document.getElementById("info-popup-overlay");
