@@ -141,21 +141,75 @@
     <!-- SECTION 4: BEYOND WORK -->
     <section class="body-container">
         <h2 class="mb-48">Beyond Work</h2>
-
         <blockquote class="mb-48">This isn't a hobbies section. This is identity.</blockquote>
 
-        <div class="grid grid--2col mb-48">
-            <img src="assets/about/snowboarding.jpg" alt="Dylan snowboarding" class="clickable-img"
-                style="width:100%; border-radius:8px;">
-            <img src="assets/about/surfing.jpg" alt="Dylan surfing" class="clickable-img"
-                style="width:100%; border-radius:8px;">
+        <!-- TAB BUTTONS -->
+        <div class="toggle-buttons mb-48" id="beyond-work-tabs">
+            <button class="toggle-button active" data-tab="snowboard">Snowboard</button>
+            <button class="toggle-button" data-tab="skate">Skate</button>
+            <button class="toggle-button" data-tab="surf">Surf</button>
+            <button class="toggle-button" data-tab="nascar">NASCAR</button>
+            <button class="toggle-button" data-tab="bowling">Bowling</button>
         </div>
 
-        <div class="grid grid--2col">
-            <img src="assets/about/skateboarding.jpg" alt="Dylan skateboarding" class="clickable-img"
-                style="width:100%; border-radius:8px;">
-            <img src="assets/about/bowling.jpg" alt="Dylan bowling" class="clickable-img"
-                style="width:100%; border-radius:8px;">
+        <!-- SNOWBOARD -->
+        <div class="beyond-work-tab" data-tab="snowboard">
+            <div class="grid grid--2col mb-16">
+                <img src="assets/about/about-snowbaording.png" alt="Dylan snowboarding" class="clickable-img">
+                <img src="assets/about/about-snowboard-2.png" alt="Dylan snowboarding" class="clickable-img">
+            </div>
+            <div class="grid grid--2col">
+                <img src="assets/about/about-snowboard-3.png" alt="Dylan snowboarding" class="clickable-img">
+                <img src="assets/about/about-snowboard-4.png" alt="Dylan snowboarding" class="clickable-img">
+            </div>
+        </div>
+
+        <!-- SKATE -->
+        <div class="beyond-work-tab" data-tab="skate" style="display:none;">
+            <div class="grid grid--2col mb-16">
+                <img src="assets/about/about-skate-1.png" alt="Dylan skating" class="clickable-img">
+                <img src="assets/about/about-skate-2.png" alt="Dylan skating" class="clickable-img">
+            </div>
+            <div class="grid grid--2col">
+                <img src="assets/about/about-skate-3.png" alt="Dylan skating" class="clickable-img">
+                <img src="assets/about/about-skate-4.png" alt="Dylan skating" class="clickable-img">
+            </div>
+        </div>
+
+        <!-- SURF -->
+        <div class="beyond-work-tab" data-tab="surf" style="display:none;">
+            <div class="grid grid--2col mb-16">
+                <img src="assets/about/about-surf-1.png" alt="Dylan surfing" class="clickable-img">
+                <img src="assets/about/about-surf-2.png" alt="Dylan surfing" class="clickable-img">
+            </div>
+            <div class="grid grid--2col">
+                <img src="assets/about/about-surf-3.png" alt="Dylan surfing" class="clickable-img">
+                <img src="assets/about/about-surf-4.png" alt="Dylan surfing" class="clickable-img">
+            </div>
+        </div>
+
+        <!-- NASCAR -->
+        <div class="beyond-work-tab" data-tab="nascar" style="display:none;">
+            <div class="grid grid--2col mb-16">
+                <img src="assets/about/daytona.png" alt="Daytona" class="clickable-img">
+                <img src="assets/about/bristol.png" alt="Bristol" class="clickable-img">
+            </div>
+            <div class="grid grid--2col">
+                <img src="assets/about/charlotte.png" alt="Charlotte" class="clickable-img">
+                <img src="assets/about/darlington.png" alt="Darlington" class="clickable-img">
+            </div>
+        </div>
+
+        <!-- BOWLING -->
+        <div class="beyond-work-tab" data-tab="bowling" style="display:none;">
+            <div class="grid grid--2col mb-16">
+                <img src="assets/about/about-bowling-1.png" alt="Dylan bowling" class="clickable-img">
+                <img src="assets/about/about-bowling-2.png" alt="Dylan bowling" class="clickable-img">
+            </div>
+            <div class="grid grid--2col">
+                <img src="assets/about/about-bowling-3.png" alt="Dylan bowling" class="clickable-img">
+                <img src="assets/about/about-bowling-4.png" alt="Dylan bowling" class="clickable-img">
+            </div>
         </div>
     </section>
 

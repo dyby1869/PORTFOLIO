@@ -134,38 +134,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // =============================================================================
 //  3. GLOBAL — Navigation Inject
-//  Nav lives in nav.html — injected into every page so changes happen once.
-//  Note: requires a server (works on GitHub Pages, not file://)
 // =============================================================================
 
-fetch("nav.html")
-  .then(res => res.text())
-  .then(html => {
-    const navBar = document.querySelector(".nav-bar");
-    if (!navBar) return;
-    navBar.outerHTML = html;
+document.addEventListener("DOMContentLoaded", () => {
+  const isHome = document.body.classList.contains("home");
 
-    // Re-init menu toggle after inject since the element was replaced
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navLinks = document.querySelector(".nav-link-container");
-    if (menuToggle && navLinks) {
-      menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-        menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
-      });
-    }
-  })
-  .catch(() => {
-    // Fallback — if fetch fails, init menu toggle on existing nav
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navLinks = document.querySelector(".nav-link-container");
-    if (menuToggle && navLinks) {
-      menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-        menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
-      });
-    }
-  });
+  fetch("nav.html")
+    .then(res => res.text())
+    .then(html => {
+      const navBar = document.querySelector(".nav-bar");
+      if (!navBar) return;
+      navBar.outerHTML = html;
+
+      // Re-init menu toggle after inject since the element was replaced
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-link-container");
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+          menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
+        });
+      }
+
+      // On the home page the nav starts hidden (opacity:0 in CSS) and GSAP
+      // fades it in during the hero sequence — but only if it exists in the DOM
+      // when that timeline runs. Signal that the nav is ready.
+      if (isHome) {
+        document.dispatchEvent(new Event("nav:ready"));
+      }
+    })
+    .catch(() => {
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-link-container");
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+          menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
+        });
+      }
+      if (isHome) document.dispatchEvent(new Event("nav:ready"));
+    });
+});
 
 
 // =============================================================================
@@ -481,12 +490,20 @@ if (document.body.classList.contains("home")) {
       ease: "power1.out"
     });
 
-    tl.fromTo(".nav-bar", { opacity: 0, y: -20 }, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.6");
+    // With this:
+    tl.call(() => {
+      const animateNav = () => {
+        gsap.fromTo(".nav-bar", { opacity: 0, y: -20 }, {
+          opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
+        });
+      };
+      // If nav is already injected, animate immediately; otherwise wait for it
+      if (document.querySelector(".nav-bar header, header.nav-bar")) {
+        animateNav();
+      } else {
+        document.addEventListener("nav:ready", animateNav, { once: true });
+      }
+    }, [], "-=0.6");
 
     tl.fromTo(".btn-cta", { opacity: 0, y: 20 }, {
       opacity: 1,
@@ -732,11 +749,58 @@ if (document.body.classList.contains("about")) {
       });
     }
 
+    // -------------------------------------------------------------------------
+    // Click-to-enlarge modal
+    // -------------------------------------------------------------------------
+    const aboutModal = document.createElement("div");
+    aboutModal.classList.add("image-modal");
+    document.body.appendChild(aboutModal);
+
+    document.querySelectorAll(".clickable-img").forEach(img => {
+      img.addEventListener("click", () => {
+        const enlarged = document.createElement("img");
+        enlarged.src = img.src;
+        enlarged.alt = img.alt;
+        aboutModal.innerHTML = "";
+        aboutModal.appendChild(enlarged);
+        aboutModal.classList.add("show");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    aboutModal.addEventListener("click", () => {
+      aboutModal.classList.remove("show");
+      aboutModal.innerHTML = "";
+      document.body.style.overflow = "";
+    });
+
+
+    // -------------------------------------------------------------------------
+    // Beyond Work tab switcher
+    // -------------------------------------------------------------------------
+    const tabButtons = document.querySelectorAll("#beyond-work-tabs .toggle-button");
+    const tabPanels = document.querySelectorAll(".beyond-work-tab");
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.tab;
+
+        // Update button states
+        tabButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        // Show matching panel, hide others
+        tabPanels.forEach(panel => {
+          panel.style.display = panel.dataset.tab === target ? "block" : "none";
+        });
+      });
+    });
+
     ScrollTrigger.refresh();
-  });
 
-}
+  }); // end window load
 
+} // end about block
 
 // =============================================================================
 //  11. WORK PAGES — Hero Text Animation
@@ -1485,3 +1549,4 @@ if (document.body.classList.contains("ion-max")) {
   });
 
 } // end ion-max block
+
