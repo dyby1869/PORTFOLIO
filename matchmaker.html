@@ -1,8 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>Storm Bowling Ball Matchmaker</title>
+    <meta name="description" content="Storm Bowling Ball Matchmaker — a project by Dylan Byars, UX designer and front-end developer.">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
@@ -561,6 +565,14 @@
 <body>
 
     <header class="nav-bar"></header>
+
+    <main>
+
+    <a class="storm-context-banner" href="stormbowling.html">
+        <span>Part of the <strong>Storm Bowling</strong> platform — see the system behind it</span>
+        <span class="scb-arrow" aria-hidden="true">&#8594;</span>
+    </a>
+
 
     <!-- SUMMARY BOX -->
     <div id="summaryBox">
@@ -1422,16 +1434,18 @@
 
 
     <!-- SHRED CURSOR -->
+    </main>
+
     <div id="shred-cursor">
-        <img src="assets/shred-cursor.png" alt="Snowboarder Cursor">
+        <img src="assets/shred-cursor.png" alt="Snowboarder Cursor" decoding="async" width="32" height="33">
     </div>
     <div id="trail-container"></div>
-    <script src="https://cdn.jsdelivr.net/npm/smooth-scrollbar"></script>
+    <script src="assets/vendor/smooth-scrollbar.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/DrawSVGPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/gsap/gsap.min.js"></script>
+    <script src="assets/vendor/gsap/3.15/DrawSVGPlugin.min.js"></script>
+    <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
     <script src="main.js"></script>
 
     <!-- EXPLORE POP UPS -->
@@ -2523,7 +2537,7 @@
                 card.className = "ball-card";
 
                 card.innerHTML = `
-            <img src="${ball.image}" alt="${ball.name}">
+            <img src="${ball.image}" alt="${ball.name}" decoding="async" loading="lazy">
             <p>${ball.name}</p>
         `;
 
@@ -2883,7 +2897,7 @@
                 card.className = "ball-card";
 
                 card.innerHTML = `
-            <img src="${ball.image}" alt="${ball.name}">
+            <img src="${ball.image}" alt="${ball.name}" decoding="async" loading="lazy">
             <p>${ball.name}</p>
         `;
 
@@ -2900,7 +2914,7 @@
         function openBallPopup(ball) {
             openPopup(`
         <h2>${ball.name}</h2>
-        <img src="${ball.image}" alt="${ball.name}" style="max-width:200px;margin-bottom:16px;">
+        <img src="${ball.image}" alt="${ball.name}" style="max-width:200px;margin-bottom:16px;" decoding="async" loading="lazy">
 
         <p>${ball.description}</p>
 
@@ -3268,7 +3282,7 @@
 
                 container.innerHTML += `
         <div class="result-card">
-            <img src="${ball.image}" alt="${ball.name}">
+            <img src="${ball.image}" alt="${ball.name}" decoding="async" loading="lazy">
             <h3>${ball.name}</h3>
             <p>${ball.description}</p>
             <small>Match Score: ${score}</small>
@@ -3450,3 +3464,5 @@
         });
     </script>
 </body>
+
+</html>

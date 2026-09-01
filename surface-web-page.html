@@ -1,4 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <title>Surface — Dylan Byars</title>
+    <meta name="description" content="Surface — a project by Dylan Byars, UX designer and front-end developer.">
     <meta charset="utf-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +25,14 @@
 
 <body>
     <header class="nav-bar"></header>
+
+    <main>
+
+    <a class="storm-context-banner" href="stormbowling.html">
+        <span>Part of the <strong>Storm Bowling</strong> platform — see the system behind it</span>
+        <span class="scb-arrow" aria-hidden="true">&#8594;</span>
+    </a>
+
 
     <!-- 1. HERO — WHAT IS A LAYOUT -->
     <div class="intro-container">
@@ -52,7 +65,7 @@
 
                     <div class="surface-image">
                         <img src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/surface-images/RA-Picture-new.png"
-                            alt="Bowling Ball Surface Close-Up">
+                            alt="Bowling Ball Surface Close-Up" decoding="async">
                     </div>
 
                     <div class="surface-content">
@@ -153,7 +166,7 @@
             <div class="lane-visual">
                 <img id="motionPathImage"
                     src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/motion-paths/180-grit.png"
-                    alt="Ball Motion Path">
+                    alt="Ball Motion Path" decoding="async" loading="lazy">
             </div>
 
         </section>
@@ -460,7 +473,7 @@
                             <img class="lazy-load"
                                 src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/thumbnails/Do%20This%20to%20Smooth%20Out%20Your%20Bowling%20Ball's%20Reaction%20_%20Harsh%20Reality%20Pearl%20Surface%20Test.png"
                                 data-video-id="4sTr9pTVuE0"
-                                alt="How to smooth out bowling ball reaction surface test video thumbnail">
+                                alt="How to smooth out bowling ball reaction surface test video thumbnail" decoding="async" loading="lazy">
 
                             <span class="video-play"></span>
 
@@ -481,7 +494,7 @@
                             <img class="lazy-load"
                                 src="https://stormproducts.nyc3.cdn.digitaloceanspaces.com/web_page_content/SURFACE-GUIDE/thumbnails/How%20To%20Completely%20Change%20Your%20Bowling%20Ball's%20Motion%20_%20Optimum%20Idol%20Surface%20Comparison%20_%20Roto%20Grip.png"
                                 data-video-id="ISLOn37f8LY"
-                                alt="Optimum Idol surface comparison bowling ball motion video thumbnail">
+                                alt="Optimum Idol surface comparison bowling ball motion video thumbnail" decoding="async" loading="lazy">
 
                             <span class="video-play"></span>
 
@@ -540,15 +553,17 @@
 
 
     <!-- SHRED CURSOR -->
+    </main>
+
     <div id="shred-cursor">
-        <img src="assets/shred-cursor.png" alt="Snowboarder Cursor">
+        <img src="assets/shred-cursor.png" alt="Snowboarder Cursor" decoding="async" loading="lazy" width="32" height="33">
     </div>
     <div id="trail-container"></div>
 
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/gsap/3.11.4/gsap.min.js"></script>
+    <script src="assets/vendor/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="main.js"></script>
 
 
@@ -618,3 +633,5 @@
         });
     </script>
 </body>
+
+</html>

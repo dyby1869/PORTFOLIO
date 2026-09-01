@@ -27,6 +27,19 @@
 //  1. GLOBAL — GSAP Plugin Registration
 // =============================================================================
 
+// Signal that the animation engine is available. The home page hides its hero
+// via CSS (GSAP reveals it); this marker lets the failsafe in index.html's
+// <head> reveal the hero if GSAP — or this file — ever fails to load.
+if (typeof gsap !== "undefined") {
+  document.documentElement.classList.add("gsap-ready");
+}
+
+// Respect the user's reduced-motion preference (accessibility). When set, we
+// skip decorative intros/loops and settle scroll reveals to their visible end
+// state (see the Reduced-Motion Settle block at the bottom of this file).
+const REDUCE_MOTION = !!(window.matchMedia
+  && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
 gsap.registerPlugin(ScrollTrigger);
 if (document.body.classList.contains("home")) {
   gsap.registerPlugin(MotionPathPlugin);
@@ -48,6 +61,7 @@ let trailEnabled = false;
 
 // Move cursor & spawn trail dots
 document.addEventListener("mousemove", (e) => {
+  if (REDUCE_MOTION) return;
   gsap.to(cursor, {
     x: e.clientX,
     y: e.clientY,
@@ -158,7 +172,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // On the home page the nav starts hidden (opacity:0 in CSS) and GSAP
       // fades it in during the hero sequence — but only if it exists in the DOM
-      // when that timeline runs. Signal that the nav is ready.
+      // when that timeline runs. Flag readiness and signal that the nav is ready
+      // so the hero timeline animates the injected nav (not a stale placeholder).
+      window.__navReady = true;
       if (isHome) {
         document.dispatchEvent(new Event("nav:ready"));
       }
@@ -172,6 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
           menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
         });
       }
+      window.__navReady = true;
       if (isHome) document.dispatchEvent(new Event("nav:ready"));
     });
 });
@@ -181,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //  4. GLOBAL — Shaka Emoji Animation
 // =============================================================================
 
-gsap.to(".shaka", {
+if (!REDUCE_MOTION) gsap.to(".shaka", {
   rotate: 15,
   y: -2,
   duration: 0.3,
@@ -215,9 +232,12 @@ gsap.to(".shaka", {
 function goToSlide(trackId, dotsId, index) {
   const track = document.getElementById(trackId);
   const dots = document.querySelectorAll(`#${dotsId} .dot`);
+  if (!track || !dots.length) return;
+  // Clamp so an out-of-range index can't throw or scroll past the ends
+  index = Math.max(0, Math.min(index, dots.length - 1));
   track.style.transform = `translateX(-${index * 100}%)`;
   dots.forEach(d => d.classList.remove("active"));
-  dots[index].classList.add("active");
+  if (dots[index]) dots[index].classList.add("active");
 }
 
 
@@ -421,7 +441,7 @@ window.addEventListener("load", () => {
 //  7. HOME — Hero Load Sequence
 // =============================================================================
 
-if (document.body.classList.contains("home")) {
+if (document.body.classList.contains("home") && !REDUCE_MOTION) {
 
   window.addEventListener("load", () => {
     const tl = gsap.timeline();
@@ -441,21 +461,14 @@ if (document.body.classList.contains("home")) {
       ease: "power2.out"
     }, "-=0.4");
 
-    tl.set(".portal-rays", { opacity: 0, scaleY: 0.6 });
-
-    tl.to(".portal-rays", {
-      opacity: 1,
-      scaleY: 1,
-      duration: 1.2,
-      ease: "power2.out"
-    }, "-=0.6");
-
     // Profile rises up
+    // (offset preserves the original timing that a now-removed .portal-rays
+    //  tween — which targeted a non-existent element — used to occupy)
     tl.fromTo(".portal-profile", { y: 80 }, {
       y: 0,
       duration: 1.2,
       ease: "power2.out"
-    }, "-=1.1");
+    }, "-=0.5");
 
     tl.fromTo(".portal-profile", { opacity: 0 }, {
       opacity: 1,
@@ -497,8 +510,12 @@ if (document.body.classList.contains("home")) {
           opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
         });
       };
-      // If nav is already injected, animate immediately; otherwise wait for it
-      if (document.querySelector(".nav-bar header, header.nav-bar")) {
+      // The placeholder and the injected nav are both <header class="nav-bar">,
+      // so a DOM query can't tell them apart. Use an explicit readiness flag:
+      // if injection finished, animate the real nav now; otherwise wait for the
+      // nav:ready event so the fade-in lands on the injected element instead of
+      // a placeholder that outerHTML replacement would immediately discard.
+      if (window.__navReady) {
         animateNav();
       } else {
         document.addEventListener("nav:ready", animateNav, { once: true });
@@ -575,7 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tl.to(heroText2, { opacity: 1, duration: 0.6 }, "-=0.4");
 
     tl.call(() => {
-      const message = "I bring ideas to life through motion, detail, and interaction.";
+      const message = "I turn messy problems into systems — then build them in code.";
       typedText.textContent = "";
       let i = 0;
 
@@ -620,6 +637,54 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }, 35);
     });
+  });
+});
+
+
+// =============================================================================
+//  8b. HOME — Copy Email Button (Get In Touch)
+//  Copies the address to the clipboard and briefly reveals the confirmation.
+// =============================================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const copyBtn = document.getElementById("copy-email");
+  const copyConfirm = document.getElementById("copy-confirm");
+  if (!copyBtn) return;
+
+  const email = copyBtn.textContent.trim();
+
+  const showConfirm = () => {
+    if (!copyConfirm) return;
+    gsap.killTweensOf(copyConfirm);
+    gsap.fromTo(
+      copyConfirm,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.3, ease: "power1.out" }
+    );
+    gsap.to(copyConfirm, { opacity: 0, duration: 0.4, delay: 1.6, ease: "power1.in" });
+  };
+
+  copyBtn.addEventListener("click", async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(email);
+      } else {
+        // Fallback for older browsers / insecure contexts
+        const tmp = document.createElement("textarea");
+        tmp.value = email;
+        tmp.setAttribute("readonly", "");
+        tmp.style.position = "absolute";
+        tmp.style.left = "-9999px";
+        document.body.appendChild(tmp);
+        tmp.select();
+        document.execCommand("copy");
+        document.body.removeChild(tmp);
+      }
+      showConfirm();
+    } catch (err) {
+      // Clipboard blocked — fall back to opening the user's mail client
+      window.location.href = `mailto:${email}`;
+    }
   });
 });
 
@@ -1550,3 +1615,30 @@ if (document.body.classList.contains("ion-max")) {
 
 } // end ion-max block
 
+
+
+// =============================================================================
+//  24. GLOBAL — Reduced-Motion Settle
+//  If the user prefers reduced motion, reveal the hero immediately and settle
+//  every scroll-driven reveal to its final (visible) state, then stop it — so
+//  all content is fully shown with no animation or scrubbing. Decorative intros
+//  and infinite loops are skipped where they're created (see above).
+// =============================================================================
+
+if (REDUCE_MOTION) {
+  // Reveal the home hero (normally faded in by the intro we skipped)
+  document.documentElement.classList.add("no-anim");
+
+  window.addEventListener("load", () => {
+    // Registered last, so page-specific reveals exist by now. Defer one frame
+    // so any load-time triggers are created, then jump them all to the end.
+    requestAnimationFrame(() => {
+      if (typeof ScrollTrigger !== "undefined") {
+        ScrollTrigger.getAll().forEach((st) => {
+          if (st.animation) st.animation.progress(1);
+          st.kill();
+        });
+      }
+    });
+  });
+}

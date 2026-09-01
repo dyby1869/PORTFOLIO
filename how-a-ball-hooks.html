@@ -1,4 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <title>How A Ball Hooks — Dylan Byars</title>
+    <meta name="description" content="How A Ball Hooks — a project by Dylan Byars, UX designer and front-end developer.">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,6 +45,14 @@
 <body>
 
     <header class="nav-bar"></header>
+
+    <main>
+
+    <a class="storm-context-banner" href="stormbowling.html">
+        <span>Part of the <strong>Storm Bowling</strong> platform — see the system behind it</span>
+        <span class="scb-arrow" aria-hidden="true">&#8594;</span>
+    </a>
+
     <!-- 0. INTRO -->
     <div class="intro-container">
 
@@ -460,15 +473,17 @@
 
 
     <!-- SHRED CURSOR -->
+    </main>
+
     <div id="shred-cursor">
-        <img src="assets/shred-cursor.png" alt="Snowboarder Cursor">
+        <img src="assets/shred-cursor.png" alt="Snowboarder Cursor" decoding="async" width="32" height="33">
     </div>
     <div id="trail-container"></div>
 
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/gsap/3.11.4/gsap.min.js"></script>
+    <script src="assets/vendor/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="main.js"></script>
 
     <script>
@@ -480,6 +495,7 @@
             let i;
             let slides = document.getElementsByClassName("mySlides");
             let dots = document.getElementsByClassName("dot");
+            if (!slides.length) return; // no slideshow markup on this page — avoid a crash
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
@@ -494,3 +510,5 @@
         }
     </script>
 </body>
+
+</html>

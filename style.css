@@ -57,6 +57,7 @@ textarea {
 
 img{
     max-width:100%;
+    height: auto;
 }
 
 ul {
@@ -710,6 +711,7 @@ a {
     padding: 12px 20px;
     background-color: var(--brand);
     text-decoration: none;
+    border: none;
     border-radius: 4px;
     color: #000;
     width: fit-content;
@@ -1333,4 +1335,496 @@ a {
 .close:hover {
     opacity: 1;
     text-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) !important;
+}
+/* ---------------------------------------------------------------------------
+   Home hero fallback
+   The home hero (nav, portal, profile, hero copy) starts at opacity:0 so GSAP
+   can animate it in on load. If JS is disabled (documentElement has no `.js`
+   class) or the animation engine never initializes (`.no-anim`, set by the
+   failsafe in index.html's <head> or the GSAP <script onerror>), reveal it so
+   the page is never left blank.
+   --------------------------------------------------------------------------- */
+html:not(.js) .home .nav-bar,
+html:not(.js) .hero-content,
+html:not(.js) .portal,
+html:not(.js) .portal-profile,
+html.no-anim .home .nav-bar,
+html.no-anim .hero-content,
+html.no-anim .portal,
+html.no-anim .portal-profile {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+}
+
+/* ---------------------------------------------------------------------------
+   Selected Work (home)
+   Storm is ONE dominant parent project with four connected chapter links;
+   Pockets is a separate, smaller independent project. The hierarchy is the
+   point — these are not four peer projects.
+   --------------------------------------------------------------------------- */
+.section-intro {
+    max-width: 68ch;
+    color: #cfcfcf;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.work-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 0.35rem;
+}
+
+.work-eyebrow--divider {
+    display: block;
+    padding-top: 1.5rem;
+    border-top: 1px solid #262626;
+}
+
+/* --- Project block (shared) --- */
+.project {
+    background-color: var(--dark-card);
+    border-radius: 12px;
+    padding: 1.75rem;
+}
+
+.project-hero {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #0f0f0f;
+}
+
+.project-hero img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.project-title {
+    margin: 0.15rem 0 0.75rem;
+    line-height: 1.2;
+}
+
+.project-summary {
+    color: #d8d8d8;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+}
+
+/* --- Storm parent: visually dominant, hero banner on top, chapters below --- */
+.project--storm {
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 0 0 1px rgba(255, 231, 124, 0.06), 0 24px 48px rgba(0, 0, 0, 0.4);
+}
+
+.project--storm .project-hero {
+    margin-bottom: 1.5rem;
+}
+
+.project--storm .project-hero img {
+    height: 320px;
+}
+
+.project--storm .project-body {
+    max-width: 900px;
+}
+
+.project--storm .project-title {
+    font-size: 1.9rem;
+}
+
+.chapter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.chapter {
+    display: block;
+    padding: 0.9rem 1rem;
+    border: 1px solid #2f2f2f;
+    border-radius: 8px;
+    background-color: #141414;
+    transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.chapter h5 {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin: 0 0 0.35rem;
+    color: var(--text);
+    font-size: 15px;
+}
+
+.chapter-arrow {
+    flex-shrink: 0;
+    color: var(--brand);
+    font-weight: 700;
+    transition: transform 0.2s ease;
+}
+
+.chapter:hover .chapter-arrow {
+    transform: translateX(4px);
+}
+
+.chapter p {
+    margin: 0;
+    color: #a8a8a8;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.chapter:hover {
+    border-color: var(--brand);
+    background-color: #1b1b1b;
+    transform: translateY(-2px);
+}
+
+.chapter:hover h5 {
+    color: var(--brand);
+}
+
+.project-cta {
+    display: inline-block;
+}
+
+/* --- Pockets: separate, clearly secondary (smaller side-by-side) --- */
+.project--pockets-link {
+    display: block;
+}
+
+.project--pockets {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    gap: 1.5rem;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project--pockets .project-hero img {
+    height: 200px;
+}
+
+.project--pockets .project-title {
+    font-size: 1.35rem;
+}
+
+.project--pockets .project-summary {
+    margin-bottom: 0.5rem;
+}
+
+.project--pockets .label-callout {
+    color: #9a9a9a;
+    margin-top: 0.5rem;
+}
+
+.project--pockets:hover {
+    transform: translateY(-3px);
+    box-shadow: -12px 12px 20px rgba(255, 231, 124, 0.15);
+}
+
+/* --- Responsive: stack on narrow screens --- */
+@media (max-width: 768px) {
+
+    .chapter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project--storm .project-hero img {
+        height: 220px;
+    }
+
+    .project--storm .project-title {
+        font-size: 1.5rem;
+    }
+
+    .project--pockets {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   Keyboard focus — a visible ring for keyboard users only (not mouse clicks)
+   --------------------------------------------------------------------------- */
+:focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion — honor prefers-reduced-motion (accessibility)
+   Near-instant transitions/animations, no custom cursor, hero revealed.
+   main.js also settles scroll reveals to their visible end state.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    #shred-cursor,
+    #trail-container {
+        display: none !important;
+    }
+
+    .home .nav-bar,
+    .hero-content,
+    .portal,
+    .portal-profile,
+    .btn-cta {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   Restore a real, visible cursor whenever the custom cursor can't run:
+   JS disabled (html has no .js), the animation engine failed (.no-anim),
+   or the user prefers reduced motion. Otherwise body{cursor:none} would
+   leave these users with no pointer at all.
+   --------------------------------------------------------------------------- */
+html:not(.js),
+html:not(.js) body,
+html.no-anim,
+html.no-anim body {
+    cursor: auto !important;
+}
+
+html:not(.js) a,
+html:not(.js) button,
+html.no-anim a,
+html.no-anim button {
+    cursor: pointer !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html,
+    body,
+    input,
+    textarea {
+        cursor: auto !important;
+    }
+
+    a,
+    button {
+        cursor: pointer !important;
+    }
+}
+
+main {
+    display: block;
+}
+
+/* ---------------------------------------------------------------------------
+   How I Work — one connected pipeline (Research → System → Interface → Shipped)
+   Framed as a single continuous thread rather than three separate service cards,
+   because connecting these stages IS the differentiator.
+   --------------------------------------------------------------------------- */
+.pipeline {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+
+.pipeline-stage {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark-card);
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 1.25rem;
+}
+
+.pipeline-step {
+    display: inline-block;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 800;
+    color: var(--brand);
+    margin-bottom: 0.5rem;
+}
+
+.pipeline-stage p {
+    color: #d8d8d8;
+    line-height: 1.45;
+    font-size: 15px;
+    margin-bottom: 0.9rem;
+}
+
+.pipeline-stage .label-callout {
+    margin-top: auto;
+    margin-bottom: 0;
+    font-size: 13px;
+    color: #a8a8a8;
+}
+
+.pipeline-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0 0.6rem;
+    color: var(--brand);
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+@media (max-width: 900px) {
+    .pipeline {
+        flex-direction: column;
+    }
+
+    .pipeline-arrow {
+        transform: rotate(90deg);
+        padding: 0.4rem 0;
+        align-self: center;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   System diagram (Storm block) — the visual proof of the systems thinking.
+   Light frame so the navy diagram reads clearly against the dark card.
+   --------------------------------------------------------------------------- */
+.system-diagram {
+    margin: 0 0 1.5rem;
+    background: #f4f4f5;
+    border-radius: 10px;
+    padding: 1.25rem;
+}
+
+.system-diagram img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.system-diagram figcaption {
+    margin-top: 0.85rem;
+    color: #555;
+    font-size: 13px;
+    line-height: 1.45;
+    text-align: center;
+}
+
+/* ---------------------------------------------------------------------------
+   Intersection statement (How I Work) — names the overlap explicitly.
+   --------------------------------------------------------------------------- */
+.intersection-line {
+    max-width: 72ch;
+    padding-left: 16px;
+    border-left: 4px solid var(--brand);
+    color: var(--text);
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.6;
+    margin: 2.5rem 0 0;
+}
+
+.intersection-line strong {
+    color: var(--brand);
+}
+
+/* ---------------------------------------------------------------------------
+   Storm context banner — recontextualizes each product page as an output of
+   the Storm platform, linking back to the case study (the system behind it).
+   --------------------------------------------------------------------------- */
+.storm-context-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.65rem 1rem;
+    background: rgba(255, 231, 124, 0.1);
+    border-bottom: 1px solid rgba(255, 231, 124, 0.25);
+    color: var(--brand);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.storm-context-banner strong {
+    color: var(--brand);
+}
+
+.storm-context-banner .scb-arrow {
+    transition: transform 0.2s ease;
+}
+
+.storm-context-banner:hover {
+    background: rgba(255, 231, 124, 0.18);
+}
+
+.storm-context-banner:hover .scb-arrow {
+    transform: translateX(3px);
+}
+
+/* ---------------------------------------------------------------------------
+   Cursor judgment — the custom snowboarder cursor is a mouse-only flourish.
+   On touch / coarse-pointer devices, restore the native cursor and hide the
+   custom one (otherwise body{cursor:none} leaves touch users with a stuck,
+   non-tracking cursor graphic). Desktop mouse users keep the branded cursor.
+   --------------------------------------------------------------------------- */
+@media (hover: none), (pointer: coarse) {
+
+    html,
+    body,
+    input,
+    textarea {
+        cursor: auto !important;
+    }
+
+    a,
+    button {
+        cursor: pointer !important;
+    }
+
+    #shred-cursor,
+    #trail-container {
+        display: none !important;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   Contact actions (Get In Touch) — clearer conversion: email, résumé, LinkedIn
+   --------------------------------------------------------------------------- */
+.contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--brand);
+    color: var(--brand);
+}
+
+.btn-outline:hover {
+    background-color: var(--brand);
+    color: #000;
 }

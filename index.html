@@ -1,9 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Progressive enhancement. The hero starts hidden (via CSS) so GSAP can
+        // animate it in. Add a `js` class so that hiding only applies when JS is
+        // running, and reveal the hero anyway if the animation engine never
+        // initializes (GSAP CDN blocked, main.js fails, etc.) — so the page is
+        // never left blank.
+        (function () {
+            var root = document.documentElement;
+            root.classList.add('js');
+            window.addEventListener('load', function () {
+                setTimeout(function () {
+                    if (typeof window.gsap === 'undefined' || !root.classList.contains('gsap-ready')) {
+                        root.classList.add('no-anim');
+                    }
+                }, 2500);
+            });
+        })();
+    </script>
     <meta name="description" content="Dylan Byars — UX Designer & Front-End Developer">
     <meta name="author" content="Dylan Byars">
-    <title>Dylan Byars 🤘🏻</title>
+    <title>Dylan Byars — UX Designer &amp; Front-End Developer</title>
+    <link rel="canonical" href="https://dybyux.design/">
+
+    <!-- Favicon (inline SVG, no extra request) -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2288%22>🤘</text></svg>">
+
+    <!-- Open Graph / social share -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dybyux.design/">
+    <meta property="og:title" content="Dylan Byars — UX Designer & Front-End Developer">
+    <meta property="og:description"
+        content="I design, prototype, and build with code to make websites easy to use and hard to forget.">
+    <meta property="og:image" content="https://dybyux.design/assets/profile-pics/portal-profile%204.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dylan Byars — UX Designer & Front-End Developer">
+    <meta name="twitter:description"
+        content="I design, prototype, and build with code to make websites easy to use and hard to forget.">
+    <meta name="twitter:image" content="https://dybyux.design/assets/profile-pics/portal-profile%204.png">
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +53,8 @@
 <body class="home">
 
     <header class="nav-bar"></header>
+
+    <main>
 
     <!-- HERO -->
     <section class="hero-container">
@@ -52,15 +94,16 @@
                         <rect class="beam" x="490" y="230" width="2" height="90" fill="url(#beam)" opacity="0.2" />
                     </g>
                 </svg>
-                <img class="portal-profile" src="assets/profile-pics/portal-profile 4.png">
+                <img class="portal-profile" src="assets/profile-pics/portal-profile 4.png" decoding="async" width="764" height="790" alt="">
                 <div class="portal-glow"></div>
             </div>
         </div>
 
         <div class="hero-content">
             <h2 class="hero-text" id="heroText1">
-                What's up <span class="shaka">🤙🏻</span> I'm Dylan — a UX designer and front-end developer.
-                I design, prototype, and build with code to make websites easy to use and hard to forget.
+                What's up <span class="shaka">🤙🏻</span> I'm Dylan. I take messy, undefined digital problems and turn
+                them into systems people can actually use — researching how people think, structuring the complexity,
+                and building the experience in code myself.
             </h2>
             <h2 id="heroText2" class="hero-text-2">
                 <span id="typedText"></span>
@@ -69,75 +112,149 @@
         </div>
     </section>
 
-    <!-- WHAT I DO -->
-    <section class="body-container" id="services">
-        <h3 class="mb-32">WHAT I DO</h3>
+    <!-- SELECTED WORK -->
+    <section id="recent-work" class="body-container">
+        <h3 class="mb-16">SELECTED WORK</h3>
+        <p class="section-intro mb-48">Two projects: a website transformation at Storm Bowling, and an independent
+            product concept.</p>
 
-        <div class="grid mb-48">
-            <div class="card">
-                <div class="icon">🎯</div>
-                <h4>Research & Strategy</h4>
-                <p>Understanding users, uncovering opportunities, and defining experience direction.</p>
-                <p class="label-callout">Surveys · Interviews · Experience Mapping · Synthesis · UX Strategy</p>
+        <!-- STORM — one project, four connected chapters -->
+        <article class="project project--storm mb-64">
+            <div class="project-hero">
+                <img src="assets/storm-assets/Applications Across the Ecosystem - matchmaker.png"
+                    alt="Storm platform — MatchMaker product-guidance and decision systems" decoding="async" loading="lazy" width="698" height="425">
             </div>
-            <div class="card">
-                <div class="icon">🧩</div>
-                <h4>Systems & Information Architecture</h4>
-                <p>Transforming complex information into scalable frameworks, navigation systems, and decision-making
-                    tools.</p>
-                <p class="label-callout">Taxonomies · Navigation · Design Systems · Product Comparison · Content
-                    Architecture</p>
-            </div>
-            <div class="card">
-                <div class="icon">⚡</div>
-                <h4>Interactive Front-End Experiences</h4>
-                <p>Building production-ready digital experiences through design, development, motion, and
-                    implementation.</p>
-                <p class="label-callout">HTML · CSS · JavaScript · GSAP · APIs · CMS Platforms</p>
-            </div>
-        </div>
+            <div class="project-body">
+                <span class="work-eyebrow">Storm Bowling · Website Transformation</span>
+                <h4 class="project-title">Reimagining a product catalog as a connected bowling platform</h4>
+                <p class="project-summary">Initial research set the direction. Infrastructure and navigation made an
+                    expanding ecosystem possible. Later ball-buying research deepened the educational experience and
+                    produced new product-guidance and decision systems — each part of the platform continued to inform
+                    the others.</p>
 
+                <figure class="system-diagram">
+                    <img src="assets/system-diagram.png"
+                        alt="System map of the Storm platform work: 863-response website research set the strategic direction, which drove both the educational ecosystem and the infrastructure, IA, and navigation work; a later ball-buying research and decision-systems effort fed back into both — every part continued informing the others."
+                        decoding="async" loading="lazy" width="1033" height="576">
+                    <figcaption>How the pieces connected: research set the direction, which drove the ecosystem and the
+                        platform architecture — and later ball-buying research fed back into both, rather than running as
+                        isolated phases.</figcaption>
+                </figure>
+
+                <div class="chapter-grid">
+                    <a class="chapter" href="stormbowling.html#phase-research">
+                        <h5>Establishing the Direction <span class="chapter-arrow" aria-hidden="true">→</span></h5>
+                        <p>863-response website research identified needs across education, product understanding, and
+                            community.</p>
+                    </a>
+                    <a class="chapter" href="stormbowling.html#phase-navigation">
+                        <h5>Building the Platform Foundation <span class="chapter-arrow" aria-hidden="true">→</span></h5>
+                        <p>Infrastructure, information architecture, and navigation evolved to support a growing content
+                            and product ecosystem.</p>
+                    </a>
+                    <a class="chapter" href="stormbowling.html#phase-education">
+                        <h5>Growing the Educational Ecosystem <span class="chapter-arrow" aria-hidden="true">→</span></h5>
+                        <p>An ongoing workstream — connected learning pathways translating research and business goals
+                            into practical bowling education.</p>
+                    </a>
+                    <a class="chapter" href="stormbowling.html#phase-ball-buying">
+                        <h5>Deepening Product Decision Support <span class="chapter-arrow" aria-hidden="true">→</span>
+                        </h5>
+                        <p>A 3,000-participant study produced clearer motion language, MatchMaker, filtering, comparison,
+                            and arsenal systems.</p>
+                    </a>
+                </div>
+
+                <a class="button btn-cta project-cta" href="stormbowling.html">Open the full case study →</a>
+            </div>
+        </article>
+
+        <!-- POCKETS — separate independent project -->
+        <p class="work-eyebrow work-eyebrow--divider mb-16">Independent Project</p>
+        <a href="pockets.html" class="project--pockets-link">
+            <article class="project project--pockets mb-64">
+                <div class="project-hero">
+                    <img src="assets/pockets/Main screens.jpg" alt="Pockets financial app main screens"
+                        onerror="this.style.display='none'" decoding="async" loading="lazy" width="2000" height="787">
+                </div>
+                <div class="project-body">
+                    <h4 class="project-title">Pockets</h4>
+                    <p class="project-summary">A financial app concept — research through prototype — for moving,
+                        organizing, and transacting money in one place.</p>
+                    <p class="label-callout">Research · Product · Prototype</p>
+                </div>
+            </article>
+        </a>
     </section>
 
-    <!-- RECENT WORK -->
-    <section id="recent-work" class="body-container">
-        <h3 class="mb-32">RECENT WORK</h3>
+    <!-- HOW I WORK — one connected thread, not three separate services -->
+    <section class="body-container" id="services">
+        <h3 class="mb-16">HOW I WORK</h3>
+        <p class="section-intro mb-48">One connected thread. I don't hand these off between people — I carry the
+            problem from the first research question all the way to shipped, working code.</p>
 
-        <div class="grid grid--2col mb-64">
-            <a href="stormbowling.html">
-                <div class="card  card--action ">
-                    <h4>Storm Bowling Products</h4>
-                    <h5>Using the UX process and methods as a guide to identify areas of development to create a more
-                        engaging website. Make storm bowling's website the hub for all things bowling.</h5>
-                </div>
-            </a>
-            <a href="pockets.html">
-                <div class="card  card--action ">
-                    <h4>Pockets</h4>
-                    <h5>A financial app that allows you to move, organize, and transact all in one place for better
-                        money management.</h5>
-                </div>
-            </a>
+        <div class="pipeline">
+            <div class="pipeline-stage">
+                <span class="pipeline-step">Research</span>
+                <p>Understand how people actually think, behave, and decide.</p>
+                <p class="label-callout">Surveys · Interviews · Usability Testing · Synthesis</p>
+            </div>
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+            <div class="pipeline-stage">
+                <span class="pipeline-step">System</span>
+                <p>Structure the complexity into an architecture people can navigate.</p>
+                <p class="label-callout">IA · Taxonomies · Navigation · Decision Support</p>
+            </div>
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+            <div class="pipeline-stage">
+                <span class="pipeline-step">Interface</span>
+                <p>Design the flows, wireframes, and high-fidelity screens.</p>
+                <p class="label-callout">User Flows · Wireframes · Prototypes · UI</p>
+            </div>
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+            <div class="pipeline-stage">
+                <span class="pipeline-step">Shipped</span>
+                <p>Build the real thing in production — no handoff required.</p>
+                <p class="label-callout">HTML · CSS · JavaScript · GSAP · APIs · CMS</p>
+            </div>
         </div>
+
+        <p class="intersection-line">I sit where <strong>UX research, information architecture, and front-end
+                engineering</strong> overlap — strongest when the subject is technical, the information is messy, and the
+            path forward hasn't been defined yet.</p>
+
     </section>
 
     <!-- GET IN TOUCH -->
     <section class="body-container">
-        <h3 class="center-text mb-32">GET IN TOUCH</h3>
-        <button id="copy-email" class="button" style="margin:auto;">dybyux.designs@gmail.com</button>
+        <h3 class="center-text mb-16">GET IN TOUCH</h3>
+        <p class="section-intro center-text mb-32" style="margin-inline:auto;">Have a messy, undefined problem that needs
+            research, structure, and code? Let's talk.</p>
+        <div class="contact-actions">
+            <button id="copy-email" class="button">dybyux.designs@gmail.com</button>
+            <a class="button btn-outline" href="assets/Dylan-Byars-Resume.pdf" target="_blank" rel="noopener"
+                download>Download résumé</a>
+            <a class="button btn-outline" href="https://www.linkedin.com/in/dylan-byars-4155511b3/"
+                target="_blank" rel="noopener">LinkedIn</a>
+        </div>
         <p id="copy-confirm" class="center-text"
             style="margin-top:12px; color:var(--brand); opacity:0; font-size:14px;">Copied to clipboard!</p>
     </section>
 
     <!-- SHRED CURSOR -->
+    </main>
+
     <div id="shred-cursor">
-        <img src="assets/shred-cursor.png" alt="Snowboarder Cursor">
+        <img src="assets/shred-cursor.png" alt="Snowboarder Cursor" decoding="async" loading="lazy" width="32" height="33">
     </div>
     <div id="trail-container"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/gsap/gsap.min.js"
+        onerror="document.documentElement.classList.add('no-anim')"></script>
+    <script src="assets/vendor/gsap/MotionPathPlugin.min.js"></script>
+    <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
     <script src="main.js"></script>
 
 </body>
+
+</html>
